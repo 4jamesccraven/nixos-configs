@@ -56,8 +56,8 @@
 
 	# Set wallpaper
 	"org/gnome/desktop/background" = {
-          picture-uri = "file:///etc/nixos/assets/wp.png";
-          picture-uri-dark = "file:///etc/nixos/assets/wp.png";
+          picture-uri = "file:///home/jamescraven/nixos/assets/wp.png";
+          picture-uri-dark = "file:///home/jamescraven/nixos/assets/wp.png";
 	};
       };
     };  
