@@ -13,6 +13,7 @@
       discord
       spotify
       google-chrome
+      telegram-desktop
     ];
   };
 

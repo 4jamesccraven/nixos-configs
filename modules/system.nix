@@ -11,6 +11,7 @@
     neovim
     fastfetch
     tree
+    btop
 
     # Utility
     alacritty
