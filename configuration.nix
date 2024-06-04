@@ -5,7 +5,7 @@
     [
       <home-manager/nixos>
       ./hardware-configuration.nix
-      ./modules.nix
+      ./modules
     ];
 
   # My modules
