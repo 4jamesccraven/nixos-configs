@@ -13,6 +13,7 @@
     tree
     btop
     mkdev
+    bat
 
     # Utility
     alacritty
