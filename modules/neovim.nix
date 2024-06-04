@@ -12,22 +12,6 @@
         telescope-nvim
       ];
 
-      coc = {
-        # Code auto-complete
-        settings = {
-          enable = true;
-          
-          languageserver = {
-            # Nix language support
-            nixd = {
-              command = "nixd";
-              rootPatterns = [ ".nixd.json" ];
-              filetypes = [ "nix" ];
-            };
-          };
-        };
-      };
-
     };
   };
 }

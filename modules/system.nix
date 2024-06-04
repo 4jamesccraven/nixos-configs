@@ -23,10 +23,8 @@
     python3
     vscode
     texlive.combined.scheme-full
-    nixd
     libgcc
     git
-    git-credential-manager
 
     # Theming
     alacritty-theme
