@@ -12,6 +12,7 @@
     fastfetch
     tree
     btop
+    mkdev
 
     # Utility
     alacritty
@@ -35,6 +36,11 @@
   services.blueman.enable = true;
   programs.steam.enable = true;
   programs.firefox.enable = true;
+
+  # Custom Software override
+  nixpkgs.config.packageOverrides = pkgs: {
+    mkdev = pkgs.callPackage ../myPackages/mkdev/default.nix { };
+  };
 
 
   ### Bootloader. ###
