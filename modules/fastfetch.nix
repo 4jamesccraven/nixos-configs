@@ -6,128 +6,128 @@
       enable = true;
 
       settings = {
-	padding.top = 2;
+        padding.top = 2;
         logo = {
-	  color = {
-            "1" = "38;2;181;191;226";
-	    "2" = "38;2;202;158;230";
-	  };
-	};
+          color = {
+           "1" = "38;2;181;191;226";
+           "2" = "38;2;202;158;230";
+          };
+        };
 
 
         display = {
           color = "38;2;202;158;230";
-	  separator = "  ";
-	  binaryPrefix = "si";
-	  temp = {
-	    unit = "C";
-	    ndigits = 0;
-	  };
-	  size = {
-            maxPrefix = "TB";
-	    ndigits = 2;
-	  };
-	  bar = {
-            charElapsed = "*";
-	    charTotal = " ";
-	  };
-	  percent = {
-            type = 1;
-	  };
-	};
+          separator = "  ";
+          binaryPrefix = "si";
+          temp = {
+            unit = "C";
+            ndigits = 0;
+          };
+          size = {
+                  maxPrefix = "TB";
+            ndigits = 2;
+          };
+          bar = {
+                  charElapsed = "*";
+            charTotal = " ";
+          };
+          percent = {
+                  type = 1;
+          };
+        };
 
 
-	modules = [
-	  "break"
-	  "break"
+        modules = [
+          "break"
+          "break"
 
           {
             type = "title";
-	  }
+          }
 
           {
             type = "os";
-	    key = "├── ";
+            key = "├── ";
           }
 
           {
             type = "packages";
-	    key = "├── ";
+            key = "├── ";
           }
 
           {
             type = "theme";
-	    key = "├── ";
+            key = "├── ";
           }
 
-	  {
-	    type = "separator";
-	    string = "│                ";
-	    outputColor = "38;2;202;158;230";
-	  }
+          {
+            type = "separator";
+            string = "│                ";
+            outputColor = "38;2;202;158;230";
+          }
 
           {
             type = "datetime";
-	    key = "├── 󱑀";
-	    format = "{14}:{17}:{20}";
-	  }
-
-	  {
-	    type = "uptime";
-	    key = "├── 󰔛";
-	  }
-
-	  {
-	    type = "datetime";
-	    key = "├── ";
-	    format = "{3}/{11}/{1}";
-	  }
-
-	  {
-	    type = "separator";
-	    string = "│                ";
-	  }
-
-	  {
-	    type = "cpu";
-	    key = "├── ";
-	  }
+            key = "├── 󱑀";
+            format = "{14}:{17}:{20}";
+          }
 
           {
-	    type = "memory";
-	    key = "├── ";
-	  }
+            type = "uptime";
+            key = "├── 󰔛";
+          }
 
           {
-	    type = "gpu";
-	    key = "├── 󰡷";
-	  }
+            type = "datetime";
+            key = "├── ";
+            format = "{3}/{11}/{1}";
+          }
 
           {
-	    type = "disk";
-	    key = "├── ";
-	  }
+            type = "separator";
+            string = "│                ";
+          }
 
-	  {
-	    type = "separator";
-	    string = "│                ";
-	  }
-	  
-	  {
-            type = "battery";
-	    key = "├── ";
-	  }
+          {
+            type = "cpu";
+            key = "├── ";
+          }
 
-	  {
-            type = "wifi";
-	    key = "├── ";
-	  }
+                {
+            type = "memory";
+            key = "├── ";
+          }
 
-	  {
+          {
+            type = "gpu";
+            key = "├── 󰡷";
+          }
+
+          {
+            type = "disk";
+            key = "├── ";
+          }
+
+          {
+            type = "separator";
+            string = "│                ";
+          }
+
+          {
+                  type = "battery";
+            key = "├── ";
+          }
+
+          {
+                  type = "wifi";
+            key = "├── ";
+          }
+
+          {
             type = "localip";
-	    key = "└── ";
-	  }
-	];
+            key = "└── ";
+          }
+        ];
       };
 
     };

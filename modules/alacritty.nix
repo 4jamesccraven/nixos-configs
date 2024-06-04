@@ -11,17 +11,17 @@
       settings = {
         import = [ "${pkgs.alacritty-theme}/catppuccin_frappe.toml" ];
 
-	font.normal = {
+        font.normal = {
           family = "UbuntuMonoNerdFont";
-	  style = "Regular";
-	};
+          style = "Regular";
+        };
 
-	window.dimensions = {
+        window.dimensions = {
           columns = 110;
-	  lines = 35;
-	};
+          lines = 35;
+        };
 
-	window.opacity = 0.9;
+        window.opacity = 0.9;
       };
     };
   };

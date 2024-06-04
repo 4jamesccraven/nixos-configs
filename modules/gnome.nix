@@ -28,13 +28,13 @@
           };
         };
 
-	iconTheme = {
-	  name = "Papirus-Dark";
-	  package = pkgs.catppuccin-papirus-folders.override {
-	    flavor = "frappe";
-	    accent = "mauve";
-	  };
-	};
+        iconTheme = {
+          name = "Papirus-Dark";
+          package = pkgs.catppuccin-papirus-folders.override {
+            flavor = "frappe";
+            accent = "mauve";
+          };
+        };
       };
 
       # Force Shell Theme with Dconf
@@ -54,11 +54,11 @@
           name = "Catppuccin-Frappe-Standard-Mauve-Dark";
         };
 
-	# Set wallpaper
-	"org/gnome/desktop/background" = {
+        # Set wallpaper
+        "org/gnome/desktop/background" = {
           picture-uri = "file:///home/jamescraven/nixos/assets/wp.png";
           picture-uri-dark = "file:///home/jamescraven/nixos/assets/wp.png";
-	};
+        };
       };
     };  
   };

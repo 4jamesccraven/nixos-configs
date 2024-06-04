@@ -25,10 +25,10 @@
       enable = true;
       shellAliases = {
         c = "clear";
-	cff = "clear; fastfetch";
-	ff = "fastfetch";
-	build = "sudo nixos-rebuild switch -I nixos-config=$HOME/nixos/configuration.nix";
-	clean-and-build = "sudo nix-collect-garbage -d; build";
+        cff = "clear; fastfetch";
+        ff = "fastfetch";
+        build = "sudo nixos-rebuild switch -I nixos-config=$HOME/nixos/configuration.nix";
+        clean-and-build = "sudo nix-collect-garbage -d; build";
       };
       bashrcExtra = "fastfetch";
     };
