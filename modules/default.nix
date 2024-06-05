@@ -7,5 +7,6 @@
       ./fastfetch.nix
       ./alacritty.nix
       ./git.nix
+      ./bat.nix
     ];
 }

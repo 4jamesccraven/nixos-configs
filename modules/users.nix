@@ -25,6 +25,7 @@
       enable = true;
       shellAliases = {
         c = "clear";
+        cat = "bat";
         cff = "clear; fastfetch";
         ff = "fastfetch";
         build = "sudo nixos-rebuild switch -I nixos-config=$HOME/nixos/configuration.nix";
