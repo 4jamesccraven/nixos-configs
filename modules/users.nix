@@ -33,7 +33,10 @@
         build = "sudo nixos-rebuild switch -I nixos-config=$HOME/nixos/configuration.nix";
         clean-and-build = "sudo nix-collect-garbage -d; build";
       };
-      bashrcExtra = "fastfetch";
+      bashrcExtra = ''
+        fastfetch
+        PS1='\[\e[38;2;202;158;230m\][\u@\h:\w] $\[\e[m\]' 
+      '';
     };
   };
 
