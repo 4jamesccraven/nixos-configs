@@ -14,8 +14,8 @@ buildPythonApplication {
   buildInputs = [ python ];
 
   propagatedBuildInputs = [
-    pyyaml
     platformdirs
+    pyyaml
   ];
 
   postInstall = ''

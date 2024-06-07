@@ -9,25 +9,25 @@
   # System packages
   environment.systemPackages = with pkgs; [
     # Terminal Tools
-    neovim
-    fastfetch
-    tree
-    btop
-    mkdev
     bat
+    btop
+    fastfetch
+    mkdev
+    neovim
+    tree
 
     # Utility
     alacritty
-    tor-browser-bundle-bin
-    libreoffice-qt
     filezilla
+    libreoffice-qt
+    tor-browser-bundle-bin
 
     # Development
-    python3
-    vscode
-    texlive.combined.scheme-full
-    libgcc
     git
+    libgcc
+    python3
+    texlive.combined.scheme-full
+    vscode
 
     # Theming
     alacritty-theme
@@ -35,9 +35,9 @@
   ];
 
   # Progam/Service-based packages
-  services.blueman.enable = true;
-  programs.steam.enable = true;
   programs.firefox.enable = true;
+  programs.steam.enable = true;
+  services.blueman.enable = true;
 
 
   ### Bootloader. ###

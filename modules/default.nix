@@ -1,12 +1,12 @@
 {pkgs, lib, ...}: {
     imports = [
-      ./system.nix
-      ./users.nix
+      ./alacritty.nix
+      ./bat.nix
+      ./fastfetch.nix
+      ./git.nix
       ./gnome.nix
       ./neovim.nix
-      ./fastfetch.nix
-      ./alacritty.nix
-      ./git.nix
-      ./bat.nix
+      ./system.nix
+      ./users.nix
     ];
 }
