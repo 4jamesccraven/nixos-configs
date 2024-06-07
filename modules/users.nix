@@ -1,4 +1,6 @@
-{pkgs, lib, config, ...} : {
+{pkgs, lib, config, ...} :
+
+{
   ### Main account ###
   
   users.users.jamescraven = {

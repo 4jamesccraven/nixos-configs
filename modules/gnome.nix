@@ -1,5 +1,6 @@
-{pkgs, lib, config, ...}: {
-  
+{pkgs, lib, config, ...}:
+
+{
   options = {
     gnome.enable = lib.mkEnableOption "Enables gnome";
   };

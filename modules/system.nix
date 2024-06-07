@@ -1,5 +1,6 @@
-{pkgs, lib, config, ...} : {
+{pkgs, lib, config, ...} :
 
+{
   ### Software ###
 
   # Allow unfree packages
