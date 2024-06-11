@@ -61,15 +61,15 @@
           }
 
           {
-            type = "separator";
-            string = "│                ";
-            outputColor = "38;2;202;158;230";
+            type = "custom";
+            key = "│";
+            keyColor = "38;2;202;158;230";
           }
 
           {
             type = "datetime";
             key = "├── 󱑀";
-            format = "{14}:{17}:{20}";
+            format = "{14}:{18}:{20}";
           }
 
           {
@@ -84,8 +84,9 @@
           }
 
           {
-            type = "separator";
-            string = "│                ";
+            type = "custom";
+            key = "│";
+            keyColor = "38;2;202;158;230";
           }
 
           {
@@ -109,8 +110,9 @@
           }
 
           {
-            type = "separator";
-            string = "│                ";
+            type = "custom";
+            key = "│";
+            keyColor = "38;2;202;158;230";
           }
 
           {
