@@ -40,7 +40,7 @@
   services.blueman.enable = true;
 
 
-  ### Bootloader. ###
+  ### Bootloader ###
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -87,6 +87,9 @@
     # If you want JACK applications, uncomment this
     # jack.enable = true;
   };
+
+  ### WINE Support ###
+  hardware.opengl.driSupport32Bit = true;
 
 
   ### DISABLED EXAMPLES ###
