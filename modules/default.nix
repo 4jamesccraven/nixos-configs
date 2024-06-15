@@ -2,6 +2,7 @@
     imports = [
       ./alacritty.nix
       ./bat.nix
+      ./btop.nix
       ./fastfetch.nix
       ./git.nix
       ./gnome.nix
