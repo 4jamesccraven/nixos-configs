@@ -36,6 +36,10 @@
             accent = "mauve";
           };
         };
+        cursorTheme = {
+          name = "Dracula-cursors";
+          package = pkgs.dracula-cursors;
+        };
       };
 
       # Force Shell Theme with Dconf
