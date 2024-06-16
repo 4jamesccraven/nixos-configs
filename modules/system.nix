@@ -9,6 +9,7 @@
   # System packages
   environment.systemPackages = with pkgs; [
     # Terminal Tools
+    asciiquarium
     bat
     btop
     fastfetch
