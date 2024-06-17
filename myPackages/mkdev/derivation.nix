@@ -7,8 +7,8 @@ buildPythonApplication {
   src = pkgs.fetchFromGitHub{
     owner = "4jamesccraven";
     repo = "mkdev";
-    rev = "3f30ce14bb6b6ec1f5253404fc8511523d8d58c4";
-    sha256 = "0rlfa68vhg71rwa8pmm8l5sq7rcvnwbql9hb42fqq6jgkr0h8bl6";
+    rev = "244d85f3c6b95d90bde92e5a1f4f23e93e7ad80e";
+    sha256 = "05idggddwv7sa42pqm1zglvvj0mr2z0fpivi0pwyj1hwifsa056i";
   };
 
   buildInputs = [ python ];
