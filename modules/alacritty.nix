@@ -1,6 +1,7 @@
 { pkgs, config, lib, ... }:
 
 {
+
   home-manager.users.jamescraven = {
     # Alacritty settings
     programs.alacritty = {
@@ -25,4 +26,5 @@
       };
     };
   };
+
 }

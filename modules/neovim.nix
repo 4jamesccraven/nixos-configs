@@ -1,6 +1,7 @@
 { pkgs, lib, config, ...}:
 
 {
+
   home-manager.users.jamescraven = {
     programs.neovim = {
       enable = true;
@@ -14,4 +15,5 @@
 
     };
   };
+
 }

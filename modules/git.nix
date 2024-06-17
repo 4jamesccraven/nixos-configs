@@ -1,6 +1,7 @@
 { pkgs, config, lib, ... }:
 
 {
+
   home-manager.users.jamescraven = {
     programs.git = {
       enable = true;
@@ -12,4 +13,5 @@
       };
     };
   };
+
 }
