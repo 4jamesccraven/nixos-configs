@@ -40,17 +40,7 @@
   programs.steam.enable = true;
   services.blueman.enable = true;
 
-
-  ### Bootloader ###
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-
   ### Generic Sytem Info ###
-
-  # Computer Name
-  networking.hostName = "vaal";
 
   # Time Zone
   time.timeZone = "America/New_York";
@@ -88,10 +78,6 @@
     # If you want JACK applications, uncomment this
     # jack.enable = true;
   };
-
-  ### WINE Support ###
-  hardware.opengl.driSupport32Bit = true;
-
 
   ### DISABLED EXAMPLES ###
 
