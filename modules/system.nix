@@ -20,6 +20,7 @@
     # Utility
     alacritty
     filezilla
+    foliate
     libreoffice-qt
     tor-browser-bundle-bin
 
