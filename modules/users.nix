@@ -12,7 +12,6 @@
 
     packages = with pkgs; [
       # Recreations/Internet
-      discord
       spotify
       google-chrome
       telegram-desktop
@@ -34,7 +33,6 @@
     ## Account Specific Software
 
     packages = with pkgs; [
-      discord
     ];
   };
 }

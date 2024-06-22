@@ -34,6 +34,9 @@
     # Theming
     alacritty-theme
     nerdfonts
+
+    # Communication
+    discord-screenaudio
   ];
 
   # Progam/Service-based packages
