@@ -9,7 +9,6 @@
   # System packages
   environment.systemPackages = with pkgs; [
     # Terminal Tools
-    asciiquarium
     bat
     btop
     fastfetch
@@ -42,7 +41,6 @@
   # Progam/Service-based packages
   programs.firefox.enable = true;
   programs.steam.enable = true;
-  services.blueman.enable = true;
 
   ### Generic Sytem Info ###
 

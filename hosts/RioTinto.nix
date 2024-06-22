@@ -13,6 +13,13 @@
     supportedFilesystems = [ "ntfs" ];
   };
 
+  ## System-specific Packages ##
+
+  environment.systemPackages = with pkgs; [
+    heroic
+  ];
+  services.hardware.openrgb.enable = true;
+
   ## Nvidia ##
 
   services.xserver.videoDrivers = ["nvidia"];
@@ -35,9 +42,5 @@
       open = false;
       nvidiaSettings = true;
     };
-
   };
-
-  services.hardware.openrgb.enable = true;
-  
 }
