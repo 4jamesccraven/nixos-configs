@@ -25,6 +25,7 @@
           name = "Catppuccin-Frappe-Standard-Mauve-Dark";
           package = pkgs.catppuccin-gtk.override {
             accents = ["mauve"];
+            size = "standard";
             variant = "frappe";
           };
         };
