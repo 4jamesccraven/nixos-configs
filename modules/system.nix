@@ -21,6 +21,7 @@
     filezilla
     foliate
     libreoffice-qt
+    mediawriter
     tor-browser-bundle-bin
 
     # Development
