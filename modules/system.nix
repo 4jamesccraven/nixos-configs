@@ -24,9 +24,11 @@
     tor-browser-bundle-bin
 
     # Development
+    cargo
     git
     libgcc
     python3
+    rustc
     texlive.combined.scheme-full
     vscode
 
