@@ -13,6 +13,12 @@
     supportedFilesystems = [ "ntfs" ];
   };
 
+  ## File System Tweak ##
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/807b6094-3680-4bb4-8c65-6451eca5aaee";
+    fsType = "ext4";
+  };
+
   ## System-specific Packages ##
 
   environment.systemPackages = with pkgs; [
