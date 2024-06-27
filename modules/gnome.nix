@@ -23,19 +23,7 @@
 
         theme = {
           name = "catppuccin-frappe-mauve-standard+default";
-          package = 
-            (pkgs.catppuccin-gtk.overrideAttrs {
-              src = pkgs.fetchFromGitHub {
-                owner = "catppuccin";
-                repo = "gtk";
-                rev = "v1.0.3";
-                fetchSubmodules = true;
-                hash = "sha256-q5/VcFsm3vNEw55zq/vcM11eo456SYE5TQA3g2VQjGc=";
-              };
-
-              postUnpack = "";
-            }).override
-              {
+          package = pkgs.catppuccin-gtk.override {
                 accents = [ "mauve" ];
                 variant = "frappe";
                 size = "standard";
