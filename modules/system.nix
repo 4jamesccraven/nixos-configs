@@ -28,7 +28,7 @@
     cargo
     git
     libgcc
-    python3
+    python312
     rustc
     texlive.combined.scheme-full
     vscode
@@ -40,6 +40,16 @@
     # Communication
     discord-screenaudio
     discord # Have both because both have odd quirks.
+  
+    # Python Packages
+    python312Packages.nbformat
+    python312Packages.ipykernel
+    python312Packages.pip
+    python312Packages.numpy
+    python312Packages.pandas
+    python312Packages.matplotlib
+    python312Packages.seaborn
+    python312Packages.scikit-learn
   ];
 
   # Progam/Service-based packages
