@@ -8,8 +8,6 @@
       viAlias = true;
       vimAlias = true;
 
-      defaultEditor = true;
-
       # Plugins
       plugins = with pkgs.vimPlugins; [
         telescope-nvim
