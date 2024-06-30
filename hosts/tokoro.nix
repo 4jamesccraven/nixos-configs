@@ -27,7 +27,6 @@
     alacritty
     git
     neovim
-    syncthing
   ];
 
   programs.firefox.enable = true;
