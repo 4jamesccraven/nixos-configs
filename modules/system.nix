@@ -22,7 +22,6 @@
     foliate
     libreoffice-qt
     mediawriter
-    syncthing
     tor-browser-bundle-bin
 
     # Development

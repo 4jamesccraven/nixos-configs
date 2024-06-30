@@ -9,6 +9,7 @@
       ./gnome.nix
       ./neovim.nix
       ./system.nix
+      ./syncthing.nix
       ./users.nix
     ];
 }
