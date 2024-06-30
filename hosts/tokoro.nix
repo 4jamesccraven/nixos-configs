@@ -6,6 +6,7 @@
     ../hardware-configuration.nix
     ../modules/git.nix
     ../modules/gnome.nix
+    ../modules/syncthing.nix
     ../myPackages
   ];
   
