@@ -3,28 +3,31 @@
 {
   services.syncthing = {
     enable = true;
+    user = "jamescraven";
+    dataDir = "/home/jamescraven/Documents";
+    configDir = "/home/jamescraven/.config/syncthing";
     overrideDevices = true;
     overrideFolders = true;
     settings = {
       devices = {
         "vaal" =     { id = "HVZXSAY-3P5YHIN-OO4L3PS-JSKEWV3-CS7MYTK-K5I5VAQ-7ISIYXW-PQ56HQN"; };
-        "RioTinto" = { id = "6MRO7HT-VT4Y2WD-POMIEIW-52LCQKX-WDKRXPA-LYHEXFO-EADQ3EX-NIE4MAA"; };
+        "RioTinto" = { id = "JCBOODZ-OZJFDCV-XTV3HDM-YK7CHV6-ZUUNN7E-RO7MGUE-IYFZKRW-BZVSVQZ"; };
         "tokoro" =   { id = "KAV5MFS-KB4WA37-IOLIUCT-46LU5UG-Z7NEXX4-QNHUP3I-6TZFN36-VYYPIAD"; };
       };
 
       folders = {
         "Documents" = {
-          path = "~/Documents";
+          path = "/home/jamescraven/Documents";
           devices = [ "RioTinto" "tokoro" "vaal" ];
         };
 
         "Code" = {
-          path = "~/Code";
+          path = "/home/jamescraven/Code";
           devices = [ "RioTinto" "tokoro" "vaal" ];
         };
 
         "Pictures" = {
-          path = "~/Pictures";
+          path = "/home/jamescraven/Pictures";
           devices = [ "RioTinto" "tokoro" "vaal" ];
         };
       };
