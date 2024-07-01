@@ -12,7 +12,7 @@
       devices = {
         "vaal" =     { id = "D7HEMFA-4567NUZ-G46VZNP-NMLLUM2-56LVU7Z-OKZBCL3-ZNAXQYK-3RQFOAJ"; };
         "RioTinto" = { id = "JCBOODZ-OZJFDCV-XTV3HDM-YK7CHV6-ZUUNN7E-RO7MGUE-IYFZKRW-BZVSVQZ"; };
-        "tokoro" =   { id = "KAV5MFS-KB4WA37-IOLIUCT-46LU5UG-Z7NEXX4-QNHUP3I-6TZFN36-VYYPIAD"; };
+        "tokoro" =   { id = "H6VRRS3-IXJ5H2V-6MPLJJS-SGJ2WRD-CJHSDBA-J6FM6Z7-ERKKFB2-27CBFAX"; };
       };
 
       folders = {
