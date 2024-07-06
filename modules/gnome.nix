@@ -42,7 +42,7 @@
         enable = true;
 
         theme = {
-          name = "catppuccin-frappe-mauve-standard+default";
+          name = "catppuccin-frappe-mauve-standard";
           package = pkgs.catppuccin-gtk.override {
                 accents = [ "mauve" ];
                 variant = "frappe";
@@ -77,7 +77,7 @@
 
         # Set Shell Theme
         "org/gnome/shell/extensions/user-theme" = {
-          name = "catppuccin-frappe-mauve-standard+default";
+          name = "catppuccin-frappe-mauve-standard";
         };
 
         # Set wallpaper
