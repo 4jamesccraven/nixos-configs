@@ -24,13 +24,13 @@
 
     # Exclude GNOME bloat
     environment.gnome.excludePackages = (with pkgs; [
+      epiphany
+      geary
       gnome-console
       gnome-connections
     ]) ++ (with pkgs.gnome; [
-      epiphany
       gnome-contacts
       gnome-maps
-      geary
     ]);
 
     # Enable DCONF
