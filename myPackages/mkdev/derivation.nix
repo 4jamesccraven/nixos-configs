@@ -1,14 +1,14 @@
-{ lib, python3Packages }:
+{ lib, python312Packages }:
 
-with python3Packages;
+with python312Packages;
 buildPythonApplication {
   pname = "mkdev";
-  version = "1.2";
-  src = pkgs.fetchFromGitHub{
+  version = "2.0";
+  src = pkgs.fetchFromGitHub {
     owner = "4jamesccraven";
     repo = "mkdev";
-    rev = "244d85f3c6b95d90bde92e5a1f4f23e93e7ad80e";
-    sha256 = "05idggddwv7sa42pqm1zglvvj0mr2z0fpivi0pwyj1hwifsa056i";
+    rev = "b1f6ad5727e5c8cac6250d2d8c7b846a925e0d61";
+    sha256 = "0852acdcmxj7i1rzyak15a0bycq5pn5w7f76ns16w7ginwvqh5lj";
   };
 
   buildInputs = [ python ];
@@ -16,11 +16,15 @@ buildPythonApplication {
   propagatedBuildInputs = [
     platformdirs
     pyyaml
+    textual
+  ];
+
+  makeWrapperArgs = [
+    "--set PYTHONPATH $src/src/mkdev"
   ];
 
   postInstall = ''
-    sed -i '1i#!/usr/bin/env python3' $out/bin/mkdev.py
-    mv -v $out/bin/mkdev.py $out/bin/mkdev
-    cp -r $src/config $out/bin/config
+    cp -r $src/src/mkdev/config $out/lib/python3.12/site-packages/mkdev/config
+    cp -r $src/src/mkdev/help.txt $out/lib/python3.12/site-packages/mkdev/help.txt
   '';
 }
