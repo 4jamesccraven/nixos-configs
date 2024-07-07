@@ -7,8 +7,8 @@ buildPythonApplication {
   src = pkgs.fetchFromGitHub {
     owner = "4jamesccraven";
     repo = "mkdev";
-    rev = "b1f6ad5727e5c8cac6250d2d8c7b846a925e0d61";
-    sha256 = "0852acdcmxj7i1rzyak15a0bycq5pn5w7f76ns16w7ginwvqh5lj";
+    rev = "3ded78ac990e633da1fb14b7785cb68db3b5591e";
+    sha256 = "1l688m439r5q6nigwc35nsypl96in7bfvgcainzjw4zgc2di784i";
   };
 
   buildInputs = [ python ];
@@ -22,9 +22,4 @@ buildPythonApplication {
   makeWrapperArgs = [
     "--set PYTHONPATH $src/src/mkdev"
   ];
-
-  postInstall = ''
-    cp -r $src/src/mkdev/config $out/lib/python3.12/site-packages/mkdev/config
-    cp -r $src/src/mkdev/help.txt $out/lib/python3.12/site-packages/mkdev/help.txt
-  '';
 }
