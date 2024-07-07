@@ -11,7 +11,7 @@
         ff = "fastfetch";
         cff = "clear; fastfetch";
         build = "sudo nixos-rebuild switch -I nixos-config=$HOME/nixos/configuration.nix";
-        clean-and-build = "sudo nix-collect-garbage -d; build";
+        clean-and-build = "sudo nix-collect-garbage -d && build";
       };
       bashrcExtra = ''
         fastfetch
