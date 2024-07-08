@@ -86,7 +86,7 @@
       shellAliases = {
         c = "clear";
         build = "sudo nixos-rebuild switch -I nixos-config=$HOME/nixos/configuration.nix";
-        clean-and-build = "sudo nix-collect-garbage -d; build";
+        clean-and-build = "sudo nix-collect-garbage -d && build";
       };
       bashrcExtra = ''
         PS1="\[\e[38;2;202;158;230m\][\[\e[38;2;231;130;132m\]\u\[\e[38;2;202;158;230m\]@\h] \[\e[38;2;231;130;132m\]\w\n\[\e[38;2;202;158;230m\]$ \[\e[m\]"
