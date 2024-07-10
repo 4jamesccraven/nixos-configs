@@ -56,6 +56,11 @@
   programs.firefox.enable = true;
   programs.steam.enable = true;
 
+  ### Environment Variables ###
+  environment.variables = {
+    "MOZ_ENABLE_WAYLAND" = 0;
+  };
+
   ### Generic Sytem Info ###
 
   # Time Zone
