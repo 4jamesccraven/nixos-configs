@@ -28,7 +28,6 @@
     cargo
     git
     libgcc
-    python312
     rustc
     texlive.combined.scheme-full
     vscode
@@ -42,14 +41,16 @@
     discord # Have both because both have odd quirks.
   
     # Python Packages
-    python312Packages.nbformat
-    python312Packages.ipykernel
-    python312Packages.pip
-    python312Packages.numpy
-    python312Packages.pandas
-    python312Packages.matplotlib
-    python312Packages.seaborn
-    python312Packages.scikit-learn
+    (python312.withPackages (ps: [
+      ps.nbformat
+      ps.ipykernel
+      ps.pip
+      ps.numpy
+      ps.pandas
+      ps.matplotlib
+      ps.seaborn
+      ps.scikit-learn
+    ]))
   ];
 
   # Progam/Service-based packages
