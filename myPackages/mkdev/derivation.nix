@@ -3,12 +3,12 @@
 with python312Packages;
 buildPythonApplication {
   pname = "mkdev";
-  version = "2.0.1";
+  version = "2.0.2";
   src = pkgs.fetchFromGitHub {
     owner = "4jamesccraven";
     repo = "mkdev";
-    rev = "3253f017db1efa214d3b3d344d44b556d3c148fc";
-    sha256 = "195cnbzbksdps4la3hlqs2jj97aggkm1rjdhg6cabq5p4ds2z761";
+    rev = "cf003484dcbaae36b2a9de7f66aa696ab6dc87c4";
+    sha256 = "1i1sqssnscg4s0ax198rarq2lcfspb6n85fd3ci76rvr5mqkayaj";
   };
 
   buildInputs = [ python ];
