@@ -19,6 +19,11 @@
     fsType = "ext4";
   };
 
+  fileSystems."/home/jamescraven/steam-nvme" = {
+    device = "/steam";
+    options = [ "bind" ];
+  };
+
   ## System-specific Packages ##
 
   environment.systemPackages = with pkgs; [
