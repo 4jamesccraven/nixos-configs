@@ -1,6 +1,6 @@
-{ lib, python312Packages }:
+{ lib, python311Packages }:
 
-with python312Packages;
+with python311Packages;
 buildPythonApplication {
   pname = "mkdev";
   version = "2.0.2";

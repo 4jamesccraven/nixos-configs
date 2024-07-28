@@ -12,7 +12,7 @@
     bat
     btop
     fastfetch
-    # mkdev
+    mkdev
     neovim
     tree
 
@@ -31,6 +31,7 @@
     rustc
     texlive.combined.scheme-full
     vscode
+    python312
 
     # Theming
     alacritty-theme
