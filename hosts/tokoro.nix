@@ -10,6 +10,8 @@
     ../myPackages
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
   system.stateVersion = "23.11";
 
@@ -86,7 +88,7 @@
       enable = true;
       shellAliases = {
         c = "clear";
-        build = "sudo nixos-rebuild switch -I nixos-config=$HOME/nixos/configuration.nix";
+        build = "sudo nixos-rebuild switch --flake /home/jamescraven/nixos";
         clean-and-build = "sudo nix-collect-garbage -d && build";
       };
       bashrcExtra = ''
