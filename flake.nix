@@ -16,6 +16,19 @@
           ];
         };
 
+        vaal = nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs; };
+          modules = [
+            ./hosts/vaal.nix
+          ];
+        };
+
+        tokoro = nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs; };
+          modules = [
+            ./hosts/tokoro.nix
+          ];
+        };
       };
   };
 }
