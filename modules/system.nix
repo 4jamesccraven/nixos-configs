@@ -12,7 +12,7 @@
     bat
     btop
     fastfetch
-    mkdev
+    # mkdev
     neovim
     tree
 

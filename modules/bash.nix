@@ -10,7 +10,7 @@
         cat = "bat";
         ff = "fastfetch";
         cff = "clear; fastfetch";
-        build = "sudo nixos-rebuild switch -I nixos-config=$HOME/nixos/configuration.nix";
+        build = "sudo nixos-rebuild switch --flake /home/jamescraven/nixos";
         clean-and-build = "sudo nix-collect-garbage -d && build";
       };
       bashrcExtra = ''

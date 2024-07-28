@@ -19,7 +19,7 @@
         display = {
           color = "38;2;202;158;230";
           separator = "  ";
-          binaryPrefix = "si";
+          size.binaryPrefix = "si";
           temp = {
             unit = "C";
             ndigits = 0;
