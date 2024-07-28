@@ -3,7 +3,6 @@
 {
   imports = [
     inputs.home-manager.nixosModules.default
-    ../hardware-configuration.nix
     ../modules
     ../myPackages
   ];
