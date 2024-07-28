@@ -39,18 +39,6 @@
     # Communication
     discord-screenaudio
     discord # Have both because both have odd quirks.
-  
-    # Python Packages
-    (python312.withPackages (ps: [
-      ps.nbformat
-      ps.ipykernel
-      ps.pip
-      ps.numpy
-      ps.pandas
-      ps.matplotlib
-      ps.seaborn
-      ps.scikit-learn
-    ]))
   ];
 
   # Progam/Service-based packages
