@@ -10,7 +10,7 @@
   outputs = { nixpkgs, ... } @ inputs : {
       nixosConfigurations = {
         RioTinto = nixpkgs.lib.nixosSystem {
-          specialArgts = {inherit inputs; };
+          specialArgs = {inherit inputs; };
           modules = [
             ./hosts/RioTinto.nix
           ];
