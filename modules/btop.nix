@@ -10,6 +10,7 @@
         color_theme = "TTY";
         theme_background = false;
         proc_tree = true;
+        vim_keys = true;
       };
     };
 
