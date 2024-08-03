@@ -41,6 +41,7 @@
       enable = true;
     };
 
+    xpadneo.enable = true;
 
     nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.stable;
