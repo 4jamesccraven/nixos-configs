@@ -9,15 +9,10 @@
   # System packages
   environment.systemPackages = with pkgs; [
     # Terminal Tools
-    bat
-    btop
-    fastfetch
     mkdev
-    neovim
     tree
 
     # Utility
-    alacritty
     filezilla
     foliate
     libreoffice-qt
