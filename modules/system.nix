@@ -32,7 +32,7 @@
 
     # Communication
     discord-screenaudio
-    discord # Have both because both have odd quirks.
+    discord
   ];
 
   # Progam/Service-based packages
