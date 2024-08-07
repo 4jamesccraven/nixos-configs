@@ -2,7 +2,6 @@
 
 {
 
-  # Language servers
   environment.systemPackages = with pkgs; [
     nixd
   ];
@@ -33,8 +32,11 @@
 
       # Plugins
       plugins = with pkgs.vimPlugins; [
+        neo-tree-nvim
         telescope-nvim
+
         catppuccin-nvim
+
         coc-pyright
         coc-rust-analyzer
       ];
