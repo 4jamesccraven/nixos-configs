@@ -23,7 +23,10 @@
   ## Network, packages, and users ##
 
   networking.hostName = "tokoro";
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    permitRootLogin = "no";
+  };
 
   nixpkgs.config.allowUnfree = true;
   
