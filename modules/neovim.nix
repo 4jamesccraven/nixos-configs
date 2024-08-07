@@ -20,6 +20,7 @@
           "suggest.enablePreview" = true;
           "suggest.enablePreselect" = false;
           "suggest.disableKind" = true;
+          "inlayHint.enable" = false;
   
           languageserver = {
             nix = {
