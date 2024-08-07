@@ -6,7 +6,6 @@
   };
 
   config = lib.mkIf config.gnome.enable {
-    # Enable the X11 windowing system.
     services.xserver.enable = true;
 
     # Enable GNOME

@@ -1,8 +1,7 @@
-{ pkgs, config, lib, ...}:
+{...}:
 
 {
   home-manager.users.jamescraven = {
-    # Set up Bash
     programs.bash = {
       enable = true;
       shellAliases = {

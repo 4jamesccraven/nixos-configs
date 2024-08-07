@@ -1,4 +1,4 @@
-{pkgs, lib, config, ...} :
+{pkgs, ...} :
 
 {
   ### Main account ###
@@ -18,7 +18,7 @@
     ];
   };
 
-  home-manager.users.jamescraven = {pkgs, ...}: {
+  home-manager.users.jamescraven = {...}: {
     home.stateVersion = "24.05";
   };
 
@@ -30,9 +30,5 @@
     description = "fia";
     extraGroups = [ "networkmanager" "wheel" ];
 
-    ## Account Specific Software
-
-    packages = with pkgs; [
-    ];
   };
 }

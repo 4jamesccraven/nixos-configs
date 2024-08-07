@@ -3,10 +3,8 @@
 {
   ### Software ###
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # System packages
   environment.systemPackages = with pkgs; [
     # Terminal Tools
     mkdev
@@ -80,31 +78,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want JACK applications, uncomment this
-    # jack.enable = true;
   };
 
-  ### DISABLED EXAMPLES ###
-
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Enable touchpad support (enabled default in most desktopManger).
-  # services.xserver.libinput.enable = true;
 }
