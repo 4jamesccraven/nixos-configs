@@ -4,6 +4,8 @@
 
   environment.systemPackages = with pkgs; [
     nixd
+    rust-analyzer
+    clang-tools
   ];
 
   home-manager.users.jamescraven = {
@@ -40,6 +42,7 @@
 
         coc-pyright
         coc-rust-analyzer
+        coc-clangd
       ];
 
       extraConfig = ''
