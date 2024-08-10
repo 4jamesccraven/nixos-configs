@@ -25,7 +25,7 @@
   networking.hostName = "tokoro";
   services.openssh = {
     enable = true;
-    permitRootLogin = "no";
+    PermitRootLogin = "no";
   };
 
   nixpkgs.config.allowUnfree = true;
