@@ -3,9 +3,11 @@
 {
   imports = [
     inputs.home-manager.nixosModules.default
-    ./alacritty.nix
+    ./desktop-environment
+    ./dots/alacritty.nix
+    ./dots/git.nix
     ./syncthing.nix
-    ./git.nix
+    ./system.nix
     ../myPackages
   ];
 
