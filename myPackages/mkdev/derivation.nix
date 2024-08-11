@@ -1,4 +1,4 @@
-{ lib, python311Packages }:
+{ python311Packages }:
 
 with python311Packages;
 buildPythonApplication {

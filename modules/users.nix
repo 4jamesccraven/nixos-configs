@@ -1,4 +1,4 @@
-{pkgs, ...} :
+{ pkgs, ... } :
 
 {
   ### Main account ###
@@ -11,7 +11,6 @@
     ## Account Specific Software
 
     packages = with pkgs; [
-      # Recreations/Internet
       spotify
       google-chrome
       telegram-desktop
@@ -22,9 +21,6 @@
     home.stateVersion = "24.05";
   };
 
-  ###---------------------------------------------------------------###
-
-  ### la 'fia ###
   users.users.fia = {
     isNormalUser = true;
     description = "fia";

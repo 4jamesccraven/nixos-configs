@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 pkgs.stdenvNoCC.mkDerivation {
   pname = "dracula-cursors";

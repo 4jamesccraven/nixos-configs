@@ -1,4 +1,4 @@
-{ pkgs, lib, config, modulesPath, ...}:
+{ lib, config, modulesPath, ...}:
 
 {
   imports = [
@@ -7,11 +7,6 @@
   ];
 
   networking.hostName = "vaal";
-
-  boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-  };
 
   ## System-specific Packages ##
   services.blueman.enable = true;

@@ -1,7 +1,6 @@
 {...}:
 
 {
-
   home-manager.users.jamescraven = {
     programs.fastfetch = {
       enable = true;

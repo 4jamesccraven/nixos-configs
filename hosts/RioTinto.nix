@@ -8,13 +8,9 @@
 
   networking.hostName = "RioTinto";
 
-  boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-    supportedFilesystems = [ "ntfs" ];
-  };
+  ## File System ##
+  boot.supportedFilesystems = [ "ntfs" ];
 
-  ## File System Tweak ##
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/807b6094-3680-4bb4-8c65-6451eca5aaee";
     fsType = "ext4";
@@ -26,22 +22,19 @@
   };
 
   ## System-specific Packages ##
-
   environment.systemPackages = with pkgs; [
     heroic
   ];
   services.hardware.openrgb.enable = true;
+  hardware.xpadneo.enable = true;
 
   ## Nvidia ##
-
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware = {
     graphics = {
       enable = true;
     };
-
-    xpadneo.enable = true;
 
     nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -56,7 +49,7 @@
     };
   };
 
-  ## Hardware transcluded
+  ### Hardware transcluded ###
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];

@@ -1,43 +1,11 @@
-{pkgs, lib, config, ...} :
+{ ... }:
 
 {
-  ### Software ###
-
-  nixpkgs.config.allowUnfree = true;
-
-  environment.systemPackages = with pkgs; [
-    # Terminal Tools
-    mkdev
-    tree
-
-    # Utility
-    filezilla
-    foliate
-    libreoffice-qt
-    mediawriter
-    tor-browser-bundle-bin
-
-    # Development
-    cargo
-    git
-    libgcc
-    rustc
-    texlive.combined.scheme-full
-    vscode
-    python312
-
-    # Theming
-    alacritty-theme
-    nerdfonts
-
-    # Communication
-    discord-screenaudio
-    discord
-  ];
-
-  # Progam/Service-based packages
-  programs.firefox.enable = true;
-  programs.steam.enable = true;
+  ### Boot Loader ###
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   ### Environment Variables ###
   environment.variables = {
@@ -45,6 +13,9 @@
   };
 
   ### Generic Sytem Info ###
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  system.stateVersion = "23.11";
 
   # Time Zone
   time.timeZone = "America/New_York";
