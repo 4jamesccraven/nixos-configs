@@ -31,7 +31,6 @@
     nerdfonts
 
     # Communication
-    discord-screenaudio
     discord
   ];
 
