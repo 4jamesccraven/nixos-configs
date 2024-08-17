@@ -65,6 +65,7 @@
             "Alt_L, Space, exec, wofi --show drun"
             "$mod, m, fullscreen, 1"
             "$mod+Shift, m, fullscreen, 0"
+            "$mod, B, exec, hyprlock"
             "$mod, X, exec, hyprctl dispatch exit"
 
             "$mod, h, movefocus, l"
