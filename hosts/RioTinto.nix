@@ -15,6 +15,23 @@
   services.hardware.openrgb.enable = true;
   hardware.xpadneo.enable = true;
 
+  hyprland.enable = true;
+
+  home-manager.users.jamescraven = {
+    wayland.windowManager.hyprland = {
+      settings = {
+        exec-once = [
+          "openrgb -p main"
+        ];
+
+        monitor = [
+          "DP-3, 2560x1080, 0x0, 1.0"
+          "HDMI-A-1, 1920x1080, 320x-1080, 1.0"
+        ];
+      };
+    };
+  };
+
   ## File System ##
   boot.supportedFilesystems = [ "ntfs" ];
 
