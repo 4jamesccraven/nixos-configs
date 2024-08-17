@@ -40,9 +40,10 @@
 
         catppuccin-nvim
 
+        coc-clangd
         coc-pyright
         coc-rust-analyzer
-        coc-clangd
+        coc-vimtex
       ];
 
       extraConfig = ''
