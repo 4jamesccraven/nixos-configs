@@ -12,6 +12,14 @@
   services.blueman.enable = true;
   hyprland.enable = true;
 
+  home-manager.users.jamescraven = {
+    wayland.windowManager.hyprland.settings = {
+      monitor = [
+        "eDP-1, 1920x1080, 0x0, 1.2"
+      ];
+    };
+  };
+
   ## Hardware transcluded
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usbhid" ];

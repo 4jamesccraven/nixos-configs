@@ -29,10 +29,6 @@
             "hyprpaper"
           ];
 
-          monitor = [
-            "eDP-1, 1920x1080, 0x0, 1.2"
-          ];
-
           ### Appearance ###
 
           general = {
@@ -59,7 +55,7 @@
             "natural_scroll" = false;
 
             touchpad = {
-              "natural_scroll" = true;
+              "natural_scroll" = false;
             };
           };
 
