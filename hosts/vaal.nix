@@ -10,6 +10,7 @@
 
   ## System-specific Packages ##
   services.blueman.enable = true;
+  hyprland.enable = true;
 
   ## Hardware transcluded
 

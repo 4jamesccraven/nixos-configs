@@ -6,19 +6,9 @@
   };
 
   config = lib.mkIf config.gnome.enable {
-    services.xserver.enable = true;
-
-    # Enable GNOME
     services.xserver = {
-      displayManager.gdm = {
-        enable = true;
-        autoSuspend = false;
-      };
+      enable = true;
       desktopManager.gnome.enable = true;
-
-      excludePackages = with pkgs; [
-        xterm
-      ];
     };
 
     # Exclude GNOME bloat
@@ -36,32 +26,6 @@
     programs.dconf.enable = true;
 
     home-manager.users.jamescraven = {
-      # Enable and set generic GTK Theming
-      gtk = {
-        enable = true;
-
-        theme = {
-          name = "catppuccin-frappe-mauve-standard";
-          package = pkgs.catppuccin-gtk.override {
-                accents = [ "mauve" ];
-                variant = "frappe";
-                size = "standard";
-              };
-        };
-
-        iconTheme = {
-          name = "Papirus-Dark";
-          package = pkgs.catppuccin-papirus-folders.override {
-            flavor = "frappe";
-            accent = "mauve";
-          };
-        };
-        cursorTheme = {
-          name = "Dracula-cursors";
-          package = pkgs.dracula-cursors;
-        };
-      };
-
       # Force Shell Theme with Dconf
       dconf.settings = {
         # Force removal of disabled extensions

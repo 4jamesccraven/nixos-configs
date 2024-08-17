@@ -8,6 +8,13 @@
 
   networking.hostName = "RioTinto";
 
+  ## System-specific Packages ##
+  environment.systemPackages = with pkgs; [
+    heroic
+  ];
+  services.hardware.openrgb.enable = true;
+  hardware.xpadneo.enable = true;
+
   ## File System ##
   boot.supportedFilesystems = [ "ntfs" ];
 
@@ -20,13 +27,6 @@
     device = "/steam";
     options = [ "bind" ];
   };
-
-  ## System-specific Packages ##
-  environment.systemPackages = with pkgs; [
-    heroic
-  ];
-  services.hardware.openrgb.enable = true;
-  hardware.xpadneo.enable = true;
 
   ## Nvidia ##
   services.xserver.videoDrivers = [ "nvidia" ];

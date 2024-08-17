@@ -8,6 +8,7 @@
     ./btop.nix
     ./fastfetch.nix
     ./git.nix
+    ./gtk.nix
     ./neovim.nix
   ];
 }
