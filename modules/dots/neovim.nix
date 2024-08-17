@@ -66,6 +66,12 @@
         vim.opt.hlsearch = false
         vim.opt.ignorecase = true
         vim.opt.smartcase = true
+
+        vim.api.nvim_create_user_command('FF', 'Telescope find_files', {})
+        vim.cmd('cnoreabbrev ff FF')
+
+        vim.api.nvim_create_user_command('NT', 'Neotree', {})
+        vim.cmd('cnoreabbrev nt NT')
       '';
     };
   };
