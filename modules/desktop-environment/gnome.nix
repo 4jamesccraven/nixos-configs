@@ -17,9 +17,13 @@
       geary
       gnome-console
       gnome-connections
+      gnome-tour
+      yelp
     ]) ++ (with pkgs.gnome; [
+      gnome-clocks
       gnome-contacts
       gnome-maps
+      gnome-weather
     ]);
 
     # Enable DCONF
