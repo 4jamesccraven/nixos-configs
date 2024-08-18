@@ -8,6 +8,7 @@
   environment.systemPackages = with pkgs; [
     # Terminal Tools
     mkdev
+    ripgrep
     tree
 
     # Utility
@@ -28,6 +29,15 @@
 
     # Theming
     nerdfonts
+
+    # Minecraft
+    (prismlauncher.override {
+      jdks = [
+        temurin-bin-8
+        temurin-bin-17
+        temurin-bin-21
+      ];
+    })
   ];
 
   # Progam/Service-based packages
