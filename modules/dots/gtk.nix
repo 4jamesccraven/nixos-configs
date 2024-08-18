@@ -8,10 +8,10 @@
       theme = {
         name = "catppuccin-frappe-mauve-standard";
         package = pkgs.catppuccin-gtk.override {
-              accents = [ "mauve" ];
-              variant = "frappe";
-              size = "standard";
-            };
+          accents = [ "mauve" ];
+          variant = "frappe";
+          size = "standard";
+        };
       };
 
       iconTheme = {
