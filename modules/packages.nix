@@ -12,12 +12,15 @@
     tree
 
     # Utility
+    brave
     filezilla
     foliate
     libreoffice-qt
     mediawriter
+    spotify
+    telegram-desktop
     tor-browser-bundle-bin
-
+    
     # Development
     cargo
     git
