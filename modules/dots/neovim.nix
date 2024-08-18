@@ -6,6 +6,9 @@
     nixd
     rust-analyzer
     clang-tools
+
+    # Clipboard support
+    xclip
   ];
 
   home-manager.users.jamescraven = {
