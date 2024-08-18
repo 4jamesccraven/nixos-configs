@@ -9,7 +9,7 @@
       settings = {
         color_theme = "TTY";
         theme_background = false;
-        proc_tree = true;
+        proc_tree = false;
         vim_keys = true;
       };
     };
@@ -21,7 +21,7 @@
         genericName = "System Monitor";
         comment = "Resource monitor that shows usage and stats for processor, memory, disks, network and processes";
         icon = "btop";
-        exec = "alacritty -e btop";
+        exec = "kitty btop";
         terminal = false;
         categories = [
           "System"

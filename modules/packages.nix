@@ -27,11 +27,7 @@
     python312
 
     # Theming
-    alacritty-theme
     nerdfonts
-
-    # Communication
-    discord
   ];
 
   # Progam/Service-based packages

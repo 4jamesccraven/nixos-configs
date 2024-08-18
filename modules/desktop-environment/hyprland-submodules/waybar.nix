@@ -70,7 +70,7 @@
           "custom/nix" = {
             format = "󱄅";
             tooltip = false;
-            on-click = "alacritty --working-directory ~/nixos";
+            on-click = "kitty ~/nixos";
           };
 
           "hyprland/language" = {

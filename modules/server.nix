@@ -4,7 +4,7 @@
   imports = [
     inputs.home-manager.nixosModules.default
     ./desktop-environment
-    ./dots/alacritty.nix
+    ./dots/kitty.nix
     ./dots/git.nix
     ./syncthing.nix
     ./system.nix
@@ -16,7 +16,7 @@
   nixpkgs.config.allowUnfree = true;
   
   environment.systemPackages = with pkgs; [
-    alacritty
+    kitty
     git
     neovim
   ];

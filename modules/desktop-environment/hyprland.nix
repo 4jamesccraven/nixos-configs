@@ -60,7 +60,7 @@
           };
 
           bind = [
-            "$mod, T, exec, alacritty"
+            "$mod, T, exec, kitty"
             "$mod, Q, killactive"
             "Alt_L, Space, exec, wofi --show drun"
             "$mod, m, fullscreen, 1"
