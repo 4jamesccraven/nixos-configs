@@ -17,6 +17,8 @@
       viAlias = true;
       vimAlias = true;
 
+      withNodeJs = true;
+
       coc = {
         enable = true;
 
@@ -54,7 +56,7 @@
       '';
 
       extraLuaConfig = ''
-        -- Clipboard stuff (broken)
+        -- Clipboard stuff
         vim.opt.clipboard = 'unnamedplus'
         vim.opt.mouse = 'a'
 

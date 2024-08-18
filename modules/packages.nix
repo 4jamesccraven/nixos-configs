@@ -25,10 +25,10 @@
     cargo
     git
     libgcc
+    python312
     rustc
     texlive.combined.scheme-full
     vscode
-    python312
 
     # Theming
     nerdfonts
