@@ -4,8 +4,9 @@
   imports = [
     inputs.home-manager.nixosModules.default
     ./desktop-environment
-    ./dots/kitty.nix
     ./dots/git.nix
+    ./dots/kitty.nix
+    ./dots/neovim.nix
     ./syncthing.nix
     ./system.nix
     ../myPackages
