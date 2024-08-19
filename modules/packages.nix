@@ -7,6 +7,8 @@
 
   environment.systemPackages = with pkgs; [
     # Terminal Tools
+    cowsay
+    figlet
     mkdev
     ripgrep
     tree

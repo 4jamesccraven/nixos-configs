@@ -28,6 +28,7 @@
           "suggest.enablePreselect" = false;
           "suggest.disableKind" = true;
           "inlayHint.enable" = false;
+          "python.analysis.autoImportCompletions" = false;
   
           languageserver = {
             nix = {
