@@ -1,4 +1,4 @@
-{ lib, config, modulesPath, ...}:
+{ lib, config, pkgs, modulesPath, ...}:
 
 {
   imports = [
@@ -9,6 +9,9 @@
   networking.hostName = "vaal";
 
   ## System-specific Packages ##
+  environment.systemPackages = with pkgs; [
+    wireguard-tools
+  ];
   services.blueman.enable = true;
   hyprland.enable = true;
 
@@ -21,7 +24,6 @@
   };
 
   ## Hardware transcluded
-
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usbhid" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
