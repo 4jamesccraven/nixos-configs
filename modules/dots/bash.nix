@@ -10,7 +10,7 @@
         ff = "fastfetch";
         cff = "clear; fastfetch";
         build = "sudo nixos-rebuild switch --flake /home/jamescraven/nixos";
-        clean-and-build = "sudo nix-collect-garbage -d && build";
+        clean-and-build = "sudo -u jamescraven nix-collect-garbage -d && build";
       };
       bashrcExtra = ''
         fastfetch
