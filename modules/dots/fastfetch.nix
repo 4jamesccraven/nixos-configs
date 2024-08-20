@@ -52,7 +52,7 @@
           {
             type = "cpu";
             key = "   CPU";
-            format = "{1} ({5} cores)";
+            format = "{1}";
           }
           {
             type = "gpu";
