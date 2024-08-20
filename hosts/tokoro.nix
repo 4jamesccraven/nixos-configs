@@ -13,19 +13,6 @@
     fsType = "ext4";
   };
 
-  services.borgbackup.jobs.syncthing-folders = {
-    paths = [
-      "/home/jamescraven/Code"
-      "/home/jamescraven/Documents"
-      "/home/jamescraven/Pictures"
-    ];
-    exclude = [ ".stfolder" ];
-    repo = "/home/jamescraven/back-ups";
-    encryption.mode = "none";
-    compression = "zstd,22";
-    startAt = "daily";
-  };
-
   ### Hardware transcluded ###
   boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
