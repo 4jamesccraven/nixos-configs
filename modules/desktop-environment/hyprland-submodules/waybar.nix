@@ -28,6 +28,11 @@
         #network {
           padding-left: 10px;
         }
+
+        #pulseaudio-slider trough {
+          margin-left: 15px;
+          min-width: 100px;
+        }
       '';
 
       settings = {
@@ -38,6 +43,7 @@
 
           modules-left = [
             "network"
+            "pulseaudio/slider"
           ];
 
           modules-center = [
