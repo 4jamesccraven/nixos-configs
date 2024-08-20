@@ -59,13 +59,15 @@
 
           ### Widget config ###
           battery = {
-            format = "{icon}    {capacity}%";
             format-icons = [ "" "" "" ];
+            format-discharging = "{icon}    {capacity}%";
+            format-charging = "󰂄    {capacity}%";
+            interval = 15;
           };
 
           bluetooth = {
             format = "󰂯";
-            on-click = "blueman-manager";
+            on-click = "hyprctl dispatch exec [floating] blueman-manager";
           };
 
           clock = {
@@ -90,6 +92,7 @@
             format-wifi = "󰖩";
             format-disconnected = "󰖪";
             format-ethernet = "󰈀";
+            on-click = "hyprctl dispatch exec [floating] kitty nmtui connect";
           };
         };
       };
