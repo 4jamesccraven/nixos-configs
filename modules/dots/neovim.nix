@@ -46,6 +46,7 @@
         telescope-nvim
 
         catppuccin-nvim
+        vimtex
 
         coc-clangd
         coc-pyright
