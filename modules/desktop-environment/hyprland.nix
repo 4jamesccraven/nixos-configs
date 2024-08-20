@@ -79,6 +79,7 @@
             "$mod+Shift, l, movewindow, r"
 
             "Alt_L, Shift_L, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
+            "Alt_L, Shift_L, exec, hyprctl switchxkblayout keychron-keychron-c2 next"
           ];
 
           bindel = [
