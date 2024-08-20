@@ -9,6 +9,7 @@
 
     # Clipboard support
     xclip
+    wl-clipboard
   ];
 
   home-manager.users.jamescraven = {

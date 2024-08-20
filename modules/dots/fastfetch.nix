@@ -6,128 +6,88 @@
       enable = true;
 
       settings = {
-        padding.top = 2;
         logo = {
+          source = "/home/jamescraven/nixos/assets/planet.txt";
           color = {
-           "1" = "38;2;133;193;220";
+           "1" = "default";
            "2" = "38;2;202;158;230";
           };
         };
 
-
         display = {
-          color = "38;2;202;158;230";
           separator = "  ";
           size.binaryPrefix = "si";
-          temp = {
-            unit = "C";
-            ndigits = 0;
-          };
           size = {
-                  maxPrefix = "TB";
+            maxPrefix = "TB";
             ndigits = 2;
           };
           bar = {
-                  charElapsed = "*";
-            charTotal = " ";
+            charElapsed = "=";
+            charTotal = "-";
+            borderLeft = "[";
+            borderRight = "]";
           };
           percent = {
-                  type = 1;
+            type = 1;
+          };
+          color = {
+            keys = "38;2;202;158;230";
+            output = "default";
           };
         };
 
 
         modules = [
           "break"
-          "break"
-
           {
-            type = "title";
+            type = "custom";
+            key = "《·───────────────·》◈《·──────────────·》";
+            keyColor = "38;2;202;158;230";
           }
-
           {
             type = "os";
-            key = "├── ";
+            key = "   OS ";
+            format = "{2} {8}";
           }
-
-          {
-            type = "packages";
-            key = "├── ";
-          }
-
-          {
-            type = "theme";
-            key = "├── ";
-          }
-
-          {
-            type = "custom";
-            key = "│";
-            keyColor = "38;2;202;158;230";
-          }
-
-          {
-            type = "datetime";
-            key = "├── 󱑀";
-            format = "{14}:{18}:{20}";
-          }
-
-          {
-            type = "uptime";
-            key = "├── 󰔛";
-          }
-
-          {
-            type = "datetime";
-            key = "├── ";
-            format = "{3}/{11}/{1}";
-          }
-
-          {
-            type = "custom";
-            key = "│";
-            keyColor = "38;2;202;158;230";
-          }
-
           {
             type = "cpu";
-            key = "├── ";
+            key = "   CPU";
+            format = "{1} ({5} cores)";
           }
-
-                {
-            type = "memory";
-            key = "├── ";
-          }
-
           {
             type = "gpu";
-            key = "├── 󰡷";
+            key = "   GPU";
+            format = "{1} {2}";
           }
-
+          {
+            type = "memory";
+            key = "   MEM";
+            format = "{4} {3} (of {2})";
+          }
           {
             type = "disk";
-            key = "├── ";
+            key = "   DSK";
+            format = "{13} {3} ({10})";
           }
-
+          {
+            type = "uptime";
+            key = "   UP ";
+            format = "{1}d {2}h {3}m {4}s";
+          }
+          {
+            type = "datetime";
+            key = "   NOW";
+            format = "{14}:{18}:{20}, {3}/{11}/{2}";
+          }
           {
             type = "custom";
-            key = "│";
+            key = "《·───────────────·》◈《·──────────────·》";
             keyColor = "38;2;202;158;230";
           }
-
           {
-                  type = "battery";
-            key = "├── ";
-          }
-
-          {
-                  type = "wifi";
-            key = "├── ";
-          }
-
-          {
-            type = "localip";
-            key = "└── ";
+            type = "colors";
+            symbol = "diamond";
+            paddingLeft = 14;
           }
         ];
       };
