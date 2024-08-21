@@ -22,6 +22,7 @@
     spotify
     telegram-desktop
     tor-browser-bundle-bin
+    zathura
     
     # Development
     cargo

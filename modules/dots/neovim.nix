@@ -42,20 +42,42 @@
 
       # Plugins
       plugins = with pkgs.vimPlugins; [
+        # Theme
+        catppuccin-nvim
+
+        # Utilities
         neo-tree-nvim
         telescope-nvim
-
-        catppuccin-nvim
+        ultisnips
         vimtex
 
+        # Language servers
         coc-clangd
         coc-pyright
         coc-rust-analyzer
+        coc-ultisnips
         coc-vimtex
       ];
 
       extraConfig = ''
+        " Enable catppuccin theme
         colorscheme catppuccin-frappe
+
+        " Configure vimtex
+        " general
+        let g:vimtex_view_method = 'zathura'
+        let g:vimtex_compiler_method = 'latexmk'
+        let g:vimtex_compiler_latexmk = {'options' : ['-pdf',],}
+
+        " text concealment
+        set conceallevel=1
+        let g:vimtex_conceal = 'abdmg'
+
+        " Configure snippets
+        let g:UltiSnipsSnippetDirectories=['/home/jamescraven/nixos/modules/dots/snippets']
+        let g:UltiSnipsExpandTrigger = '<tab>'
+        let g:UltiSnipsJumpForwardTrigger = '<tab>'
+        let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
       '';
 
       extraLuaConfig = ''
@@ -82,14 +104,18 @@
         -- Rebind plugin commands
         vim.api.nvim_create_user_command('FF', 'Telescope find_files', {})
         vim.cmd('cnoreabbrev ff FF')
-        vim.api.nvim_create_user_command('NT', 'Neotree', {})
+        vim.api.nvim_create_user_command('NT', 'Neotree toggle', {})
         vim.cmd('cnoreabbrev nt NT')
 
-        -- Open Neotree on launch
+        -- Neotree Config
+        -- close if last open
+        require("neo-tree").setup({
+          close_if_last_window = true,
+        })
+
+        -- Launch configuration
         vim.api.nvim_create_autocmd("VimEnter", {
           callback = function()
-            vim.cmd("Neotree")
-            vim.cmd("wincmd p")
             if vim.fn.argv(0) == "" then
               require("telescope.builtin").find_files()
               end

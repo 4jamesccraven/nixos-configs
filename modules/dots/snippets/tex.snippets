@@ -1,0 +1,103 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+
+def comment(): 
+	return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+	return x != '0' and y != '0'
+
+endglobal
+
+
+# Templates
+snippet document "Basic document" b
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\title{$0}
+\author{James Craven}
+
+
+\begin{document}
+\fontsize{14}{22}\selectfont
+\maketitle
+
+    $1
+
+\end{document}
+endsnippet
+
+snippet beamer "Beamer document" b
+% Imports
+\documentclass[9pt, dvipsnames]{beamer}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{verbatim}
+\usepackage{anyfontsize}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage[multidot]{grffile}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{wasysym}
+\usepackage{amsmath,amssymb,amsfonts}
+% \usepackage[margin=1in]{geometry}
+
+% Beamer Themes
+\usetheme[secheader]{Boadilla}
+\usecolortheme{beaver}
+\usefonttheme{professionalfonts}
+\setbeamertemplate{caption}[numbered]
+
+% Counter
+\newcounter{saveenumi}
+\resetcounteronoverlays{saveenumi}
+
+% Preamble
+\title{}
+\author{}
+\date{}
+
+
+\begin{document}
+
+
+\maketitle
+
+    $0
+
+\end{document}
+endsnippet
+
+
+# General utils
+snippet beg "begin{} / end{}" bA
+\\begin{$1}
+	$0
+\\end{$1}
+endsnippet
+
+snippet enum "Enumerate" bA
+\begin{enumerate}
+	\item $0
+\end{enumerate}
+endsnippet
+
+snippet item "Itemize" bA
+\begin{itemize}
+	\item $0
+\end{itemize}
+endsnippet
+
+
+# Math specific
+context "math()"
+snippet // "Fraction" iA
+\\frac{$1}{$2}$0
+endsnippet
