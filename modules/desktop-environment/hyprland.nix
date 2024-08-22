@@ -67,6 +67,7 @@
             "$mod+Shift, m, fullscreen, 0"
             "$mod, B, exec, hyprlock"
             "$mod, X, exec, hyprctl dispatch exit"
+            "$mod+Shift, X, exec, shutdown now"
 
             "$mod, h, movefocus, l"
             "$mod, j, movefocus, d"
