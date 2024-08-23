@@ -12,6 +12,8 @@
     mkdev
     ripgrep
     tree
+    unzip
+    zip
 
     # Utility
     brave
