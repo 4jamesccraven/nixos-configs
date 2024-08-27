@@ -39,7 +39,7 @@
         mainBar = {
           layer = "top";
           position = "top";
-          height = 30;
+          height = 38;
 
           modules-left = [
             "network"
