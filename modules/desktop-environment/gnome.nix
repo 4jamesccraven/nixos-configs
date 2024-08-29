@@ -12,19 +12,19 @@
     };
 
     # Exclude GNOME bloat
-    environment.gnome.excludePackages = (with pkgs; [
+    environment.gnome.excludePackages = with pkgs; [
       epiphany
       geary
-      gnome-console
-      gnome-connections
-      gnome-tour
-      yelp
-    ]) ++ (with pkgs.gnome; [
       gnome-clocks
+      gnome-connections
+      gnome-console
       gnome-contacts
       gnome-maps
+      gnome-tour
       gnome-weather
-    ]);
+      yelp
+    ];
+    
 
     # Enable DCONF
     programs.dconf.enable = true;
