@@ -81,8 +81,12 @@
 
             "$mod, 1, workspace, 1"
             "$mod, 2, workspace, 2"
+            "$mod, 3, workspace, 3"
+            "$mod, 4, workspace, 4"
             "$mod+Shift, 1, movetoworkspace, 1"
             "$mod+Shift, 2, movetoworkspace, 2"
+            "$mod+Shift, 3, movetoworkspace, 3"
+            "$mod+Shift, 4, movetoworkspace, 4"
 
             "Alt_L, Shift_L, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
             "Alt_L, Shift_L, exec, hyprctl switchxkblayout keychron-keychron-c2 next"
