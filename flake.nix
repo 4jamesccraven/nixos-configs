@@ -46,6 +46,8 @@
       rust = pkgs.mkShell {
         buildInputs = dependencies.rust;
 
+        RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+
         shellHook = ''
           clear
         '';
@@ -53,6 +55,8 @@
 
       pct = pkgs.mkShell {
         buildInputs = with dependencies; rust ++ python310;
+
+        RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
 
         shellHook = ''
           clear
