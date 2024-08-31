@@ -38,8 +38,8 @@
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       dependencies = {
-        rust = with pkgs; [ cargo libgcc rustc ];
         python310 = [ inputs.python310-14.legacyPackages.x86_64-linux.python310 ];
+        rust = with pkgs; [ cargo libgcc rustc ];
       };
     in {
 
