@@ -44,6 +44,7 @@
           modules-left = [
             "network"
             "pulseaudio/slider"
+            "hyprland/workspaces"
           ];
 
           modules-center = [
