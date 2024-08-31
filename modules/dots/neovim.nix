@@ -107,6 +107,10 @@
         vim.api.nvim_create_user_command('NT', 'Neotree toggle', {})
         vim.cmd('cnoreabbrev nt NT')
 
+        -- Transparent Background
+        vim.cmd.highlight({ "Normal", "guibg=NONE", "ctermbg=NONE" })
+        vim.cmd.highlight({ "NonText", "guibg=NONE", "ctermbg=NONE" })
+
         -- Neotree Config
         -- close if last open
         require("neo-tree").setup({
