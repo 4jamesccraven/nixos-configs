@@ -37,10 +37,27 @@
         "type": "github"
       }
     },
+    "python310-14": {
+      "locked": {
+        "lastModified": 1723635686,
+        "narHash": "sha256-iNYh7Kb0D+MQ8IHM4+8bT1bUS5RNW6gVSDe2yTO1aAk=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "0cb2fd7c59fed0cd82ef858cbcbdb552b9a33465",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "0cb2fd7c59fed0cd82ef858cbcbdb552b9a33465",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "python310-14": "python310-14"
       }
     }
   },
