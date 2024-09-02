@@ -9,6 +9,7 @@
     # Terminal Tools
     cowsay
     figlet
+    fzf
     mkdev
     ripgrep
     tree
