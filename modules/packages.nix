@@ -52,4 +52,8 @@
   programs.firefox.enable = true;
   programs.steam.enable = true;
 
+  virtualisation.docker = {
+    enable = true;
+  };
+
 }

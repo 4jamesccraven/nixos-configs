@@ -6,7 +6,7 @@
   users.users.jamescraven = {
     isNormalUser = true;
     description = "James Craven";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
   home-manager.users.jamescraven = {...}: {
