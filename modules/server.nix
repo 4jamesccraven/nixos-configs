@@ -9,7 +9,7 @@
     ./dots/neovim.nix
     ./syncthing.nix
     ./system.nix
-    ../myPackages
+    ../custom-derivations
   ];
 
   gnome.enable = true;

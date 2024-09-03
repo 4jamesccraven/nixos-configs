@@ -10,7 +10,6 @@
     cowsay
     figlet
     fzf
-    mkdev
     ripgrep
     tree
     unzip

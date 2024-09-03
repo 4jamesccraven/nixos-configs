@@ -4,7 +4,7 @@
   imports = [
     inputs.home-manager.nixosModules.default
     ../modules
-    ../myPackages
+    ../custom-derivations
   ];
 
   gnome.enable = true; 
