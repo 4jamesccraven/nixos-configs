@@ -10,6 +10,7 @@
     cowsay
     figlet
     fzf
+    rff-script
     ripgrep
     tree
     unzip
