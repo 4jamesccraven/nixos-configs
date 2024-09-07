@@ -50,7 +50,7 @@
         }
 
         #network {
-          margin-left: 5px;
+          margin-left: 10px;
           border-bottom: 2px solid rgb(202, 158, 230)
         }
 
@@ -84,8 +84,8 @@
           ];
 
           modules-right = [
-            "hyprland/language"
             "group/utils"
+            "battery"
           ];
 
           ### Group ###
@@ -99,9 +99,9 @@
             modules = [
               "custom/menu"
               "pulseaudio/slider"
+              "hyprland/language"
               "network"
               "bluetooth"
-              "battery"
             ];
           };
 
