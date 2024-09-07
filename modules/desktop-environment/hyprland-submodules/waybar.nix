@@ -8,6 +8,20 @@
       systemd.enable = true;
 
       style = ''
+        window#waybar {
+          background: transparent;
+        }
+
+        #window {
+          margin-top: 8px;
+          padding-left: 16px;
+          padding-right: 16px;
+          border-radius: 26px;
+          transition: none;
+          color: transparent;
+          background: transparent;
+        }
+
         #battery {
           padding-right: 5px;
         }

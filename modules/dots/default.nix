@@ -10,6 +10,7 @@
     ./git.nix
     ./gtk.nix
     ./kitty.nix
+    ./lsd.nix
     ./neovim.nix
   ];
 }
