@@ -13,39 +13,57 @@
         }
 
         #window {
-          margin-top: 8px;
-          padding-left: 16px;
-          padding-right: 16px;
-          border-radius: 26px;
           transition: none;
           color: transparent;
           background: transparent;
         }
 
         #battery {
-          padding-right: 5px;
+          margin-left: 5px;
+          border-bottom: 2px solid rgb(202, 158, 230)
         }
 
         #bluetooth {
-          margin-left: 20px;
-          margin-right: 10px;
+          margin-left: 5px;
+          padding: 0px 5px;
+          border-bottom: 2px solid rgb(202, 158, 230)
         }
 
+        #clock {
+          padding-left: 10px;
+        }
+
+        #custom-menu {
+          margin: 0px 5px 0px 15px;
+        }
+         
         #custom-nix {
           padding: 10px;
         }
 
         #language {
-          padding: 0px;
+          border-bottom: 2px solid rgb(202, 158, 230)
+        }
+        
+        .modules-center {
+          border-bottom: 2px solid rgb(202, 158, 230)
         }
 
         #network {
-          padding-left: 10px;
+          margin-left: 5px;
+          border-bottom: 2px solid rgb(202, 158, 230)
         }
 
         #pulseaudio-slider trough {
-          margin-left: 15px;
           min-width: 100px;
+          border: none;
+        }
+
+        #pulseaudio-slider {
+          margin-left: 5px;
+          margin-right: 5px;
+          padding-left: 5px;
+          border-bottom: 2px solid rgb(202, 158, 230)
         }
       '';
 
@@ -54,10 +72,9 @@
           layer = "top";
           position = "top";
           height = 38;
+          spacing = 6;
 
           modules-left = [
-            "network"
-            "pulseaudio/slider"
             "hyprland/workspaces"
           ];
 
@@ -68,26 +85,47 @@
 
           modules-right = [
             "hyprland/language"
-            "bluetooth"
-            "battery"
+            "group/utils"
           ];
+
+          ### Group ###
+          "group/utils" = {
+            orientation = "inherit";
+            drawer = {
+              click-to-reveal = true;
+              transition-duration = 250;
+              transition-left-to-right = false;
+            };
+            modules = [
+              "custom/menu"
+              "pulseaudio/slider"
+              "network"
+              "bluetooth"
+              "battery"
+            ];
+          };
 
           ### Widget config ###
           battery = {
             format-icons = [ "" "" "" ];
             format-discharging = "{icon}    {capacity}%";
             format-charging = "󰂄    {capacity}%";
-            interval = 15;
+            interval = 1;
           };
 
           bluetooth = {
-            format = "󰂯";
+            format = "󰂯 ";
             on-click = "hyprctl dispatch exec [floating] blueman-manager";
           };
 
           clock = {
             interval = 1;
             tooltip-format = "{:%H:%M:%S    %a. %B %d, %Y}";
+          };
+
+          "custom/menu" = {
+            format = "󰍜";
+            tooltip = false;
           };
 
           "custom/nix" = {
@@ -104,9 +142,9 @@
           };
 
           network = {
-            format-wifi = "󰖩";
-            format-disconnected = "󰖪";
-            format-ethernet = "󰈀";
+            format-wifi = "󰖩 ";
+            format-disconnected = "󰖪 ";
+            format-ethernet = "󰈀 ";
             on-click = "hyprctl dispatch exec [floating] kitty nmtui connect";
           };
         };
