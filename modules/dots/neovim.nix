@@ -69,10 +69,6 @@
         let g:vimtex_compiler_method = 'latexmk'
         let g:vimtex_compiler_latexmk = {'options' : ['-pdf',],}
 
-        " text concealment
-        set conceallevel=1
-        let g:vimtex_conceal = 'abdmg'
-
         " Configure snippets
         let g:UltiSnipsSnippetDirectories=['/home/jamescraven/nixos/modules/dots/snippets']
         let g:UltiSnipsExpandTrigger = '<tab>'
