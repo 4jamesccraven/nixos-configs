@@ -18,7 +18,6 @@
         ];
 
         sorting.dir-grouping = "first";
-        total-size = true;
         date = "+%D";
         symlink-arrow = "->";
       };
