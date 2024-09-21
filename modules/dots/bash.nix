@@ -18,4 +18,13 @@
       '';
     };
   };
+
+  home-manager.users.fia = {
+    programs.bash = {
+      enable = true;
+      shellAliases = {
+        fia-start = "XDG_SESSION_TYPE=wayland exec dbus-run-session gnome-session";
+      };
+    };
+  };
 }

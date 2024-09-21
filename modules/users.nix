@@ -1,4 +1,4 @@
-{ ... } :
+{ pkgs, ... } :
 
 {
   ### Main account ###
@@ -14,8 +14,17 @@
   };
 
   users.users.fia = {
-    isNormalUser = true;
+    isSystemUser = true;
     description = "fia";
+    uid = 911;
+    group = "fia";
+    home = "/home/fia";
+    shell = pkgs.bash;
     extraGroups = [ "networkmanager" "wheel" ];
+  };
+  users.groups.fia = {};
+
+  home-manager.users.fia = {...}: {
+    home.stateVersion = "24.05";
   };
 }
