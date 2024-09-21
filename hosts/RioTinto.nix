@@ -36,7 +36,7 @@
   boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/807b6094-3680-4bb4-8c65-6451eca5aaee";
+    device = "/dev/disk/by-uuid/2904deaf-0bd4-41a0-a791-ccf8f98035ae";
     fsType = "ext4";
   };
 
