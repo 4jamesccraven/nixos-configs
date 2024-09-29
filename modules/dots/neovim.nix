@@ -40,18 +40,63 @@
         };
       };
 
-      # Plugins
-      plugins = with pkgs.vimPlugins; [
-        # Theme
-        catppuccin-nvim
+      plugins =
+      let
+        toLua = str: "lua << EOF\n${str}\nEOF\n";
+      in
+      with pkgs.vimPlugins; [
+        {
+          plugin = catppuccin-nvim;
+          config = "colorscheme catppuccin-frappe";
+        }
+        {
+          plugin = neo-tree-nvim;
+          config = toLua ''
+            vim.api.nvim_create_user_command('NT', 'Neotree toggle', {})
+            vim.cmd('cnoreabbrev nt NT')
 
-        # Utilities
-        neo-tree-nvim
-        telescope-nvim
-        ultisnips
-        vimtex
+            -- close if last open
+            require("neo-tree").setup({
+              close_if_last_window = true,
+            })
+          '';
+        }
+        {
+          plugin = telescope-nvim;
+          config = toLua ''
+            -- Rebind commands
+            vim.api.nvim_create_user_command('FF', 'Telescope find_files', {})
+            vim.cmd('cnoreabbrev ff FF')
+            vim.api.nvim_create_user_command('FG', 'Telescope live_grep', {})
+            vim.cmd('cnoreabbrev fg FG')
 
-        # Language servers
+            -- Run on launch
+            vim.api.nvim_create_autocmd("VimEnter", {
+              callback = function()
+                if vim.fn.argv(0) == "" then
+                  require("telescope.builtin").find_files()
+                  end
+              end
+            })
+          '';
+        }
+        {
+          plugin = ultisnips;
+          config = ''
+            let g:UltiSnipsSnippetDirectories=['/home/jamescraven/nixos/modules/dots/snippets']
+            let g:UltiSnipsExpandTrigger = '<tab>'
+            let g:UltiSnipsJumpForwardTrigger = '<tab>'
+            let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+          '';
+        }
+        {
+          plugin = vimtex;
+          config = ''
+            let g:vimtex_view_method = 'zathura'
+            let g:vimtex_compiler_method = 'latexmk'
+            let g:vimtex_compiler_latexmk = {'options' : ['-pdf',],}
+          '';
+        }
         coc-clangd
         coc-pyright
         coc-rust-analyzer
@@ -59,25 +104,8 @@
         coc-vimtex
       ];
 
-      extraConfig = ''
-        " Enable catppuccin theme
-        colorscheme catppuccin-frappe
-
-        " Configure vimtex
-        " general
-        let g:vimtex_view_method = 'zathura'
-        let g:vimtex_compiler_method = 'latexmk'
-        let g:vimtex_compiler_latexmk = {'options' : ['-pdf',],}
-
-        " Configure snippets
-        let g:UltiSnipsSnippetDirectories=['/home/jamescraven/nixos/modules/dots/snippets']
-        let g:UltiSnipsExpandTrigger = '<tab>'
-        let g:UltiSnipsJumpForwardTrigger = '<tab>'
-        let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-      '';
-
       extraLuaConfig = ''
-        -- Clipboard stuff
+        -- Clipboard
         vim.opt.clipboard = 'unnamedplus'
         vim.opt.mouse = 'a'
 
@@ -97,33 +125,11 @@
         vim.opt.ignorecase = true
         vim.opt.smartcase = true
 
-        -- Rebind plugin commands
-        vim.api.nvim_create_user_command('FF', 'Telescope find_files', {})
-        vim.cmd('cnoreabbrev ff FF')
-        vim.api.nvim_create_user_command('FG', 'Telescope live_grep', {})
-        vim.cmd('cnoreabbrev fg FG')
-        vim.api.nvim_create_user_command('NT', 'Neotree toggle', {})
-        vim.cmd('cnoreabbrev nt NT')
-
         -- Transparent Background
         vim.cmd.highlight({ "Normal", "guibg=NONE", "ctermbg=NONE" })
         vim.cmd.highlight({ "NonText", "guibg=NONE", "ctermbg=NONE" })
 
-        -- Neotree Config
-        -- close if last open
-        require("neo-tree").setup({
-          close_if_last_window = true,
-        })
-
-        -- Launch configuration
-        vim.api.nvim_create_autocmd("VimEnter", {
-          callback = function()
-            if vim.fn.argv(0) == "" then
-              require("telescope.builtin").find_files()
-              end
-          end
-        })
-
+        -- Remember last place in buffer
         local lastplace = vim.api.nvim_create_augroup("LastPlace", {})
         vim.api.nvim_clear_autocmds({ group = lastplace })
         vim.api.nvim_create_autocmd("BufReadPost", {
