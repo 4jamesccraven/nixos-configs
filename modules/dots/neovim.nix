@@ -87,7 +87,7 @@
         }
         {
           plugin = indent-blankline-nvim;
-          config = toLua ''
+          config = toLua /*lua*/ ''
             require("ibl").setup {
               scope = { enabled = false }
             }
@@ -95,7 +95,7 @@
         }
         {
           plugin = neo-tree-nvim;
-          config = toLua ''
+          config = toLua /*lua*/ ''
             vim.api.nvim_create_user_command('NT', 'Neotree toggle', {})
             vim.cmd('cnoreabbrev nt NT')
 
@@ -112,7 +112,7 @@
         cmp-nvim-ultisnips
         {
           plugin = nvim-cmp;
-          config = toLua ''
+          config = toLua /*lua*/ ''
             local cmp = require'cmp'
 
             cmp.setup({
@@ -137,7 +137,7 @@
         }
         {
           plugin = nvim-lspconfig;
-          config = toLua ''
+          config = toLua /*lua*/ ''
             require'lspconfig'.clangd.setup{}
             require'lspconfig'.jdtls.setup{}
             require'lspconfig'.nixd.setup{}
@@ -166,7 +166,7 @@
         }
         {
           plugin = telescope-nvim;
-          config = toLua ''
+          config = toLua /*lua*/ ''
             -- Rebind commands
             vim.api.nvim_create_user_command('FF', 'Telescope find_files', {})
             vim.cmd('cnoreabbrev ff FF')
@@ -196,7 +196,7 @@
             p.tree-sitter-rust
             p.tree-sitter-vim
           ]));
-          config = toLua ''
+          config = toLua /*lua*/ ''
             require('nvim-treesitter.configs').setup {
               ensure_installed = {},
               auto_install = false,
