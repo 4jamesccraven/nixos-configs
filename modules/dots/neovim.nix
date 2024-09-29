@@ -2,108 +2,28 @@
 
 {
 
-  environment.systemPackages = with pkgs; [
-    nixd
-    rust-analyzer
-    clang-tools
-
-    # Clipboard support
-    xclip
-    wl-clipboard
-  ];
-
   home-manager.users.jamescraven = {
     programs.neovim = {
+
+      extraPackages = with pkgs; [
+        # LSP
+        clang-tools
+        jdt-language-server
+        nixd
+        pyright
+        rust-analyzer
+        texlab
+
+        # Clipboard support
+        xclip
+        wl-clipboard
+      ];
+
       enable = true;
       viAlias = true;
       vimAlias = true;
 
-      withNodeJs = true;
-
-      coc = {
-        enable = true;
-
-        settings = {
-          "suggest.noselect" = true;
-          "suggest.enablePreview" = true;
-          "suggest.enablePreselect" = false;
-          "suggest.disableKind" = true;
-          "inlayHint.enable" = false;
-          "python.analysis.autoImportCompletions" = false;
-  
-          languageserver = {
-            nix = {
-              command = "nixd";
-              filetypes = [ "nix" ];
-            };
-          };
-        };
-      };
-
-      plugins =
-      let
-        toLua = str: "lua << EOF\n${str}\nEOF\n";
-      in
-      with pkgs.vimPlugins; [
-        {
-          plugin = catppuccin-nvim;
-          config = "colorscheme catppuccin-frappe";
-        }
-        {
-          plugin = neo-tree-nvim;
-          config = toLua ''
-            vim.api.nvim_create_user_command('NT', 'Neotree toggle', {})
-            vim.cmd('cnoreabbrev nt NT')
-
-            -- close if last open
-            require("neo-tree").setup({
-              close_if_last_window = true,
-            })
-          '';
-        }
-        {
-          plugin = telescope-nvim;
-          config = toLua ''
-            -- Rebind commands
-            vim.api.nvim_create_user_command('FF', 'Telescope find_files', {})
-            vim.cmd('cnoreabbrev ff FF')
-            vim.api.nvim_create_user_command('FG', 'Telescope live_grep', {})
-            vim.cmd('cnoreabbrev fg FG')
-
-            -- Run on launch
-            vim.api.nvim_create_autocmd("VimEnter", {
-              callback = function()
-                if vim.fn.argv(0) == "" then
-                  require("telescope.builtin").find_files()
-                  end
-              end
-            })
-          '';
-        }
-        {
-          plugin = ultisnips;
-          config = ''
-            let g:UltiSnipsSnippetDirectories=['/home/jamescraven/nixos/modules/dots/snippets']
-            let g:UltiSnipsExpandTrigger = '<tab>'
-            let g:UltiSnipsJumpForwardTrigger = '<tab>'
-            let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-          '';
-        }
-        {
-          plugin = vimtex;
-          config = ''
-            let g:vimtex_view_method = 'zathura'
-            let g:vimtex_compiler_method = 'latexmk'
-            let g:vimtex_compiler_latexmk = {'options' : ['-pdf',],}
-          '';
-        }
-        coc-clangd
-        coc-pyright
-        coc-rust-analyzer
-        coc-ultisnips
-        coc-vimtex
-      ];
-
+      ### General config ###
       extraLuaConfig = ''
         -- Clipboard
         vim.opt.clipboard = 'unnamedplus'
@@ -144,7 +64,148 @@
             end
           end,
         })
+
+        -- Set tabsize for *.nix
+        vim.cmd([[
+          augroup NixTabSettings
+            autocmd!
+            autocmd FileType nix setlocal tabstop=2 shiftwidth=2 expandtab
+          augroup END
+        ]])
       '';
+
+      ### plugins ###
+      plugins =
+      let
+        toLua = str: "lua << EOF\n${str}\nEOF\n";
+      in
+      with pkgs.vimPlugins; [
+        {
+          plugin = catppuccin-nvim;
+          config = "colorscheme catppuccin-frappe";
+        }
+        {
+          plugin = neo-tree-nvim;
+          config = toLua ''
+            vim.api.nvim_create_user_command('NT', 'Neotree toggle', {})
+            vim.cmd('cnoreabbrev nt NT')
+
+            -- close if last open
+            require("neo-tree").setup({
+              close_if_last_window = true,
+            })
+          '';
+        }
+        cmp-nvim-lsp
+        cmp-buffer
+        cmp-path
+        cmp-cmdline
+        cmp-nvim-ultisnips
+        {
+          plugin = nvim-cmp;
+          config = toLua ''
+            local cmp = require'cmp'
+
+            cmp.setup({
+              snippet = {
+                expand = function(args)
+                  vim.fn["UltiSnips#Anon"](args.body)
+                end,
+              },
+              mapping = cmp.mapping.preset.insert ({
+                 ['<C-n>'] = cmp.mapping.select_next_item(),
+                 ['<C-p>'] = cmp.mapping.select_prev_item(),
+                 ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+              }),
+              sources = cmp.config.sources ({
+                { name = 'nvim_lsp'},
+                { name = 'buffer'},
+                { name = 'path'},
+                { name = 'ultisnips'},
+              })
+            })
+          '';
+        }
+        {
+          plugin = nvim-lspconfig;
+          config = toLua ''
+            require'lspconfig'.clangd.setup{}
+            require'lspconfig'.jdtls.setup{}
+            require'lspconfig'.nixd.setup{}
+            require'lspconfig'.pyright.setup{}
+            require'lspconfig'.rust_analyzer.setup{}
+            require'lspconfig'.texlab.setup{
+              settings = {
+                texlab = {
+                  build = {
+                    executable = "latexmk",
+                    args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+                    onSave = true,
+                  },
+                  forwardSearch = {
+                    executable = "brave",
+                    args = { "--new-tab", "%p" },
+                  },
+                  chktex = {
+                    onOpenAndSave = true,
+                    onEdit = false,
+                  },
+                }
+              }
+            }
+          '';
+        }
+        {
+          plugin = telescope-nvim;
+          config = toLua ''
+            -- Rebind commands
+            vim.api.nvim_create_user_command('FF', 'Telescope find_files', {})
+            vim.cmd('cnoreabbrev ff FF')
+            vim.api.nvim_create_user_command('FG', 'Telescope live_grep', {})
+            vim.cmd('cnoreabbrev fg FG')
+
+            -- Run on launch
+            vim.api.nvim_create_autocmd("VimEnter", {
+              callback = function()
+                if vim.fn.argv(0) == "" then
+                  require("telescope.builtin").find_files()
+                  end
+              end
+            })
+          '';
+        }
+        {
+          plugin = (nvim-treesitter.withPlugins (p: [
+            p.tree-sitter-bash
+            p.tree-sitter-cpp
+            p.tree-sitter-java
+            p.tree-sitter-json
+            p.tree-sitter-latex
+            p.tree-sitter-lua
+            p.tree-sitter-nix
+            p.tree-sitter-python
+            p.tree-sitter-rust
+            p.tree-sitter-vim
+          ]));
+          config = toLua ''
+	        require('nvim-treesitter.configs').setup {
+              ensure_installed = {},
+              auto_install = false,
+              highlight = { enable = true },
+	        }
+          '';
+        }
+        {
+          plugin = ultisnips;
+          config = ''
+            let g:UltiSnipsSnippetDirectories=['/home/jamescraven/nixos/modules/dots/snippets']
+            let g:UltiSnipsExpandTrigger = '<tab>'
+            let g:UltiSnipsJumpForwardTrigger = '<tab>'
+            let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+          '';
+        }
+      ];
+
     };
   };
 

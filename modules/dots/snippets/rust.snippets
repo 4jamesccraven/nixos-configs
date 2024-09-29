@@ -13,5 +13,17 @@ endsnippet
 snippet {} "Braces" A
 {
 	$0
-};
+}
+endsnippet
+
+snippet main "Main Function" bA
+fn main() {
+	$0
+}
+endsnippet
+
+snippet rmain "Main Function" bA
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+	$0
+}
 endsnippet

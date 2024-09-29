@@ -1,23 +1,9 @@
-global !p
-def math():
-	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
-
-def comment(): 
-	return vim.eval('vimtex#syntax#in_comment()') == '1'
-
-def env(name):
-	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
-	return x != '0' and y != '0'
-
-endglobal
-
-
-# Templates
 snippet document "Basic document" b
 \documentclass[12pt]{article}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
+\usepackage{enumitem}
 \title{$0}
 \author{James Craven}
 
@@ -75,8 +61,6 @@ snippet beamer "Beamer document" b
 \end{document}
 endsnippet
 
-
-# General utils
 snippet beg "begin{} / end{}" bA
 \\begin{$1}
 	$0
@@ -93,11 +77,4 @@ snippet item "Itemize" bA
 \begin{itemize}
 	\item $0
 \end{itemize}
-endsnippet
-
-
-# Math specific
-context "math()"
-snippet // "Fraction" iA
-\\frac{$1}{$2}$0
 endsnippet

@@ -18,6 +18,7 @@
 
     # Utility
     brave
+    fd
     filezilla
     foliate
     libreoffice-qt
@@ -25,7 +26,6 @@
     spotify
     telegram-desktop
     tor-browser-bundle-bin
-    zathura
     
     # Development
     cargo
