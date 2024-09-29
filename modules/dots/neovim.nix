@@ -24,7 +24,7 @@
       vimAlias = true;
 
       ### General config ###
-      extraLuaConfig = ''
+      extraLuaConfig = /*lua*/ ''
         -- Clipboard
         vim.opt.clipboard = 'unnamedplus'
         vim.opt.mouse = 'a'
