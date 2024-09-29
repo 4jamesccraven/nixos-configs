@@ -34,6 +34,7 @@
         vim.opt.softtabstop = 4
         vim.opt.shiftwidth = 4
         vim.opt.expandtab = true
+        vim.opt.list = true
 
         -- Line numbers
         vim.opt.number = true
@@ -83,6 +84,14 @@
         {
           plugin = catppuccin-nvim;
           config = "colorscheme catppuccin-frappe";
+        }
+        {
+          plugin = indent-blankline-nvim;
+          config = toLua ''
+            require("ibl").setup {
+              scope = { enabled = false }
+            }
+          '';
         }
         {
           plugin = neo-tree-nvim;
@@ -188,11 +197,11 @@
             p.tree-sitter-vim
           ]));
           config = toLua ''
-	        require('nvim-treesitter.configs').setup {
+            require('nvim-treesitter.configs').setup {
               ensure_installed = {},
               auto_install = false,
               highlight = { enable = true },
-	        }
+            }
           '';
         }
         {
@@ -202,6 +211,12 @@
             let g:UltiSnipsExpandTrigger = '<tab>'
             let g:UltiSnipsJumpForwardTrigger = '<tab>'
             let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+          '';
+        }
+        {
+          plugin = vim-visual-increment;
+          config = ''
+            set nrformats=alpha,octal,hex
           '';
         }
       ];
