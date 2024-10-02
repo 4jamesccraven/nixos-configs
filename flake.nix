@@ -6,7 +6,6 @@
     home-manager.url = "github:nix-community/home-manager?ref=master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # devShell stuff
     python310-14.url = "github:nixos/nixpkgs/0cb2fd7c59fed0cd82ef858cbcbdb552b9a33465";
   };
 
@@ -43,22 +42,13 @@
       };
     in {
 
-      rust = pkgs.mkShell {
-        buildInputs = dependencies.rust;
-
-        RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
-
-        shellHook = ''
-          clear
-        '';
-      };
-
       pct = pkgs.mkShell {
         buildInputs = with dependencies; rust ++ python310;
 
         RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
 
         shellHook = ''
+          PS1="\[\e[31m\](PCT)\n$PS1"
           clear
         '';
       };

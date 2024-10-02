@@ -1,7 +1,75 @@
+snippet flake "A Flake" bA
+{
+  description = "";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+  };
+
+  outputs = { flake-utils, nixpkgs, ... }: 
+  flake-utils.lib.eachDefaultSystem (system: let
+    pkgs = import nixpkgs { inherit system; config.allowUnfree = true;};
+  in
+  {
+    devShells.default = pkgs.mkShell {
+      buildInputs = with pkgs; [
+        $0
+      ];
+
+      shellHook = ''
+        PS1="\[\e[92m\](devShell)\n$PS1"
+        clear
+      '';
+    };
+  });
+}
+endsnippet
+
+snippet dflake "A DSCI Flake" bA
+{
+  description = "A flake for generic data science work";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+  };
+
+  outputs = { flake-utils, nixpkgs, ... }: 
+  flake-utils.lib.eachDefaultSystem (system: let
+    pkgs = import nixpkgs { inherit system; config.allowUnfree = true;};
+  in
+  {
+    devShells.default = pkgs.mkShell {
+      buildInputs = with pkgs.python312Packages; [
+        pkgs.python312
+        fastparquet
+        ipykernel
+        jupyterlab
+        jupyterlab-lsp
+        matplotlib
+        notebook
+        numpy
+        pandas
+        pip
+        python-lsp-server
+        scikit-learn
+        seaborn
+      ];
+
+      shellHook = ''
+        PS1="\[\e[92m\](devShell)\n$PS1"
+        clear
+      '';
+    };
+  });
+}
+endsnippet
+
 snippet {} "Attribute set" A
 {
   $0
-}${1:;}
+}${1:}
 endsnippet
 
 snippet [] "Set" A
