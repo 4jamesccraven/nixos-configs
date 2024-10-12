@@ -31,11 +31,6 @@
           devices = [ "RioTinto" "tokoro" "vaal" ];
         };
       };
-
-      gui = {
-        user = "jamescraven";
-        password = "i-alone-am-the-syncing-one";
-      };
     };
   };
 }
