@@ -21,6 +21,10 @@
     home = "/home/fia";
     shell = pkgs.bash;
     extraGroups = [ "networkmanager" "wheel" ];
+
+    packages = with pkgs; [
+      kitty
+    ];
   };
   users.groups.fia = {};
 

@@ -9,7 +9,7 @@
         name = "FiraCode Nerd Font Mono";
         size = 11.75;
       };
-      
+
       themeFile = "Catppuccin-Frappe";
 
       settings = {
