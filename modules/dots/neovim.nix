@@ -12,6 +12,7 @@
         nixd
         pyright
         rust-analyzer
+        sqls
         texlab
 
         # Clipboard support
@@ -146,6 +147,7 @@
             require'lspconfig'.nixd.setup{}
             require'lspconfig'.pyright.setup{}
             require'lspconfig'.rust_analyzer.setup{}
+            require'lspconfig'.sqls.setup{}
             require'lspconfig'.texlab.setup{
               settings = {
                 texlab = {
@@ -197,6 +199,7 @@
             p.tree-sitter-nix
             p.tree-sitter-python
             p.tree-sitter-rust
+            p.tree-sitter-sql
             p.tree-sitter-vim
           ]));
           config = toLua /*lua*/ ''
