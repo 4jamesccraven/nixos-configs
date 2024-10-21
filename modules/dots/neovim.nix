@@ -142,6 +142,12 @@
         {
           plugin = nvim-lspconfig;
           config = toLua /*lua*/ ''
+            vim.api.nvim_create_autocmd("CursorHold", {
+                callback = function()
+                    vim.diagnostic.open_float(nil, { focusable = false })
+                end
+            })
+
             require'lspconfig'.clangd.setup{}
             require'lspconfig'.jdtls.setup{}
             require'lspconfig'.nixd.setup{}
