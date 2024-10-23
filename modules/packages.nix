@@ -26,7 +26,8 @@
     spotify
     telegram-desktop
     tor-browser-bundle-bin
-    
+    zenity
+
     # Development
     cargo
     git
