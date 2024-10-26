@@ -1,17 +1,23 @@
-{ pkgs, ... } :
+{ pkgs, ... }:
 
 {
   ### Main account ###
-  
+
   users.users.jamescraven = {
     isNormalUser = true;
     description = "James Craven";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
   };
 
-  home-manager.users.jamescraven = {...}: {
-    home.stateVersion = "24.05";
-  };
+  home-manager.users.jamescraven =
+    { ... }:
+    {
+      home.stateVersion = "24.05";
+    };
 
   users.users.fia = {
     isSystemUser = true;
@@ -20,15 +26,20 @@
     group = "fia";
     home = "/home/fia";
     shell = pkgs.bash;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
 
     packages = with pkgs; [
       kitty
     ];
   };
-  users.groups.fia = {};
+  users.groups.fia = { };
 
-  home-manager.users.fia = {...}: {
-    home.stateVersion = "24.05";
-  };
+  home-manager.users.fia =
+    { ... }:
+    {
+      home.stateVersion = "24.05";
+    };
 }

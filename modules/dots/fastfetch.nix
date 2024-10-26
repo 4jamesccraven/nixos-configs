@@ -1,4 +1,4 @@
-{...}:
+{ ... }:
 
 {
   home-manager.users.jamescraven = {
@@ -9,8 +9,8 @@
         logo = {
           source = "/home/jamescraven/nixos/assets/planet.txt";
           color = {
-           "1" = "default";
-           "2" = "38;2;202;158;230";
+            "1" = "default";
+            "2" = "38;2;202;158;230";
           };
         };
 
@@ -35,7 +35,6 @@
             output = "default";
           };
         };
-
 
         modules = [
           "break"

@@ -44,7 +44,7 @@
         #language {
           border-bottom: 2px solid rgb(202, 158, 230)
         }
-        
+
         .modules-center {
           border-bottom: 2px solid rgb(202, 158, 230)
         }
@@ -107,7 +107,11 @@
 
           ### Widget config ###
           battery = {
-            format-icons = [ "" "" "" ];
+            format-icons = [
+              ""
+              ""
+              ""
+            ];
             format-discharging = "{icon}    {capacity}%";
             format-charging = "󰂄    {capacity}%";
             interval = 1;

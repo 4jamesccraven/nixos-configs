@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   options = {
@@ -9,7 +14,7 @@
     home-manager.users.jamescraven = {
       programs.alacritty = {
         enable = true;
-        
+
         settings = {
           import = [ "${pkgs.alacritty-theme}/catppuccin_frappe.toml" ];
 

@@ -1,4 +1,10 @@
-{ pkgs, lib, config, modulesPath, ...}:
+{
+  pkgs,
+  lib,
+  config,
+  modulesPath,
+  ...
+}:
 
 {
   imports = [
@@ -43,28 +49,37 @@
         enable = false;
         finegrained = false;
       };
-      
+
       open = false;
       nvidiaSettings = true;
     };
   };
 
   ### Hardware transcluded ###
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [
+    "nvme"
+    "xhci_pci"
+    "ahci"
+    "usbhid"
+    "sd_mod"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/f0dd881a-edd3-4cd9-af89-4398a8fffaa9";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/f0dd881a-edd3-4cd9-af89-4398a8fffaa9";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/EB06-9759";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/EB06-9759";
+    fsType = "vfat";
+    options = [
+      "fmask=0022"
+      "dmask=0022"
+    ];
+  };
 
   swapDevices = [ ];
 

@@ -7,7 +7,7 @@
         enable = true;
         autoSuspend = false;
       };
-    }; 
+    };
 
     excludePackages = with pkgs; [
       xterm

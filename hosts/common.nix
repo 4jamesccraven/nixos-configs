@@ -1,4 +1,4 @@
-{ inputs, ...}:
+{ inputs, ... }:
 
 {
   imports = [
@@ -7,5 +7,5 @@
     ../custom-derivations
   ];
 
-  gnome.enable = true; 
+  gnome.enable = true;
 }

@@ -13,7 +13,10 @@
   };
 
   ### Generic Sytem Info ###
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   system.stateVersion = "23.11";
 
@@ -36,7 +39,6 @@
       LC_TIME = "en_US.UTF-8";
     };
   };
-
 
   ### Printing & Sound ###
 

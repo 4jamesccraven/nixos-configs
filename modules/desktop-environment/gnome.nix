@@ -1,4 +1,9 @@
-{pkgs, lib, config, ...}:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 {
   options = {
@@ -24,7 +29,6 @@
       gnome-weather
       yelp
     ];
-    
 
     # Enable DCONF
     programs.dconf.enable = true;
@@ -36,7 +40,7 @@
         # and enable user-theme
         "org/gnome/shell" = {
           disable-user-extensions = false;
-          disabled-extensions = [];
+          disabled-extensions = [ ];
           enabled-extensions = [
             "user-theme@gnome-shell-extensions.gcampax.github.com"
           ];
@@ -53,7 +57,7 @@
           picture-uri-dark = "file:///home/jamescraven/nixos/assets/wp-wide.png";
         };
       };
-    };  
+    };
   };
 
 }

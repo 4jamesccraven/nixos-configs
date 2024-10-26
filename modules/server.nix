@@ -1,4 +1,4 @@
-{ pkgs, inputs, ...}:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -15,7 +15,7 @@
   gnome.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-  
+
   environment.systemPackages = with pkgs; [
     kitty
     git
@@ -31,7 +31,10 @@
   users.users.jamescraven = {
     isNormalUser = true;
     description = "James Craven";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   home-manager.users.jamescraven = {
@@ -48,5 +51,5 @@
     };
 
     home.stateVersion = "24.05";
-  }; 
+  };
 }
