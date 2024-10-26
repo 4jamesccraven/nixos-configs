@@ -25,7 +25,7 @@
       vimAlias = true;
 
       ### General config ###
-      extraLuaConfig = # lua
+      extraLuaConfig /*vim*/ = 
         ''
           -- Clipboard
           vim.opt.clipboard = 'unnamedplus'
@@ -94,8 +94,7 @@
           {
             plugin = indent-blankline-nvim;
             config =
-              # lua
-              toLua ''
+              toLua /*lua*/ ''
                 require("ibl").setup {
                   scope = { enabled = false }
                 }
@@ -104,8 +103,7 @@
           {
             plugin = neo-tree-nvim;
             config =
-              # lua
-              toLua ''
+              toLua /*lua*/ ''
                 vim.api.nvim_create_user_command('NT', 'Neotree toggle', {})
                 vim.cmd('cnoreabbrev nt NT')
 
@@ -123,8 +121,7 @@
           {
             plugin = nvim-cmp;
             config =
-              # lua
-              toLua ''
+              toLua /*lua*/ ''
                 local cmp = require'cmp'
 
                 cmp.setup({
@@ -150,8 +147,7 @@
           {
             plugin = nvim-lspconfig;
             config =
-              # lua
-              toLua ''
+              toLua /*lua*/ ''
                 vim.api.nvim_create_autocmd("CursorHold", {
                     callback = function()
                         vim.diagnostic.open_float(nil, { focusable = false })
@@ -160,7 +156,15 @@
 
                 require'lspconfig'.clangd.setup{}
                 require'lspconfig'.jdtls.setup{}
-                require'lspconfig'.nixd.setup{}
+                require'lspconfig'.nixd.setup({
+                  settings = {
+                    nixd = {
+                      formatting = {
+                        command = { "nixfmt" },
+                      }
+                    }
+                  }
+                })
                 require'lspconfig'.pyright.setup{}
                 require'lspconfig'.rust_analyzer.setup{}
                 require'lspconfig'.sqls.setup{}
@@ -188,8 +192,7 @@
           {
             plugin = telescope-nvim;
             config =
-              # lua
-              toLua ''
+              toLua /*lua*/ ''
                 -- Rebind commands
                 vim.api.nvim_create_user_command('FF', 'Telescope find_files', {})
                 vim.cmd('cnoreabbrev ff FF')
@@ -223,8 +226,7 @@
               ])
             );
             config =
-              # lua
-              toLua ''
+              toLua /*lua*/ ''
                 require('nvim-treesitter.configs').setup {
                   ensure_installed = {},
                   auto_install = false,
@@ -234,7 +236,7 @@
           }
           {
             plugin = ultisnips;
-            config = ''
+            config = /*vim*/ ''
               let g:UltiSnipsSnippetDirectories=['/home/jamescraven/nixos/modules/dots/snippets']
               let g:UltiSnipsExpandTrigger = '<tab>'
               let g:UltiSnipsJumpForwardTrigger = '<tab>'
@@ -243,7 +245,7 @@
           }
           {
             plugin = vim-visual-increment;
-            config = ''
+            config = /*vim*/ ''
               set nrformats=alpha,octal,hex
             '';
           }

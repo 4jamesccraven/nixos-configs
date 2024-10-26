@@ -43,11 +43,18 @@
         let
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           lib = pkgs.lib;
+
           shells = builtins.listToAttrs (
-            map (name: {
-              name = lib.removeSuffix ".nix" name;
-              value = import ./shells/${name} { inherit pkgs; };
-            }) (builtins.attrNames (builtins.readDir ./shells))
+            map (
+              name:
+              let
+                shell = (import ./shells/${name} { inherit pkgs; });
+              in
+              {
+                name = lib.removeSuffix ".nix" name;
+                value = shell;
+              }
+            ) (builtins.attrNames (builtins.readDir ./shells))
           );
         in
         shells;

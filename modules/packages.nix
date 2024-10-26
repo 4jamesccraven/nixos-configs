@@ -8,8 +8,10 @@
   environment.systemPackages = with pkgs; [
     # Terminal Tools
     cowsay
+    fd
     figlet
     fzf
+    nixfmt-rfc-style
     rff-script
     ripgrep
     tree
@@ -18,7 +20,6 @@
 
     # Utility
     brave
-    fd
     filezilla
     foliate
     libreoffice-qt
