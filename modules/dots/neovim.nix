@@ -156,15 +156,7 @@
 
                 require'lspconfig'.clangd.setup{}
                 require'lspconfig'.jdtls.setup{}
-                require'lspconfig'.nixd.setup({
-                  settings = {
-                    nixd = {
-                      formatting = {
-                        command = { "nixfmt" },
-                      }
-                    }
-                  }
-                })
+                require'lspconfig'.nixd.setup{}
                 require'lspconfig'.pyright.setup{}
                 require'lspconfig'.rust_analyzer.setup{}
                 require'lspconfig'.sqls.setup{}
