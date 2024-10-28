@@ -7,6 +7,7 @@
     ./dots/git.nix
     ./dots/kitty.nix
     ./dots/neovim.nix
+    ./zsh/neovim.nix
     ./syncthing.nix
     ./system.nix
     ../custom-derivations
@@ -22,6 +23,7 @@
     neovim
   ];
   programs.firefox.enable = true;
+  programs.zsh.enable = true;
 
   services.openssh = {
     enable = true;
@@ -30,6 +32,7 @@
 
   users.users.jamescraven = {
     isNormalUser = true;
+    shell = pkgs.zsh;
     description = "James Craven";
     extraGroups = [
       "networkmanager"

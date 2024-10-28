@@ -53,6 +53,7 @@
 
   # Progam/Service-based packages
   programs.steam.enable = true;
+  programs.zsh.enable = true;
 
   virtualisation.docker = {
     enable = true;
