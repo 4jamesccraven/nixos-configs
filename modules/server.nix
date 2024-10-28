@@ -7,7 +7,7 @@
     ./dots/git.nix
     ./dots/kitty.nix
     ./dots/neovim.nix
-    ./zsh/neovim.nix
+    ./dots/zsh.nix
     ./syncthing.nix
     ./system.nix
     ../custom-derivations
