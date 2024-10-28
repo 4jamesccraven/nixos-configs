@@ -18,6 +18,21 @@
     fsType = "ext4";
   };
 
+  services.borgbackup.jobs.main = {
+    doInit = true;
+    paths = [
+      "/home/jamescraven/Code/"
+      "/home/jamescraven/Documents/"
+      "/home/jamescraven/Pictures/"
+    ];
+    encryption = {
+      mode = "none";
+    };
+    repo = "/home/jamescraven/back-ups/";
+    compression = "lz4";
+    startAt = "daily";
+  };
+
   ### Hardware transcluded ###
   boot.initrd.availableKernelModules = [
     "xhci_pci"
