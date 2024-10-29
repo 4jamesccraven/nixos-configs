@@ -7,7 +7,6 @@
     ./dots/git.nix
     ./dots/kitty.nix
     ./dots/neovim.nix
-    ./dots/zsh.nix
     ./syncthing.nix
     ./system.nix
     ../custom-derivations
@@ -51,6 +50,28 @@
       bashrcExtra = ''
         PS1="\[\e[38;2;202;158;230m\]┌─[\[\e[38;2;231;130;132m\]/ˈiː.ən/\[\e[38;2;202;158;230m\]@\h]: ❄ \[\e[38;2;231;130;132m\]\w\n\[\e[38;2;202;158;230m\]└─󰊜 \[\e[m\]"
       '';
+    };
+
+    programs.zsh = {
+      enable = true;
+
+      dirHashes = {
+        cd = "$HOME/Code";
+        dcs = "$HOME/Documents";
+        nix = "$HOME/nixos";
+        sw = "$HOME/Documents/Schoolwork";
+      };
+
+      initExtra = ''
+        PROMPT='%F{red}┌─[%f/ˈiː.ən/%F{red}@%m]: ❄ %f%~%F{red}
+        └─> %f'
+      '';
+
+      shellAliases = {
+        c = "clear";
+        build = "sudo nixos-rebuild switch --flake /home/jamescraven/nixos";
+        clean-and-build = "sudo nix-collect-garbage -d && sudo -u jamescraven nix-collect-garbage -d && build";
+      };
     };
 
     home.stateVersion = "24.05";
