@@ -164,6 +164,7 @@
                 require'lspconfig'.rust_analyzer.setup{}
                 require'lspconfig'.sqls.setup{}
                 require'lspconfig'.texlab.setup{
+                  filetypes = { "tex", "latex" },
                   settings = {
                     texlab = {
                       build = {
