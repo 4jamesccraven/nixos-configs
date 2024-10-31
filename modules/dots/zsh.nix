@@ -13,6 +13,8 @@
       };
 
       initExtra = ''
+        zstyle ':completion:*' insert-tab false
+
         PROMPT='%F{#CA9EE6}┌─[%f/ˈiː.ən/%F{#CA9EE6}@%m]: ❄ %f%~%F{#CA9EE6}
         └─> %f'
         fastfetch
