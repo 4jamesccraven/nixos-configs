@@ -15,5 +15,6 @@ pkgs.mkShell {
     python-lsp-server
     scikit-learn
     seaborn
+    sympy
   ];
 }
