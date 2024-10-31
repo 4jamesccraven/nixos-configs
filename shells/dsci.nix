@@ -17,4 +17,8 @@ pkgs.mkShell {
     seaborn
     sympy
   ];
+ 
+  shellHook = ''
+    clear; zsh; exit
+  '';
 }
