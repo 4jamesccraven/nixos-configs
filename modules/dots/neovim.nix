@@ -78,6 +78,9 @@
               autocmd FileType nix setlocal tabstop=2 shiftwidth=2 expandtab
             augroup END
           ]])
+
+          -- Set *.tex files to latex type
+          vim.cmd([[autocmd BufRead,BufNewFile *.tex set filetype=latex]])
         '';
 
       ### plugins ###
