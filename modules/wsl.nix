@@ -12,6 +12,7 @@
 
   environment.systemPackages = with pkgs; [
     nixfmt-rfc-style
+    python3
   ];
 
   programs.zsh.enable = true;
