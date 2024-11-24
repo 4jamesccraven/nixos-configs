@@ -25,8 +25,6 @@
         cat = "bat";
         ff = "fastfetch";
         cff = "clear; fastfetch";
-        build = "sudo nixos-rebuild switch --flake /home/jamescraven/nixos";
-        clean-and-build = "sudo nix-collect-garbage -d && sudo -u jamescraven nix-collect-garbage -d && build";
       };
     };
   };

@@ -6,6 +6,9 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    # nix cli
+    nx
+
     # Terminal Tools
     cowsay
     fd
