@@ -2,7 +2,7 @@
    ❄️ NixOS Configuration Files ❄️
 </h1>
 
-Multi-host configuration files for my NixOS machine. It also contains my Neovim config since
+Multi-host configuration files for my NixOS machines. It also contains my Neovim config since
 I didn't start using it until I started using Nix.
 
 ### What is Nix/NixOS?
