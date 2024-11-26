@@ -17,8 +17,10 @@
   ## System-specific Packages ##
   environment.systemPackages = with pkgs; [
     heroic
+    piper
   ];
   services.hardware.openrgb.enable = true;
+  services.ratbagd.enable = true;
   hardware.xpadneo.enable = true;
 
   ## File System ##
