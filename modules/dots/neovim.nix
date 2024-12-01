@@ -106,19 +106,6 @@
                 }
               '';
           }
-          {
-            plugin = neo-tree-nvim;
-            config =
-              toLua /*lua*/ ''
-                vim.api.nvim_create_user_command('NT', 'Neotree toggle', {})
-                vim.cmd('cnoreabbrev nt NT')
-
-                -- close if last open
-                require("neo-tree").setup({
-                  close_if_last_window = true,
-                })
-              '';
-          }
           cmp-nvim-lsp
           cmp-buffer
           cmp-path
@@ -139,7 +126,7 @@
                   mapping = cmp.mapping.preset.insert ({
                      ['<C-n>'] = cmp.mapping.select_next_item(),
                      ['<C-p>'] = cmp.mapping.select_prev_item(),
-                     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+                     ['<Tab>'] = cmp.mapping.confirm({ select = true }),
                   }),
                   sources = cmp.config.sources ({
                     { name = 'nvim_lsp'},
@@ -155,9 +142,9 @@
             config =
               toLua /*lua*/ ''
                 vim.api.nvim_create_autocmd("CursorHold", {
-                    callback = function()
-                        vim.diagnostic.open_float(nil, { focusable = false })
-                    end
+                  callback = function()
+                    vim.diagnostic.open_float(nil, { focusable = false })
+                  end
                 })
 
                 require'lspconfig'.clangd.setup{}
@@ -201,8 +188,11 @@
                 -- Run on launch
                 vim.api.nvim_create_autocmd("VimEnter", {
                   callback = function()
-                    if vim.fn.argv(0) == "" then
+                    local arg = vim.fn.argv(0)
+                    if arg == "" then
                       require("telescope.builtin").find_files()
+                    elseif vim.fn.isdirectory(arg) == 1 then
+                      require("telescope.builtin").find_files({ cwd = vim.fn.fnameescape(arg) })
                       end
                   end
                 })
