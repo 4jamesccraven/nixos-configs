@@ -1,6 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
+  nix.nixPath = [
+    "nixpkgs=${inputs.nixpkgs}"
+  ];
 
   home-manager.users.jamescraven = {
     programs.neovim = {

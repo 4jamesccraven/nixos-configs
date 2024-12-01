@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 pkgs.writeShellScriptBin "nx" ''
-  usage="Usage: nx [clean, commit, dry, update, reset]"
+  usage="Usage: nx [clean, commit, build, update, reset]"
   rdir=$(pwd)
 
   if [[ $# -ne 1 ]]; then
@@ -28,13 +28,14 @@ pkgs.writeShellScriptBin "nx" ''
       set -e
       sudo nix-collect-garbage -d
       sudo -u jamescraven nix-collect-garbage -d
+      sudo nixos-rebuild switch --flake .
     ;;
     reset)
       set -e
-      git reset --hard HEAD^
+      git reset --hard HEAD
       git push --force
     ;;
-    dry)
+    build)
       sudo nixos-rebuild switch --flake .
     ;;
     *)

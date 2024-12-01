@@ -42,7 +42,7 @@
     vscode
 
     # Theming
-    nerdfonts
+    nerd-fonts.fira-code
 
     # Minecraft
     (prismlauncher.override {
