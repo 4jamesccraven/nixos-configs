@@ -36,6 +36,7 @@ pkgs.writeShellScriptBin "nx" ''
       git push --force
     ;;
     build)
+      git pull
       sudo nixos-rebuild switch --flake .
     ;;
     *)
