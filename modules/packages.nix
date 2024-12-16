@@ -30,6 +30,7 @@
     spotify
     telegram-desktop
     tor-browser-bundle-bin
+    vlc
     zenity
 
     # Development
