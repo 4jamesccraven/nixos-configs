@@ -3,51 +3,72 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager?ref=master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    home-manager = {
+      url = "github:nix-community/home-manager?ref=master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    mkdev = {
+      url = "github:4jamesccraven/mkdev";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     { nixpkgs, ... }@inputs:
     {
       nixosConfigurations = {
-        RioTinto = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
+        RioTinto =
+          let
+            system = "x86_64-linux";
+          in
+          nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs system;
+            };
+            modules = [
+              ./hosts/RioTinto.nix
+            ];
           };
-          modules = [
-            ./hosts/RioTinto.nix
-          ];
-        };
 
-        vaal = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
+        vaal =
+          let
+            system = "x86_64-linux";
+          in
+          nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs system;
+            };
+            modules = [
+              ./hosts/vaal.nix
+            ];
           };
-          modules = [
-            ./hosts/vaal.nix
-          ];
-        };
 
-        tokoro = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
+        tokoro =
+          let
+            system = "x86_64-linux";
+          in
+          nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs system;
+            };
+            modules = [
+              ./hosts/tokoro.nix
+            ];
           };
-          modules = [
-            ./hosts/tokoro.nix
-          ];
-        };
 
-        wsl = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
+        wsl =
+          let
+            system = "x86_64-linux";
+          in
+          nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs system;
+            };
+            modules = [
+              ./hosts/wsl.nix
+            ];
           };
-          system = "x86_64-linux";
-          modules = [
-            ./hosts/wsl.nix
-          ];
-        };
       };
 
       devShells.x86_64-linux =
