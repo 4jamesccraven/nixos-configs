@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../custom-derivations
     ./dots/bat.nix
     ./dots/fastfetch.nix
     ./dots/git.nix
@@ -12,7 +13,9 @@
 
   environment.systemPackages = with pkgs; [
     nixfmt-rfc-style
+    nx
     python3
+    ripgrep
   ];
 
   programs.zsh.enable = true;
