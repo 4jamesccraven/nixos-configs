@@ -29,6 +29,7 @@
     libreoffice-qt
     mediawriter
     spotify
+    tealdeer
     telegram-desktop
     tor-browser-bundle-bin
     vlc
