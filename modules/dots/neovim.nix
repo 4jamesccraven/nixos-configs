@@ -15,6 +15,8 @@
         nixd
         pyright
         rust-analyzer
+        rPackages.languageserver
+        rPackages.languageserversetup
         sqls
         texlab
 
@@ -163,6 +165,7 @@
                 require'lspconfig'.nixd.setup{}
                 require'lspconfig'.pyright.setup{}
                 require'lspconfig'.rust_analyzer.setup{}
+                require'lspconfig'.r_language_server.setup{}
                 require'lspconfig'.sqls.setup{}
                 require'lspconfig'.texlab.setup{
                   filetypes = { "tex", "latex" },
@@ -221,6 +224,7 @@
                 p.tree-sitter-nix
                 p.tree-sitter-python
                 p.tree-sitter-rust
+                p.tree-sitter-r
                 p.tree-sitter-sql
                 p.tree-sitter-vim
               ])
