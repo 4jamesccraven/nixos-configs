@@ -17,6 +17,7 @@
   ## System-specific Packages ##
   environment.systemPackages = with pkgs; [
     heroic
+    lutris
     piper
   ];
   services.hardware.openrgb.enable = true;
