@@ -65,8 +65,10 @@
       };
 
       initExtra = ''
-        PROMPT='%F{red}┌─[%f/ˈiː.ən/%F{red}@%m]: ❄ %f%~%F{red}
-        └─> %f'
+        zstyle ':completion:*' insert-tab false
+
+        PROMPT='%F{red}╭─(%f/ˈiː.ən/%F{red}@%m): [%f%~%F{red}]
+        ╰─❯ %f'
       '';
 
       shellAliases = {
