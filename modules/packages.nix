@@ -46,6 +46,15 @@
 
     # Theming
     nerd-fonts.fira-code
+
+    # Minecraft
+    (prismlauncher.override {
+      jdks = [
+        temurin-bin-8
+        temurin-bin-17
+        temurin-bin-21
+      ];
+    })
   ];
 
   # Progam/Service-based packages
