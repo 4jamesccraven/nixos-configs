@@ -57,6 +57,10 @@
     })
   ];
 
+  fonts.packages = with pkgs; [
+    liberation_ttf
+  ];
+
   # Progam/Service-based packages
   programs.steam.enable = true;
   programs.zsh.enable = true;
