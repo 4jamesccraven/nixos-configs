@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 
@@ -15,6 +16,10 @@
 
   config = lib.mkIf config.hyprland.enable {
     programs.hyprland.enable = true;
+
+    environment.systemPackages = with pkgs; [
+      brightnessctl
+    ];
 
     home-manager.users.jamescraven = {
 
@@ -95,6 +100,8 @@
           bindel = [
             ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
             ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+            ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+            ", XF86MonBrightnessUp, exec, brightnessctl set 10%+"
           ];
 
           bindl = [
