@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 
@@ -16,10 +15,6 @@
 
   config = lib.mkIf config.hyprland.enable {
     programs.hyprland.enable = true;
-
-    environment.systemPackages = with pkgs; [
-      wofi
-    ];
 
     home-manager.users.jamescraven = {
 
@@ -50,7 +45,7 @@
           };
 
           layerrule = [
-            "noanim, ^(wofi)$"
+            "noanim, ^(fuzzel)$"
           ];
 
           ### Input and Keybinds ###
@@ -67,7 +62,7 @@
           bind = [
             "$mod, T, exec, kitty"
             "$mod, Q, killactive"
-            "Alt_L, Space, exec, wofi --show drun"
+            "Alt_L, Space, exec, fuzzel"
             "$mod, m, fullscreen, 1"
             "$mod+Shift, m, fullscreen, 0"
             "$mod, B, exec, hyprlock"
