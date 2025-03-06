@@ -7,7 +7,6 @@
     ./bat.nix
     ./btop.nix
     ./fastfetch.nix
-    ./fuzzel.nix
     ./git.nix
     ./gtk.nix
     ./kitty.nix
