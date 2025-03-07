@@ -49,10 +49,6 @@
             "inactive_opacity" = "0.90";
           };
 
-          layerrule = [
-            "noanim, ^(fuzzel)$"
-          ];
-
           ### Input and Keybinds ###
 
           input = {
