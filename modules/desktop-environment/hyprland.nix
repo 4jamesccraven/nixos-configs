@@ -84,6 +84,7 @@
 
             "$mod, f, togglefloating"
             "$mod, f, centerwindow"
+            "$mod, f, resizeactive, exact 65% 65%"
 
             "$mod, B, exec, hyprlock"
             "$mod, X, exec, hyprctl dispatch exit"
@@ -113,6 +114,7 @@
 
             ", Print, exec, GRIM_DEFAULT_DIR=\"/home/jamescraven/Pictures/Screenshots\" grim -g \"$(slurp)\""
             "Shift_L, Print, exec, GRIM_DEFAULT_DIR=\"/home/jamescraven/Pictures/Screenshots\" grim"
+            "Shift_L, Print, exec, hyprctl notify 1 1500 0 \"fontsize:25 Screen Captured\""
           ];
 
           bindel = [
@@ -123,6 +125,7 @@
           ];
 
           bindl = [
+            ", XF86AudioRaiseVolume, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0"
             ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
           ];
 

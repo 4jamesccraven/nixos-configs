@@ -66,6 +66,10 @@
           font-size: 1.4em;
         }
 
+        #custom-power {
+          color: @acc;
+        }
+
         #workspaces button.active {
           color: @base;
           background: @acc;
