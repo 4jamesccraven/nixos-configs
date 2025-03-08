@@ -8,62 +8,67 @@
       systemd.enable = true;
 
       style = ''
+        @define-color base rgb(48, 52, 70);
+        @define-color acc  rgb(202, 158, 230);
+        @define-color text rgb(198, 208, 245);
+
+        * {
+          font-family: FiraCode Nerd Font Mono;
+        }
+
         window#waybar {
           background: transparent;
         }
 
+        window > box {
+          background: @base;
+
+          margin: 20px;
+          margin-bottom: 0px;
+          padding: 5px;
+
+          border: 3px solid @acc;
+          border-radius: 10px;
+        }
+
         #window {
-          transition: none;
           color: transparent;
           background: transparent;
         }
 
-        #battery {
-          margin-left: 5px;
-          border-bottom: 2px solid rgb(202, 158, 230)
+        tooltip {
+          color: @text;
+          background: @base;
+
+          padding: 5px;
+
+          border: 3px solid @acc;
+          border-radius: 10px;
         }
 
-        #bluetooth {
-          margin-left: 5px;
-          padding: 0px 5px;
-          border-bottom: 2px solid rgb(202, 158, 230)
-        }
+        .module {
+          color: @text;
 
-        #clock {
-          padding-left: 10px;
-        }
-
-        #custom-menu {
-          margin: 0px 5px 0px 15px;
-        }
-
-        #custom-nix {
-          padding: 10px;
-        }
-
-        #language {
-          border-bottom: 2px solid rgb(202, 158, 230)
-        }
-
-        .modules-center {
-          border-bottom: 2px solid rgb(202, 158, 230)
+          padding: 0 5px;
         }
 
         #network {
-          margin-left: 10px;
-          border-bottom: 2px solid rgb(202, 158, 230)
+          padding: 8px;
         }
 
-        #pulseaudio-slider trough {
-          min-width: 100px;
-          border: none;
+        #bluetooth {
+          padding: 8px;
         }
 
-        #pulseaudio-slider {
-          margin-left: 5px;
-          margin-right: 5px;
-          padding-left: 5px;
-          border-bottom: 2px solid rgb(202, 158, 230)
+        #custom-nix {
+          color: @acc;
+
+          font-size: 1.4em;
+        }
+
+        #workspaces button.active {
+          color: @base;
+          background: @acc;
         }
       '';
 
@@ -84,6 +89,7 @@
           ];
 
           modules-right = [
+            "privacy"
             "group/utils"
             "battery"
           ];
@@ -98,7 +104,7 @@
             };
             modules = [
               "custom/menu"
-              "pulseaudio/slider"
+              "pulseaudio"
               "hyprland/language"
               "network"
               "bluetooth"
@@ -112,19 +118,26 @@
               ""
               ""
             ];
-            format-discharging = "{icon}    {capacity}%";
-            format-charging = "󰂄    {capacity}%";
+            format-discharging = "{icon} {capacity}%";
+            format-charging = "󰂄 {capacity}%";
             interval = 1;
           };
 
           bluetooth = {
-            format = "󰂯 ";
+            format = "󰂯";
             on-click = "hyprctl dispatch exec [floating] blueman-manager";
           };
 
           clock = {
             interval = 1;
-            tooltip-format = "{:%H:%M:%S    %a. %B %d, %Y}";
+            tooltip-format = "{:%H:%M:%S  %a. %B %d, %Y}\n\n{calendar}";
+            calendar = {
+              mode = "month";
+              mode-mon-col = 3;
+            };
+            actions = {
+              on-click = "mode";
+            };
           };
 
           "custom/menu" = {
@@ -146,10 +159,11 @@
           };
 
           network = {
-            format-wifi = "󰖩 ";
-            format-disconnected = "󰖪 ";
-            format-ethernet = "󰈀 ";
+            format-wifi = "󰖩";
+            format-disconnected = "󰖪";
+            format-ethernet = "󰈀";
             on-click = "hyprctl dispatch exec [floating] kitty nmtui connect";
+            tooltip = false;
           };
         };
       };
