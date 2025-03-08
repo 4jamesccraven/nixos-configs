@@ -50,12 +50,17 @@
             "gaps_in" = "5";
             "col.active_border" = "rgb(ca9ee6)";
             "col.inactive_border" = "rgb(292c3c)";
+            "resize_on_border" = true;
           };
 
           decoration = {
             "rounding" = "10";
             "active_opacity" = "0.95";
             "inactive_opacity" = "0.90";
+          };
+
+          misc = {
+            "disable_hyprland_logo" = true;
           };
 
           ### Input and Keybinds ###
@@ -73,8 +78,13 @@
             "$mod, T, exec, kitty"
             "$mod, Q, killactive"
             "Alt_L, Space, exec, fuzzel"
+
             "$mod, m, fullscreen, 1"
             "$mod+Shift, m, fullscreen, 0"
+
+            "$mod, f, togglefloating"
+            "$mod, f, centerwindow"
+
             "$mod, B, exec, hyprlock"
             "$mod, X, exec, hyprctl dispatch exit"
             "$mod+Shift, X, exec, shutdown now"
@@ -114,6 +124,11 @@
 
           bindl = [
             ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ];
+
+          bindm = [
+            "$mod, mouse:272, movewindow"
+            "$mod, mouse:273, resizewindow"
           ];
         };
       };
