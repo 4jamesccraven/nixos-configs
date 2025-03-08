@@ -125,7 +125,7 @@
 
           bluetooth = {
             format = "󰂯";
-            on-click = "hyprctl dispatch exec [floating] blueman-manager";
+            on-click = "hyprctl dispatch exec '[float; size 80%] blueman-manager'";
           };
 
           clock = {
@@ -162,7 +162,7 @@
             format-wifi = "󰖩";
             format-disconnected = "󰖪";
             format-ethernet = "󰈀";
-            on-click = "hyprctl dispatch exec [floating] kitty nmtui connect";
+            on-click =  "hyprctl dispatch exec '[float; size 80%] kitty nmtui connect'";
             tooltip = false;
           };
         };
