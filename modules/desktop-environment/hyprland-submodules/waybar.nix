@@ -92,6 +92,7 @@
             "privacy"
             "group/utils"
             "battery"
+            "custom/power"
           ];
 
           ### Group ###
@@ -149,6 +150,18 @@
             format = "󱄅";
             tooltip = false;
             on-click = "kitty ~/nixos";
+          };
+
+          "custom/power" = {
+            format = "⏻ ";
+            tooltip = false;
+            menu = "on-click";
+            menu-file = "${./power-menu.xml}";
+            menu-actions = {
+              logout = "hyprctl dispatch exit";
+              shutdown = "shutdown now";
+              reboot = "reboot";
+            };
           };
 
           "hyprland/language" = {
