@@ -1,0 +1,8 @@
+recipe_dir = "/home/jamescraven/nixos/assets/mkdev"
+
+[subs]
+day = "date +%d"
+user = "whoami"
+year = "date +%Y"
+dir = "mk::dir"
+month = "date +%m"

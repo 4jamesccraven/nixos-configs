@@ -12,6 +12,7 @@
     ./kitty.nix
     ./lsd.nix
     ./neovim.nix
+    ./mkdev.nix
     ./zsh.nix
   ];
 }
