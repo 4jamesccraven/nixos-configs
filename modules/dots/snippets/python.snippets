@@ -6,25 +6,13 @@ if __name__ == '__main__':
     main()
 endsnippet
 
-snippet def "Function" b
+snippet def "Function" bA
 def $1($2) -> $3:
     ${4:...}
 endsnippet
 
-snippet cls "Class" b
+snippet class "Class" bA
 class $1:
     def __init__(self, $2):
         ${3:...}
-endsnippet
-
-snippet [c "List comprehension"
-[$1 for $2 in $3]
-endsnippet
-
-snippet {d "Dict comprehension"
-{$1: $2 for $3 in $4}
-endsnippet
-
-snippet {s "Set comprehension"
-{$1 for $2 in $3}
 endsnippet

@@ -1,16 +1,22 @@
-snippet fn "Function declaration" bA
+snippet fn "Function declaration" A
 fn $1($2) -> $3 {
     $0
 }
 endsnippet
 
-snippet struct "Struct declaration" b
+snippet struct "Struct declaration" bA
 struct $1 {
     $0
 }
 endsnippet
 
-snippet {} "Braces" A
+snippet enum "Enum declaration" bA
+enum $1 {
+    $0
+}
+endsnippet
+
+snippet {} "Braces"
 {
     $0
 }
