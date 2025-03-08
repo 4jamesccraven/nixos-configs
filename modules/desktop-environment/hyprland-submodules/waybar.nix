@@ -23,7 +23,7 @@
         window > box {
           background: @base;
 
-          margin: 20px;
+          margin: 5px 20px;
           margin-bottom: 0px;
           padding: 5px;
 

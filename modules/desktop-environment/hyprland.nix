@@ -19,6 +19,8 @@
 
     environment.systemPackages = with pkgs; [
       brightnessctl
+      grim
+      slurp
     ];
 
     home-manager.users.jamescraven = {
@@ -98,6 +100,9 @@
 
             "Alt_L, Shift_L, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
             "Alt_L, Shift_L, exec, hyprctl switchxkblayout keychron-keychron-c2 next"
+
+            ", Print, exec, GRIM_DEFAULT_DIR=\"/home/jamescraven/Pictures/Screenshots\" grim -g \"$(slurp)\""
+            "Shift_L, Print, exec, GRIM_DEFAULT_DIR=\"/home/jamescraven/Pictures/Screenshots\" grim"
           ];
 
           bindel = [
