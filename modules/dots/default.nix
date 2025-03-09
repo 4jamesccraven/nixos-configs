@@ -11,8 +11,9 @@
     ./gtk.nix
     ./kitty.nix
     ./lsd.nix
-    ./neovim.nix
     ./mkdev.nix
+    ./neovim.nix
+    ./starship.nix
     ./zsh.nix
   ];
 }

@@ -23,8 +23,17 @@
 
         bindkey "^f" fzf-history-widget
 
-        PROMPT='%F{#CA9EE6}╭─(%f/ˈiː.ən/%F{#CA9EE6}@%m): [%f%~%F{#CA9EE6}]
+        fallback_prompt() {
+          PROMPT='%F{#CA9EE6}╭─(%f/ˈiː.ən/%F{#CA9EE6}@%m): [%f%~%F{#CA9EE6}]
         ╰─❯ %f'
+        }
+
+        if command -v starship &> /dev/null; then
+          eval "$(starship init zsh)"
+        else
+          fallback_prompt
+        fi
+
         fastfetch
       '';
 
