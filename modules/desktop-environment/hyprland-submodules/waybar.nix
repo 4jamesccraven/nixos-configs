@@ -89,7 +89,7 @@
 
           modules-center = [
             "clock"
-            "custom/nix"
+            "image#nix"
           ];
 
           modules-right = [
@@ -134,7 +134,7 @@
           };
 
           clock = {
-            interval = 1;
+            format = "{:%b %d  %H:%M}";
             tooltip-format = "{:%H:%M:%S  %a. %B %d, %Y}\n\n{calendar}";
             calendar = {
               mode = "month";
@@ -143,6 +143,7 @@
             actions = {
               on-click = "mode";
             };
+            interval = 1;
           };
 
           "custom/menu" = {
@@ -150,8 +151,8 @@
             tooltip = false;
           };
 
-          "custom/nix" = {
-            format = "󱄅";
+          "image#nix" = {
+            path = "${../../../assets/nixos-logo.png}";
             tooltip = false;
             on-click = "kitty ~/nixos";
           };
