@@ -37,6 +37,11 @@
           "DP-3, 2560x1080, 0x0, 1.0"
           "HDMI-A-1, 1920x1080, 320x-1080, 1.0"
         ];
+
+        workspace = [
+          "1, monitor:DP-3"
+          "10, monitor:HDMI-A-1, persistent:true, default:true"
+        ];
       };
     };
   };

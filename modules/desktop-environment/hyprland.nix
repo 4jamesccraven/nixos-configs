@@ -43,6 +43,10 @@
             "XCURSOR_SIZE, 22"
           ];
 
+          windowrulev2 = [
+            "float, class:brave, title:^(.* wants to open)$"
+          ];
+
           ### Appearance ###
 
           general = {
@@ -75,30 +79,35 @@
           };
 
           bind = [
-            "$mod, T, exec, kitty"
             "$mod, Q, killactive"
             "Alt_L, Space, exec, fuzzel"
 
-            "$mod, m, fullscreen, 1"
-            "$mod+Shift, m, fullscreen, 0"
+            "$mod, M, fullscreen, 1"
+            "$mod+Shift, M, fullscreen, 0"
 
-            "$mod, f, togglefloating"
-            "$mod, f, centerwindow"
-            "$mod, f, resizeactive, exact 65% 65%"
+            "$mod, F, togglefloating"
+            "$mod, F, centerwindow"
+            "$mod, F, resizeactive, exact 65% 65%"
+
+            "$mod, Z, togglespecialworkspace, mincontainer"
+            "$mod, Z, movetoworkspace, +0"
+            "$mod, Z, togglespecialworkspace, mincontainer"
+            "$mod, Z, movetoworkspace, special:mincontainer"
+            "$mod, Z, togglespecialworkspace, mincontainer"
 
             "$mod, B, exec, hyprlock"
-            "$mod, X, exec, hyprctl dispatch exit"
-            "$mod+Shift, X, exec, shutdown now"
+            "$mod, V, exec, hyprctl dispatch exit"
+            "$mod+Shift, V, exec, shutdown now"
 
-            "$mod, h, movefocus, l"
-            "$mod, j, movefocus, d"
-            "$mod, k, movefocus, u"
-            "$mod, l, movefocus, r"
+            "$mod, H, movefocus, l"
+            "$mod, J, movefocus, d"
+            "$mod, K, movefocus, u"
+            "$mod, L, movefocus, r"
 
-            "$mod+Shift, h, movewindow, l"
-            "$mod+Shift, j, movewindow, d"
-            "$mod+Shift, k, movewindow, u"
-            "$mod+Shift, l, movewindow, r"
+            "$mod+Shift, H, movewindow, l"
+            "$mod+Shift, J, movewindow, d"
+            "$mod+Shift, K, movewindow, u"
+            "$mod+Shift, L, movewindow, r"
 
             "$mod, 1, workspace, 1"
             "$mod, 2, workspace, 2"
