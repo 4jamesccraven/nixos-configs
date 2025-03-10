@@ -15,9 +15,7 @@
       initExtra = ''
         zstyle ':completion:*' insert-tab false # Disallow tabs at the start of prompt
 
-        setopt auto_menu menu_complete    # autocomplete first match
         setopt auto_param_slash           # dirs are autocompleted with a trailing / instead of a space
-        setopt no_case_glob no_case_match # case insensitive
 
         source <(${pkgs.fzf}/bin/fzf --zsh)
 
