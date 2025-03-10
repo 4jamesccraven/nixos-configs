@@ -6,8 +6,4 @@ pkgs.mkShell {
     rstudio
     rPackages.ISLR2
   ];
-
-  shellHook = ''
-    clear; zsh; exit
-  '';
 }
