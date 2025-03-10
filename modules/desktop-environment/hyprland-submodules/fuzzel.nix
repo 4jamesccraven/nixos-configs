@@ -1,9 +1,9 @@
-{...}:
+{ ... }:
 
 {
 
   home-manager.users.jamescraven = {
-    programs.fuzzel= {
+    programs.fuzzel = {
       enable = true;
 
       settings = {

@@ -180,7 +180,7 @@
             format-wifi = "󰖩";
             format-disconnected = "󰖪";
             format-ethernet = "󰈀";
-            on-click =  "hyprctl dispatch exec '[float; size 80%] kitty nmtui connect'";
+            on-click = "hyprctl dispatch exec '[float; size 80%] kitty nmtui connect'";
             tooltip = false;
           };
         };
