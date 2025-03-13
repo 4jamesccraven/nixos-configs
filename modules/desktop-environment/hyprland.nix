@@ -79,30 +79,36 @@
           };
 
           bind = [
+            # General
             "$mod, Q, killactive"
             "Alt_L, Space, exec, fuzzel"
 
+            # Fullscreen control
             "$mod, M, fullscreen, 1"
             "$mod+Shift, M, fullscreen, 0"
 
+            # Float
             "$mod, F, togglefloating"
             "$mod, F, centerwindow"
             "$mod, F, resizeactive, exact 65% 65%"
 
+            # Minimize trick
             "$mod, Z, togglespecialworkspace, mincontainer"
             "$mod, Z, movetoworkspace, +0"
             "$mod, Z, togglespecialworkspace, mincontainer"
             "$mod, Z, movetoworkspace, special:mincontainer"
             "$mod, Z, togglespecialworkspace, mincontainer"
 
-            "$mod, B, exec, hyprlock"
+            # System Power
+            "$mod, L, exec, hyprlock"
             "$mod, V, exec, hyprctl dispatch exit"
             "$mod+Shift, V, exec, shutdown now"
 
-            "$mod, H, movefocus, l"
-            "$mod, J, movefocus, d"
-            "$mod, K, movefocus, u"
-            "$mod, L, movefocus, r"
+            # Keyboard navigation
+            "Alt_L, H, movefocus, l"
+            "Alt_L, J, movefocus, d"
+            "Alt_L, K, movefocus, u"
+            "Alt_L, L, movefocus, r"
 
             "$mod+Shift, H, movewindow, l"
             "$mod+Shift, J, movewindow, d"
@@ -118,14 +124,17 @@
             "$mod+Shift, 3, movetoworkspace, 3"
             "$mod+Shift, 4, movetoworkspace, 4"
 
+            # Keyboard Layouts
             "Alt_L, Shift_L, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
             "Alt_L, Shift_L, exec, hyprctl switchxkblayout keychron-keychron-c2 next"
 
+            # Screenshots
             ", Print, exec, GRIM_DEFAULT_DIR=\"/home/jamescraven/Pictures/Screenshots\" grim -g \"$(slurp)\""
             "Shift_L, Print, exec, GRIM_DEFAULT_DIR=\"/home/jamescraven/Pictures/Screenshots\" grim"
             "Shift_L, Print, exec, hyprctl notify 1 1500 0 \"fontsize:25 Screen Captured\""
           ];
 
+          # Sound
           bindel = [
             ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
             ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
@@ -138,6 +147,7 @@
             ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
           ];
 
+          # Mouse Navigation
           bindm = [
             "$mod, mouse:272, movewindow"
             "$mod, mouse:273, resizewindow"
