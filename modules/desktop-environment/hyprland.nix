@@ -44,7 +44,7 @@
           ];
 
           windowrulev2 = [
-            "float, class:brave, title:^(.* wants to open)$"
+            "float, class:brave, title:^(.* wants to (open|save))$"
           ];
 
           ### Appearance ###
