@@ -40,7 +40,7 @@
 
         workspace = [
           "1, monitor:DP-3"
-          "10, monitor:HDMI-A-1, persistent:true, default:true"
+          "10, monitor:HDMI-A-1, persistent:true, default:true, on-created-empty:brave"
         ];
       };
     };
