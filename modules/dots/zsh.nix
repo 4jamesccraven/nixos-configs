@@ -21,15 +21,11 @@
 
         bindkey "^f" fzf-history-widget
 
-        fallback_prompt() {
-          PROMPT='%F{#CA9EE6}╭─(%f/ˈiː.ən/%F{#CA9EE6}@%m): [%f%~%F{#CA9EE6}]
+        PROMPT='%F{#CA9EE6}╭─(%f/ˈiː.ən/%F{#CA9EE6}@%m): [%f%~%F{#CA9EE6}]
         ╰─❯ %f'
-        }
 
         if command -v starship &> /dev/null; then
           eval "$(starship init zsh)"
-        else
-          fallback_prompt
         fi
 
         fastfetch
@@ -40,6 +36,7 @@
         cat = "bat";
         ff = "fastfetch";
         cff = "clear; fastfetch";
+        pcalc = "nx develop dsci python";
       };
     };
   };
