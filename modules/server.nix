@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, system, ... }:
 
 {
   imports = [
@@ -29,6 +29,19 @@
   services.openssh = {
     enable = true;
     settings.PermitRootLogin = "no";
+  };
+
+  systemd.services.wf-bot = {
+    description = "Warframe Discord bot";
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "simple";
+      EnvironmentFile = "/home/jamescraven/.config/wf-bot/.env";
+      ExecStart = "${inputs.wf-bot.packages.${system}.default}/bin/wf-bot";
+      Restart = "always";
+    };
   };
 
   users.users.jamescraven = {

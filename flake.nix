@@ -12,6 +12,7 @@
       url = "github:4jamesccraven/mkdev";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    wf-bot.url = "github:4jamesccraven/warframe-bot";
   };
 
   outputs =
