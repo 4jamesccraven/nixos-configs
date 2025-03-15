@@ -59,7 +59,7 @@
 
         nix_shell = {
           format = "[\\(DevShell\\)]($style) ";
-          heuristic = true;
+          heuristic = false;
         };
 
         git_branch = {
