@@ -18,6 +18,7 @@ pkgs.writeShellScriptBin "nx" ''
   shift
 
   update() {
+    sudo -v
     local do_update=true
     while [[ $# -gt 0 ]]; do
       case "$1" in
@@ -42,7 +43,8 @@ pkgs.writeShellScriptBin "nx" ''
       # Only cache shells where explicitly requested
       if grep -q "# CACHE" "$file"; then
         shell_name=$(basename "$file" .nix)
-        nx develop "$shell_name" "echo cached $shell_name"
+        nx develop "$shell_name" "echo cached $shell_name" \
+        || nx develop "default" "echo cached $file.default"
       fi
     done
   }
@@ -55,6 +57,7 @@ pkgs.writeShellScriptBin "nx" ''
   }
 
   clean() {
+    sudo -v
     set -e
     optimise=true
     cache_shells=true
@@ -90,6 +93,7 @@ pkgs.writeShellScriptBin "nx" ''
   }
 
   revert() {
+    sudo -v
     set -e
     local prompt="WARNING: You're attempting to revert to the following commit:"
     local commit_msg=$'\n  '$(git log -1 --pretty=%B)$'\n'
@@ -113,6 +117,7 @@ pkgs.writeShellScriptBin "nx" ''
   }
 
   build() {
+    sudo -v
     set -e
     no_pull=false
     while [[ $# -gt 0 ]]; do
