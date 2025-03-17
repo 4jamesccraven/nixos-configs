@@ -12,12 +12,6 @@
     "MOZ_ENABLE_WAYLAND" = 0;
   };
 
-  ### Generic Sytem Info ###
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
   system.stateVersion = "23.11";
 
   # Time Zone
@@ -58,4 +52,12 @@
 
   security.rtkit.enable = true;
 
+  ### Virtualisation ###
+  virtualisation.vmware.host.enable = true;
+
+  ### Generic Sytem Info ###
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 }
