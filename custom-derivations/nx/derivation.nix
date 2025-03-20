@@ -162,7 +162,7 @@ pkgs.writeShellScriptBin "nx" ''
       || { echo "Unable to find a matching shell"; exit 1; }
 
     else
-      nix develop || exit 1
+      nix develop -c zsh || exit 1
 
     fi
   }
