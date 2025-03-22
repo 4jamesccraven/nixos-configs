@@ -108,7 +108,7 @@
         [
           {
             plugin = catppuccin-nvim;
-            config = "colorscheme catppuccin-frappe";
+            config = "colorscheme catppuccin-mocha";
           }
           {
             plugin = indent-blankline-nvim;

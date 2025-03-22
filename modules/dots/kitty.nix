@@ -10,7 +10,7 @@
         size = 11.75;
       };
 
-      themeFile = "Catppuccin-Frappe";
+      themeFile = "Catppuccin-Mocha";
 
       settings = {
         background_opacity = "0.9";

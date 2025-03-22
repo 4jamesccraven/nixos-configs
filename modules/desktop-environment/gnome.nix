@@ -48,7 +48,7 @@
 
         # Set Shell Theme
         "org/gnome/shell/extensions/user-theme" = {
-          name = "catppuccin-frappe-mauve-standard";
+          name = "catppuccin-mocha-mauve-standard";
         };
 
         # Set wallpaper

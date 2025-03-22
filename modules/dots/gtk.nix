@@ -6,10 +6,10 @@
       enable = true;
 
       theme = {
-        name = "catppuccin-frappe-mauve-standard";
+        name = "catppuccin-mocha-mauve-standard";
         package = pkgs.catppuccin-gtk.override {
           accents = [ "mauve" ];
-          variant = "frappe";
+          variant = "mocha";
           size = "standard";
         };
       };
@@ -17,7 +17,7 @@
       iconTheme = {
         name = "Papirus-Dark";
         package = pkgs.catppuccin-papirus-folders.override {
-          flavor = "frappe";
+          flavor = "mocha";
           accent = "mauve";
         };
       };
