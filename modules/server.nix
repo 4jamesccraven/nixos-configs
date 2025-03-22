@@ -8,6 +8,7 @@
 {
   imports = [
     inputs.home-manager.nixosModules.default
+    ./colors.nix
     ./desktop-environment
     ./dots/git.nix
     ./dots/kitty.nix
