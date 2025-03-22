@@ -1,7 +1,13 @@
-{ ... }:
+{ config, ... }:
 
 {
-  home-manager.users.jamescraven = {
+  home-manager.users.jamescraven = 
+  let
+    base = "rgb(${config.colors.base.rgb})";
+    accent = "rgb(${config.colors.accent.rgb})";
+    text = "rgb(${config.colors.text.rgb})";
+    red = "rgb(231, 130, 132)";
+  in {
     programs.hyprlock = {
       enable = true;
 
@@ -22,11 +28,11 @@
           valign = "center";
           position = "0, -5%";
 
-          outer_color = "rgb(202, 158, 230)";
-          inner_color = "rgb(48, 52, 70)";
-          font_color = "rgb(198, 208, 245)";
-          check_color = "rgb(198, 208, 245)";
-          fail_color = "rgb(231, 130, 132)";
+          outer_color = accent;
+          inner_color = base;
+          font_color = text;
+          check_color = text;
+          fail_color = red;
         };
 
         label = {
@@ -39,7 +45,7 @@
           valign = "center";
           position = "0, 10%";
 
-          color = "rgb(198, 208, 245)";
+          color = text;
         };
 
         image = {
@@ -50,7 +56,7 @@
           halign = "center";
           valign = "bottom";
 
-          border_color = "rgb(202, 158, 230)";
+          border_color = accent;
         };
       };
     };

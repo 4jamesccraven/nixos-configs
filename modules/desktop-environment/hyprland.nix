@@ -49,11 +49,14 @@
 
           ### Appearance ###
 
-          general = {
+          general = let
+            accent = "rgb(${config.colors.accent.hex})";
+            base = "rgb(${config.colors.base.hex})";
+          in {
             "border_size" = 3;
             "gaps_in" = "5";
-            "col.active_border" = "rgb(ca9ee6)";
-            "col.inactive_border" = "rgb(292c3c)";
+            "col.active_border" = accent;
+            "col.inactive_border" = base;
             "resize_on_border" = true;
           };
 

@@ -1,8 +1,13 @@
-{ ... }:
+{ config, ... }:
 
 {
 
-  home-manager.users.jamescraven = {
+  home-manager.users.jamescraven =
+  let
+    base = "${config.colors.base.hex}ff";
+    accent = "${config.colors.accent.hex}ff";
+    text = "${config.colors.text.hex}ff";
+  in {
     programs.fuzzel = {
       enable = true;
 
@@ -13,16 +18,16 @@
         };
         border.width = 3;
         colors = {
-          background = "303446ff";
-          text = "c6d0f5ff";
-          prompt = "ca9ee6ff";
+          background = base;
+          text = text;
+          prompt = accent;
 
-          match = "c6d0f5ff";
-          border = "ca9ee6ff";
+          match = text;
+          border = accent;
 
-          selection = "ca9ee6ff";
-          selection-match = "303446ff";
-          selection-text = "303446ff";
+          selection = accent;
+          selection-match = base;
+          selection-text = base;
         };
       };
     };

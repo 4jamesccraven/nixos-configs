@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   home-manager.users.jamescraven = {
@@ -7,10 +7,10 @@
       enable = true;
       systemd.enable = true;
 
-      style = ''
-        @define-color base rgb(48, 52, 70);
-        @define-color acc  rgb(202, 158, 230);
-        @define-color text rgb(198, 208, 245);
+      style = with config.colors; ''
+        @define-color base rgb(${base.rgb});
+        @define-color acc  rgb(${accent.rgb});
+        @define-color text rgb(${text.rgb});
 
         * {
           font-family: FiraCode Nerd Font Mono;

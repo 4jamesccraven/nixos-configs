@@ -1,7 +1,9 @@
-{ ... }:
+{ config, ... }:
 
 {
-  home-manager.users.jamescraven = {
+  home-manager.users.jamescraven = let
+    accent = config.colors.accent.ansi;
+  in {
     programs.fastfetch = {
       enable = true;
 
@@ -10,7 +12,7 @@
           source = "/home/jamescraven/nixos/assets/planet.txt";
           color = {
             "1" = "default";
-            "2" = "38;2;202;158;230";
+            "2" = accent;
           };
         };
 
@@ -31,7 +33,7 @@
             type = 1;
           };
           color = {
-            keys = "38;2;202;158;230";
+            keys = accent;
             output = "default";
           };
         };
@@ -41,7 +43,7 @@
           {
             type = "custom";
             key = "《·───────────────·》◈《·──────────────·》";
-            keyColor = "38;2;202;158;230";
+            keyColor = accent;
           }
           {
             type = "os";
@@ -81,7 +83,7 @@
           {
             type = "custom";
             key = "《·───────────────·》◈《·──────────────·》";
-            keyColor = "38;2;202;158;230";
+            keyColor = accent;
           }
           {
             type = "colors";

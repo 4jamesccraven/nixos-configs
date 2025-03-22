@@ -3,6 +3,7 @@
 {
   imports = [
     ./desktop-environment
+    ./colors.nix
     ./dots
     ./packages.nix
     ./system.nix
