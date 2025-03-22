@@ -17,7 +17,8 @@ let
       };
     };
   };
-in {
+in
+{
   options.colors = mkOption {
     type = types.attrsOf colorType;
     description = "Named colour variables";

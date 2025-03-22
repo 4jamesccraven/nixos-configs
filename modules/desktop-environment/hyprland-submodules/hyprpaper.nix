@@ -6,17 +6,21 @@
       services.hyprpaper = {
         enable = true;
 
-        settings = {
-          preload = [
-            "/home/jamescraven/nixos/assets/wp-wide.png"
-          ];
+        settings =
+          let
+            wp-path = "${../../../assets/wp-wide.png}";
+          in
+          {
+            preload = [
+              wp-path
+            ];
 
-          wallpaper = [
-            "eDP-1,/home/jamescraven/nixos/assets/wp-wide.png"
-            "DP-3,/home/jamescraven/nixos/assets/wp-wide.png"
-            "HDMI-A-1,/home/jamescraven/nixos/assets/wp-wide.png"
-          ];
-        };
+            wallpaper = [
+              "eDP-1,${wp-path}"
+              "DP-3,${wp-path}"
+              "HDMI-A-1,${wp-path}"
+            ];
+          };
       };
     };
   };

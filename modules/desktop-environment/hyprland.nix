@@ -45,20 +45,23 @@
 
           windowrulev2 = [
             "float, class:brave, title:^(.* wants to (open|save))$"
+            "float, class:xdg-desktop-portal-gtk, title:^(.* wants to (open|save))$"
           ];
 
           ### Appearance ###
 
-          general = let
-            accent = "rgb(${config.colors.accent.hex})";
-            base = "rgb(${config.colors.base.hex})";
-          in {
-            "border_size" = 3;
-            "gaps_in" = "5";
-            "col.active_border" = accent;
-            "col.inactive_border" = base;
-            "resize_on_border" = true;
-          };
+          general =
+            let
+              accent = "rgb(${config.colors.accent.hex})";
+              base = "rgb(${config.colors.base.hex})";
+            in
+            {
+              "border_size" = 3;
+              "gaps_in" = "5";
+              "col.active_border" = accent;
+              "col.inactive_border" = base;
+              "resize_on_border" = true;
+            };
 
           decoration = {
             "rounding" = "10";

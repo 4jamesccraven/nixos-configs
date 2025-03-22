@@ -1,64 +1,65 @@
 { config, ... }:
 
 {
-  home-manager.users.jamescraven = 
-  let
-    base = "rgb(${config.colors.base.rgb})";
-    accent = "rgb(${config.colors.accent.rgb})";
-    text = "rgb(${config.colors.text.rgb})";
-    red = "rgb(231, 130, 132)";
-  in {
-    programs.hyprlock = {
-      enable = true;
+  home-manager.users.jamescraven =
+    let
+      base = "rgb(${config.colors.base.rgb})";
+      accent = "rgb(${config.colors.accent.rgb})";
+      text = "rgb(${config.colors.text.rgb})";
+      red = "rgb(231, 130, 132)";
+    in
+    {
+      programs.hyprlock = {
+        enable = true;
 
-      settings = {
-        background = {
-          monitor = "";
-          path = "/home/jamescraven/nixos/assets/wp-wide.png";
+        settings = {
+          background = {
+            monitor = "";
+            path = "${../../../assets/wp-wide.png}";
 
-          blur_passes = 2;
-        };
+            blur_passes = 2;
+          };
 
-        input-field = {
-          monitor = "";
-          size = "10%, 4%";
-          fade_on_empty = false;
+          input-field = {
+            monitor = "";
+            size = "10%, 4%";
+            fade_on_empty = false;
 
-          halign = "center";
-          valign = "center";
-          position = "0, -5%";
+            halign = "center";
+            valign = "center";
+            position = "0, -5%";
 
-          outer_color = accent;
-          inner_color = base;
-          font_color = text;
-          check_color = text;
-          fail_color = red;
-        };
+            outer_color = accent;
+            inner_color = base;
+            font_color = text;
+            check_color = text;
+            fail_color = red;
+          };
 
-        label = {
-          monitor = "";
-          text = "$TIME";
-          font_size = 95;
-          font_family = "FiraCode Nerd Font Mono";
+          label = {
+            monitor = "";
+            text = "$TIME";
+            font_size = 95;
+            font_family = "FiraCode Nerd Font Mono";
 
-          halign = "center";
-          valign = "center";
-          position = "0, 10%";
+            halign = "center";
+            valign = "center";
+            position = "0, 10%";
 
-          color = text;
-        };
+            color = text;
+          };
 
-        image = {
-          monitor = "";
-          path = "${../../../assets/nixos-logo.png}";
-          size = 80;
+          image = {
+            monitor = "";
+            path = "${../../../assets/nixos-logo.png}";
+            size = 80;
 
-          halign = "center";
-          valign = "bottom";
+            halign = "center";
+            valign = "bottom";
 
-          border_color = accent;
+            border_color = accent;
+          };
         };
       };
     };
-  };
 }
