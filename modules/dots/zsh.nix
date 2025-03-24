@@ -16,13 +16,17 @@
         # Disallow tabs at the start of prompt
         zstyle ':completion:*' insert-tab false
 
-        # dirs are autocompleted with a trailing / instead of a space
+        # Dirs are autocompleted with a trailing / instead of a space
         setopt auto_param_slash
+
+        # Enable vim keybinds instead of default EMACS
+        bindkey -v
 
         # fzf-zsh integration and theming
         source <(${pkgs.fzf}/bin/fzf --zsh)
         bindkey "^f" fzf-history-widget
 
+        # Fzf theme
         export FZF_DEFAULT_OPTS=" \
         --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
         --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
@@ -42,7 +46,7 @@
         man = "batman";
         ff = "fastfetch";
         cff = "clear; fastfetch";
-        pcalc = "nx develop dsci python";
+        pcalc = "nix develop $HOME/nixos#dsci -c python";
       };
     };
   };

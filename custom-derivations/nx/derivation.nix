@@ -18,7 +18,7 @@ pkgs.writeShellScriptBin "nx" ''
   shift
 
   update() {
-    sudo -v
+    sudo -v || exit 1
     local do_update=true
     while [[ $# -gt 0 ]]; do
       case "$1" in
@@ -57,7 +57,7 @@ pkgs.writeShellScriptBin "nx" ''
   }
 
   clean() {
-    sudo -v
+    sudo -v || exit 1
     set -e
     optimise=true
     cache_shells=true
@@ -93,7 +93,7 @@ pkgs.writeShellScriptBin "nx" ''
   }
 
   revert() {
-    sudo -v
+    sudo -v || exit 1
     set -e
     local prompt="WARNING: You're attempting to revert to the following commit:"
     local commit_msg=$'\n  '$(git log -1 --pretty=%B)$'\n'
@@ -117,7 +117,7 @@ pkgs.writeShellScriptBin "nx" ''
   }
 
   build() {
-    sudo -v
+    sudo -v || exit 1
     set -e
     no_pull=false
     while [[ $# -gt 0 ]]; do
