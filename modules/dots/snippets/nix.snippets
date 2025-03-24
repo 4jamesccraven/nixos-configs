@@ -1,10 +1,17 @@
-snippet {} "Attribute set" A
-{
-  $0
-}${1:}
+priority 1
+clearsnippets '
+
+snippet f{ "Function parameters" A
+{ ${1:}... }:
 endsnippet
 
-snippet [] "Set" A
+snippet { "Attribute set" A
+{
+  $0
+}${1:;}
+endsnippet
+
+snippet [ "Set" A
 [
   $0
 ];
@@ -14,4 +21,10 @@ snippet w[ "Set with 'with'" A
 with $1; [
   $0
 ];
+endsnippet
+
+snippet '' "Multiline string" A
+''
+  $0
+'';
 endsnippet

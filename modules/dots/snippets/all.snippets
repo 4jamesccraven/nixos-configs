@@ -1,3 +1,4 @@
+priority 0
 snippet dt "Abbreviated date"
 `date +%D`
 endsnippet
@@ -6,8 +7,22 @@ snippet date "Long-form date"
 `date "+%d %B, %Y"`
 endsnippet
 
-snippet {} "Expand brackets"
-{
-	$0
-}
+snippet ( "Delimiter Completion" A
+($0)
+endsnippet
+
+snippet ' "Delimiter Completion" A
+'$0'
+endsnippet
+
+snippet " "Delimiter Completion" A
+"$0"
+endsnippet
+
+snippet [ "Delimiter Completion" A
+[$0]
+endsnippet
+
+snippet { "Delimiter Completion" A
+{$0}
 endsnippet

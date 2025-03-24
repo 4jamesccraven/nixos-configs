@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ config, inputs, pkgs, ... }:
 
 {
   nix.nixPath = [
@@ -29,11 +29,18 @@
       viAlias = true;
       vimAlias = true;
 
+      defaultEditor = true;
+
       ### General config ###
-      extraLuaConfig /*vim*/ = 
+      extraLuaConfig /*lua*/ =
         ''
+          -- Leader Key
+          vim.g.mapleader = ' '
+
           -- Clipboard
           vim.opt.clipboard = 'unnamedplus'
+
+          -- Enable mouse
           vim.opt.mouse = 'a'
 
           -- Tabs
@@ -47,14 +54,22 @@
           vim.opt.number = true
           vim.opt.relativenumber = true
 
-          -- Search config
+          -- Search Config
           vim.opt.incsearch = true
           vim.opt.hlsearch = false
           vim.opt.ignorecase = true
           vim.opt.smartcase = true
 
-          -- Vertical split
+          -- Default Split Options
           vim.o.splitright = true
+          vim.o.splitbelow = true
+
+          -- Scrolling Offset
+          vim.o.scrolloff = 8
+          vim.o.sidescrolloff = 8
+
+          -- Text Wrapping
+          vim.o.wrap = false
 
           -- Transparent Background
           vim.cmd.highlight({ "Normal", "guibg=NONE", "ctermbg=NONE" })
@@ -64,57 +79,103 @@
           local lastplace = vim.api.nvim_create_augroup("LastPlace", {})
           vim.api.nvim_clear_autocmds({ group = lastplace })
           vim.api.nvim_create_autocmd("BufReadPost", {
-            group = lastplace,
-            pattern = { "*" },
-            desc = "remember last cursor place",
-            callback = function()
-              local mark = vim.api.nvim_buf_get_mark(0, '"')
-              local lcount = vim.api.nvim_buf_line_count(0)
-              if mark[1] > 0 and mark[1] <= lcount then
-                pcall(vim.api.nvim_win_set_cursor, 0, mark)
-              end
-            end,
+              group = lastplace,
+              pattern = { "*" },
+              desc = "remember last cursor place",
+              callback = function()
+                 local mark = vim.api.nvim_buf_get_mark(0, '"')
+                 local lcount = vim.api.nvim_buf_line_count(0)
+                 if mark[1] > 0 and mark[1] <= lcount then
+                     pcall(vim.api.nvim_win_set_cursor, 0, mark)
+                 end
+              end,
           })
 
           -- Set tabsize for *.nix
           vim.cmd([[
-            augroup NixTabSettings
-              autocmd!
-              autocmd FileType nix setlocal tabstop=2 shiftwidth=2 expandtab
-            augroup END
+              augroup NixTabSettings
+                  autocmd!
+                  autocmd FileType nix setlocal tabstop=2 shiftwidth=2 expandtab
+              augroup END
           ]])
 
-          -- Set *.tex files to latex type
-          vim.cmd([[autocmd BufRead,BufNewFile *.tex set filetype=latex]])
-
-          -- Fix for rust analyzer stuttering
-          for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
-              local default_diagnostic_handler = vim.lsp.handlers[method]
-              vim.lsp.handlers[method] = function(err, result, context, config)
-                  if err ~= nil and err.code == -32802 then
-                      return
-                  end
-                  return default_diagnostic_handler(err, result, context, config)
-              end
+          -- Keybind function
+          local function map(mode, lhs, rhs, opts)
+              opts = opts or { noremap = true, silent = true }
+              vim.keymap.set(mode, lhs, rhs, opts)
           end
+
+
+          --> Keymap Configuration <--
+          -- Split navigation
+          map('n', '<leader>v', ':vsplit<CR>')
+          map('n', '<leader>s', ':split<CR>')
+          map('n', '<C-h>', '<C-w>h')
+          map('n', '<C-j>', '<C-w>j')
+          map('n', '<C-k>', '<C-w>k')
+          map('n', '<C-l>', '<C-w>l')
+          -- Sorting
+          map('v', '<C-s>', ':sort<CR>')
+
+
+          -->> Plugins <<--
         '';
 
       ### plugins ###
       plugins =
-        let
-          toLua = str: "lua << EOF\n${str}\nEOF\n";
-        in
         with pkgs.vimPlugins;
         [
           {
+            plugin = alpha-nvim;
+            type = "lua";
+            config = /*lua*/ ''
+              --> alpha-nvim <--
+              local alpha = require'alpha'
+              local dashboard = require'alpha.themes.dashboard'
+
+              -- Define custom highlights
+              vim.api.nvim_set_hl(0, 'AlphaLightBlue', { fg = '#${config.colors.accent.hex}' })
+
+              dashboard.section.header.val = {
+                  [[ __  __               _____   ____       ]],
+                  [[/\ \/\ \  __         /\  __`\/\  _`\     ]],
+                  [[\ \ `\\ \/\_\   __  _\ \ \/\ \ \,\L\_\   ]],
+                  [[ \ \ , ` \/\ \ /\ \/'\\ \ \ \ \/_\__ \   ]],
+                  [[  \ \ \`\ \ \ \\/>  </ \ \ \_\ \/\ \L\ \ ]],
+                  [[   \ \_\ \_\ \_\/\_/\_\ \ \_____\ `\____\]],
+                  [[    \/_/\/_/\/_/\//\/_/  \/_____/\/_____/]],
+              }
+              dashboard.section.header.opts.hl = 'AlphaLightBlue'
+              dashboard.section.buttons.val = {
+                  dashboard.button( 'f', '󰍉 Find Files', ':Telescope find_files <CR>'),
+                  dashboard.button( 'n', ' New File', ':ene <BAR> startinsert <CR>'),
+                  dashboard.button( 'q', ' Quit', ':qa<CR>'),
+              }
+
+              dashboard.config.layout = {
+                  { type = 'padding', val = 10 },
+                  dashboard.section.header,
+                  { type = 'padding', val = 3 },
+                  dashboard.section.buttons,
+              }
+
+              alpha.setup(dashboard.config)
+            '';
+          }
+          {
             plugin = catppuccin-nvim;
-            config = "colorscheme catppuccin-mocha";
+            type = "lua";
+            config = /*lua*/ ''
+                --> catppuccin-nvim <--
+                vim.cmd [[colorscheme catppuccin-mocha]]
+              '';
           }
           {
             plugin = indent-blankline-nvim;
-            config =
-              toLua /*lua*/ ''
-                require("ibl").setup {
+            type = "lua";
+            config = /*lua*/ ''
+                --> ibl <--
+                require'ibl'.setup {
                   scope = { enabled = false }
                 }
               '';
@@ -126,8 +187,9 @@
           cmp-nvim-ultisnips
           {
             plugin = nvim-cmp;
-            config =
-              toLua /*lua*/ ''
+            type = "lua";
+            config = /*lua*/ ''
+                --> nvim-cmp <--
                 local cmp = require'cmp'
 
                 cmp.setup({
@@ -151,15 +213,27 @@
               '';
           }
           {
+            plugin = lualine-nvim;
+            type = "lua";
+            config = /*lua*/ ''
+              --> lualine-nvim <--
+              require'lualine'.setup {
+                sections = {
+                  lualine_a = { 'mode' },
+                  lualine_b = { 'branch', 'diagnostics' },
+                  lualine_c = { 'filename' },
+                  lualine_x = { 'filetype' },
+                  lualine_y = { 'lsp_status' },
+                  lualine_z = { 'selectioncount', 'location' }
+                }
+              }
+            '';
+          }
+          {
             plugin = nvim-lspconfig;
-            config =
-              toLua /*lua*/ ''
-                vim.api.nvim_create_autocmd("CursorHold", {
-                  callback = function()
-                    vim.diagnostic.open_float(nil, { focusable = false })
-                  end
-                })
-
+            type = "lua";
+            config = /*lua*/ ''
+                --> nvim-lspconfig <--
                 require'lspconfig'.clangd.setup{}
                 require'lspconfig'.jdtls.setup{}
                 require'lspconfig'.nixd.setup{}
@@ -167,49 +241,38 @@
                 require'lspconfig'.rust_analyzer.setup{}
                 require'lspconfig'.r_language_server.setup{}
                 require'lspconfig'.sqls.setup{}
-                require'lspconfig'.texlab.setup{
-                  filetypes = { "tex", "latex" },
-                  settings = {
-                    texlab = {
-                      build = {
-                        executable = "latexmk",
-                        args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
-                        onSave = true,
-                      },
-                      forwardSearch = {
-                        executable = "brave",
-                        args = { "--new-tab", "%p" },
-                      },
-                      chktex = {
-                        onOpenAndSave = true,
-                        onEdit = false,
-                      },
-                    }
-                  }
-                }
+
+                -- vim.api.nvim_create_autocmd("CursorHold", {
+                --   callback = function()
+                --     vim.diagnostic.open_float(nil, { focusable = false })
+                --   end
+                -- })
+
+                map('n', '<leader>d', function() 
+                    vim.diagnostic.open_float(nil, { focusable = false })
+                end)
+
+                -- Fix for rust analyzer stuttering
+                for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
+                    local default_diagnostic_handler = vim.lsp.handlers[method]
+                    vim.lsp.handlers[method] = function(err, result, context, config)
+                        if err ~= nil and err.code == -32802 then
+                            return
+                        end
+                        return default_diagnostic_handler(err, result, context, config)
+                    end
+                end
               '';
           }
+          nvim-web-devicons
           {
             plugin = telescope-nvim;
-            config =
-              toLua /*lua*/ ''
-                -- Rebind commands
-                vim.api.nvim_create_user_command('FF', 'Telescope find_files', {})
-                vim.cmd('cnoreabbrev ff FF')
-                vim.api.nvim_create_user_command('FG', 'Telescope live_grep', {})
-                vim.cmd('cnoreabbrev fg FG')
-
-                -- Run on launch
-                vim.api.nvim_create_autocmd("VimEnter", {
-                  callback = function()
-                    local arg = vim.fn.argv(0)
-                    if arg == "" then
-                      require("telescope.builtin").find_files()
-                    elseif vim.fn.isdirectory(arg) == 1 then
-                      require("telescope.builtin").find_files({ cwd = vim.fn.fnameescape(arg) })
-                      end
-                  end
-                })
+            type = "lua";
+            config = /*lua*/ ''
+                --> telescope-nvim <--
+                -- Keybinds
+                map("n", "<leader>f", require'telescope.builtin'.find_files)
+                map("n", "<leader>g", require'telescope.builtin'.live_grep)
               '';
           }
           {
@@ -229,8 +292,9 @@
                 p.tree-sitter-vim
               ])
             );
-            config =
-              toLua /*lua*/ ''
+            type = "lua";
+            config = /*lua*/ ''
+                --> nvim-treesitter <--
                 require('nvim-treesitter.configs').setup {
                   ensure_installed = {},
                   auto_install = false,
@@ -240,17 +304,21 @@
           }
           {
             plugin = ultisnips;
-            config = /*vim*/ ''
-              let g:UltiSnipsSnippetDirectories=['/home/jamescraven/nixos/modules/dots/snippets']
-              let g:UltiSnipsExpandTrigger = '<tab>'
-              let g:UltiSnipsJumpForwardTrigger = '<tab>'
-              let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+            type = "lua";
+            config = /*lua*/ ''
+              --> ultisnips <--
+              vim.g.UltiSnipsSnippetDirectories = {'/home/jamescraven/nixos/modules/dots/snippets'}
+              vim.g.UltiSnipsExpandTrigger = '<tab>'
+              vim.g.UltiSnipsJumpForwardTrigger = '<tab>'
+              vim.g.UltiSnipsJumpBackwardTrigger = '<s-tab>'
             '';
           }
           {
             plugin = vim-visual-increment;
-            config = /*vim*/ ''
-              set nrformats=alpha,octal,hex
+            type = "lua";
+            config = /*lua*/ ''
+              --> vim-visual-increment <--
+              vim.cmd('set nrformats=alpha,octal,hex')
             '';
           }
         ];

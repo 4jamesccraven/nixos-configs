@@ -6,7 +6,7 @@ if __name__ == '__main__':
     main()
 endsnippet
 
-snippet def "Function" bA
+snippet def "Function" A
 def $1($2) -> $3:
     ${4:...}
 endsnippet
@@ -15,4 +15,12 @@ snippet class "Class" bA
 class $1:
     def __init__(self, $2):
         ${3:...}
+endsnippet
+
+snippet match "Match statement" b
+match $1:
+    case $2:
+        ${3:...}
+    case _:
+        ${4:...}
 endsnippet
