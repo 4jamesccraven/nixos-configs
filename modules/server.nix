@@ -23,7 +23,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    nx
+    inputs.nx.packages.${system}.default
 
     kitty
     git
