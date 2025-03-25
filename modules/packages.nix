@@ -12,7 +12,7 @@
 
   environment.systemPackages = with pkgs; [
     # nix cli
-    nx
+    inputs.nx.packages.${system}.default
 
     # Terminal Tools
     cowsay
