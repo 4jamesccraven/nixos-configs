@@ -49,9 +49,6 @@
     texlive.combined.scheme-full
     vscode
 
-    # Theming
-    nerd-fonts.fira-code
-
     # Minecraft
     (prismlauncher.override {
       jdks = [
@@ -63,7 +60,9 @@
   ];
 
   fonts.packages = with pkgs; [
+    corefonts
     liberation_ttf
+    nerd-fonts.fira-code
   ];
 
   # Progam/Service-based packages
