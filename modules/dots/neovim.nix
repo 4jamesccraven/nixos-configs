@@ -71,10 +71,6 @@
           -- Text Wrapping
           vim.o.wrap = false
 
-          -- Transparent Background
-          vim.cmd.highlight({ "Normal", "guibg=NONE", "ctermbg=NONE" })
-          vim.cmd.highlight({ "NonText", "guibg=NONE", "ctermbg=NONE" })
-
           -- Remember last place in buffer
           local lastplace = vim.api.nvim_create_augroup("LastPlace", {})
           vim.api.nvim_clear_autocmds({ group = lastplace })
@@ -134,7 +130,7 @@
               local dashboard = require'alpha.themes.dashboard'
 
               -- Define custom highlights
-              vim.api.nvim_set_hl(0, 'AlphaLightBlue', { fg = '#${config.colors.accent.hex}' })
+              vim.api.nvim_set_hl(0, 'AlphaCatppuccinMauve', { fg = '#${config.colors.accent.hex}' })
 
               dashboard.section.header.val = {
                   [[ __  __               _____   ____       ]],
@@ -145,11 +141,13 @@
                   [[   \ \_\ \_\ \_\/\_/\_\ \ \_____\ `\____\]],
                   [[    \/_/\/_/\/_/\//\/_/  \/_____/\/_____/]],
               }
-              dashboard.section.header.opts.hl = 'AlphaLightBlue'
+              dashboard.section.header.opts.hl = 'AlphaCatppuccinMauve'
               dashboard.section.buttons.val = {
-                  dashboard.button( 'f', '󰍉 Find Files', ':Telescope find_files <CR>'),
-                  dashboard.button( 'n', ' New File', ':ene <BAR> startinsert <CR>'),
-                  dashboard.button( 'q', ' Quit', ':qa<CR>'),
+                  dashboard.button( 'n', ' New File', ':ene <BAR> startinsert <CR>' ),
+                  dashboard.button( 'f', '󰍉 Find Files', function() require'telescope.builtin'.find_files() end ),
+                  dashboard.button( 'g', ' Live Grep', function() require'telescope.builtin'.find_files() end ),
+                  dashboard.button( 'N', ' Edit NixOS Configuration', function() require'telescope.builtin'.find_files({ cwd = '/home/jamescraven/nixos/' }) end ),
+                  dashboard.button( 'q', ' Quit', ':qa<CR>' ),
               }
 
               dashboard.config.layout = {
@@ -168,6 +166,10 @@
             config = /*lua*/ ''
                 --> catppuccin-nvim <--
                 vim.cmd [[colorscheme catppuccin-mocha]]
+
+                -- Transparent Background
+                vim.cmd.highlight({ "Normal", "guibg=NONE", "ctermbg=NONE" })
+                vim.cmd.highlight({ "NonText", "guibg=NONE", "ctermbg=NONE" })
               '';
           }
           {

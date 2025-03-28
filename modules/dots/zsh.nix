@@ -5,28 +5,30 @@
     programs.zsh = {
       enable = true;
 
+      defaultKeymap = "viins";
+
       dirHashes = {
         cd = "$HOME/Code";
-        dcs = "$HOME/Documents";
+        cfg = "$HOME/.config";
+        dw = "$HOME/Downloads";
         nix = "$HOME/nixos";
         sw = "$HOME/Documents/Schoolwork";
+        txt = "$HOME/Documents/Texts";
       };
 
       initExtra = ''
         # Disallow tabs at the start of prompt
         zstyle ':completion:*' insert-tab false
 
-        # Dirs are autocompleted with a trailing / instead of a space
-        setopt auto_param_slash
-
-        # Enable vim keybinds instead of default EMACS
-        bindkey -v
+        setopt auto_param_slash  # Dirs are autocompleted with a trailing /
+        setopt cdable_vars       # Try to prepend ~ if a cd command fails
+        setopt cd_silent         # Don't pwd after cd
+        setopt correct           # Offer to correct mispelled commands
 
         # fzf-zsh integration and theming
         source <(${pkgs.fzf}/bin/fzf --zsh)
         bindkey "^f" fzf-history-widget
 
-        # Fzf theme
         export FZF_DEFAULT_OPTS=" \
         --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
         --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
