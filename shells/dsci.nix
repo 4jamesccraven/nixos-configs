@@ -2,8 +2,8 @@
 { pkgs, ... }:
 
 pkgs.mkShell {
-  buildInputs = with pkgs.python312Packages; [
-    pkgs.python312
+  buildInputs = with pkgs.python313Packages; [
+    pkgs.python313
     fastparquet
     ipykernel
     jupyterlab

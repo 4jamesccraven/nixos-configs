@@ -44,7 +44,7 @@
     cargo
     git
     libgcc
-    python312
+    python313
     rustc
     texlive.combined.scheme-full
     vscode
