@@ -22,6 +22,10 @@
   ];
   services.hardware.openrgb.enable = true;
   services.ratbagd.enable = true;
+  systemd.services.ratbagd.wantedBy = [
+    "multi-user.target"
+  ];
+
   hardware.xpadneo.enable = true;
 
   hyprland.enable = true;
