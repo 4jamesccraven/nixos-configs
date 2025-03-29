@@ -1,19 +1,21 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
     ../custom-derivations
+    ./colors.nix
     ./dots/bat.nix
     ./dots/fastfetch.nix
     ./dots/git.nix
     ./dots/lsd.nix
     ./dots/neovim.nix
+    ./dots/starship.nix
     ./dots/zsh.nix
   ];
 
   environment.systemPackages = with pkgs; [
     nixfmt-rfc-style
-    nx
+    inputs.nx.packages.${system}.default
     python3
     ripgrep
   ];
