@@ -145,7 +145,7 @@
               dashboard.section.buttons.val = {
                   dashboard.button( 'n', ' New File', ':ene <BAR> startinsert <CR>' ),
                   dashboard.button( 'f', '󰍉 Find Files', function() require'telescope.builtin'.find_files() end ),
-                  dashboard.button( 'g', ' Live Grep', function() require'telescope.builtin'.find_files() end ),
+                  dashboard.button( 'g', ' Live Grep', function() require'telescope.builtin'.live_grep() end ),
                   dashboard.button( 'N', ' Edit NixOS Configuration', function() require'telescope.builtin'.find_files({ cwd = '/home/jamescraven/nixos/' }) end ),
                   dashboard.button( 'q', ' Quit', ':qa<CR>' ),
               }
