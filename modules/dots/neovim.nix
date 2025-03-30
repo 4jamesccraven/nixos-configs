@@ -5,6 +5,8 @@
     "nixpkgs=${inputs.nixpkgs}"
   ];
 
+  environment.sessionVariables.EDITOR = "nvim";
+
   home-manager.users.jamescraven = {
     programs.neovim = {
 
