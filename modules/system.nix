@@ -48,6 +48,12 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+
+    # Enable the openssh Daemon
+    openssh = {
+      enable = true;
+      settings.PermitRootLogin = "no";
+    };
   };
 
   security.rtkit.enable = true;
