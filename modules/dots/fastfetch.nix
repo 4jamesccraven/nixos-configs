@@ -12,85 +12,118 @@
         settings = {
           logo = {
             source = "${../../assets/logo.txt}";
-            color = {
-              "1" = "default";
-              "2" = accent;
-            };
           };
 
           display = {
-            separator = "  ";
-            size.binaryPrefix = "si";
-            size = {
-              maxPrefix = "TB";
-              ndigits = 2;
-            };
             bar = {
-              charElapsed = "=";
-              charTotal = "-";
               borderLeft = "[";
               borderRight = "]";
-            };
-            percent = {
-              type = 1;
+              charElapsed = "=";
+              charTotal = "-";
             };
             color = {
               keys = accent;
               output = "default";
             };
+            constants = [
+              "══════════════════════════════════"
+              "                                  "
+              "[34D"
+            ];
+            percent = {
+              type = 3;
+            };
+            separator = "";
+            size = {
+              binaryPrefix = "si";
+              maxPrefix = "TB";
+              ndigits = 2;
+            };
           };
 
           modules = [
-            "break"
             {
-              type = "custom";
-              key = "《·───────────────·》◈《·──────────────·》";
-              keyColor = accent;
+              format = " /ˈiː.ən/{#keys}@{2}";
+              type = "title";
             }
             {
+              key = "╔═══╦{$1}╗";
+              type = "custom";
+            }
+            {
+              format = "{2} {9}";
+              key = "║ {#red} {#keys}║{$2}║{$3}";
               type = "os";
-              key = "   OS ";
-              format = "{2} {8}";
             }
             {
-              type = "cpu";
-              key = "   CPU";
               format = "{1}";
+              key = "║ {#red}󰪫 {#keys}║{$2}║{$3}";
+              type = "chassis";
             }
             {
-              type = "gpu";
-              key = "   GPU";
-              format = "{1} {2}";
+              format = "{2} {3}";
+              key = "║ {#red} {#keys}║{$2}║{$3}";
+              type = "de";
             }
             {
-              type = "memory";
-              key = "   MEM";
-              format = "{4} {3} (of {2})";
+              format = "{2} {5}";
+              key = "║ {#red} {#keys}║{$2}║{$3}";
+              type = "wm";
             }
             {
-              type = "disk";
-              key = "   DSK";
-              format = "{13} {3} ({10})";
-            }
-            {
-              type = "uptime";
-              key = "   UP ";
-              format = "{1}d {2}h {3}m {4}s";
-            }
-            {
+              format = "{14}:{18}:{20}";
+              key = "║ {#red} {#keys}║{$2}║{$3}";
               type = "datetime";
-              key = "   NOW";
-              format = "{14}:{18}:{20}, {3}/{11}/{2}";
             }
             {
+              key = "╠═══╬{$1}╣";
               type = "custom";
-              key = "《·───────────────·》◈《·──────────────·》";
-              keyColor = accent;
             }
             {
-              type = "colors";
+              key = "║ {#green} {#keys}║{$2}║{$3}";
+              type = "shell";
+            }
+            {
+              key = "║ {#green}󱩽 {#keys}║{$2}║{$3}";
+              type = "editor";
+            }
+            {
+              format = "{1}";
+              key = "║ {#green}󰝚 {#keys}║{$2}║{$3}";
+              type = "media";
+            }
+            {
+              key = "╠═══╬{$1}╣";
+              type = "custom";
+            }
+            {
+              format = "{1}";
+              key = "║ {#blue} {#keys}║{$2}║{$3}";
+              type = "cpu";
+            }
+            {
+              format = "{2}";
+              key = "║ {#blue} {#keys}║{$2}║{$3}";
+              type = "gpu";
+            }
+            {
+              format = "{4} {2}";
+              key = "║ {#blue} {#keys}║{$2}║{$3}";
+              type = "memory";
+            }
+            {
+              format = "{13} {2} {10}";
+              key = "║ {#blue} {#keys}║{$2}║{$3}";
+              type = "disk";
+            }
+            {
+              key = "╚═══╩{$1}╝";
+              type = "custom";
+            }
+            {
+              paddingLeft = 11;
               symbol = "diamond";
-              paddingLeft = 14;
+              type = "colors";
             }
           ];
         };
