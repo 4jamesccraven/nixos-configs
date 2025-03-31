@@ -13,6 +13,7 @@
     ./dots/git.nix
     ./dots/kitty.nix
     ./dots/neovim.nix
+    ./dots/nx.nix
     ./syncthing.nix
     ./system.nix
     ../custom-derivations
