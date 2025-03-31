@@ -13,6 +13,7 @@
     ./lsd.nix
     ./mkdev.nix
     ./neovim.nix
+    ./nx.nix
     ./starship.nix
     ./zsh.nix
   ];

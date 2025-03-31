@@ -202,11 +202,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1742938679,
-        "narHash": "sha256-VIAFg4Sldqp045MCcrAmoK7D6sBcVEqlGhoxg20+FZI=",
+        "lastModified": 1743418385,
+        "narHash": "sha256-l0cIsjwPTfaP8XFapy/nYDDSYi+zAiucPFqz3U9vDYQ=",
         "owner": "4jamesccraven",
         "repo": "nx",
-        "rev": "4243ac57be777c251a43423e65564e1efa7f9349",
+        "rev": "18bd38fe93af12c933ba9e341e02690af25cc82c",
         "type": "github"
       },
       "original": {
