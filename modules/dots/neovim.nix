@@ -13,12 +13,13 @@
       extraPackages = with pkgs; [
         # LSP
         clang-tools
+        haskell-language-server
         jdt-language-server
         nixd
         pyright
-        rust-analyzer
         rPackages.languageserver
         rPackages.languageserversetup
+        rust-analyzer
         sqls
         texlab
 
@@ -239,18 +240,13 @@
             config = /*lua*/ ''
                 --> nvim-lspconfig <--
                 require'lspconfig'.clangd.setup{}
+                require'lspconfig'.hls.setup{}
                 require'lspconfig'.jdtls.setup{}
                 require'lspconfig'.nixd.setup{}
                 require'lspconfig'.pyright.setup{}
                 require'lspconfig'.rust_analyzer.setup{}
                 require'lspconfig'.r_language_server.setup{}
                 require'lspconfig'.sqls.setup{}
-
-                -- vim.api.nvim_create_autocmd("CursorHold", {
-                --   callback = function()
-                --     vim.diagnostic.open_float(nil, { focusable = false })
-                --   end
-                -- })
 
                 map('n', '<leader>d', function() 
                     vim.diagnostic.open_float(nil, { focusable = false })

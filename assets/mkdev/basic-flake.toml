@@ -1,0 +1,28 @@
+name = "basic-flake"
+description = "A simple flake with a devShell"
+languages = ["\u001B[38;2;126;126;255mNix\u001B[0m"]
+
+[[contents]]
+name = "flake.nix"
+content = '''
+{
+  description = "";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+  };
+
+  outputs = { flake-utils, nixpkgs, ... }: 
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in {
+        devShells.default = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            
+          ];
+        };
+      });
+}
+'''
