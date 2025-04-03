@@ -3,7 +3,7 @@
 {
   home-manager.users.jamescraven =
     let
-      format = pkgs.formats.toml {};
+      format = pkgs.formats.toml { };
       config = format.generate "config.toml" {
         recipe_dir = "/home/jamescraven/nixos/assets/mkdev";
 
@@ -15,7 +15,8 @@
           month = "date +%m";
         };
       };
-    in {
-    xdg.configFile."mkdev/config.toml".source = config;
-  };
+    in
+    {
+      xdg.configFile."mkdev/config.toml".source = config;
+    };
 }

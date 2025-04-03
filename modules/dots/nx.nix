@@ -8,7 +8,8 @@
             nixos_config_dir: "/home/jamescraven/nixos",
         )
       '';
-    in {
+    in
+    {
       xdg.configFile."nx/config.ron".text = ron;
     };
 }

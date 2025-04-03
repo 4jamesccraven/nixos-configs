@@ -1,4 +1,9 @@
-{ config, inputs, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 
 {
   nix.nixPath = [
@@ -35,8 +40,8 @@
       defaultEditor = true;
 
       ### General config ###
-      extraLuaConfig /*lua*/ =
-        ''
+      extraLuaConfig # lua
+        = ''
           -- Leader Key
           vim.g.mapleader = ' '
 
@@ -121,13 +126,12 @@
         '';
 
       ### plugins ###
-      plugins =
-        with pkgs.vimPlugins;
-        [
-          {
-            plugin = alpha-nvim;
-            type = "lua";
-            config = /*lua*/ ''
+      plugins = with pkgs.vimPlugins; [
+        {
+          plugin = alpha-nvim;
+          type = "lua";
+          config = # lua
+            ''
               --> alpha-nvim <--
               local alpha = require'alpha'
               local dashboard = require'alpha.themes.dashboard'
@@ -162,166 +166,237 @@
 
               alpha.setup(dashboard.config)
             '';
-          }
-          {
-            plugin = catppuccin-nvim;
-            type = "lua";
-            config = /*lua*/ ''
-                --> catppuccin-nvim <--
-                vim.cmd [[colorscheme catppuccin-mocha]]
+        }
+        {
+          plugin = barbar-nvim;
+          type = "lua";
+          config = # lua
+            ''
+              --> barbar-nvim <--
+              map('n', '<C-Tab>', ':BufferNext<CR>')
+              map('n', '<S-Tab>', ':BufferPrevious<CR>')
+              map('n', '<S-w>', ':BufferClose<CR>')
+            '';
+        }
+        {
+          plugin = catppuccin-nvim;
+          type = "lua";
+          config = # lua
+            ''
+              --> catppuccin-nvim <--
+              vim.cmd [[colorscheme catppuccin-mocha]]
 
-                -- Transparent Background
-                vim.cmd.highlight({ "Normal", "guibg=NONE", "ctermbg=NONE" })
-                vim.cmd.highlight({ "NonText", "guibg=NONE", "ctermbg=NONE" })
-              '';
-          }
-          {
-            plugin = indent-blankline-nvim;
-            type = "lua";
-            config = /*lua*/ ''
-                --> ibl <--
-                require'ibl'.setup {
+              -- Transparent Background
+              vim.cmd.highlight({ "Normal", "guibg=NONE", "ctermbg=NONE" })
+              vim.cmd.highlight({ "NonText", "guibg=NONE", "ctermbg=NONE" })
+            '';
+        }
+        {
+          plugin = indent-blankline-nvim;
+          type = "lua";
+          config = # lua
+            ''
+              --> ibl <--
+              require'ibl'.setup {
                   scope = { enabled = false }
-                }
-              '';
-          }
-          cmp-nvim-lsp
-          cmp-buffer
-          cmp-path
-          cmp-cmdline
-          cmp-nvim-ultisnips
-          {
-            plugin = nvim-cmp;
-            type = "lua";
-            config = /*lua*/ ''
-                --> nvim-cmp <--
-                local cmp = require'cmp'
-
-                cmp.setup({
-                  snippet = {
-                    expand = function(args)
-                      vim.fn["UltiSnips#Anon"](args.body)
-                    end,
-                  },
-                  mapping = cmp.mapping.preset.insert ({
-                     ['<C-n>'] = cmp.mapping.select_next_item(),
-                     ['<C-p>'] = cmp.mapping.select_prev_item(),
-                     ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-                  }),
-                  sources = cmp.config.sources ({
-                    { name = 'nvim_lsp'},
-                    { name = 'buffer'},
-                    { name = 'path'},
-                    { name = 'ultisnips'},
-                  })
-                })
-              '';
-          }
-          {
-            plugin = lualine-nvim;
-            type = "lua";
-            config = /*lua*/ ''
-              --> lualine-nvim <--
-              require'lualine'.setup {
-                sections = {
-                  lualine_a = { 'mode' },
-                  lualine_b = { 'branch', 'diagnostics' },
-                  lualine_c = { 'filename' },
-                  lualine_x = { 'filetype' },
-                  lualine_y = { 'lsp_status' },
-                  lualine_z = { 'selectioncount', 'location' }
-                }
               }
             '';
-          }
-          {
-            plugin = nvim-lspconfig;
-            type = "lua";
-            config = /*lua*/ ''
-                --> nvim-lspconfig <--
-                require'lspconfig'.clangd.setup{}
-                require'lspconfig'.hls.setup{}
-                require'lspconfig'.jdtls.setup{}
-                require'lspconfig'.nixd.setup{}
-                require'lspconfig'.pyright.setup{}
-                require'lspconfig'.rust_analyzer.setup{}
-                require'lspconfig'.r_language_server.setup{}
-                require'lspconfig'.sqls.setup{}
+        }
+        cmp-nvim-lsp
+        cmp-buffer
+        cmp-path
+        cmp-cmdline
+        cmp-nvim-ultisnips
+        {
+          plugin = nvim-cmp;
+          type = "lua";
+          config = # lua
+            ''
+              --> nvim-cmp <--
+              local cmp = require'cmp'
 
-                map('n', '<leader>d', function() 
-                    vim.diagnostic.open_float(nil, { focusable = false })
-                end)
+              cmp.setup({
+                  snippet = {
+                      expand = function(args)
+                          vim.fn["UltiSnips#Anon"](args.body)
+                      end,
+                  },
+                  mapping = cmp.mapping.preset.insert ({
+                      ['<C-n>'] = cmp.mapping.select_next_item(),
+                      ['<C-p>'] = cmp.mapping.select_prev_item(),
+                      ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+                  }),
+                  sources = cmp.config.sources ({
+                      { name = 'nvim_lsp'},
+                      { name = 'buffer'},
+                      { name = 'path'},
+                      { name = 'ultisnips'},
+                  })
+              })
+            '';
+        }
+        {
+          plugin = lualine-nvim;
+          type = "lua";
+          config = # lua
+            ''
+              --> lualine-nvim <--
+              require'lualine'.setup {
+                  sections = {
+                      lualine_a = { 'mode' },
+                      lualine_b = { 'branch', 'diagnostics' },
+                      lualine_c = { 'filename' },
+                      lualine_x = { 'filetype' },
+                      lualine_y = { 'lsp_status' },
+                      lualine_z = { 'selectioncount', 'location' }
+                  }
+              }
+            '';
+        }
+        markdown-preview-nvim
+        {
+          plugin = nvim-autopairs;
+          type = "lua";
+          config = # lua
+            ''
+              --> nvim-autopairs <--
+              require'nvim-autopairs'.setup()
+            '';
+        }
+        {
+          plugin = nvim-lspconfig;
+          type = "lua";
+          config = # lua
+            ''
+              --> nvim-lspconfig <--
+              require'lspconfig'.clangd.setup{}
+              require'lspconfig'.hls.setup{}
+              require'lspconfig'.jdtls.setup{}
+              require'lspconfig'.nixd.setup{}
+              require'lspconfig'.pyright.setup{}
+              require'lspconfig'.rust_analyzer.setup{}
+              require'lspconfig'.r_language_server.setup{}
+              require'lspconfig'.sqls.setup{}
 
-                -- Fix for rust analyzer stuttering
-                for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
-                    local default_diagnostic_handler = vim.lsp.handlers[method]
-                    vim.lsp.handlers[method] = function(err, result, context, config)
-                        if err ~= nil and err.code == -32802 then
-                            return
-                        end
-                        return default_diagnostic_handler(err, result, context, config)
-                    end
-                end
-              '';
-          }
-          nvim-web-devicons
-          {
-            plugin = telescope-nvim;
-            type = "lua";
-            config = /*lua*/ ''
-                --> telescope-nvim <--
-                -- Keybinds
-                map("n", "<leader>f", require'telescope.builtin'.find_files)
-                map("n", "<leader>g", require'telescope.builtin'.live_grep)
-              '';
-          }
-          {
-            plugin = (
-              nvim-treesitter.withPlugins (p: [
-                p.tree-sitter-bash
-                p.tree-sitter-cpp
-                p.tree-sitter-java
-                p.tree-sitter-json
-                p.tree-sitter-latex
-                p.tree-sitter-lua
-                p.tree-sitter-nix
-                p.tree-sitter-python
-                p.tree-sitter-rust
-                p.tree-sitter-r
-                p.tree-sitter-sql
-                p.tree-sitter-vim
-              ])
-            );
-            type = "lua";
-            config = /*lua*/ ''
-                --> nvim-treesitter <--
-                require('nvim-treesitter.configs').setup {
+              map('n', '<leader>d', function() 
+                  vim.diagnostic.open_float(nil, { focusable = false })
+              end)
+
+              -- Fix for rust analyzer stuttering
+              for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
+                  local default_diagnostic_handler = vim.lsp.handlers[method]
+                  vim.lsp.handlers[method] = function(err, result, context, config)
+                      if err ~= nil and err.code == -32802 then
+                          return
+                      end
+                      return default_diagnostic_handler(err, result, context, config)
+                  end
+              end
+            '';
+        }
+        {
+          plugin = nvim-surround;
+          type = "lua";
+          config = # lua
+            ''
+              --> nvim-surround <--
+              require'nvim-surround'.setup()
+            '';
+        }
+        {
+          plugin = nvim-tree-lua;
+          type = "lua";
+          config = # lua
+            ''
+              --> nvim-tree-lua <--
+              -- Disable netrw
+              vim.g.loaded_netrw = 1
+              vim.g.loaded_netrwPlugin = 1
+
+              require'nvim-tree'.setup({
+                hijack_cursor = true,      -- keep the cursor fixed in file view
+                disable_netrw = true,      -- really disable netrw
+                sync_root_with_cwd = true, -- changes cwd of the tree with buffer
+                sort = {
+                  sorter = "extension",    -- Sort files by extensions
+                },
+                diagnostics = {
+                  enable = true,           -- Enable diagnostics info
+                },
+                update_focused_file = {
+                  enable = true,           -- Update tree based off of current file
+                  update_root = true,      -- Change root if necessary
+                }
+              })
+              map('n', '<leader>t', ':NvimTreeToggle<CR>')
+            '';
+        }
+        nvim-web-devicons
+        {
+          plugin = telescope-nvim;
+          type = "lua";
+          config = # lua
+            ''
+              --> telescope-nvim <--
+              -- Keybinds
+              map("n", "<leader>f", require'telescope.builtin'.find_files)
+              map("n", "<leader>g", require'telescope.builtin'.live_grep)
+              map("n", "<leader>F", function()
+                  require'telescope.builtin'.find_files({ cwd = "~"})
+              end)
+            '';
+        }
+        {
+          plugin = (
+            nvim-treesitter.withPlugins (p: [
+              p.tree-sitter-bash
+              p.tree-sitter-cpp
+              p.tree-sitter-java
+              p.tree-sitter-json
+              p.tree-sitter-latex
+              p.tree-sitter-lua
+              p.tree-sitter-nix
+              p.tree-sitter-python
+              p.tree-sitter-rust
+              p.tree-sitter-r
+              p.tree-sitter-sql
+              p.tree-sitter-vim
+            ])
+          );
+          type = "lua";
+          config = # lua
+            ''
+              --> nvim-treesitter <--
+              require('nvim-treesitter.configs').setup {
                   ensure_installed = {},
                   auto_install = false,
                   highlight = { enable = true },
-                }
-              '';
-          }
-          {
-            plugin = ultisnips;
-            type = "lua";
-            config = /*lua*/ ''
+              }
+            '';
+        }
+        {
+          plugin = ultisnips;
+          type = "lua";
+          config = # lua
+            ''
               --> ultisnips <--
               vim.g.UltiSnipsSnippetDirectories = {'/home/jamescraven/nixos/modules/dots/snippets'}
               vim.g.UltiSnipsExpandTrigger = '<tab>'
               vim.g.UltiSnipsJumpForwardTrigger = '<tab>'
               vim.g.UltiSnipsJumpBackwardTrigger = '<s-tab>'
             '';
-          }
-          {
-            plugin = vim-visual-increment;
-            type = "lua";
-            config = /*lua*/ ''
+        }
+        {
+          plugin = vim-visual-increment;
+          type = "lua";
+          config = # lua
+            ''
               --> vim-visual-increment <--
               vim.cmd('set nrformats=alpha,octal,hex')
             '';
-          }
-        ];
+        }
+
+      ];
 
     };
   };
