@@ -151,6 +151,7 @@
           bindl = [
             ", XF86AudioRaiseVolume, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0"
             ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+            ", switch:Lid Switch, exec, hyprlock"
           ];
 
           # Mouse Navigation
