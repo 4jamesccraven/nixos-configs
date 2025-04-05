@@ -121,7 +121,7 @@
               type = "custom";
             }
             {
-              paddingLeft = 11;
+              paddingLeft = 14;
               symbol = "diamond";
               type = "colors";
             }
