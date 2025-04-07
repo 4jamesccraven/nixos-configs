@@ -15,7 +15,7 @@
         settings = {
           background = {
             monitor = "";
-            path = "${../../../assets/wp-wide.png}";
+            path = "${../../../../assets/wp-wide.png}";
 
             blur_passes = 2;
           };
@@ -51,7 +51,7 @@
 
           image = {
             monitor = "";
-            path = "${../../../assets/nixos-logo.png}";
+            path = "${../../../../assets/nixos-logo.png}";
             size = 80;
 
             halign = "center";
