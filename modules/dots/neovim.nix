@@ -21,10 +21,12 @@
         haskell-language-server
         jdt-language-server
         nixd
-        pyright
+        nixfmt-rfc-style
         rPackages.languageserver
         rPackages.languageserversetup
+        ruff
         rust-analyzer
+        rustfmt
         sqls
         texlab
 
@@ -272,15 +274,46 @@
               require'lspconfig'.clangd.setup{}
               require'lspconfig'.hls.setup{}
               require'lspconfig'.jdtls.setup{}
-              require'lspconfig'.nixd.setup{}
-              require'lspconfig'.pyright.setup{}
+              require'lspconfig'.nixd.setup{
+                  settings = {
+                      formatting = {
+                          command = { "nixfmt" },
+                      },
+                  }
+              }
+              require'lspconfig'.ruff.setup{
+                  settings = {
+                      init_options = {
+                          configuration = {
+                              ["quote-style"] = "single",
+                          },
+                      }
+                  }
+              }
               require'lspconfig'.rust_analyzer.setup{}
               require'lspconfig'.r_language_server.setup{}
               require'lspconfig'.sqls.setup{}
 
-              map('n', '<leader>d', function() 
+              -- Keybind for diagnostic window
+              map('n', '<leader>d', function()
                   vim.diagnostic.open_float(nil, { focusable = false })
               end)
+
+              -- Autocommands
+              vim.api.nvim_create_autocmd('LspAttach', {
+                  callback = function(args)
+                      local client = vim.lsp.get_client_by_id(args.data.client_id)
+                      -- Format on save if supported
+                      if client.supports_method('textDocument/formatting') then
+                          vim.api.nvim_create_autocmd('BufWritePre', {
+                              buffer = args.buf,
+                              callback = function()
+                                  vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
+                              end,
+                          })
+                      end
+                  end,
+              })
 
               -- Fix for rust analyzer stuttering
               for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do

@@ -20,7 +20,6 @@
     figlet
     fzf
     inputs.mkdev.packages.${system}.mkdev
-    nixfmt-rfc-style
     rff-script
     ripgrep
     tree
