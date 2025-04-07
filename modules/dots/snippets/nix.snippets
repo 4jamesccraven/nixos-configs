@@ -1,29 +1,28 @@
 priority 1
-clearsnippets '
 
-snippet f{ "Function parameters" A
+snippet f{} "Function parameters" A
 { ${1:}... }:
 endsnippet
 
-snippet { "Attribute set"
+snippet {} "Attribute set"
 {
   $0
 }${1:;}
 endsnippet
 
-snippet [ "Set" A
+snippet [] "Set" A
 [
   $0
 ];
 endsnippet
 
-snippet w[ "Set with 'with'" A
+snippet w[] "Set with 'with'" A
 with $1; [
   $0
 ];
 endsnippet
 
-snippet '''' "Multiline string"
+snippet '''' "Multiline string" A
 ''
   $0
 '';
