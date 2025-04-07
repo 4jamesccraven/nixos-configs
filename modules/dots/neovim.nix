@@ -22,6 +22,7 @@
         jdt-language-server
         nixd
         nixfmt-rfc-style
+        pyright
         rPackages.languageserver
         rPackages.languageserversetup
         ruff
@@ -281,6 +282,7 @@
                       },
                   }
               }
+              require'lspconfig'.pyright.setup{}
               require'lspconfig'.ruff.setup{
                   settings = {
                       init_options = {
