@@ -115,8 +115,8 @@
 
           --> Keymap Configuration <--
           -- Split navigation
-          map('n', '<leader>v', ':vsplit<CR>')
-          map('n', '<leader>s', ':split<CR>')
+          map('n', '<leader>vv', ':vsplit<CR>')
+          map('n', '<leader>vs', ':split<CR>')
           map('n', '<C-h>', '<C-w>h')
           map('n', '<C-j>', '<C-w>j')
           map('n', '<C-k>', '<C-w>k')
@@ -176,8 +176,7 @@
           config = # lua
             ''
               --> barbar-nvim <--
-              map('n', '<C-Tab>', ':BufferNext<CR>')
-              map('n', '<S-Tab>', ':BufferPrevious<CR>')
+              map('n', '<S-Tab>', ':BufferNext<CR>')
               map('n', '<S-w>', ':BufferClose<CR>')
             '';
         }
@@ -225,9 +224,9 @@
                       end,
                   },
                   mapping = cmp.mapping.preset.insert ({
-                      ['<C-n>'] = cmp.mapping.select_next_item(),
-                      ['<C-p>'] = cmp.mapping.select_prev_item(),
-                      ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+                      ['<tab>'] = cmp.mapping.select_next_item(),
+                      ['<s-tab>'] = cmp.mapping.select_prev_item(),
+                      ['<CR>'] = cmp.mapping.confirm({ select = true }),
                   }),
                   sources = cmp.config.sources ({
                       { name = 'nvim_lsp'},
@@ -374,9 +373,9 @@
             ''
               --> telescope-nvim <--
               -- Keybinds
-              map("n", "<leader>f", require'telescope.builtin'.find_files)
-              map("n", "<leader>g", require'telescope.builtin'.live_grep)
-              map("n", "<leader>F", function()
+              map("n", "<leader>ff", require'telescope.builtin'.find_files)
+              map("n", "<leader>fg", require'telescope.builtin'.live_grep)
+              map("n", "<leader>fh", function()
                   require'telescope.builtin'.find_files({ cwd = "~"})
               end)
             '';
