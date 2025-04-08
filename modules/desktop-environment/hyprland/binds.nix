@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 {
   config = lib.mkIf config.hyprland.enable {
@@ -65,7 +70,7 @@
           # Screenshots
           ", Print, exec, GRIM_DEFAULT_DIR=\"/home/jamescraven/Pictures/Screenshots\" grim -g \"$(slurp)\""
           "Shift_L, Print, exec, GRIM_DEFAULT_DIR=\"/home/jamescraven/Pictures/Screenshots\" grim"
-          "Shift_L, Print, exec, hyprctl notify 1 1500 0 \"fontsize:25 Screen Captured\""
+          "Shift_L, Print, exec, sleep 0.5 && hyprctl notify 1 1500 0 \"fontsize:25 Screen Captured\""
         ];
 
         bindel = [
