@@ -224,9 +224,8 @@
                       end,
                   },
                   mapping = cmp.mapping.preset.insert ({
-                      ['<tab>'] = cmp.mapping.select_next_item(),
-                      ['<s-tab>'] = cmp.mapping.select_prev_item(),
-                      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                      ['<CR>'] = cmp.mapping.select_next_item(),
+                      ['<tab>'] = cmp.mapping.confirm({ select = true }),
                   }),
                   sources = cmp.config.sources ({
                       { name = 'nvim_lsp'},
