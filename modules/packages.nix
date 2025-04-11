@@ -32,6 +32,7 @@
     foliate
     libreoffice-qt
     mediawriter
+    obs-studio
     spotify
     tealdeer
     telegram-desktop
