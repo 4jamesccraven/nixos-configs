@@ -25,7 +25,6 @@
         pyright
         rPackages.languageserver
         rPackages.languageserversetup
-        ruff
         rust-analyzer
         rustfmt
         sqls
@@ -281,15 +280,6 @@
                   }
               }
               require'lspconfig'.pyright.setup{}
-              require'lspconfig'.ruff.setup{
-                  settings = {
-                      init_options = {
-                          configuration = {
-                              ["quote-style"] = "single",
-                          },
-                      }
-                  }
-              }
               require'lspconfig'.rust_analyzer.setup{}
               require'lspconfig'.r_language_server.setup{}
               require'lspconfig'.sqls.setup{}
