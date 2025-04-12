@@ -23,6 +23,7 @@
         nixd
         nixfmt-rfc-style
         pyright
+        python313Packages.autopep8
         rPackages.languageserver
         rPackages.languageserversetup
         rust-analyzer
@@ -302,6 +303,14 @@
                               end,
                           })
                       end
+                  end,
+              })
+
+              vim.api.nvim_create_autocmd("BufWritePre", {
+                  pattern = "*.py",
+                  callback = function()
+                      vim.cmd("silent !autopep8 --in-place " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
+                      vim.cmd("edit!") -- reload the buffer after formatting
                   end,
               })
 
