@@ -306,11 +306,17 @@
                   end,
               })
 
-              vim.api.nvim_create_autocmd("BufWritePre", {
+              vim.api.nvim_create_autocmd("BufWritePost", {
                   pattern = "*.py",
                   callback = function()
-                      vim.cmd("silent !autopep8 --in-place " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
-                      vim.cmd("edit!") -- reload the buffer after formatting
+                      local filepath = vim.api.nvim_buf_get_name(0)
+                      vim.fn.jobstart({ "autopep8", "--in-place", filepath }, {
+                          on_exit = function()
+                              vim.schedule(function()
+                                  vim.cmd("edit!") -- reload the buffer after formatting
+                              end)
+                          end,
+                      })
                   end,
               })
 
