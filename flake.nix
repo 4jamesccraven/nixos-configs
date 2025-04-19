@@ -20,57 +20,41 @@
     { nixpkgs, ... }@inputs:
     {
       nixosConfigurations = {
-        RioTinto =
-          let
-            system = "x86_64-linux";
-          in
-          nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit inputs system;
-            };
-            modules = [
-              ./hosts/RioTinto.nix
-            ];
+        RioTinto = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
           };
+          modules = [
+            ./hosts/RioTinto.nix
+          ];
+        };
 
-        vaal =
-          let
-            system = "x86_64-linux";
-          in
-          nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit inputs system;
-            };
-            modules = [
-              ./hosts/vaal.nix
-            ];
+        vaal = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
           };
+          modules = [
+            ./hosts/vaal.nix
+          ];
+        };
 
-        tokoro =
-          let
-            system = "x86_64-linux";
-          in
-          nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit inputs system;
-            };
-            modules = [
-              ./hosts/tokoro.nix
-            ];
+        tokoro = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
           };
+          modules = [
+            ./hosts/tokoro.nix
+          ];
+        };
 
-        wsl =
-          let
-            system = "x86_64-linux";
-          in
-          nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit inputs system;
-            };
-            modules = [
-              ./hosts/wsl.nix
-            ];
+        wsl = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
           };
+          modules = [
+            ./hosts/wsl.nix
+          ];
+        };
       };
 
       devShells.x86_64-linux =

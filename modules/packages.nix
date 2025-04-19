@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  system,
   ...
 }:
 
@@ -12,14 +11,14 @@
 
   environment.systemPackages = with pkgs; [
     # nix cli
-    inputs.nx.packages.${system}.default
+    inputs.nx.packages.${pkgs.system}.default
 
     # Terminal Tools
     cowsay
     fd
     figlet
     fzf
-    inputs.mkdev.packages.${system}.mkdev
+    inputs.mkdev.packages.${pkgs.system}.mkdev
     rff-script
     ripgrep
     tree

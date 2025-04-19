@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  system,
   ...
 }:
 
@@ -24,7 +23,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    inputs.nx.packages.${system}.default
+    inputs.nx.packages.${pkgs.system}.default
 
     kitty
     git
@@ -46,7 +45,7 @@
     serviceConfig = {
       Type = "simple";
       EnvironmentFile = "/home/jamescraven/.config/wf-bot/.env";
-      ExecStart = "${inputs.wf-bot.packages.${system}.default}/bin/wf-bot";
+      ExecStart = "${inputs.wf-bot.packages.${pkgs.system}.default}/bin/wf-bot";
       Restart = "always";
     };
   };
