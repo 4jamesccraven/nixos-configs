@@ -418,7 +418,7 @@
           config = # lua
             ''
               --> ultisnips <--
-              vim.g.UltiSnipsSnippetDirectories = {'/home/jamescraven/nixos/modules/dots/snippets'}
+              vim.g.UltiSnipsSnippetDirectories = {'/home/jamescraven/nixos/assets/snippets'}
               vim.g.UltiSnipsExpandTrigger = '<tab>'
               vim.g.UltiSnipsJumpForwardTrigger = '<tab>'
               vim.g.UltiSnipsJumpBackwardTrigger = '<s-tab>'
