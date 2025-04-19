@@ -58,9 +58,6 @@
 
   security.rtkit.enable = true;
 
-  ### Virtualisation ###
-  virtualisation.vmware.host.enable = true;
-
   ### Generic Sytem Info ###
   nix.settings.experimental-features = [
     "nix-command"
