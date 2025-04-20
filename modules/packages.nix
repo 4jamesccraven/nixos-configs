@@ -73,8 +73,9 @@
   programs.steam.enable = true;
   programs.zsh.enable = true;
 
-  virtualisation.docker = {
-    enable = true;
+  virtualisation = {
+    docker.enable = true;
+    # vmware.host.enable = true;
   };
 
 }
