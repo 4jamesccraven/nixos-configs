@@ -9,6 +9,11 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  documentation.man = {
+    enable = true;
+    generateCaches = true;
+  };
+
   environment.systemPackages = with pkgs; [
     # nix cli
     inputs.nx.packages.${pkgs.system}.default
