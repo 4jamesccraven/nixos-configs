@@ -8,6 +8,7 @@ pkgs.mkShell {
     ipykernel
     jupyterlab
     jupyterlab-lsp
+    marimo
     matplotlib
     notebook
     numpy
