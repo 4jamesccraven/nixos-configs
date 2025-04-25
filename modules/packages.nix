@@ -28,6 +28,7 @@
     figlet
     fzf
     inputs.mkdev.packages.${pkgs.system}.mkdev
+    inputs.mkdev.packages.${pkgs.system}.mkf
     rff-script
     ripgrep
     tree
