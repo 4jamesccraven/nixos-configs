@@ -270,20 +270,21 @@
           config = # lua
             ''
               --> nvim-lspconfig <--
-              require'lspconfig'.clangd.setup{}
-              require'lspconfig'.hls.setup{}
-              require'lspconfig'.jdtls.setup{}
-              require'lspconfig'.nixd.setup{
+              vim.lsp.enable('clangd')
+              vim.lsp.enable('hls')
+              vim.lsp.enable('jdtls')
+              vim.lsp.enable('nixd')
+              vim.lsp.config('nixd', {
                   settings = {
                       formatting = {
                           command = { "nixfmt" },
                       },
                   }
-              }
-              require'lspconfig'.pyright.setup{}
-              require'lspconfig'.rust_analyzer.setup{}
-              require'lspconfig'.r_language_server.setup{}
-              require'lspconfig'.sqls.setup{}
+              })
+              vim.lsp.enable('pyright')
+              vim.lsp.enable('rust_analyzer')
+              vim.lsp.enable('r_language_server')
+              vim.lsp.enable('sqls')
 
               -- Keybind for diagnostic window
               map('n', '<leader>d', function()
