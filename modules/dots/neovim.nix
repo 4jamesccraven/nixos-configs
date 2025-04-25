@@ -30,6 +30,8 @@
         rustfmt
         sqls
         texlab
+        tinymist
+        typstyle
 
         # Clipboard support
         xclip
@@ -285,6 +287,13 @@
               vim.lsp.enable('rust_analyzer')
               vim.lsp.enable('r_language_server')
               vim.lsp.enable('sqls')
+              vim.lsp.enable('tinymist')
+              vim.lsp.config('tinymist', {
+                  settings = {
+                      formatterMode = 'typstyle',
+                      exportPdf = 'onSave',
+                  }
+              })
 
               -- Keybind for diagnostic window
               map('n', '<leader>d', function()
@@ -389,17 +398,27 @@
           plugin = (
             nvim-treesitter.withPlugins (p: [
               p.tree-sitter-bash
+              p.tree-sitter-bibtex
+              p.tree-sitter-cmake
               p.tree-sitter-cpp
+              p.tree-sitter-css
+              p.tree-sitter-html
               p.tree-sitter-java
+              p.tree-sitter-javascript
+              p.tree-sitter-julia
               p.tree-sitter-json
               p.tree-sitter-latex
               p.tree-sitter-lua
+              p.tree-sitter-markdown
               p.tree-sitter-nix
               p.tree-sitter-python
-              p.tree-sitter-rust
               p.tree-sitter-r
+              p.tree-sitter-regex
+              p.tree-sitter-rust
               p.tree-sitter-sql
+              p.tree-sitter-typst
               p.tree-sitter-vim
+              p.tree-sitter-yaml
             ])
           );
           type = "lua";
@@ -411,6 +430,15 @@
                   auto_install = false,
                   highlight = { enable = true },
               }
+            '';
+        }
+        {
+          plugin = typst-preview-nvim;
+          type = "lua";
+          config = # lua
+            ''
+              --> typst-preview-nvim <--
+              require'typst-preview'.setup()
             '';
         }
         {

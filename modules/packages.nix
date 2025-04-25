@@ -19,46 +19,22 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # nix cli
-    inputs.nx.packages.${pkgs.system}.default
-
-    # Terminal Tools
-    cowsay
-    fd
-    figlet
-    fzf
-    inputs.mkdev.packages.${pkgs.system}.mkdev
-    inputs.mkdev.packages.${pkgs.system}.mkf
-    rff-script
-    ripgrep
-    tree
-    unzip
-    zip
-
-    # Utility
+    #-> GUI <-#
+    # Internet & Communication #
     brave
-    filezilla
-    foliate
-    libreoffice-qt
-    mediawriter
-    obs-studio
-    spotify
-    tealdeer
     telegram-desktop
     tor-browser-bundle-bin
+    # Media #
+    foliate
+    obs-studio
+    spotify
     vlc
+    # Utilities #
+    filezilla
+    libreoffice-qt
+    mediawriter
     zenity
-
-    # Development
-    cargo
-    git
-    libgcc
-    python313
-    rustc
-    texlive.combined.scheme-full
-    vscode
-
-    # Minecraft
+    # Games #
     (prismlauncher.override {
       jdks = [
         temurin-bin-8
@@ -66,15 +42,49 @@
         temurin-bin-21
       ];
     })
+
+    #-> CLI <-#
+    # Nix CLI Helper #
+    inputs.nx.packages.${pkgs.system}.default
+    # Coreutils-esque #
+    fd
+    fzf
+    ripgrep
+    tealdeer
+    # Other Utilities #
+    unzip
+    zip
+    # Fun #
+    cowsay
+    figlet
+    rff-script
+
+    #-> Development <-#
+    # Compilers #
+    libgcc
+    rustc
+    # Writing & Presenting #
+    texlive.combined.scheme-full
+    typst
+    # Interpreters #
+    python313
+    # Project Management #
+    cargo
+    git
+    inputs.mkdev.packages.${pkgs.system}.mkdev
+    inputs.mkdev.packages.${pkgs.system}.mkf
+    # IDEs #
+    vscode
   ];
 
+  #-> Fonts <-#
   fonts.packages = with pkgs; [
     corefonts
     liberation_ttf
     nerd-fonts.fira-code
   ];
 
-  # Progam/Service-based packages
+  #-> Progam/Service-based packages <-#
   programs.steam.enable = true;
   programs.zsh.enable = true;
 }
