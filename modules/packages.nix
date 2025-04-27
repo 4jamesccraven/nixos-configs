@@ -26,11 +26,17 @@
     tor-browser-bundle-bin
     # Media #
     foliate
+    kdePackages.kdenlive
     obs-studio
     spotify
     vlc
     # Utilities #
     filezilla
+    hunspell
+    hunspellDicts.en_GB-large
+    hunspellDicts.en_US-large
+    hunspellDicts.es_ES
+    hunspellDicts.es_AR
     libreoffice-qt
     mediawriter
     zenity
