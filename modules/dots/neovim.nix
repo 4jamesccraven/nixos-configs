@@ -142,18 +142,7 @@
               local dashboard = require'alpha.themes.dashboard'
 
               -- Define custom highlights
-              vim.api.nvim_set_hl(0, 'AlphaCatppuccinMauve', { fg = '#${config.colors.accent.hex}' })
-
-              dashboard.section.header.val = {
-                  [[ __  __               _____   ____       ]],
-                  [[/\ \/\ \  __         /\  __`\/\  _`\     ]],
-                  [[\ \ `\\ \/\_\   __  _\ \ \/\ \ \,\L\_\   ]],
-                  [[ \ \ , ` \/\ \ /\ \/'\\ \ \ \ \/_\__ \   ]],
-                  [[  \ \ \`\ \ \ \\/>  </ \ \ \_\ \/\ \L\ \ ]],
-                  [[   \ \_\ \_\ \_\/\_/\_\ \ \_____\ `\____\]],
-                  [[    \/_/\/_/\/_/\//\/_/  \/_____/\/_____/]],
-              }
-              dashboard.section.header.opts.hl = 'AlphaCatppuccinMauve'
+              dashboard.section.header = dofile('${../../assets/header.lua}')
               dashboard.section.buttons.val = {
                   dashboard.button( 'n', ' New File', ':ene <BAR> startinsert <CR>' ),
                   dashboard.button( 'f', '󰍉 Find Files', function() require'telescope.builtin'.find_files() end ),
@@ -163,7 +152,7 @@
               }
 
               dashboard.config.layout = {
-                  { type = 'padding', val = 10 },
+                  { type = 'padding', val = 3 },
                   dashboard.section.header,
                   { type = 'padding', val = 3 },
                   dashboard.section.buttons,
