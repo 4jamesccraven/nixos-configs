@@ -12,7 +12,7 @@
     ./kitty.nix
     ./lsd.nix
     ./mkdev.nix
-    ./neovim.nix
+    ./neovim
     ./nx.nix
     ./starship.nix
     ./zsh.nix

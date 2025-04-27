@@ -11,7 +11,7 @@
     ./desktop-environment
     ./dots/git.nix
     ./dots/kitty.nix
-    ./dots/neovim.nix
+    ./dots/neovim
     ./dots/nx.nix
     ./syncthing.nix
     ./system.nix
