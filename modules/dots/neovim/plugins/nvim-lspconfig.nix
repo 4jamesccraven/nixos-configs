@@ -7,6 +7,7 @@ with pkgs.vimPlugins;
   config = # lua
     ''
       --> nvim-lspconfig <--
+      -- Servers
       vim.lsp.enable('clangd')
       vim.lsp.enable('hls')
       vim.lsp.enable('jdtls')
@@ -30,10 +31,13 @@ with pkgs.vimPlugins;
           }
       })
 
-      -- Keybind for diagnostic window
-      map('n', '<leader>d', function()
-          vim.diagnostic.open_float(nil, { focusable = false })
-      end)
+      -- Keybinds
+      map('n', '<leader>lk', function() vim.lsp.buf.hover() end)
+      map('n', '<leader>lf', function() vim.lsp.buf.definition() end)
+      map('n', '<leader>d', function() vim.diagnostic.open_float() end)
+      map('n', '<leader>lr', function() vim.lsp.buf.rename() end)
+      map('n', '<leader>ln', function() vim.diagnostic.goto_next() end)
+      map('n', '<leader>lN', function() vim.diagnostic.goto_prev() end)
 
       -- Autocommands
       vim.api.nvim_create_autocmd('LspAttach', {

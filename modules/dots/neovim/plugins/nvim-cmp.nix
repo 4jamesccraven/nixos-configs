@@ -22,8 +22,9 @@ with pkgs.vimPlugins;
                 end,
             },
             mapping = cmp.mapping.preset.insert ({
-                ['<CR>'] = cmp.mapping.select_next_item(),
+                ['<C-n>'] = cmp.mapping.select_next_item(),
                 ['<tab>'] = cmp.mapping.confirm({ select = true }),
+                ['<CR>'] = cmp.mapping.abort(),
             }),
             sources = cmp.config.sources ({
                 { name = 'nvim_lsp'},
