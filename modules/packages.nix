@@ -26,7 +26,6 @@
     tor-browser-bundle-bin
     # Media #
     foliate
-    kdePackages.kdenlive
     obs-studio
     spotify
     vlc
