@@ -25,8 +25,8 @@
   systemd.services.ratbagd.wantedBy = [
     "multi-user.target"
   ];
-
   hardware.xpadneo.enable = true;
+  programs.gamemode.enable = true;
 
   hyprland.enable = true;
 
