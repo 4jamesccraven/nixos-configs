@@ -8,14 +8,15 @@
     ./dots/fastfetch.nix
     ./dots/git.nix
     ./dots/lsd.nix
-    ./dots/neovim.nix
+    ./dots/neovim
+    ./dots/nx.nix
     ./dots/starship.nix
     ./dots/zsh.nix
   ];
 
   environment.systemPackages = with pkgs; [
     nixfmt-rfc-style
-    inputs.nx.packages.${system}.default
+    inputs.nx.packages.${pkgs.system}.default
     python3
     ripgrep
   ];
