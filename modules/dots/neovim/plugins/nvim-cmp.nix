@@ -6,7 +6,7 @@ with pkgs.vimPlugins;
   cmp-buffer
   cmp-path
   cmp-cmdline
-  cmp-nvim-ultisnips
+  cmp_luasnip
   {
     plugin = nvim-cmp;
     type = "lua";
@@ -18,7 +18,7 @@ with pkgs.vimPlugins;
         cmp.setup({
             snippet = {
                 expand = function(args)
-                    vim.fn["UltiSnips#Anon"](args.body)
+                    require'luasnip'.lsp_expand(args.body)
                 end,
             },
             mapping = cmp.mapping.preset.insert ({
@@ -27,10 +27,10 @@ with pkgs.vimPlugins;
                 ['<CR>'] = cmp.mapping.abort(),
             }),
             sources = cmp.config.sources ({
-                { name = 'nvim_lsp'},
                 { name = 'buffer'},
+                { name = 'luasnip' },
+                { name = 'nvim_lsp'},
                 { name = 'path'},
-                { name = 'ultisnips'},
             })
         })
       '';
