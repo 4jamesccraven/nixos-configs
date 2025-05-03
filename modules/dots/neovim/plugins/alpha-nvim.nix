@@ -1,6 +1,27 @@
 { pkgs, ... }:
 
 with pkgs.vimPlugins;
+let
+  header = pkgs.stdenvNoCC.mkDerivation {
+    name = "alpha-nvim-header";
+
+    src = ../../../../assets/header.tar.gz;
+
+    phases = [
+      "unpackPhase"
+      "installPhase"
+    ];
+
+    unpackPhase = ''
+      tar xzf $src
+    '';
+
+    installPhase = ''
+      mkdir -p $out
+      cp header.lua $out
+    '';
+  };
+in
 {
   plugin = alpha-nvim;
   type = "lua";
@@ -11,7 +32,7 @@ with pkgs.vimPlugins;
       local dashboard = require'alpha.themes.dashboard'
 
       -- Set header image
-      dashboard.section.header = dofile('${../../../../assets/header.lua}')
+      dashboard.section.header = dofile('${header}/header.lua')
 
       -- Define functionality
       dashboard.section.buttons.val = {
