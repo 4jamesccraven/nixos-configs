@@ -99,11 +99,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1745750483,
-        "narHash": "sha256-bS0QBhhAdhmHorA4ShqLUow8HGB7uyi8aIw+m6ODJok=",
+        "lastModified": 1746344946,
+        "narHash": "sha256-0Jvhb+q40pwYTFRLTGlPn33/BO//ZZft+o8O4W+1nY4=",
         "owner": "4jamesccraven",
         "repo": "mkdev",
-        "rev": "482e5edb4d5a43c0d7a2a2134849ddd6c019ab85",
+        "rev": "354e457b1e2bc5493914fffb406882d0f648d208",
         "type": "github"
       },
       "original": {

@@ -76,8 +76,6 @@
     # Project Management #
     cargo
     git
-    inputs.mkdev.packages.${pkgs.system}.mkdev
-    inputs.mkdev.packages.${pkgs.system}.mkf
     # IDEs #
     vscode
   ];
