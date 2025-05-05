@@ -6,7 +6,7 @@
       base = "rgb(${config.colors.base.rgb})";
       accent = "rgb(${config.colors.accent.rgb})";
       text = "rgb(${config.colors.text.rgb})";
-      red = "rgb(231, 130, 132)";
+      red = "rgb(${config.colors.fail.rgb})";
     in
     {
       programs.hyprlock = {

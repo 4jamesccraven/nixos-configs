@@ -7,74 +7,81 @@
       enable = true;
       systemd.enable = true;
 
-      style = with config.colors; ''
-        @define-color base rgb(${base.rgb});
-        @define-color acc  rgb(${accent.rgb});
-        @define-color text rgb(${text.rgb});
+      style =
+        with config.colors; # css
+        ''
+          @define-color base rgb(${base.rgb});
+          @define-color acc  rgb(${accent.rgb});
+          @define-color text rgb(${text.rgb});
+          @define-color fail rgb(${fail.rgb});
 
-        * {
-          font-family: FiraCode Nerd Font Mono;
-        }
+          * {
+            font-family: FiraCode Nerd Font Mono;
+          }
 
-        window#waybar {
-          background: transparent;
-        }
+          window#waybar {
+            background: transparent;
+          }
 
-        window > box {
-          background: @base;
+          window > box {
+            background: @base;
 
-          margin: 5px 20px;
-          margin-bottom: 0px;
-          padding: 5px;
+            margin: 5px 20px;
+            margin-bottom: 0px;
+            padding: 5px;
 
-          border: 3px solid @acc;
-          border-radius: 10px;
-        }
+            border: 3px solid @acc;
+            border-radius: 10px;
+          }
 
-        #window {
-          color: transparent;
-          background: transparent;
-        }
+          #window {
+            color: transparent;
+            background: transparent;
+          }
 
-        tooltip {
-          color: @text;
-          background: @base;
+          tooltip {
+            color: @text;
+            background: @base;
 
-          padding: 5px;
+            padding: 5px;
 
-          border: 3px solid @acc;
-          border-radius: 10px;
-        }
+            border: 3px solid @acc;
+            border-radius: 10px;
+          }
 
-        .module {
-          color: @text;
+          .module {
+            color: @text;
 
-          padding: 0 5px;
-        }
+            padding: 0 5px;
+          }
 
-        #network {
-          padding: 8px;
-        }
+          #network {
+            padding: 8px;
+          }
 
-        #bluetooth {
-          padding: 8px;
-        }
+          #bluetooth {
+            padding: 8px;
+          }
 
-        #custom-nix {
-          color: @acc;
+          #custom-nix {
+            color: @acc;
 
-          font-size: 1.4em;
-        }
+            font-size: 1.4em;
+          }
 
-        #custom-power {
-          color: @acc;
-        }
+          #custom-power {
+            color: @acc;
+          }
 
-        #workspaces button.active {
-          color: @base;
-          background: @acc;
-        }
-      '';
+          #pulseaudio.muted {
+            color: @fail;
+          }
+
+          #workspaces button.active {
+            color: @base;
+            background: @acc;
+          }
+        '';
 
       settings = {
         mainBar = {
@@ -95,6 +102,7 @@
           modules-right = [
             "privacy"
             "group/utils"
+            "pulseaudio"
             "battery"
             "custom/power"
           ];
@@ -109,10 +117,9 @@
             };
             modules = [
               "custom/menu"
-              "pulseaudio"
               "hyprland/language"
-              "network"
               "bluetooth"
+              "network"
             ];
           };
 
@@ -154,7 +161,6 @@
           "image#nix" = {
             path = "${../../../../assets/nixos-logo.png}";
             tooltip = false;
-            on-click = "kitty ~/nixos";
           };
 
           "custom/power" = {
@@ -182,6 +188,12 @@
             format-ethernet = "󰈀";
             on-click = "hyprctl dispatch exec '[float; size 80%] kitty nmtui connect'";
             tooltip = false;
+          };
+
+          pulseaudio = {
+            format = " {volume}%";
+            format-muted = " {volume}%";
+            scroll-step = 5;
           };
         };
       };
