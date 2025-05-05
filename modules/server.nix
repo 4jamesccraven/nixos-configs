@@ -15,7 +15,7 @@
     ./dots/nx.nix
     ./syncthing.nix
     ./system.nix
-    ../custom-derivations
+    ../overlay
   ];
 
   gnome.enable = true;

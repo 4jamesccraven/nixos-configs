@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ../custom-derivations
     ./colors.nix
     ./dots/bat.nix
     ./dots/fastfetch.nix
@@ -12,6 +11,7 @@
     ./dots/nx.nix
     ./dots/starship.nix
     ./dots/zsh.nix
+    ../overlay
   ];
 
   environment.systemPackages = with pkgs; [

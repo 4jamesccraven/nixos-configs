@@ -66,7 +66,8 @@
             map (
               name:
               let
-                shell = (import ./shells/${name} { inherit pkgs; });
+                params = (import ./shells/${name} { inherit pkgs; });
+                shell = pkgs.mkShell params;
               in
               {
                 name = lib.removeSuffix ".nix" name;

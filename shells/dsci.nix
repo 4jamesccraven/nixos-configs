@@ -1,7 +1,6 @@
-# CACHE
 { pkgs, ... }:
 
-pkgs.mkShell {
+{
   buildInputs = with pkgs.python313Packages; [
     pkgs.python313
     fastparquet

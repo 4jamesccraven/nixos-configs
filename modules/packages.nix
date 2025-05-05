@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   inputs,
   ...
 }:
@@ -90,4 +91,17 @@
   #-> Progam/Service-based packages <-#
   programs.steam.enable = true;
   programs.zsh.enable = true;
+
+  #-> Cache DevShell Dependencies at Build Time <-#
+  system.activationScripts.cacheFlakeShells.text = lib.concatLines (
+    lib.flatten (
+      map (
+        name:
+        let
+          params = (import ../shells/${name} { inherit pkgs; });
+        in
+        map (pkg: "echo \"${pkg}\" > /dev/null") params.buildInputs
+      ) (builtins.attrNames (builtins.readDir ../shells))
+    )
+  );
 }

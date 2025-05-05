@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-pkgs.mkShell {
+{
   buildInputs = with pkgs; [
     cargo
     libgcc

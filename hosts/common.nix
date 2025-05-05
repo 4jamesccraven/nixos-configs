@@ -4,7 +4,7 @@
   imports = [
     inputs.home-manager.nixosModules.default
     ../modules
-    ../custom-derivations
+    ../overlay
   ];
 
   gnome.enable = true;
