@@ -121,9 +121,9 @@ with pkgs.vimPlugins;
               trig = "s'",
               snippetType = 'autosnippet',
           }, {
-              t({''', "  '''", '    '}),
+              t({"'''", '  '}),
               i(0),
-              t({''', "  ''';"})
+              t({''', "''';"})
           }),
       })
 
@@ -138,8 +138,7 @@ with pkgs.vimPlugins;
               t({ ''', ''', 'if __name__ == \'__main__\':', '    main()' }),
           }),
           snip({
-              trig = '^def ',
-              trigEngine = 'pattern',
+              trig = 'def ',
               snippetType = 'autosnippet',
           }, {
               t('def '),
@@ -164,8 +163,7 @@ with pkgs.vimPlugins;
               i(0, '...')
           }),
           snip({
-              trig = '^match ',
-              trigEngine = 'pattern',
+              trig = 'match ',
               snippetType = 'autosnippet',
           }, {
               t('match '),
@@ -181,8 +179,7 @@ with pkgs.vimPlugins;
 
       ls.add_snippets('rust', {
           snip({
-              trig = '^fn ',
-              trigEngine = 'pattern',
+              trig = 'fn ',
               snippetType = 'autosnippet',
           }, {
               t('fn '),
@@ -196,8 +193,7 @@ with pkgs.vimPlugins;
               t({''', '}'}),
           }),
           snip({
-              trig = '^fnn',
-              trigEngine = 'pattern',
+              trig = 'fnn',
               snippetType = 'autosnippet',
           }, {
               t('fn '),
@@ -209,8 +205,7 @@ with pkgs.vimPlugins;
               t({''', '}'}),
           }),
           snip({
-              trig = '^struct ',
-              trigEngine = 'pattern',
+              trig = 'struct ',
               snippetType = 'autosnippet',
           }, {
               i(1, 'pub '),
@@ -221,8 +216,7 @@ with pkgs.vimPlugins;
               t({''', '}'})
           }),
           snip({
-              trig = '^enum ',
-              trigEngine = 'pattern',
+              trig = 'enum ',
               snippetType = 'autosnippet',
           }, {
               i(1, 'pub '),
