@@ -17,7 +17,10 @@
   };
 
   outputs =
-    { nixpkgs, ... }@inputs:
+    { self, nixpkgs, ... }@inputs:
+    let
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    in
     {
       nixosConfigurations = {
         RioTinto = nixpkgs.lib.nixosSystem {
@@ -57,6 +60,11 @@
         };
       };
 
+      packages.x86_64-linux.nix2neo = pkgs.callPackage ./nix2neo.nix {
+        pkgs = pkgs;
+        self = self;
+      };
+
       devShells.x86_64-linux =
         let
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -77,5 +85,6 @@
           );
         in
         shells;
+
     };
 }
