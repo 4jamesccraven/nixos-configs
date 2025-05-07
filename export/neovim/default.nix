@@ -61,64 +61,44 @@ let
           },
         })
       '';
+
+  mapFunction =
+    pkgs.writeText "map.lua" # lua
+      ''
+        local function map(mode, lhs, rhs, opts)
+            opts = opts or { noremap = true, silent = true }
+            vim.keymap.set(mode, lhs, rhs, opts)
+        end
+
+        return map
+      '';
+
+  header = pkgs.stdenvNoCC.mkDerivation {
+    name = "alpha-nvim-header";
+
+    src = ../../assets/header.tar.gz;
+
+    phases = [
+      "unpackPhase"
+      "installPhase"
+    ];
+
+    unpackPhase = ''
+      tar xzf $src
+    '';
+
+    installPhase = ''
+      mkdir -p $out
+      cp header.lua $out
+    '';
+  };
+
+  script = pkgs.callPackage ./script.nix { pkgs = pkgs; };
 in
-pkgs.writers.writePython3Bin "nix2neo"
-  {
-    doCheck = false;
-  }
-  ''
-    import json
-    import os
-
-    # Read config data
-    with open('${jsonFile}', 'r', encoding='utf8') as f:
-        config = json.load(f)
-
-    # Read lazy bootstrap file
-    with open('${lazyBootstrap}', 'r', encoding='utf8') as f:
-        lazy = f.read()
-
-    # Other programs for config
-    with open('dependencies.txt', 'x', encoding='utf8') as f:
-        f.write('\n'.join(config['dependencies']))
-
-    # Init.lua
-    with open('init.lua', 'x', encoding='utf8') as f:
-        f.write(config['init'])
-
-    # make config structure
-    os.makedirs('./lua/config', exist_ok=True)
-    os.makedirs('./lua/plugins', exist_ok=True)
-
-    # Write lazy bootstrao file
-    with open('./lua/config/lazy.lua', 'x', encoding='utf8') as f:
-        f.write(lazy)
-
-    # For each file
-    for plugin in config['plugins']:
-        # Get name for file
-        filename = './lua/plugins/' + plugin['name'] + '.lua'
-        # Get owner/repo style string
-        package = plugin['packageName']
-        # Check yo see if there is config with the plugin
-        has_config = 'config' in plugin
-
-        # Construct file contents
-        contents = 'return {\n' \
-                   + '    "' + package + '"\n' \
-                   + '    ' + 'config = function()\n'
-
-        if has_config:
-            config = plugin['config']
-            config = '\n'.join(list(map(lambda l: (' ' * 8) + l, config.splitlines())))
-            contents = contents \
-                   + config \
-                   + '\n    ' + 'end\n' \
-
-        contents = contents \
-                   + '}'
-
-        # Write out to file
-        with open(filename, 'x', encoding='utf8') as f:
-            f.write(contents)
-  ''
+pkgs.writeShellScriptBin "nix2neo" ''
+  ${script}/bin/export_nvim \
+    --json ${jsonFile} \
+    --header ${header}/header.lua \
+    --lazy ${lazyBootstrap} \
+    --map ${mapFunction}
+''

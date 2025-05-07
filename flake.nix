@@ -60,11 +60,6 @@
         };
       };
 
-      packages.x86_64-linux.nix2neo = pkgs.callPackage ./nix2neo.nix {
-        pkgs = pkgs;
-        self = self;
-      };
-
       devShells.x86_64-linux =
         let
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -86,5 +81,13 @@
         in
         shells;
 
+      packages.x86_64-linux.exportNeovim =
+        let
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        in
+        pkgs.callPackage ./export/neovim {
+          pkgs = pkgs;
+          self = self;
+        };
     };
 }
