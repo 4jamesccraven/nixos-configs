@@ -53,6 +53,7 @@
     # Nix CLI Helper #
     inputs.nx.packages.${pkgs.system}.default
     # Coreutils-esque #
+    dysk
     fd
     fzf
     ripgrep
