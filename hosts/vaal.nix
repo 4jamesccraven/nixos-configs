@@ -18,7 +18,6 @@
   environment.systemPackages = with pkgs; [
     wireguard-tools
   ];
-  services.blueman.enable = true;
   hyprland.enable = true;
 
   home-manager.users.jamescraven = {

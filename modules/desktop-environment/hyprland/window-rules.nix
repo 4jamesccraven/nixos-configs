@@ -19,6 +19,7 @@
               "class:xdg-desktop-portal-gtk, title:^(.* wants to (open|save))$"
               "class:org.gnome.Nautilus"
               "class:org.telegram.desktop"
+              "class: org.pulseaudio.pavucontrol"
             ]
           ));
       };

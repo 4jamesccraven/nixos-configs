@@ -90,6 +90,7 @@
   ];
 
   #-> Progam/Service-based packages <-#
+  services.blueman.enable = true;
   programs.steam.enable = true;
   programs.zsh.enable = true;
 

@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   home-manager.users.jamescraven = {
@@ -194,6 +194,7 @@
             format = " {volume}%";
             format-muted = " {volume}%";
             scroll-step = 5;
+            on-click-right = "${pkgs.pavucontrol}/bin/pavucontrol";
           };
         };
       };
