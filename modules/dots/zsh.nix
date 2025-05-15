@@ -49,8 +49,9 @@
         man = "batman";
         ff = "fastfetch";
         cff = "clear; fastfetch";
-        pcalc = "nix develop $HOME/nixos#dsci -c python";
         s = "kitten ssh";
+        yy = "yazi";
+        pcalc = "nix develop $HOME/nixos#dsci -c python";
       };
     };
   };
