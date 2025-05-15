@@ -9,6 +9,7 @@ with pkgs.vimPlugins;
       p.tree-sitter-cmake
       p.tree-sitter-cpp
       p.tree-sitter-css
+      p.tree-sitter-go
       p.tree-sitter-html
       p.tree-sitter-java
       p.tree-sitter-javascript

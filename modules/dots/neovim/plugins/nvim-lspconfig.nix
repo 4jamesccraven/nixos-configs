@@ -9,6 +9,7 @@ with pkgs.vimPlugins;
       --> nvim-lspconfig <--
       -- Servers
       vim.lsp.enable('clangd')
+      vim.lsp.enable('gopls')
       vim.lsp.enable('hls')
       vim.lsp.enable('jdtls')
       vim.lsp.enable('nixd')

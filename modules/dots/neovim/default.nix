@@ -17,6 +17,7 @@
       extraPackages = with pkgs; [
         # LSP
         clang-tools
+        gopls
         haskell-language-server
         jdt-language-server
         nixd
