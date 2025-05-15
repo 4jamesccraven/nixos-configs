@@ -55,11 +55,13 @@
     # Coreutils-esque #
     dysk
     fd
+    ffmpeg
     fzf
     ripgrep
     tealdeer
     # Other Utilities #
     unzip
+    yazi
     zip
     # Fun #
     cowsay
