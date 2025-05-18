@@ -17,9 +17,19 @@
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs:
+    { self, nixpkgs, ... }@inp:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      lib = pkgs.lib;
+
+      utils = import ./util {
+        pkgs = pkgs;
+        lib = lib;
+      };
+
+      inputs = inp // {
+        utils = utils;
+      };
     in
     {
       nixosConfigurations = {
@@ -60,32 +70,13 @@
         };
       };
 
-      devShells.x86_64-linux =
-        let
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          lib = pkgs.lib;
-
-          shells = builtins.listToAttrs (
-            map (
-              name:
-              let
-                params = (import ./shells/${name} { inherit pkgs; });
-                shell = pkgs.mkShell params;
-              in
-              {
-                name = lib.removeSuffix ".nix" name;
-                value = shell;
-              }
-            ) (builtins.attrNames (builtins.readDir ./shells))
-          );
-        in
-        shells;
+      devShells.x86_64-linux = utils.shellsFromDir ./shells;
 
       packages.x86_64-linux.exportNeovim =
         let
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
         in
-        pkgs.callPackage ./export/neovim {
+        pkgs.callPackage ./util/neovim {
           pkgs = pkgs;
           self = self;
         };

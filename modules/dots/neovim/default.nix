@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  lib,
   ...
 }:
 
@@ -135,14 +136,14 @@
       # Read import each plugin from plugins, and flatten the resulting list as
       # some plugins are grouped in a single file
       plugins = (
-        pkgs.lib.lists.flatten (
-          map (
+        lib.lists.flatten (
+          inputs.utils.mapFiles (
             name:
             let
               plugins = import ./plugins/${name} { inherit pkgs; };
             in
             plugins
-          ) (builtins.attrNames (builtins.readDir ./plugins))
+          ) ./plugins
         )
       );
 
