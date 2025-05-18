@@ -1,13 +1,18 @@
 {
-  description = "";
+  description = "ἐρωτηθεὶς τί ἐστι φίλος, ἔφη, μία ψυχὴ δύο σώμασιν ἐνοικοῦσα";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+
+    # Helpers
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     home-manager = {
       url = "github:nix-community/home-manager?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils.url = "github:numtide/flake-utils";
+
+    # Personal Flakes
     mkdev = {
       url = "github:4jamesccraven/mkdev";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,21 +22,24 @@
   };
 
   outputs =
-    { self, nixpkgs, ... }@inp:
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      ...
+    }@inp:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       lib = pkgs.lib;
-
       utils = import ./util {
         pkgs = pkgs;
         lib = lib;
       };
-
       inputs = inp // {
         utils = utils;
       };
     in
-    {
+    flake-utils.lib.eachDefaultSystemPassThrough (system: {
       nixosConfigurations = {
         RioTinto = nixpkgs.lib.nixosSystem {
           specialArgs = {
@@ -69,16 +77,18 @@
           ];
         };
       };
+    })
+    // flake-utils.lib.eachDefaultSystem (system: {
 
-      devShells.x86_64-linux = utils.shellsFromDir ./shells;
+      devShells = utils.shellsFromDir ./shells;
 
-      packages.x86_64-linux.exportNeovim =
+      packages.exportNeovim =
         let
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          pkgs = nixpkgs.legacyPackages.${system};
         in
         pkgs.callPackage ./util/neovim {
           pkgs = pkgs;
           self = self;
         };
-    };
+    });
 }
