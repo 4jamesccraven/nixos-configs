@@ -15,6 +15,7 @@
     ./neovim
     ./nx.nix
     ./starship.nix
+    ./tealdeer.nix
     ./zsh.nix
   ];
 }

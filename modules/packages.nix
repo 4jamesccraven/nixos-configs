@@ -58,7 +58,6 @@
     ffmpeg
     fzf
     ripgrep
-    tealdeer
     # Other Utilities #
     unzip
     yazi
