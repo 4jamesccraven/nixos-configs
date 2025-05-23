@@ -53,12 +53,15 @@
     # Nix CLI Helper #
     inputs.nx.packages.${pkgs.system}.default
     # Coreutils-esque #
+    du-dust
     dysk
     fd
     ffmpeg
     fzf
     ripgrep
     # Other Utilities #
+    fselect
+    tokei
     unzip
     yazi
     zip
