@@ -13,15 +13,13 @@
               "center, ${a}"
             ];
           in
-          (lib.concatLists (
-            lib.map float [
-              "class:brave, title:^(.* wants to (open|save))$"
-              "class:xdg-desktop-portal-gtk, title:^(.* wants to (open|save))$"
-              "class:org.gnome.Nautilus"
-              "class:org.telegram.desktop"
-              "class: org.pulseaudio.pavucontrol"
-            ]
-          ));
+          (builtins.concatMap float [
+            "class:brave, title:^(.* wants to (open|save))$"
+            "class:xdg-desktop-portal-gtk, title:^(.* wants to (open|save))$"
+            "class:org.gnome.Nautilus"
+            "class:org.telegram.desktop"
+            "class: org.pulseaudio.pavucontrol"
+          ]);
       };
     };
   };
