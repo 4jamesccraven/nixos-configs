@@ -9,7 +9,8 @@
 
   ### Environment Variables ###
   environment.variables = {
-    "MOZ_ENABLE_WAYLAND" = 0;
+    MOZ_ENABLE_WAYLAND = 0;
+    GOPATH = "$HOME/.local/share/go";
   };
 
   system.stateVersion = "23.11";
