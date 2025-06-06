@@ -95,7 +95,7 @@
                             libgcc
                           ];
 
-                          RUST_SRC_PATH = "$${pkgs.rustPlatform.rustLibSrc}";
+                          RUST_SRC_PATH = "''${pkgs.rustPlatform.rustLibSrc}";
                         };
                       }
                     );
