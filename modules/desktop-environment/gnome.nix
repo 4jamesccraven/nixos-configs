@@ -11,10 +11,7 @@
   };
 
   config = lib.mkIf config.gnome.enable {
-    services.xserver = {
-      enable = true;
-      desktopManager.gnome.enable = true;
-    };
+    services.desktopManager.gnome.enable = true;
 
     # Exclude GNOME bloat
     environment.gnome.excludePackages = with pkgs; [

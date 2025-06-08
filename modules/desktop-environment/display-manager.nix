@@ -1,15 +1,13 @@
 { pkgs, ... }:
 
 {
-  services.xserver = {
-    displayManager = {
-      gdm = {
-        enable = true;
-        autoSuspend = false;
-      };
+  services = {
+    displayManager.gdm = {
+      enable = true;
+      autoSuspend = false;
     };
 
-    excludePackages = with pkgs; [
+    xserver.excludePackages = with pkgs; [
       xterm
     ];
   };
