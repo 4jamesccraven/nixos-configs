@@ -25,11 +25,9 @@
 
           window > box {
             background: @base;
-
             margin: 5px 20px;
             margin-bottom: 0px;
             padding: 5px;
-
             border: 3px solid @acc;
             border-radius: 10px;
           }
@@ -42,35 +40,32 @@
           tooltip {
             color: @text;
             background: @base;
-
             padding: 5px;
-
             border: 3px solid @acc;
             border-radius: 10px;
           }
 
           .module {
             color: @text;
-
             padding: 0 5px;
           }
 
-          #network {
+          #audio, #sys, #utils {
+            padding: 0 5px;
+            border: 2px solid @acc;
+            border-radius: 10px;
+          }
+
+          #bluetooth, #cava, #network {
             padding: 8px;
           }
 
-          #bluetooth {
-            padding: 8px;
-          }
-
-          #custom-nix {
+          #cava, #custom-nix, #custom-power {
             color: @acc;
+          }
 
+          #custom-menu, #custom-nix, #custom-power {
             font-size: 1.4em;
-          }
-
-          #custom-power {
-            color: @acc;
           }
 
           #pulseaudio.muted {
@@ -100,14 +95,29 @@
           ];
 
           modules-right = [
-            "privacy"
             "group/utils"
-            "pulseaudio"
-            "battery"
-            "custom/power"
+            "group/audio"
+            "group/sys"
           ];
 
           ### Group ###
+          "group/audio" = {
+            orientation = "inherit";
+            modules = [
+              "privacy"
+              "cava"
+              "pulseaudio"
+            ];
+          };
+
+          "group/sys" = {
+            orientation = "inherit";
+            modules = [
+              "battery"
+              "custom/power"
+            ];
+          };
+
           "group/utils" = {
             orientation = "inherit";
             drawer = {
@@ -140,6 +150,21 @@
             on-click = "hyprctl dispatch exec '[float; size 80%] blueman-manager'";
           };
 
+          cava = {
+            bar_delimiter = 0;
+            bars = 7;
+            format-icons = [
+              "▁"
+              "▂"
+              "▃"
+              "▄"
+              "▅"
+              "▆"
+              "▇"
+              "█"
+            ];
+          };
+
           clock = {
             format = "{:%b %d  %H:%M}";
             tooltip-format = "{:%H:%M:%S  %a. %B %d, %Y}\n\n{calendar}";
@@ -164,7 +189,7 @@
           };
 
           "custom/power" = {
-            format = "⏻ ";
+            format = "⏻";
             tooltip = false;
             menu = "on-click";
             menu-file = "${./power-menu.xml}";

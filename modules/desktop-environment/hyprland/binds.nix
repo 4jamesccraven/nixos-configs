@@ -20,7 +20,9 @@
         bind = [
           # General
           "$mod, Q, killactive"
+          "$mod, E, exec, nautilus"
           "Alt_L, Space, exec, fuzzel"
+          "Control_L+Shift, Escape, exec, kitty btop"
 
           # Fullscreen control
           "$mod, M, fullscreen, 1"
@@ -48,6 +50,7 @@
           "Alt_L, J, movefocus, d"
           "Alt_L, K, movefocus, u"
           "Alt_L, L, movefocus, r"
+          "Alt_L, TAB, cyclenext, visible"
 
           "$mod+Shift, H, movewindow, l"
           "$mod+Shift, J, movewindow, d"

@@ -56,11 +56,12 @@
     du-dust
     dysk
     fd
-    ffmpeg
-    fzf
     ripgrep
     # Other Utilities #
+    cava
+    ffmpeg
     fselect
+    fzf
     tokei
     unzip
     yazi
