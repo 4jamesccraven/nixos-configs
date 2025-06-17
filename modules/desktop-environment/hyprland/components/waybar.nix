@@ -56,11 +56,11 @@
             border-radius: 10px;
           }
 
-          #bluetooth, #cava, #network {
+          #bluetooth, #network {
             padding: 8px;
           }
 
-          #cava, #custom-nix, #custom-power {
+          #custom-nix, #custom-power {
             color: @acc;
           }
 
@@ -105,7 +105,6 @@
             orientation = "inherit";
             modules = [
               "privacy"
-              "cava"
               "pulseaudio"
             ];
           };
@@ -148,21 +147,6 @@
           bluetooth = {
             format = "󰂯";
             on-click = "hyprctl dispatch exec '[float; size 80%] blueman-manager'";
-          };
-
-          cava = {
-            bar_delimiter = 0;
-            bars = 7;
-            format-icons = [
-              "▁"
-              "▂"
-              "▃"
-              "▄"
-              "▅"
-              "▆"
-              "▇"
-              "█"
-            ];
           };
 
           clock = {
