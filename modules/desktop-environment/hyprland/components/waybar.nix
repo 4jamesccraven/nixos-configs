@@ -53,7 +53,7 @@
           #audio, #sys, #utils {
             padding: 0 5px;
             border: 2px solid @acc;
-            border-radius: 10px;
+            border-radius: 8px;
           }
 
           #bluetooth, #network {
