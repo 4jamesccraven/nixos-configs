@@ -31,34 +31,41 @@
           name = "basic-flake";
           description = "A simple flake with a devShell";
           languages = [
-            "[38;2;126;126;255mNix[0m"
+            {
+              name = "Nix";
+              colour = [
+                126
+                126
+                255
+              ];
+            }
           ];
           contents = [
             {
               name = "flake.nix";
-              content = ''
-                {
-                  description = "";
+              content = # nix
+                ''
+                  {
+                    description = "";
 
-                  inputs = {
-                    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-                    flake-utils.url = "github:numtide/flake-utils";
-                  };
+                    inputs = {
+                      nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+                      flake-utils.url = "github:numtide/flake-utils";
+                    };
 
-                  outputs = { flake-utils, nixpkgs, ... }: 
-                    flake-utils.lib.eachDefaultSystem (system:
-                      let
-                        pkgs = import nixpkgs { inherit system; };
-                      in {
-                        devShells.default = pkgs.mkShell {
-                          buildInputs = with pkgs; [
+                    outputs = { flake-utils, nixpkgs, ... }: 
+                      flake-utils.lib.eachDefaultSystem (system:
+                        let
+                          pkgs = import nixpkgs { inherit system; };
+                        in {
+                          devShells.default = pkgs.mkShell {
+                            buildInputs = with pkgs; [
 
-                          ];
-                        };
-                      });
-                }
-
-              '';
+                            ];
+                          };
+                        });
+                  }
+                '';
             }
           ];
         }
@@ -66,42 +73,49 @@
           name = "rust-flake";
           description = "Nix flake that contains rust dependencies";
           languages = [
-            "[38;2;126;126;255mNix[0m"
+            {
+              name = "Nix";
+              colour = [
+                126
+                126
+                255
+              ];
+            }
           ];
           contents = [
             {
               name = "flake.nix";
-              content = ''
-                {
-                  description = "";
+              content = # nix
+                ''
+                  {
+                    description = "";
 
-                  inputs = {
-                    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-                    flake-utils.url = "github:numtide/flake-utils";
-                  };
+                    inputs = {
+                      nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+                      flake-utils.url = "github:numtide/flake-utils";
+                    };
 
-                  outputs =
-                    { flake-utils, nixpkgs, ... }:
-                    flake-utils.lib.eachDefaultSystem (
-                      system:
-                      let
-                        pkgs = import nixpkgs { inherit system; };
-                      in
-                      {
-                        devShells.default = pkgs.mkShell {
-                          buildInputs = with pkgs; [
-                            cargo
-                            rustc
-                            libgcc
-                          ];
+                    outputs =
+                      { flake-utils, nixpkgs, ... }:
+                      flake-utils.lib.eachDefaultSystem (
+                        system:
+                        let
+                          pkgs = import nixpkgs { inherit system; };
+                        in
+                        {
+                          devShells.default = pkgs.mkShell {
+                            buildInputs = with pkgs; [
+                              cargo
+                              rustc
+                              libgcc
+                            ];
 
-                          RUST_SRC_PATH = "''${pkgs.rustPlatform.rustLibSrc}";
-                        };
-                      }
-                    );
-                }
-
-              '';
+                            RUST_SRC_PATH = "''${pkgs.rustPlatform.rustLibSrc}";
+                          };
+                        }
+                      );
+                  }
+                '';
             }
           ];
         }
