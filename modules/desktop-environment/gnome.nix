@@ -27,6 +27,11 @@
       yelp
     ];
 
+    # Extensions
+    environment.systemPackages = with pkgs.gnomeExtensions; [
+      user-themes
+    ];
+
     # Enable DCONF
     programs.dconf.enable = true;
 
