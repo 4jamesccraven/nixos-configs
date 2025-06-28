@@ -204,28 +204,6 @@ with pkgs.vimPlugins;
               i(0),
               t({''', '}'}),
           }),
-          snip({
-              trig = 'struct ',
-              snippetType = 'autosnippet',
-          }, {
-              i(1, 'pub '),
-              t('struct '),
-              i(2, 'Name'),
-              t({' {', '    '}),
-              i(0),
-              t({''', '}'})
-          }),
-          snip({
-              trig = 'enum ',
-              snippetType = 'autosnippet',
-          }, {
-              i(1, 'pub '),
-              t('enum '),
-              i(2, 'Name'),
-              t({' {', '    '}),
-              i(0),
-              t({''', '}'})
-          }),
       })
     '';
 }
