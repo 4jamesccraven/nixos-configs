@@ -20,34 +20,33 @@
             blur_passes = 2;
           };
 
-          input-field = {
-            monitor = "";
-            size = "10%, 4%";
-            fade_on_empty = false;
+          label = [
+            {
+              monitor = "";
+              text = "$TIME";
+              font_size = 95;
+              font_family = "FiraCode Nerd Font Mono";
 
-            halign = "center";
-            valign = "center";
-            position = "0, -5%";
+              halign = "center";
+              valign = "center";
+              position = "0, 10%";
 
-            outer_color = accent;
-            inner_color = base;
-            font_color = text;
-            check_color = text;
-            fail_color = red;
-          };
+              color = text;
+            }
 
-          label = {
-            monitor = "";
-            text = "$TIME";
-            font_size = 95;
-            font_family = "FiraCode Nerd Font Mono";
+            {
+              monitor = "";
+              text = "cmd[update:1000] echo $(date '+%B %d')";
+              font_size = 35;
+              font_family = "FiraCode Nerd Font Mono";
 
-            halign = "center";
-            valign = "center";
-            position = "0, 10%";
+              halign = "center";
+              valign = "center";
+              position = "0, 2%";
 
-            color = text;
-          };
+              color = text;
+            }
+          ];
 
           image = {
             monitor = "";
@@ -58,6 +57,22 @@
             valign = "bottom";
 
             border_color = accent;
+          };
+
+          input-field = {
+            monitor = "";
+            size = "10%, 4%";
+            fade_on_empty = false;
+
+            halign = "center";
+            valign = "center";
+            position = "0, -10%";
+
+            outer_color = accent;
+            inner_color = base;
+            font_color = text;
+            check_color = text;
+            fail_color = red;
           };
         };
       };
