@@ -27,6 +27,7 @@
   ];
   hardware.xpadneo.enable = true;
   programs.gamemode.enable = true;
+  programs.gamescope.enable = true;
 
   hyprland.enable = true;
 
