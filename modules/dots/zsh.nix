@@ -40,14 +40,51 @@
           # PROMPT='%F{#CA9EE6}╭─(%f/ˈiː.ən/%F{#CA9EE6}@%m): [%f%~%F{#CA9EE6}]
           # ╰─❯ %f'
 
+          develop() {
+              local shell="default"
+              local command="zsh"
+              local global=false
+
+              if [[ $# -gt 0 && "$1" != -* ]]; then
+                  shell="$1"
+                  shift
+              fi
+
+              while [[ $# -gt 0 ]]; do
+                  case "$1" in
+                      -c|--command)
+                          command="$2"
+                          shift 2
+                          ;;
+                      -g|--global)
+                          global=true
+                          shift
+                          ;;
+                      *)
+                          echo "Unknown argument $1"
+                          return 1
+                          ;;
+                  esac
+              done
+
+              if $global; then
+                  dir="/home/jamescraven/nixos"
+              else
+                  dir="."
+              fi
+
+              nix develop "''${dir}#''${shell}" -c "$command"
+          }
+
           fastfetch
         '';
 
       shellAliases = {
         # Abbreviations
         c = "clear";
-        ff = "fastfetch";
         cff = "clear; fastfetch";
+        ff = "fastfetch";
+        j = "just";
         s = "kitten ssh";
         y = "yazi";
         ## Git
