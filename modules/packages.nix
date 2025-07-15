@@ -53,10 +53,12 @@
     #-> CLI <-#
     # Nix CLI Helper #
     inputs.nx.packages.${pkgs.system}.default
+    nh
     # Coreutils-esque #
     du-dust
     dysk
     fd
+    just
     ripgrep
     # Other Utilities #
     cava
