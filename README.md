@@ -31,10 +31,10 @@ Host Devices
 | wsl      | Virtual Machine | WSL Config      | [Windows Subsystem for Linux](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux) |
 
 ##### Note on Names
-We have a long-standing tradition at my house to name all
-devices after a river. After a few decades of this, basic
-names like "Nile" are long gone. These particular names
-are based primarily on cultural interests of mine.
+We have a long-standing tradition at my house to name all devices after a
+river. After a few decades of this, basic names like "Nile" are long gone.
+These particular names are based primarily on cultures that I find intriguing
+or have a connection with.
 
 Screenshots
 -----------
@@ -53,9 +53,10 @@ for public use, but mkdev is!
 
 Directory Structure
 -------------------
--  Assets - static assets for certain applications
--  Hosts - entry points for the configs
--  Custom Derivations - Scripts etc. that I packaged
--  Modules - Everything else
-   - Dots - specific applications, mostly cli
-   - Desktop Environments - Self-explanatory
+- Assets - Static assets for certain applications
+- Hosts - Entry points for the configs
+- Overlay - Scripts etc. that I packaged
+- Utils - Custom nix code for various things
+- Modules - Everything else
+   - Dots - Specific applications, mostly cli
+   - Desktop Environments - Hyprland & Gnome configuration
