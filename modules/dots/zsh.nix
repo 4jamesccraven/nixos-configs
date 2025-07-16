@@ -40,7 +40,7 @@
           # PROMPT='%F{#CA9EE6}╭─(%f/ˈiː.ən/%F{#CA9EE6}@%m): [%f%~%F{#CA9EE6}]
           # ╰─❯ %f'
 
-          develop() {
+          nxd() {
               local shell="default"
               local command="zsh"
               local global=false
