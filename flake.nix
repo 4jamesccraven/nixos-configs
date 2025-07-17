@@ -15,7 +15,10 @@
     # Personal Flakes
     mkdev = {
       url = "github:4jamesccraven/mkdev";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
     };
     wf-bot.url = "github:4jamesccraven/warframe-bot";
   };
@@ -30,52 +33,30 @@
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       lib = pkgs.lib;
+
       utils = import ./util {
         pkgs = pkgs;
         lib = lib;
       };
+
       inputs = inp // {
         utils = utils;
       };
     in
     flake-utils.lib.eachDefaultSystemPassThrough (system: {
-      nixosConfigurations = {
-        RioTinto = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            ./hosts/RioTinto.nix
-          ];
-        };
 
-        vaal = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            ./hosts/vaal.nix
-          ];
-        };
+      nixosConfigurations =
+        let
+          mkHost =
+            name:
+            nixpkgs.lib.nixosSystem {
+              specialArgs = { inherit inputs; };
+              modules = [ ./hosts/${name}.nix ];
+            };
+          myHosts = map (lib.removeSuffix ".nix") (builtins.attrNames (builtins.readDir ./hosts));
+        in
+        lib.genAttrs myHosts mkHost;
 
-        tokoro = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            ./hosts/tokoro.nix
-          ];
-        };
-
-        wsl = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-          };
-          modules = [
-            ./hosts/wsl.nix
-          ];
-        };
-      };
     })
     // flake-utils.lib.eachDefaultSystem (system: {
 

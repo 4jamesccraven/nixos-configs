@@ -95,7 +95,7 @@ let
 
   script = pkgs.callPackage ./script.nix { pkgs = pkgs; };
 in
-pkgs.writeShellScriptBin "nix2neo" ''
+pkgs.writeShellScriptBin "exportNeovim" ''
   ${script}/bin/export_nvim \
     --json ${jsonFile} \
     --header ${header}/header.lua \
