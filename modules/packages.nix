@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  inputs,
   ...
 }:
 
@@ -51,8 +50,6 @@
     })
 
     #-> CLI <-#
-    # Nix CLI Helper #
-    nh
     # Coreutils-esque #
     du-dust
     dysk
@@ -98,6 +95,7 @@
 
   #-> Progam/Service-based packages <-#
   services.blueman.enable = true;
+  programs.nh.enable = true;
   programs.steam.enable = true;
   programs.zsh.enable = true;
 
