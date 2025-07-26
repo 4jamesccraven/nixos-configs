@@ -23,13 +23,13 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    inputs.nx.packages.${pkgs.system}.default
-
+    just
     kitty
     git
     neovim
   ];
   programs.firefox.enable = true;
+  programs.nh.enable = true;
   programs.zsh.enable = true;
 
   services.openssh = {
