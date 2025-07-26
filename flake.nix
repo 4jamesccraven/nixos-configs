@@ -53,7 +53,9 @@
               specialArgs = { inherit inputs; };
               modules = [ ./hosts/${name}.nix ];
             };
-          myHosts = map (lib.removeSuffix ".nix") (builtins.attrNames (builtins.readDir ./hosts));
+          myHosts = builtins.filter (file: file != "common") (
+            map (lib.removeSuffix ".nix") (builtins.attrNames (builtins.readDir ./hosts))
+          );
         in
         lib.genAttrs myHosts mkHost;
 
