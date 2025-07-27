@@ -33,15 +33,23 @@
   programs.nh.enable = true;
   programs.zsh.enable = true;
 
-  services.openssh = {
-    enable = true;
-    settings.PermitRootLogin = "no";
+  services = {
+    openssh = {
+      enable = true;
+      settings.PermitRootLogin = "no";
+    };
+
+    wf-bot = {
+      enable = true;
+      EnvironmentFile = "/home/jamescraven/.config/wf-bot/.env";
+    };
+
+    jellyfin = {
+      enable = true;
+    };
   };
 
-  services.wf-bot = {
-    enable = true;
-    EnvironmentFile = "/home/jamescraven/.config/wf-bot/.env";
-  };
+  networking.firewall.allowedTCPPorts = [ 8096 ];
 
   users.users.jamescraven = {
     isNormalUser = true;
@@ -58,6 +66,7 @@
       enable = true;
       shellAliases = {
         c = "clear";
+        j = "just";
       };
       bashrcExtra = ''
         PS1="\[\e[38;2;202;158;230m\]┌─[\[\e[38;2;231;130;132m\]/ˈiː.ən/\[\e[38;2;202;158;230m\]@\h]: ❄ \[\e[38;2;231;130;132m\]\w\n\[\e[38;2;202;158;230m\]└─󰊜 \[\e[m\]"
