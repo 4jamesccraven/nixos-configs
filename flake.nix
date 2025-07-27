@@ -20,7 +20,13 @@
         flake-utils.follows = "flake-utils";
       };
     };
-    wf-bot.url = "github:4jamesccraven/warframe-bot";
+    wf-bot = {
+      url = "github:4jamesccraven/warframe-bot";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
   };
 
   outputs =

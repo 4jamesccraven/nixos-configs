@@ -7,6 +7,7 @@
 {
   imports = [
     inputs.home-manager.nixosModules.default
+    inputs.wf-bot.nixosModules.default
     ./colors.nix
     ./desktop-environment
     ./dots/git.nix
@@ -37,17 +38,9 @@
     settings.PermitRootLogin = "no";
   };
 
-  systemd.services.wf-bot = {
-    description = "Warframe Discord bot";
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "simple";
-      EnvironmentFile = "/home/jamescraven/.config/wf-bot/.env";
-      ExecStart = "${inputs.wf-bot.packages.${pkgs.system}.default}/bin/wf-bot";
-      Restart = "always";
-    };
+  services.wf-bot = {
+    enable = true;
+    EnvironmentFile = "/home/jamescraven/.config/wf-bot/.env";
   };
 
   users.users.jamescraven = {
