@@ -40,16 +40,39 @@ Screenshots
 -----------
 ![screenshot_1](./assets/screenshot_1.png)
 ![screenshot_2](./assets/screenshot_2.png)
-<div align="center">Screenshots taken on vaal.</div>
+<div align="center"><i>Screenshots taken on vaal (note: this is slightly outdated).</i></div>
+
+System Management
+-----------------
+All of the process I have in place for managing my system are largely self
+contained to a [justfile](https://github.com/casey/just). I have `just` aliased
+to `j`, so I can rebuild my system by running `j b` from my flake's directory.
+The general "usage loop" is as follows:
+
+| Recipe  | Purpose                                           |
+|---------|---------------------------------------------------|
+| Build   | Rebuild the system                                |
+| Clean   | Cleans unused packages from /nix/store using `nh` |
+| Push    | Push changes upstream                             |
+| Sync    | Syncs upstream, builds, then cleans               |
+| Update  | Updates flake inputs and tries to build system    |
+
+I try to update my flake every two weeks or so, starting with RioTinto (I use
+it most, so it must work above all else). Then, I splitscreen ssh into my
+laptop and server and `just sync` them. All-in-all, an update for all machines
+takes around 1-2hrs. I have only ever had to hold off on accepting an update
+once, and it was just due to the folks at Home Manager needing a bit longer to
+update their Neovim derivations to match upstream. My experience is otherwise
+very stable.
 
 Related Projects
 ----------------
 A few of my other projects are dependencies of my flake. Most aren't really intended
 for public use, but mkdev is!
-- [Mkdev](https://github.com/4jamesccraven/mkdev): Utility to eliminate boilerplate
-- [nx](https://github.com/4jamesccraven/nx): A wrapper for the nix CLI (glorified shell script)
-- [Warframe Bot](https://github.com/4jamesccraven/warframe-bot): A discord bot that posts
-  [warframe](https://www.warframe.com/) news
+- [Mkdev](https://github.com/4jamesccraven/mkdev): Command-line templating
+  engine primarily intended to speed up creating new projects (a la Cargo).
+- [Warframe Bot](https://github.com/4jamesccraven/warframe-bot): A discord bot
+  that posts [warframe](https://www.warframe.com/) news
 
 Directory Structure
 -------------------
