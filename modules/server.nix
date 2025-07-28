@@ -92,6 +92,7 @@
 
       shellAliases = {
         c = "clear";
+        j = "just";
       };
     };
 
