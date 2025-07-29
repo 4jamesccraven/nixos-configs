@@ -16,7 +16,7 @@
 
   ## System-specific Packages ##
   environment.systemPackages = with pkgs; [
-    wireguard-tools
+    openvpn
   ];
   hyprland.enable = true;
 
