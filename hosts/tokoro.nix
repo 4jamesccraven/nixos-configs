@@ -13,11 +13,6 @@
 
   networking.hostName = "tokoro";
 
-  fileSystems."/home/jamescraven/back-ups" = {
-    device = "/dev/disk/by-uuid/60d8bd49-3e3f-4415-8686-60571e867c65";
-    fsType = "ext4";
-  };
-
   services.borgbackup.jobs.main = {
     doInit = true;
     paths = [
@@ -59,6 +54,16 @@
       "fmask=0022"
       "dmask=0022"
     ];
+  };
+
+  fileSystems."/home/jamescraven/back-ups" = {
+    device = "/dev/disk/by-uuid/2439b066-804d-43d5-b801-5c1f027e6c3e";
+    fsType = "ext4";
+  };
+
+  fileSystems."/srv/media" = {
+    device = "/dev/disk/by-uuid/b64d5484-d46d-4053-9bc0-8c8b81ac7184";
+    fsType = "ext4";
   };
 
   swapDevices = [ ];
