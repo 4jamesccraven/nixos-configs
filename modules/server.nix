@@ -8,15 +8,15 @@
   imports = [
     inputs.home-manager.nixosModules.default
     inputs.wf-bot.nixosModules.default
+    ../overlay
     ./colors.nix
     ./desktop-environment
     ./dots/git.nix
     ./dots/kitty.nix
+    ./dots/lsd.nix
     ./dots/neovim
-    ./dots/nx.nix
     ./syncthing.nix
     ./system.nix
-    ../overlay
   ];
 
   gnome.enable = true;
@@ -27,7 +27,7 @@
     just
     kitty
     git
-    neovim
+    ripgrep
   ];
   programs.firefox.enable = true;
   programs.nh.enable = true;
@@ -62,17 +62,6 @@
   };
 
   home-manager.users.jamescraven = {
-    programs.bash = {
-      enable = true;
-      shellAliases = {
-        c = "clear";
-        j = "just";
-      };
-      bashrcExtra = ''
-        PS1="\[\e[38;2;202;158;230m\]┌─[\[\e[38;2;231;130;132m\]/ˈiː.ən/\[\e[38;2;202;158;230m\]@\h]: ❄ \[\e[38;2;231;130;132m\]\w\n\[\e[38;2;202;158;230m\]└─󰊜 \[\e[m\]"
-      '';
-    };
-
     programs.zsh = {
       enable = true;
 
@@ -83,16 +72,37 @@
         sw = "$HOME/Documents/Schoolwork";
       };
 
-      initContent = ''
-        zstyle ':completion:*' insert-tab false
+      initContent = # bash
+        ''
+          zstyle ':completion:*' insert-tab false
 
-        PROMPT='%F{red}╭─(%f/ˈiː.ən/%F{red}@%m): [%f%~%F{red}]
-        ╰─❯ %f'
-      '';
+          setopt auto_param_slash  # Dirs are autocompleted with a trailing /
+          setopt cdable_vars       # Try to prepend ~ if a cd command fails
+          setopt cd_silent         # Don't pwd after cd
+          setopt correct           # Offer to correct mispelled commands
+
+          PROMPT='%F{red}╭─(%f/ˈiː.ən/%F{red}@%m): [%f%~%F{red}]
+          ╰─❯ %f'
+        '';
 
       shellAliases = {
         c = "clear";
         j = "just";
+        ## Git
+        ga = "git add . --all";
+        gc = "git clone";
+        gcm = "git commit";
+        gd = "git diff ':!*lock'";
+        gdf = "git diff";
+        gds = "git diff --stat";
+        gi = "git init";
+        gl = "git log";
+        gp = "git push origin HEAD";
+        gs = "git status";
+        gu = "git pull";
+        gr = "git rev-parse --show-toplevel";
+        ggr = "cd $(git rev-parse --show-toplevel)";
+        gitaliases = "alias | grep git | grep -v gitaliases | sed 's/ *= */ = /' | column -t -s=";
       };
     };
 
