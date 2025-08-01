@@ -51,6 +51,8 @@
     };
   };
 
+  networking.firewall.trustedInterfaces = [ "virbr0" ];
+
   ## File System ##
   boot.supportedFilesystems = [ "ntfs" ];
 

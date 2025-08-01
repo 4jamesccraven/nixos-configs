@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.virt-manager.enable = true;
@@ -8,9 +8,13 @@
   ];
 
   virtualisation = {
-    libvirtd.enable = true;
+    libvirtd = {
+      enable = true;
+      onBoot = "start";
+      onShutdown = "shutdown";
+      qemu.package = pkgs.qemu;
+    };
     spiceUSBRedirection.enable = true;
     docker.enable = true;
-    # vmware.host.enable = true;
   };
 }

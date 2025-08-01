@@ -65,6 +65,7 @@
     unzip
     yazi
     zip
+    wl-clipboard
     # Fun #
     cowsay
     figlet
