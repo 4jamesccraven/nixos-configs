@@ -66,10 +66,9 @@
       enable = true;
 
       dirHashes = {
+        dw = "$HOME/Downloads";
         cd = "$HOME/Code";
-        dcs = "$HOME/Documents";
         nix = "$HOME/nixos";
-        sw = "$HOME/Documents/Schoolwork";
       };
 
       initContent = # bash
