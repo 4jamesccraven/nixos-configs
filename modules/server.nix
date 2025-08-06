@@ -28,6 +28,7 @@
     kitty
     git
     ripgrep
+    fd
   ];
   programs.firefox.enable = true;
   programs.nh.enable = true;
