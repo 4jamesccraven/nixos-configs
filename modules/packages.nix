@@ -58,7 +58,7 @@
     ripgrep
     # Other Utilities #
     cava
-    ffmpeg
+    ffmpeg-full
     fselect
     fzf
     tokei
