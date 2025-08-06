@@ -29,6 +29,7 @@
     git
     ripgrep
     fd
+    ffmpeg
   ];
   programs.firefox.enable = true;
   programs.nh.enable = true;
