@@ -30,6 +30,8 @@
     ripgrep
     fd
     ffmpeg
+    dysk
+    dust
   ];
   programs.firefox.enable = true;
   programs.nh.enable = true;
