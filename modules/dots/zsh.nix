@@ -16,19 +16,87 @@
         txt = "$HOME/Documents/Texts";
       };
 
+      syntaxHighlighting = {
+        enable = true;
+        highlighters = [
+          "main"
+          "brackets"
+          "regexp"
+        ];
+      };
+
+      autosuggestion.enable = true;
+
+      setOptions = [
+        "auto_param_slash" # Dirs are autocompleted with a trailing /
+        "cdable_vars" # cd into a hashed dir without typing ~
+        "cd_silent" # Don't pwd after cd
+        "correct" # Offer to correct mispelled commands
+      ];
+
+      siteFunctions = {
+        # A wrapper around basic nix functionality, mostly delegates
+        # to the just file for this config
+        nxd = # bash
+          ''
+            nx() {
+              _nxd() {
+                  local shell="default"
+                  local command="zsh"
+                  local global=false
+
+                  if [[ $# -gt 0 && "$1" != -* ]]; then
+                      shell="$1"
+                      shift
+                  fi
+
+                  while [[ $# -gt 0 ]]; do
+                      case "$1" in
+                          -c|--command)
+                              command="$2"
+                              shift 2
+                              ;;
+                          -g|--global)
+                              global=true
+                              shift
+                              ;;
+                          *)
+                              echo "Unknown argument $1"
+                              return 1
+                              ;;
+                      esac
+                  done
+
+                  if $global; then
+                      dir="/home/jamescraven/nixos"
+                  else
+                      dir="."
+                  fi
+
+                  nix develop "''${dir}#''${shell}" -c "$command"
+              }
+
+              # If of form `nx d` use the above function
+              if [ "$1" = "d" ] || [ "$1" = "develop" ]; then
+                shift
+                _nxd "$@"
+              # Other wise delegate to justfile
+              else
+                just --justfile /home/jamescraven/nixos/justfile "$@"
+              fi
+            }
+          '';
+      };
+
       initContent = # bash
         ''
-          # Disallow tabs at the start of prompt
-          zstyle ':completion:*' insert-tab false
-
-          setopt auto_param_slash  # Dirs are autocompleted with a trailing /
-          setopt cdable_vars       # Try to prepend ~ if a cd command fails
-          setopt cd_silent         # Don't pwd after cd
-          setopt correct           # Offer to correct mispelled commands
+          zstyle ':completion:*' insert-tab false # Disable inserting tab at the beginning of a line
 
           # fzf-zsh integration and theming
           source <(${pkgs.fzf}/bin/fzf --zsh)
           bindkey "^f" fzf-history-widget
+
+          bindkey "^a" autosuggest-accept
 
           export FZF_DEFAULT_OPTS=" \
           --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
@@ -42,90 +110,6 @@
             PROMPT='/ˈiː.ən/%F{red}@%m [%f%~%F{red}]
           => %f'
           fi
-
-          _nxd() {
-              local shell="default"
-              local command="zsh"
-              local global=false
-
-              if [[ $# -gt 0 && "$1" != -* ]]; then
-                  shell="$1"
-                  shift
-              fi
-
-              while [[ $# -gt 0 ]]; do
-                  case "$1" in
-                      -c|--command)
-                          command="$2"
-                          shift 2
-                          ;;
-                      -g|--global)
-                          global=true
-                          shift
-                          ;;
-                      *)
-                          echo "Unknown argument $1"
-                          return 1
-                          ;;
-                  esac
-              done
-
-              if $global; then
-                  dir="/home/jamescraven/nixos"
-              else
-                  dir="."
-              fi
-
-              nix develop "''${dir}#''${shell}" -c "$command"
-          }
-
-          nx() {
-            # Function that is used internally for the case of trying to activate nix develop
-            _nxd() {
-                local shell="default"
-                local command="zsh"
-                local global=false
-
-                if [[ $# -gt 0 && "$1" != -* ]]; then
-                    shell="$1"
-                    shift
-                fi
-
-                while [[ $# -gt 0 ]]; do
-                    case "$1" in
-                        -c|--command)
-                            command="$2"
-                            shift 2
-                            ;;
-                        -g|--global)
-                            global=true
-                            shift
-                            ;;
-                        *)
-                            echo "Unknown argument $1"
-                            return 1
-                            ;;
-                    esac
-                done
-
-                if $global; then
-                    dir="/home/jamescraven/nixos"
-                else
-                    dir="."
-                fi
-
-                nix develop "''${dir}#''${shell}" -c "$command"
-            }
-
-            # If of form `nx d` use the above function
-            if [ "$1" = "d" ] || [ "$1" = "develop" ]; then
-              shift
-              _nxd "$@"
-            # Other wise delegate to justfile
-            else
-              just --justfile /home/jamescraven/nixos/justfile "$@"
-            fi
-          }
         '';
 
       shellAliases = {
