@@ -24,6 +24,11 @@
 
       config.theme = "Catppuccin Mocha";
     };
+
+    programs.zsh.shellAliases = {
+      cat = "bat";
+      man = "batman";
+    };
   };
 
 }

@@ -40,7 +40,7 @@
           # PROMPT='%F{#CA9EE6}╭─(%f/ˈiː.ən/%F{#CA9EE6}@%m): [%f%~%F{#CA9EE6}]
           # ╰─❯ %f'
 
-          nxd() {
+          _nxd() {
               local shell="default"
               local command="zsh"
               local global=false
@@ -76,6 +76,54 @@
               nix develop "''${dir}#''${shell}" -c "$command"
           }
 
+          nx() {
+            # Function that is used internally for the case of trying to activate nix develop
+            _nxd() {
+                local shell="default"
+                local command="zsh"
+                local global=false
+
+                if [[ $# -gt 0 && "$1" != -* ]]; then
+                    shell="$1"
+                    shift
+                fi
+
+                while [[ $# -gt 0 ]]; do
+                    case "$1" in
+                        -c|--command)
+                            command="$2"
+                            shift 2
+                            ;;
+                        -g|--global)
+                            global=true
+                            shift
+                            ;;
+                        *)
+                            echo "Unknown argument $1"
+                            return 1
+                            ;;
+                    esac
+                done
+
+                if $global; then
+                    dir="/home/jamescraven/nixos"
+                else
+                    dir="."
+                fi
+
+                nix develop "''${dir}#''${shell}" -c "$command"
+            }
+
+            # If of form `nx d` use the above function
+            if [ "$1" = "d" ] || [ "$1" = "develop" ]; then
+              shift
+              _nxd "$@"
+            # Other wise delegate to justfile
+            else
+              just --justfile /home/jamescraven/nixos/justfile "$@"
+            fi
+          }
+
           fastfetch
         '';
 
@@ -102,9 +150,6 @@
         gr = "git rev-parse --show-toplevel";
         ggr = "cd $(git rev-parse --show-toplevel)";
         gitaliases = "alias | grep git | grep -v gitaliases | sed 's/ *= */ = /' | column -t -s=";
-        # Replacements
-        cat = "bat";
-        man = "batman";
         # Tools
         pcalc = "nix develop $HOME/nixos#dsci -c python";
       };
