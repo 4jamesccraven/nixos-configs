@@ -16,8 +16,6 @@
           local wezterm = require'wezterm'
           local config = wezterm.config_builder()
 
-          config.show_update_window = false
-
           -- Colour
           config.color_scheme = 'catppuccin-mocha'
 
@@ -58,7 +56,7 @@
           }
 
           -- Font
-          config.font_size = 11.75
+          config.font_size = 12.0
           config.font = wezterm.font {
               family = 'FiraCode Nerd Font',
               harfbuzz_features = {
