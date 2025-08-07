@@ -37,8 +37,11 @@
           --color=selected-bg:#45475a \
           --color=border:#313244,label:#cdd6f4"
 
-          # PROMPT='%F{#CA9EE6}╭─(%f/ˈiː.ən/%F{#CA9EE6}@%m): [%f%~%F{#CA9EE6}]
-          # ╰─❯ %f'
+          # Fallback
+          if ! command -v starship > /dev/null 2>&1; then
+            PROMPT='/ˈiː.ən/%F{red}@%m [%f%~%F{red}]
+          => %f'
+          fi
 
           _nxd() {
               local shell="default"
@@ -123,8 +126,6 @@
               just --justfile /home/jamescraven/nixos/justfile "$@"
             fi
           }
-
-          fastfetch
         '';
 
       shellAliases = {

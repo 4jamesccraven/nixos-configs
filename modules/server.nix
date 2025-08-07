@@ -33,6 +33,7 @@
   ];
   programs.firefox.enable = true;
   programs.nh.enable = true;
+  programs.zsh.enable = true;
 
   services = {
     openssh = {
