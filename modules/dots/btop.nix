@@ -21,7 +21,7 @@
         genericName = "System Monitor";
         comment = "Resource monitor that shows usage and stats for processor, memory, disks, network and processes";
         icon = "btop";
-        exec = "kitty btop";
+        exec = "wezterm start btop";
         terminal = false;
         categories = [
           "System"

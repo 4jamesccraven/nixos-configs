@@ -37,7 +37,7 @@
       siteFunctions = {
         # A wrapper around basic nix functionality, mostly delegates
         # to the just file for this config
-        nxd = # bash
+        nx = # bash
           ''
             nx() {
               _nxd() {
