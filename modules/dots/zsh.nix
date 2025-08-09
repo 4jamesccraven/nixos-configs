@@ -118,7 +118,7 @@
         cff = "clear; fastfetch";
         ff = "fastfetch";
         j = "just";
-        s = "kitten ssh";
+        s = "ssh";
         y = "yazi";
         ## Git
         ga = "git add . --all";
