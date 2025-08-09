@@ -1,7 +1,14 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
-  environment.systemPackages = with pkgs; [
-    quickshell
-  ];
+  config = lib.mkIf config.hyprland.enable {
+    environment.systemPackages = with pkgs; [
+      quickshell
+    ];
+  };
 }
