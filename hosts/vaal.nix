@@ -17,6 +17,7 @@
   ## System-specific Packages ##
   environment.systemPackages = with pkgs; [
     openvpn
+    ardour
   ];
   hyprland.enable = true;
 
