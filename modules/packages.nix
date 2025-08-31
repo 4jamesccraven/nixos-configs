@@ -29,7 +29,12 @@
     kdePackages.kdenlive
     obs-studio
     spotify
-    vlc
+    (vlc.override {
+      libbluray = libbluray.override {
+        withAACS = true;
+        withBDplus = true;
+      };
+    })
     # Utilities #
     filezilla
     hunspell
