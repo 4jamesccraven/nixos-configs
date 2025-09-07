@@ -22,14 +22,16 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    just
-    git
-    ripgrep
+    dust
+    dysk
     fd
     ffmpeg
-    dysk
-    dust
+    git
+    just
+    ripgrep
+    unzip
     yazi
+    zip
   ];
   programs.firefox.enable = true;
   programs.nh.enable = true;
