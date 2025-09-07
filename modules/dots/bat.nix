@@ -28,6 +28,7 @@
     programs.zsh.shellAliases = {
       cat = "bat";
       man = "batman";
+      lsblk = "lsblk | bat -l conf -pp";
     };
   };
 
