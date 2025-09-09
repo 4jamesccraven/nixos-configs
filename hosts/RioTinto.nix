@@ -51,8 +51,6 @@
     };
   };
 
-  networking.firewall.trustedInterfaces = [ "virbr0" ];
-
   ## File System ##
   boot.supportedFilesystems = [ "ntfs" ];
 
@@ -96,7 +94,10 @@
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [
+    "kvm-amd"
+    "sg"
+  ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {

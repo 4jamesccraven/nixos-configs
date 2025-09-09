@@ -36,15 +36,13 @@
       };
     })
     # Utilities #
-    filezilla
     hunspell
     hunspellDicts.en_GB-large
     hunspellDicts.en_US-large
     hunspellDicts.es_ES
     hunspellDicts.es_AR
     libreoffice-qt
-    mediawriter
-    zenity
+    makemkv
     # Games #
     (prismlauncher.override {
       jdks = [
@@ -62,9 +60,8 @@
     just
     ripgrep
     # Other Utilities #
-    cava
+    dvdbackup
     ffmpeg-full
-    fselect
     fzf
     tokei
     unzip
@@ -72,24 +69,19 @@
     zip
     wl-clipboard
     # Fun #
-    cowsay
     figlet
-    rff-script
 
     #-> Development <-#
     # Compilers #
     libgcc
     rustc
-    # Writing & Presenting #
-    texlive.combined.scheme-full
-    typst
     # Interpreters #
     python313
+    # Writing & Presenting #
+    typst
     # Project Management #
     cargo
     git
-    # IDEs #
-    vscode
   ];
 
   #-> Fonts <-#
