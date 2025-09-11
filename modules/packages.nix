@@ -60,6 +60,7 @@
     just
     ripgrep
     # Other Utilities #
+    caligula
     dvdbackup
     ffmpeg-full
     fzf
