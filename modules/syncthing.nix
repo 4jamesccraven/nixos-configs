@@ -12,7 +12,7 @@
     settings = {
       devices = {
         "vaal" = {
-          id = "D7HEMFA-4567NUZ-G46VZNP-NMLLUM2-56LVU7Z-OKZBCL3-ZNAXQYK-3RQFOAJ";
+          id = "R4GJ6P7-6JKQES7-WU3M3RH-G4EQBM3-C5MKBDG-UYI5ISG-OITEZPH-XUVCFAP";
         };
         "RioTinto" = {
           id = "JCBOODZ-OZJFDCV-XTV3HDM-YK7CHV6-ZUUNN7E-RO7MGUE-IYFZKRW-BZVSVQZ";
