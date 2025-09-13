@@ -60,7 +60,6 @@
     just
     ripgrep
     # Other Utilities #
-    dvdbackup
     ffmpeg-full
     fzf
     tokei
