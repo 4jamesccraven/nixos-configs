@@ -10,7 +10,6 @@
     inputs.wf-bot.nixosModules.default
     ../overlay
     ./colors.nix
-    ./desktop-environment
     ./dots/git.nix
     ./dots/lsd.nix
     ./dots/neovim
@@ -53,7 +52,9 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 8096 ];
+  networking.firewall.allowedTCPPorts = [
+    8096 # Jellyfin
+  ];
 
   users.users.jamescraven = {
     isNormalUser = true;
