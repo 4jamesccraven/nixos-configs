@@ -124,7 +124,7 @@
         ga = "git add . --all";
         gc = "git clone";
         gcm = "git commit";
-        gd = "git diff ':!*lock'";
+        gd = "git diff HEAD ':!*lock'";
         gdf = "git diff";
         gds = "git diff --stat";
         gi = "git init";
@@ -136,6 +136,11 @@
         ggr = "cd $(git rev-parse --show-toplevel)";
         gitaliases = "alias | grep git | grep -v gitaliases | sed 's/ *= */ = /' | column -t -s=";
         # Tools
+        ns =
+          let
+            ntv = "${pkgs.nix-search-tv}/bin/nix-search-tv";
+          in
+          "${ntv} print | fzf --query 'nixpkgs/ ' --preview '${ntv} preview {}' --scheme history";
         pcalc = "nix develop $HOME/nixos#dsci -c python";
       };
     };
