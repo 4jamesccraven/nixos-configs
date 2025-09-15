@@ -27,22 +27,21 @@
     # Media #
     foliate
     kdePackages.kdenlive
+    makemkv
     obs-studio
-    spotify
     (vlc.override {
       libbluray = libbluray.override {
         withAACS = true;
         withBDplus = true;
       };
     })
-    # Utilities #
+    # Office #
     hunspell
     hunspellDicts.en_GB-large
     hunspellDicts.en_US-large
     hunspellDicts.es_ES
     hunspellDicts.es_AR
     libreoffice-qt
-    makemkv
     # Games #
     (prismlauncher.override {
       jdks = [
