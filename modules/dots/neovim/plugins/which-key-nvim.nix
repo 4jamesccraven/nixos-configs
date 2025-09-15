@@ -41,7 +41,8 @@ with pkgs.vimPlugins;
           { '<leader>lf', desc = 'go to code definition' },
           { '<leader>lr', desc = 'lsp replace' },
           { '<leader>ln', desc = 'go to next diagnostic' },
-          { '<leader>lN', desc = 'go to previous diagnostic' },
+          { '<leader>lp', desc = 'go to previous diagnostic' },
+          { '<leader>lb', desc = 'format the current buffer using the lsp' },
       })
     '';
 }

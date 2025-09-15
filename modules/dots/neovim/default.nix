@@ -140,7 +140,7 @@
           inputs.utils.mapFiles (
             name:
             let
-              plugins = import ./plugins/${name} { inherit pkgs; };
+              plugins = import ./plugins/${name} { inherit pkgs lib; };
             in
             plugins
           ) ./plugins

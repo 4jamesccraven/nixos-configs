@@ -7,6 +7,10 @@ with pkgs.vimPlugins;
   config = # lua
     ''
       --> nvim-surround <--
-      require'nvim-surround'.setup()
+      local surround = require'nvim-surround'
+
+      -- Todo add custom surrounds, namely "Option<" ">" and "Result<" ">"
+
+      surround.setup()
     '';
 }

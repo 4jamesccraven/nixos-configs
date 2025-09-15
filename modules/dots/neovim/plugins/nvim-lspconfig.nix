@@ -32,12 +32,13 @@ with pkgs.vimPlugins;
       })
 
       -- Keybinds
-      map('n', '<leader>lk', function() vim.lsp.buf.hover() end)
-      map('n', '<leader>lf', function() vim.lsp.buf.definition() end)
-      map('n', '<leader>d', function() vim.diagnostic.open_float() end)
-      map('n', '<leader>lr', function() vim.lsp.buf.rename() end)
-      map('n', '<leader>ln', function() vim.diagnostic.goto_next() end)
-      map('n', '<leader>lN', function() vim.diagnostic.goto_prev() end)
+      map('n', '<leader>lk', function() vim.lsp.buf.hover()         end)
+      map('n', '<leader>lf', function() vim.lsp.buf.definition()    end)
+      map('n', '<leader>d' , function() vim.diagnostic.open_float() end)
+      map('n', '<leader>lr', function() vim.lsp.buf.rename()        end)
+      map('n', '<leader>ln', function() vim.diagnostic.goto_next()  end)
+      map('n', '<leader>lp', function() vim.diagnostic.goto_prev()  end)
+      map('n', '<leader>lb', function() vim.lsp.buf.format()        end)
 
       -- Autocommands
       vim.api.nvim_create_autocmd('LspAttach', {

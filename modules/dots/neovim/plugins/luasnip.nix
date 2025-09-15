@@ -177,33 +177,33 @@ with pkgs.vimPlugins;
           })
       })
 
-      ls.add_snippets('rust', {
-          snip({
-              trig = 'fn ',
-              snippetType = 'autosnippet',
-          }, {
-              t('fn '),
-              i(1, 'name'),
-              t('('),
-              i(2),
-              t(') -> '),
-              i(3, '()'),
-              t({' {', '    '}),
-              i(0),
-              t({''', '}'}),
-          }),
-          snip({
-              trig = 'fnn',
-              snippetType = 'autosnippet',
-          }, {
-              t('fn '),
-              i(1, 'name'),
-              t('('),
-              i(2),
-              t({') {', '    '}),
-              i(0),
-              t({''', '}'}),
-          }),
-      })
+      -- ls.add_snippets('rust', {
+      --     snip({
+      --         trig = 'fn ',
+      --         snippetType = 'autosnippet',
+      --     }, {
+      --         t('fn '),
+      --         i(1, 'name'),
+      --         t('('),
+      --         i(2),
+      --         t(') -> '),
+      --         i(3, '()'),
+      --         t({' {', '    '}),
+      --         i(0),
+      --         t({''', '}'}),
+      --     }),
+      --     snip({
+      --         trig = 'fnn',
+      --         snippetType = 'autosnippet',
+      --     }, {
+      --         t('fn '),
+      --         i(1, 'name'),
+      --         t('('),
+      --         i(2),
+      --         t({') {', '    '}),
+      --         i(0),
+      --         t({''', '}'}),
+      --     }),
+      -- })
     '';
 }

@@ -3,9 +3,7 @@
 with pkgs.vimPlugins;
 [
   cmp-nvim-lsp
-  cmp-buffer
   cmp-path
-  cmp-cmdline
   cmp_luasnip
   {
     plugin = nvim-cmp;
@@ -14,25 +12,36 @@ with pkgs.vimPlugins;
       ''
         --> nvim-cmp <--
         local cmp = require'cmp'
+        local cmp_ap = require'nvim-autopairs.completion.cmp'
 
+        -- General Configuration
         cmp.setup({
+            window = {
+              completion = cmp.config.window.bordered(),
+              documentation = cmp.config.window.bordered(),
+            },
             snippet = {
                 expand = function(args)
                     require'luasnip'.lsp_expand(args.body)
                 end,
             },
             mapping = cmp.mapping.preset.insert ({
-                ['<C-n>'] = cmp.mapping.select_next_item(),
+                ['<C-j>'] = cmp.mapping.select_next_item(),
+                ['<C-k>'] = cmp.mapping.select_prev_item(),
                 ['<tab>'] = cmp.mapping.confirm({ select = true }),
-                ['<CR>'] = cmp.mapping.abort(),
             }),
             sources = cmp.config.sources ({
-                { name = 'buffer'},
                 { name = 'luasnip' },
                 { name = 'nvim_lsp'},
                 { name = 'path'},
             })
         })
+
+        -- Auto-add parentheses when completing a function
+        cmp.event:on(
+            'confirm_done',
+            cmp_ap.on_confirm_done()
+        )
       '';
   }
 ]
