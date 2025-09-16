@@ -90,10 +90,15 @@
   ];
 
   #-> Progam/Service-based packages <-#
-  services.blueman.enable = true;
+  home-manager.users.jamescraven.programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
   programs.nh.enable = true;
-  programs.steam.enable = true;
   programs.zsh.enable = true;
+  services.blueman.enable = true;
+  programs.steam.enable = true;
 
   #-> Cache DevShell Dependencies at Build Time <-#
   system.activationScripts.cacheFlakeShells.text = lib.concatLines (
