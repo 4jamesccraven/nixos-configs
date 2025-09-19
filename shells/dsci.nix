@@ -14,6 +14,7 @@
     pandas
     pip
     python-lsp-server
+    tqdm
     scikit-learn
     seaborn
     sympy
