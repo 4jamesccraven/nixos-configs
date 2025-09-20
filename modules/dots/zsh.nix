@@ -14,6 +14,7 @@
         nix = "$HOME/nixos";
         sw = "$HOME/Documents/Schoolwork";
         txt = "$HOME/Documents/Texts";
+        usb = "/run/media/jamescraven";
       };
 
       syntaxHighlighting = {
@@ -84,6 +85,24 @@
               else
                 just --justfile /home/jamescraven/nixos/justfile "$@"
               fi
+            }
+          '';
+
+        eject-usb = # bash
+          ''
+            eject-usb() {
+              dev=$(\lsblk -dpno NAME,TRAN | grep usb \
+                  | fzf --height 10% --reverse --inline-info --prompt="USB> " \
+                  | awk '{print $1}')
+              [ -z "$dev" ] && return
+
+              partitions=$(\lsblk -lnpo NAME "$dev" | tail -n +2)
+
+              for part in $partitions; do
+                  udisksctl unmount -b "$part"
+              done
+
+              udisksctl power-off -b "$dev"
             }
           '';
       };

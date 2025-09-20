@@ -58,6 +58,14 @@
     };
   };
 
+  # Removable media
+  services.udisks2.enable = true;
+  home-manager.sharedModules = [
+    {
+      services.udiskie.enable = true;
+    }
+  ];
+
   security.rtkit.enable = true;
 
   ### Generic Sytem Info ###
