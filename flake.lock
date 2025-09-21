@@ -165,11 +165,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754279120,
-        "narHash": "sha256-GUS/q4DR/MhN8B71U3RMyjRjEx4F+sxGMnY7lbRosqA=",
+        "lastModified": 1758450385,
+        "narHash": "sha256-S4CyVeldKxevecq2UX7zcXoGlNs5BuYmNsPsa0fS/Bo=",
         "owner": "4jamesccraven",
         "repo": "warframe-bot",
-        "rev": "a4457568142e9136c10bb00bd3cc282f832d6701",
+        "rev": "7ea83c278a0fb792fc2998d3295b580abb7ea5aa",
         "type": "github"
       },
       "original": {
