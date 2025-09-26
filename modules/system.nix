@@ -51,12 +51,15 @@
       jack.enable = true;
     };
 
-    # Enable the openssh Daemon
+    # Enable the openssh daemon
     openssh = {
       enable = true;
       settings.PermitRootLogin = "no";
     };
   };
+
+  # This is pipewire related ¯\_(ツ)_/¯
+  security.rtkit.enable = true;
 
   # Networking
   networking.networkmanager.enable = true;
@@ -74,6 +77,25 @@
     ];
   };
 
+  # Allow users to power-off the system etc.
+  security.polkit.extraConfig = # js
+    ''
+      polkit.addRule(function(action, subject) {
+        if (
+          subject.isInGroup("wheel")
+            && (
+              action.id == "org.freedesktop.login1.reboot" ||
+              action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+              action.id == "org.freedesktop.login1.power-off" ||
+              action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+            )
+          )
+        {
+          return polkit.Result.YES;
+        }
+      });
+    '';
+
   # Removable media
   services.udisks2.enable = true;
   home-manager.sharedModules = [
@@ -81,8 +103,6 @@
       services.udiskie.enable = true;
     }
   ];
-
-  security.rtkit.enable = true;
 
   ### Generic Sytem Info ###
   nix.settings.experimental-features = [

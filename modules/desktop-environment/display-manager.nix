@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   services = {
@@ -6,9 +6,5 @@
       enable = true;
       autoSuspend = false;
     };
-
-    xserver.excludePackages = with pkgs; [
-      xterm
-    ];
   };
 }

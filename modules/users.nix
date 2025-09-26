@@ -10,6 +10,7 @@
       "wheel"
       "docker"
       "libvirtd"
+      "seat"
     ];
   };
 
