@@ -18,17 +18,12 @@
       extraPackages = with pkgs; [
         # LSP
         clang-tools
-        gopls
-        haskell-language-server
-        jdt-language-server
         nixd
         nixfmt-rfc-style
         pyright
         python313Packages.autopep8
         rust-analyzer
         rustfmt
-        sqls
-        texlab
         tinymist
         typstyle
 
