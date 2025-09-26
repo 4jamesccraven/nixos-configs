@@ -147,7 +147,8 @@
         gdf = "git diff";
         gds = "git diff --stat";
         gi = "git init";
-        gl = "git log";
+        gl = "git log --stat";
+        glf = "git log";
         gp = "git push origin HEAD";
         gs = "git status";
         gu = "git pull";
