@@ -9,6 +9,8 @@ let
       rev = "c401541b8429b787d7dcb441e43bee63fc94737c";
       hash = "sha256-uy+Nj+hfeei8nquZCzIxDYf1eQsaPMX26IMh/opOwG0=";
     };
+
+    meta.homepage = "https://github.com/emmanueltouzery/decisive.nvim";
   };
 in
 {
