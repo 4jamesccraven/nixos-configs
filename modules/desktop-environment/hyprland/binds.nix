@@ -9,94 +9,106 @@
   config = lib.mkIf config.hyprland.enable {
     environment.systemPackages = with pkgs; [
       brightnessctl
-      grim
-      slurp
     ];
 
     home-manager.users.jamescraven = {
-      wayland.windowManager.hyprland.settings = {
-        "$mod" = "SUPER";
+      wayland.windowManager.hyprland.settings =
+        let
+          screenie = pkgs.writeShellScriptBin "screenie" ''
+            mode=''${1:-region}
+            time=$(date +%F_%H%M%S)
 
-        bind = [
-          # General
-          "$mod, Q, killactive"
-          "$mod, E, exec, nautilus"
-          "Alt_L, Space, exec, fuzzel"
-          "Control_L+Shift, Escape, exec, kitty btop"
+            ${pkgs.hyprshot}/bin/hyprshot -m "$mode" -zs --raw \
+            | ${pkgs.satty}/bin/satty --filename - \
+              --output-filename "/home/jamescraven/Pictures/Screenshots/screenshot_$time.png" \
+              --copy-command wl-copy \
+              --init-tool brush \
+              --actions-on-escape exit \
+              --early-exit
+          '';
+        in
+        {
+          "$mod" = "SUPER";
 
-          # Fullscreen control
-          "$mod, M, fullscreen, 1"
-          "$mod+Shift, M, fullscreen, 0"
+          bind = [
+            # General
+            "$mod, Q, killactive"
+            "$mod, E, exec, nautilus"
+            "Alt_L, Space, exec, fuzzel"
+            "Control_L+Shift, Escape, exec, kitty btop"
 
-          # Float
-          "$mod, F, togglefloating"
-          "$mod, F, resizeactive, exact 65% 65%"
-          "$mod, F, centerwindow"
+            # Fullscreen control
+            "$mod, M, fullscreen, 1"
+            "$mod+Shift, M, fullscreen, 0"
 
-          # Minimize trick
-          "$mod, Z, togglespecialworkspace, mincontainer"
-          "$mod, Z, movetoworkspace, +0"
-          "$mod, Z, togglespecialworkspace, mincontainer"
-          "$mod, Z, movetoworkspace, special:mincontainer"
-          "$mod, Z, togglespecialworkspace, mincontainer"
+            # Float
+            "$mod, F, togglefloating"
+            "$mod, F, resizeactive, exact 65% 65%"
+            "$mod, F, centerwindow"
 
-          # System Power
-          "$mod, L, exec, hyprlock"
-          "$mod, V, exec, hyprctl dispatch exit"
-          "$mod+Shift, V, exec, shutdown now"
+            # Minimize trick
+            "$mod, Z, togglespecialworkspace, mincontainer"
+            "$mod, Z, movetoworkspace, +0"
+            "$mod, Z, togglespecialworkspace, mincontainer"
+            "$mod, Z, movetoworkspace, special:mincontainer"
+            "$mod, Z, togglespecialworkspace, mincontainer"
 
-          # Keyboard Navigation
-          "Alt_L, H, movefocus, l"
-          "Alt_L, J, movefocus, d"
-          "Alt_L, K, movefocus, u"
-          "Alt_L, L, movefocus, r"
-          "Alt_L, TAB, cyclenext, visible"
+            # System Power
+            "$mod, L, exec, hyprlock"
+            "$mod, V, exec, hyprctl dispatch exit"
+            "$mod+Shift, V, exec, shutdown now"
 
-          "$mod+Shift, H, movewindow, l"
-          "$mod+Shift, J, movewindow, d"
-          "$mod+Shift, K, movewindow, u"
-          "$mod+Shift, L, movewindow, r"
+            # Keyboard Navigation
+            "Alt_L, H, movefocus, l"
+            "Alt_L, J, movefocus, d"
+            "Alt_L, K, movefocus, u"
+            "Alt_L, L, movefocus, r"
+            "Alt_L, TAB, cyclenext, visible"
 
-          "$mod, 1, workspace, 1"
-          "$mod, 2, workspace, 2"
-          "$mod, 3, workspace, 3"
-          "$mod, 4, workspace, 4"
-          "$mod+Shift, 1, movetoworkspace, 1"
-          "$mod+Shift, 2, movetoworkspace, 2"
-          "$mod+Shift, 3, movetoworkspace, 3"
-          "$mod+Shift, 4, movetoworkspace, 4"
+            "$mod+Shift, H, movewindow, l"
+            "$mod+Shift, J, movewindow, d"
+            "$mod+Shift, K, movewindow, u"
+            "$mod+Shift, L, movewindow, r"
 
-          # Keyboard Layouts
-          "Alt_L, Shift_L, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
-          "Alt_L, Shift_L, exec, hyprctl switchxkblayout keychron-keychron-c2 next"
+            "$mod, 1, workspace, 1"
+            "$mod, 2, workspace, 2"
+            "$mod, 3, workspace, 3"
+            "$mod, 4, workspace, 4"
+            "$mod+Shift, 1, movetoworkspace, 1"
+            "$mod+Shift, 2, movetoworkspace, 2"
+            "$mod+Shift, 3, movetoworkspace, 3"
+            "$mod+Shift, 4, movetoworkspace, 4"
 
-          # Screenshots
-          ", Print, exec, GRIM_DEFAULT_DIR=\"/home/jamescraven/Pictures/Screenshots\" grim -g \"$(slurp)\""
-          "Shift_L, Print, exec, GRIM_DEFAULT_DIR=\"/home/jamescraven/Pictures/Screenshots\" grim"
-          "Shift_L, Print, exec, sleep 0.5 && hyprctl notify 1 1500 0 \"fontsize:25 Screen Captured\""
-        ];
+            # Keyboard Layouts
+            "Alt_L, Shift_L, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
+            "Alt_L, Shift_L, exec, hyprctl switchxkblayout keychron-keychron-c2 next"
 
-        bindel = [
-          # Sound
-          ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-          ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
-          ", XF86MonBrightnessUp, exec, brightnessctl set 10%+"
-        ];
+            # Screenshots
+            ", Print, exec, ${screenie}/bin/screenie output"
+            "Shift_L, Print, exec, ${screenie}/bin/screenie"
+          ];
 
-        bindl = [
-          # Sound
-          ", XF86AudioRaiseVolume, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0"
-          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-          ", switch:Lid Switch, exec, hyprlock"
-        ];
+          bindel = [
+            # Sound
+            ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+            ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+            ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+            ", XF86MonBrightnessUp, exec, brightnessctl set 10%+"
+          ];
 
-        bindm = [
-          # Window Manipulation
-          "$mod, mouse:272, movewindow"
-          "$mod, mouse:273, resizewindow"
-        ];
-      };
+          bindl = [
+            # Sound
+            ", XF86AudioRaiseVolume, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0"
+            ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+            ", switch:Lid Switch, exec, hyprlock"
+          ];
+
+          bindm = [
+            # Window Manipulation
+            "$mod, mouse:272, movewindow"
+            "$mod, mouse:273, resizewindow"
+          ];
+        };
     };
   };
 }
