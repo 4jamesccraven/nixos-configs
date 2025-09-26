@@ -60,7 +60,7 @@
               modules = [ ./hosts/${name}.nix ];
             };
           myHosts = builtins.filter (file: file != "common") (
-            map (lib.removeSuffix ".nix") (builtins.attrNames (builtins.readDir ./hosts))
+            utils.mapFiles (lib.removeSuffix ".nix") ./hosts
           );
         in
         lib.genAttrs myHosts mkHost;

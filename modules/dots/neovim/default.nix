@@ -137,13 +137,7 @@
       # some plugins are grouped in a single file
       plugins = (
         lib.lists.flatten (
-          inputs.utils.mapFiles (
-            name:
-            let
-              plugins = import ./plugins/${name} { inherit pkgs lib; };
-            in
-            plugins
-          ) ./plugins
+          inputs.utils.mapFiles (name: import ./plugins/${name} { inherit pkgs lib; }) ./plugins
         )
       );
 
