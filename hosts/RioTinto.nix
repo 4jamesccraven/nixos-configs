@@ -28,6 +28,7 @@
   programs.gamemode.enable = true;
   programs.gamescope.enable = true;
 
+  gnome.enable = true;
   hyprland.enable = true;
 
   home-manager.users.jamescraven = {

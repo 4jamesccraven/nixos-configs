@@ -19,8 +19,8 @@
     openvpn
     ardour
   ];
-  hyprland.enable = true;
 
+  hyprland.enable = true;
   home-manager.users.jamescraven = {
     wayland.windowManager.hyprland.settings = {
       monitor = [

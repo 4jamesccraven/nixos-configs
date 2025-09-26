@@ -6,6 +6,4 @@
     ../modules
     ../overlay
   ];
-
-  gnome.enable = true;
 }

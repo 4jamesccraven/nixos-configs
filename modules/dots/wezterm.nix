@@ -3,7 +3,7 @@
 {
   home-manager.users.jamescraven = {
     programs.wezterm = {
-      enable = true;
+      enable = false;
       enableZshIntegration = true;
       enableBashIntegration = true;
       extraConfig =

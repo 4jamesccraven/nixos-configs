@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   ### Boot Loader ###
@@ -56,6 +56,22 @@
       enable = true;
       settings.PermitRootLogin = "no";
     };
+  };
+
+  # Networking
+  networking.networkmanager.enable = true;
+
+  # XDG
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-gtk
+    ];
+    config.common.default = [
+      "hyprland"
+      "gtk"
+    ];
   };
 
   # Removable media
