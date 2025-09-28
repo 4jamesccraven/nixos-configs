@@ -8,6 +8,7 @@ with pkgs.vimPlugins;
     ''
       --> nvim-lspconfig <--
       -- Servers
+      vim.lsp.enable('csharp_ls')
       vim.lsp.enable('clangd')
       vim.lsp.enable('gopls')
       vim.lsp.enable('hls')
