@@ -20,9 +20,6 @@
     ardour
   ];
 
-  services.displayManager.gdm.enable = lib.mkForce false;
-  services.displayManager.lemurs.enable = true;
-
   hyprland.enable = true;
   home-manager.users.jamescraven = {
     wayland.windowManager.hyprland.settings = {

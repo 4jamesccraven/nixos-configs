@@ -49,6 +49,7 @@
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
+      wireplumber.enable = true;
     };
 
     # Enable the openssh daemon
@@ -57,6 +58,8 @@
       settings.PermitRootLogin = "no";
     };
   };
+
+  hardware.bluetooth.enable = true;
 
   # This is pipewire related ¯\_(ツ)_/¯
   security.rtkit.enable = true;
