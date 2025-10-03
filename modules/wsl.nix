@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -17,6 +17,7 @@
     nixfmt-rfc-style
     python3
     ripgrep
+    just
   ];
 
   programs.nh.enable = true;
