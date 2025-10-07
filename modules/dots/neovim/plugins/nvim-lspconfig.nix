@@ -57,20 +57,6 @@ with pkgs.vimPlugins;
           end,
       })
 
-      vim.api.nvim_create_autocmd("BufWritePost", {
-          pattern = "*.py",
-          callback = function()
-              local filepath = vim.api.nvim_buf_get_name(0)
-              vim.fn.jobstart({ "autopep8", "--in-place", filepath }, {
-                  on_exit = function()
-                      vim.schedule(function()
-                          vim.cmd("edit!") -- reload the buffer after formatting
-                      end)
-                  end,
-              })
-          end,
-      })
-
       -- Fix for rust analyzer stuttering
       for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
           local default_diagnostic_handler = vim.lsp.handlers[method]
