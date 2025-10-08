@@ -30,16 +30,6 @@
     wslConf.network.hostname = "wsl";
   };
 
-  users.users.jamescraven = {
-    isNormalUser = true;
-    shell = pkgs.zsh;
-    description = "James Craven";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-  };
-
   # Extra software
   environment.systemPackages = with pkgs; [
     nixfmt-rfc-style
