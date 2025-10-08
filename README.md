@@ -17,7 +17,7 @@ Written and configured with:
 Multi-host configuration files for my NixOS machines.
 
 ### What is Nix/NixOS?
-NixOS is an atomic, declarative, immutable GNU/Linux distribution that offers both rolling and
+NixOS is an atomic, declarative, immutable Linux distribution that offers both rolling and
 stable releases ([More Info](https://en.wikipedia.org/wiki/NixOS)). I tried NixOS in June 2024
 and have been daily driving it since around that time.
 
@@ -42,11 +42,48 @@ Screenshots
 ![screenshot_2](./assets/screenshot_2.png)
 <div align="center"><i>Screenshots taken on vaal (note: this is slightly outdated).</i></div>
 
+Config Design Philosophy
+------------------------
+The setup for my system is heavily inspired by Rust traits, and these traits
+define reusable definitions of the capabilites of my systems.
+
+Some traits define the general type of system that I'm building. This allows
+me to compose functionality without repeating myself, and creates the
+necessary granularity to define systems with complex use cases. The current
+hierarchy looks something like this:
+```
+Any
+ ├─ Machine
+ │    ├─ Graphical
+ │    │    └─ Workstation
+ │    └─ Server
+ └─ WSL
+```
+Where `Any` is the most general and `Workstation` is the most specific.
+
+There also several traits that define additional functionality/requirements
+for a given system. Note that some of the hierarchical traits imply the
+the presence of extension traits. For example all systems have the `Neovim`
+trait (because I will always need to edit text on any system).
+
+The current list is as follows:
+- neovim
+- gaming
+- jellyfin-service
+- nvidia
+- syncthing
+- virtualisation
+
+##### Current traits applied to each system
+- RioTinto: Workstation + Gaming + Nvidia
+- Vaal: Workstation
+- Tokoro: Server + Syncthing + JellyfinService
+- wsl: WSL
+
 System Management
 -----------------
 All of the process I have in place for managing my system are largely self
-contained to a [justfile](https://github.com/casey/just). I have `just` aliased
-to `j`, so I can rebuild my system by running `j b` from my flake's directory.
+contained to a [justfile](https://github.com/casey/just).
 The general "usage loop" is as follows:
 
 | Recipe  | Purpose                                           |
@@ -67,8 +104,7 @@ very stable.
 
 Related Projects
 ----------------
-A few of my other projects are dependencies of my flake. Most aren't really intended
-for public use, but mkdev is!
+A few of my other projects are dependencies of my flake.
 - [Mkdev](https://github.com/4jamesccraven/mkdev): Command-line templating
   engine primarily intended to speed up creating new projects (a la Cargo).
 - [Warframe Bot](https://github.com/4jamesccraven/warframe-bot): A discord bot
@@ -81,5 +117,6 @@ Directory Structure
 - Overlay - Scripts etc. that I packaged
 - Utils - Custom nix code for various things
 - Modules - Everything else
-   - Dots - Specific applications, mostly cli
-   - Desktop Environments - Hyprland & Gnome configuration
+   - Dots - Configurations for specific applications
+   - Traits - Definitions of the capabilities a host can have
+   - Constants - Variables that may be re-used in multiple places.

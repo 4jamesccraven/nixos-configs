@@ -6,9 +6,10 @@
 }:
 
 {
-  #[derive(Server, JellyfinService)]
+  #[derive(Server, Synthing, JellyfinService)]
   imports = [
     ../modules/traits/server.nix
+    ../modules/traits/syncthing.nix
     ../modules/traits/jellyfin-service.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
