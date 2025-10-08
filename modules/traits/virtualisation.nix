@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+# trait Virtualisation {
+#     /// Configs with virtualisation have access to vms and docker.
+# }
 {
   programs.virt-manager.enable = true;
 

@@ -174,7 +174,7 @@
             };
 
             "image#nix" = {
-              path = "${../../../../assets/nixos-logo.png}";
+              path = "${../../../../../assets/nixos-logo.png}";
               tooltip = false;
             };
 

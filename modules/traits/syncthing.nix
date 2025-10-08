@@ -1,5 +1,9 @@
 { ... }:
 
+# trait Syncthing: Any {
+#     /// Indicates that a system should have syncthing enabled.
+#     syncthing => File synching service;
+# }
 {
   services.syncthing = {
     enable = true;

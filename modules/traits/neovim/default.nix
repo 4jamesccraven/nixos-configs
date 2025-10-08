@@ -1,5 +1,6 @@
 {
   inputs,
+  config,
   pkgs,
   lib,
   ...
@@ -133,7 +134,7 @@
       # some plugins are grouped in a single file
       plugins = (
         lib.lists.flatten (
-          inputs.utils.mapFiles (name: import ./plugins/${name} { inherit pkgs lib; }) ./plugins
+          inputs.utils.mapFiles (name: import ./plugins/${name} { inherit pkgs lib config; }) ./plugins
         )
       );
 

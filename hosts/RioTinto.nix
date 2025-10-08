@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   modulesPath,
@@ -7,30 +6,32 @@
 }:
 
 {
+  #[derive(Workstation, Nvidia, Gaming)]
   imports = [
-    ./common.nix
+    ../modules/traits/workstation
+    ../modules/traits/nvidia.nix
+    ../modules/traits/gaming.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   networking.hostName = "RioTinto";
 
-  ## System-specific Packages ##
-  environment.systemPackages = with pkgs; [
-    heroic
-    piper
-  ];
-  services.hardware.openrgb.enable = true;
-  services.ratbagd.enable = true;
-  systemd.services.ratbagd.wantedBy = [
-    "multi-user.target"
-  ];
-  hardware.xpadneo.enable = true;
-  programs.gamemode.enable = true;
-  programs.gamescope.enable = true;
+  # File System
+  boot.supportedFilesystems = [ "ntfs" ];
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/2904deaf-0bd4-41a0-a791-ccf8f98035ae";
+    fsType = "ext4";
+  };
+  fileSystems."/home/jamescraven/steam-nvme" = {
+    device = "/steam";
+    options = [ "bind" ];
+  };
 
+  # Graphical setup
+  # use Graphical::{Gnome, Hyprland};
   gnome.enable = true;
-  hyprland.enable = true;
 
+  hyprland.enable = true;
   home-manager.users.jamescraven = {
     wayland.windowManager.hyprland = {
       settings = {
@@ -48,40 +49,6 @@
           "10, monitor:HDMI-A-1, persistent:true, default:true, on-created-empty:brave"
         ];
       };
-    };
-  };
-
-  ## File System ##
-  boot.supportedFilesystems = [ "ntfs" ];
-
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/2904deaf-0bd4-41a0-a791-ccf8f98035ae";
-    fsType = "ext4";
-  };
-
-  fileSystems."/home/jamescraven/steam-nvme" = {
-    device = "/steam";
-    options = [ "bind" ];
-  };
-
-  ## Nvidia ##
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  hardware = {
-    graphics = {
-      enable = true;
-    };
-
-    nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
-      modesetting.enable = true;
-      powerManagement = {
-        enable = false;
-        finegrained = false;
-      };
-
-      open = false;
-      nvidiaSettings = true;
     };
   };
 

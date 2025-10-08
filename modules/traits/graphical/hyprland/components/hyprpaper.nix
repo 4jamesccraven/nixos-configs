@@ -8,7 +8,7 @@
 
         settings =
           let
-            wp-path = "${../../../../assets/wp-wide.png}";
+            wp-path = "${../../../../../assets/wp-wide.png}";
           in
           {
             preload = [

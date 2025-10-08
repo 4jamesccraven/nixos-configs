@@ -1,6 +1,17 @@
 { pkgs, ... }:
 
+# trait Machine: Any {
+#     /// A machine is any system that exists on bare-metal, e.g., Workstations and Servers
+#     boot loader    => A computer typically needs one of those;
+#     time/locale    => All machines are in one place;
+#     ssh            => Enabled for all machines;
+#     networkManager => All machines use the internet;
+# }
 {
+  imports = [
+    ./any.nix
+  ];
+
   ### Boot Loader ###
   boot.loader = {
     systemd-boot.enable = true;
@@ -12,8 +23,6 @@
     MOZ_ENABLE_WAYLAND = 0;
     GOPATH = "$HOME/.local/share/go";
   };
-
-  system.stateVersion = "23.11";
 
   # Time Zone
   time.timeZone = "America/New_York";
@@ -36,38 +45,15 @@
   };
 
   ### Services ###
-
-  services = {
-    # Enable CUPS to print documents.
-    printing.enable = true;
-
-    # Enable sound with pipewire.
-    pulseaudio.enable = false;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
-      wireplumber.enable = true;
-    };
-
-    # Enable the openssh daemon
-    openssh = {
-      enable = true;
-      settings.PermitRootLogin = "no";
-    };
+  services.openssh = {
+    enable = true;
+    settings.PermitRootLogin = "no";
   };
-
-  hardware.bluetooth.enable = true;
-
-  # This is pipewire related ¯\_(ツ)_/¯
-  security.rtkit.enable = true;
 
   # Networking
   networking.networkmanager.enable = true;
 
-  # XDG
+  # XDG todo!() move to graphical trait
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
@@ -105,11 +91,5 @@
     {
       services.udiskie.enable = true;
     }
-  ];
-
-  ### Generic Sytem Info ###
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
   ];
 }

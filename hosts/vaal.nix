@@ -7,8 +7,9 @@
 }:
 
 {
+  #[derive(Workstation)]
   imports = [
-    ./common.nix
+    ../modules/traits/workstation
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
@@ -20,6 +21,7 @@
     ardour
   ];
 
+  # use Graphical::Hyprland;
   hyprland.enable = true;
   home-manager.users.jamescraven = {
     wayland.windowManager.hyprland.settings = {
@@ -29,7 +31,7 @@
     };
   };
 
-  ## Hardware transcluded
+  ### Hardware transcluded ###
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "thunderbolt"

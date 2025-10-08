@@ -57,7 +57,10 @@
             name:
             nixpkgs.lib.nixosSystem {
               specialArgs = { inherit inputs; };
-              modules = [ ./hosts/${name}.nix ];
+              modules = [
+                ./hosts/${name}.nix
+                ./overlay
+              ];
             };
           myHosts = builtins.filter (file: file != "common") (
             utils.mapFiles (lib.removeSuffix ".nix") ./hosts

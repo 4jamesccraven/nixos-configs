@@ -11,7 +11,6 @@
     ./kitty.nix
     ./lsd.nix
     ./mkdev.nix
-    ./neovim
     ./starship.nix
     ./tealdeer.nix
     ./wezterm.nix

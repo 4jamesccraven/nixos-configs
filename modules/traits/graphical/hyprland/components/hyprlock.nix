@@ -1,13 +1,16 @@
 { config, lib, ... }:
 
+# TODO: fix disgusting imports somehow
 {
   config = lib.mkIf config.hyprland.enable {
     home-manager.users.jamescraven =
       let
-        base = "rgb(${config.colors.base.rgb})";
-        accent = "rgb(${config.colors.accent.rgb})";
-        text = "rgb(${config.colors.text.rgb})";
-        red = "rgb(${config.colors.fail.rgb})";
+        colors = config.colors;
+        # Colours
+        base = "rgb(${colors.base.rgb})";
+        accent = "rgb(${colors.accent.rgb})";
+        text = "rgb(${colors.text.rgb})";
+        fail = "rgb(${colors.fail.rgb})";
       in
       {
         programs.hyprlock = {
@@ -16,7 +19,7 @@
           settings = {
             background = {
               monitor = "";
-              path = "${../../../../assets/wp-wide.png}";
+              path = "${../../../../../assets/wp-wide.png}";
 
               blur_passes = 2;
             };
@@ -51,7 +54,7 @@
 
             image = {
               monitor = "";
-              path = "${../../../../assets/nixos-logo.png}";
+              path = "${../../../../../assets/nixos-logo.png}";
               size = 80;
 
               halign = "center";
@@ -73,7 +76,7 @@
               inner_color = base;
               font_color = text;
               check_color = text;
-              fail_color = red;
+              fail_color = fail;
             };
           };
         };

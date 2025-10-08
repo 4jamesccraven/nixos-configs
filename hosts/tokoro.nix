@@ -6,13 +6,16 @@
 }:
 
 {
+  #[derive(Server, JellyfinService)]
   imports = [
-    ../modules/server.nix
+    ../modules/traits/server.nix
+    ../modules/traits/jellyfin-service.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   networking.hostName = "tokoro";
 
+  # File backups
   services.borgbackup.jobs.main = {
     doInit = true;
     paths = [
