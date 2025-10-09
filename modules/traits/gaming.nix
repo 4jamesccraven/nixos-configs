@@ -27,4 +27,14 @@
   # Software support
   programs.gamemode.enable = true;
   programs.gamescope.enable = true;
+
+  # Fix for Assassin's Creed contacting defunct servers:
+  networking.extraHosts = ''
+    # Redirect legacy Ubisoft servers to localhost to prevent game freezes
+    216.98.48.18 127.0.0.1
+    216.98.48.53 127.0.0.1
+    216.98.48.57 127.0.0.1
+    216.98.48.133 127.0.0.1
+    216.98.48.134 127.0.0.1
+  '';
 }
