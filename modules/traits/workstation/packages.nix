@@ -44,6 +44,7 @@
     })
 
     #-> CLI <-#
+    update-notify
     # Coreutils-esque #
     du-dust
     dysk

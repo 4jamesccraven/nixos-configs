@@ -70,7 +70,17 @@
               color: @acc;
             }
 
-            #custom-menu, #custom-nix, #custom-power {
+            #custom-update.ok {
+              color: @text;
+            }
+            #custom-update.warn {
+              color: @acc;
+            }
+            #custom-update.late {
+              color: @fail;
+            }
+
+            #custom-menu, #custom-nix, #custom-power, #custom-update {
               font-size: 1.4em;
             }
 
@@ -98,6 +108,7 @@
             modules-center = [
               "clock"
               "image#nix"
+              "custom/update"
             ];
 
             modules-right = [
@@ -176,6 +187,13 @@
             "image#nix" = {
               path = "${../../../../../assets/nixos-logo.png}";
               tooltip = false;
+            };
+
+            "custom/update" = {
+              format = "{}";
+              exec = "${pkgs.update-notify}/bin/update-notify --waybar";
+              return-type = "json";
+              interval = 3600;
             };
 
             "custom/power" = {
