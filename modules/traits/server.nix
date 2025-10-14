@@ -11,6 +11,7 @@
     # Components
     ../dots/git.nix
     ../dots/lsd.nix
+    ../dots/bat.nix
     ../dots/zsh.nix
   ];
 
