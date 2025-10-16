@@ -63,6 +63,7 @@
             }
 
             #bluetooth, #network {
+              color: @acc;
               padding: 8px;
             }
 
@@ -70,8 +71,12 @@
               color: @acc;
             }
 
+            #custom-menu {
+              color: rgb(127, 132, 156);
+            }
+
             #custom-update.ok {
-              color: @text;
+              color: rgb(127, 132, 156);
             }
             #custom-update.warn {
               color: @acc;
@@ -168,13 +173,21 @@
 
             clock = {
               format = "{:%b %d  %H:%M}";
-              tooltip-format = "{:%H:%M:%S  %a. %B %d, %Y}\n\n{calendar}";
+              tooltip-format = "<b>{:%H:%M:%S  %a. %B %d, %Y}</b>\n󰍽 M2: Reset | <span size=\"x-large\">󱕒</span> : Next/Previous\n\n{calendar}";
               calendar = {
                 mode = "month";
                 mode-mon-col = 3;
+                format = with config.colors; {
+                  months = "<span color=\"#${accent.hex}\"><b>{}</b></span>";
+                  weekdays = "<b>{}</b>";
+                  today = "<span color=\"#${accent.hex}\"><b><u>{}</u></b></span>";
+                };
               };
               actions = {
                 on-click = "mode";
+                on-click-right = "shift_reset";
+                on-scroll-down = "shift_up";
+                on-scroll-up = "shift_down";
               };
               interval = 1;
             };
@@ -212,7 +225,7 @@
               format-en = "en";
               format-es = "es";
 
-              on-click = "hyprctl switchxkblayout at-translated-set-2-keyboard next";
+              on-click = "hyprctl switchxkblayout current next";
             };
 
             network = {
@@ -227,6 +240,7 @@
               format = " {volume}%";
               format-muted = " {volume}%";
               scroll-step = 5;
+              on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
               on-click-right = "${pkgs.pavucontrol}/bin/pavucontrol";
             };
           };

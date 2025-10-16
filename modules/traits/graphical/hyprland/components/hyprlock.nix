@@ -40,8 +40,8 @@
 
               {
                 monitor = "";
-                text = "cmd[update:1000] echo $(date '+%B %d')";
-                font_size = 35;
+                text = "cmd[update:1000] echo $(date '+%a %B %d')";
+                font_size = 25;
                 font_family = "FiraCode Nerd Font Mono";
 
                 halign = "center";
