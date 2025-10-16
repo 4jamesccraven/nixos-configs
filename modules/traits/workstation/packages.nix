@@ -44,7 +44,6 @@
     })
 
     #-> CLI <-#
-    update-notify
     # Coreutils-esque #
     du-dust
     dysk
@@ -61,6 +60,9 @@
     wl-clipboard
     # Fun #
     figlet
+    # Scripts
+    update-notify
+    ns
 
     #-> Development <-#
     # Compilers #
