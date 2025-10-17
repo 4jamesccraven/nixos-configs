@@ -51,6 +51,7 @@
     just
     ripgrep
     # Other Utilities #
+    ascii-view
     ffmpeg-full
     fzf
     tokei
