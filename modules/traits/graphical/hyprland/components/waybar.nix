@@ -67,7 +67,9 @@
               padding: 8px;
             }
 
-            #custom-nix, #custom-power {
+            #custom-nix,
+            #custom-power,
+            #custom-repo {
               color: @acc;
             }
 
@@ -85,7 +87,11 @@
               color: @fail;
             }
 
-            #custom-menu, #custom-nix, #custom-power, #custom-update {
+            #custom-menu,
+            #custom-nix,
+            #custom-power,
+            #custom-update,
+            #custom-repo {
               font-size: 1.4em;
             }
 
@@ -114,6 +120,7 @@
               "clock"
               "image#nix"
               "custom/update"
+              "custom/repo"
             ];
 
             modules-right = [
@@ -173,6 +180,7 @@
 
             clock = {
               format = "{:%b %d  %H:%M}";
+              # I know this is atrocious but I can't separate it or it doesn't work for some reason.
               tooltip-format = "<b>{:%H:%M:%S  %a. %B %d, %Y}</b>\n󰍽 M2: Reset | <span size=\"x-large\">󱕒</span> : Next/Previous\n\n{calendar}";
               calendar = {
                 mode = "month";
@@ -208,6 +216,23 @@
               return-type = "json";
               interval = 3600;
             };
+
+            "custom/repo" =
+              let
+                check-repo = pkgs.writeShellScriptBin "check-repo" ''
+                  cd "$HOME/nixos"
+                  git fetch --quiet
+                  if [ "$(git rev-parse HEAD)" != "$(git rev-parse @{u})" ]; then
+                    echo "󰓦"
+                  fi
+                '';
+              in
+              {
+                exec = "${check-repo}/bin/check-repo";
+                tooltip = true;
+                tooltip-format = "Local dotfiles repo is not up to date with origin/main";
+                interval = 300;
+              };
 
             "custom/power" = {
               format = "⏻";
