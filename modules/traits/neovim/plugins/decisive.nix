@@ -16,13 +16,12 @@ in
 {
   plugin = decisive;
   type = "lua";
-  config = # lua
-    ''
-      --> decisive-nvim <--
-      -- Keybinds to enable the viewer
-      map('n', '<leader>cca', function() require'decisive'.align_csv({}) end)
-      map('n', '<leader>ccA', function() require'decisive'.align_csv_clear({}) end)
-      map('n', '[c', require'decisive'.align_csv_prev_col)
-      map('n', ']c', require'decisive'.align_csv_next_col)
-    '';
+  config = /* lua */ ''
+    --> decisive-nvim <--
+    -- Keybinds to enable the viewer
+    map('n', '<leader>cca', function() require'decisive'.align_csv({}) end)
+    map('n', '<leader>ccA', function() require'decisive'.align_csv_clear({}) end)
+    map('n', '[c', require'decisive'.align_csv_prev_col)
+    map('n', ']c', require'decisive'.align_csv_next_col)
+  '';
 }

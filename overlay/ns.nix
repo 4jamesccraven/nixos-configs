@@ -9,8 +9,7 @@ pkgs.writeShellScriptBin "ns" (
     gum = "${pkgs.gum}/bin/gum";
     fzf = "${pkgs.fzf}/bin/fzf";
   in
-  # bash
-  ''
+  /* bash */ ''
     case "$1" in
         help|--help|-h)
             ${gum} format -- "## usage: ns [help|shell|run|edit|homepage]" \

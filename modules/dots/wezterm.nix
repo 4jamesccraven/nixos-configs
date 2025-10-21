@@ -11,8 +11,7 @@
           colors = config.colors;
           inherit (colors) base mantle text;
         in
-        # lua
-        ''
+        /* lua */ ''
           local wezterm = require'wezterm'
           local config = wezterm.config_builder()
 

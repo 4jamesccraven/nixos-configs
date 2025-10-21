@@ -13,97 +13,95 @@
         enable = true;
         systemd.enable = true;
 
-        style =
-          with config.colors; # css
-          ''
-            @define-color base rgb(${base.rgb});
-            @define-color acc  rgb(${accent.rgb});
-            @define-color text rgb(${text.rgb});
-            @define-color fail rgb(${fail.rgb});
+        style = with config.colors; /* css */ ''
+          @define-color base rgb(${base.rgb});
+          @define-color acc  rgb(${accent.rgb});
+          @define-color text rgb(${text.rgb});
+          @define-color fail rgb(${fail.rgb});
 
-            * {
-              font-family: FiraCode Nerd Font Mono;
-            }
+          * {
+            font-family: FiraCode Nerd Font Mono;
+          }
 
-            window#waybar {
-              background: transparent;
-            }
+          window#waybar {
+            background: transparent;
+          }
 
-            window > box {
-              background: @base;
-              margin: 5px 20px;
-              margin-bottom: 0px;
-              padding: 5px;
-              border: 3px solid @acc;
-              border-radius: 10px;
-            }
+          window > box {
+            background: @base;
+            margin: 5px 20px;
+            margin-bottom: 0px;
+            padding: 5px;
+            border: 3px solid @acc;
+            border-radius: 10px;
+          }
 
-            #window {
-              color: transparent;
-              background: transparent;
-            }
+          #window {
+            color: transparent;
+            background: transparent;
+          }
 
-            tooltip {
-              color: @text;
-              background: @base;
-              padding: 5px;
-              border: 3px solid @acc;
-              border-radius: 10px;
-            }
+          tooltip {
+            color: @text;
+            background: @base;
+            padding: 5px;
+            border: 3px solid @acc;
+            border-radius: 10px;
+          }
 
-            .module {
-              color: @text;
-              padding: 0 5px;
-            }
+          .module {
+            color: @text;
+            padding: 0 5px;
+          }
 
-            #audio, #sys, #utils {
-              padding: 0 5px;
-              border: 2px solid @acc;
-              border-radius: 8px;
-            }
+          #audio, #sys, #utils {
+            padding: 0 5px;
+            border: 2px solid @acc;
+            border-radius: 8px;
+          }
 
-            #bluetooth, #network {
-              color: @acc;
-              padding: 8px;
-            }
+          #bluetooth, #network {
+            color: @acc;
+            padding: 8px;
+          }
 
-            #custom-nix,
-            #custom-power,
-            #custom-repo {
-              color: @acc;
-            }
+          #custom-nix,
+          #custom-power,
+          #custom-repo {
+            color: @acc;
+          }
 
-            #custom-menu {
-              color: rgb(127, 132, 156);
-            }
+          #custom-menu {
+            color: rgb(127, 132, 156);
+          }
 
-            #custom-update.ok {
-              color: rgb(127, 132, 156);
-            }
-            #custom-update.warn {
-              color: @acc;
-            }
-            #custom-update.late {
-              color: @fail;
-            }
+          #custom-update.ok {
+            color: rgb(127, 132, 156);
+          }
+          #custom-update.warn {
+            color: @acc;
+          }
+          #custom-update.late {
+            color: @fail;
+          }
 
-            #custom-menu,
-            #custom-nix,
-            #custom-power,
-            #custom-update,
-            #custom-repo {
-              font-size: 1.4em;
-            }
+          #custom-menu,
+          #custom-nix,
+          #custom-power,
+          #custom-update,
+          #custom-repo {
+            font-size: 1.4em;
+          }
 
-            #pulseaudio.muted {
-              color: @fail;
-            }
+          #pulseaudio.muted {
+            color: @fail;
+          }
 
-            #workspaces button.active {
-              color: @base;
-              background: @acc;
-            }
-          '';
+          #workspaces button.active {
+            color: @base;
+            background: @acc;
+          }
+        '';
 
         settings = {
           mainBar = {

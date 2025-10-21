@@ -24,13 +24,12 @@ with pkgs.vimPlugins;
     ])
   );
   type = "lua";
-  config = # lua
-    ''
-      --> nvim-treesitter <--
-      require('nvim-treesitter.configs').setup {
-          ensure_installed = {},
-          auto_install = false,
-          highlight = { enable = true },
-      }
-    '';
+  config = /* lua */ ''
+    --> nvim-treesitter <--
+    require('nvim-treesitter.configs').setup {
+        ensure_installed = {},
+        auto_install = false,
+        highlight = { enable = true },
+    }
+  '';
 }
