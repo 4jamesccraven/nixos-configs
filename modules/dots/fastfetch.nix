@@ -16,10 +16,14 @@
 
           display = {
             bar = {
-              borderLeft = "[";
-              borderRight = "]";
-              charElapsed = "=";
-              charTotal = "-";
+              border = {
+                left = "[";
+                right = "]";
+              };
+              char = {
+                elapsed = "=";
+                total = "-";
+              };
             };
             color = {
               keys = accent;
