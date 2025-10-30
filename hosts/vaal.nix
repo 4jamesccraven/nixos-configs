@@ -18,7 +18,6 @@
   ## System-specific Packages ##
   environment.systemPackages = with pkgs; [
     openvpn
-    ardour
   ];
 
   # use Graphical::Hyprland;

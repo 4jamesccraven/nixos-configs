@@ -34,6 +34,9 @@
     hunspellDicts.es_ES
     hunspellDicts.es_AR
     libreoffice-qt
+    # Music #
+    musescore
+    ardour
     # Games #
     (prismlauncher.override {
       jdks = [
