@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 # trait Graphical: Machine {
 #     /// A machine that has a Desktop Environment or Window Manager
@@ -15,4 +15,14 @@
     ./gnome.nix
     ./hyprland
   ];
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+    ];
+    config.common.default = [
+      "gtk"
+    ];
+  };
 }

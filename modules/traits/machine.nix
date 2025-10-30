@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 # trait Machine: Any {
 #     /// A machine is any system that exists on bare-metal, e.g., Workstations and Servers
@@ -52,19 +52,6 @@
 
   # Networking
   networking.networkmanager.enable = true;
-
-  # XDG todo!() move to graphical trait
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-gtk
-    ];
-    config.common.default = [
-      "hyprland"
-      "gtk"
-    ];
-  };
 
   # Allow users to power-off the system etc.
   security.polkit.extraConfig = /* js */ ''
