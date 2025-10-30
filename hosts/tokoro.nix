@@ -20,6 +20,7 @@
   services.borgbackup.jobs.main = {
     doInit = true;
     paths = [
+      "/home/jamescraven/Audio/"
       "/home/jamescraven/Code/"
       "/home/jamescraven/Documents/"
       "/home/jamescraven/Pictures/"
