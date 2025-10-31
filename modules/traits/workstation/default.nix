@@ -19,6 +19,7 @@
     ../virtualisation.nix
     # Contents
     ./packages.nix
+    ./desktop-entries.nix
     ../../dots
   ];
 
