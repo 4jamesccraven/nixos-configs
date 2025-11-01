@@ -14,9 +14,10 @@
     pandas
     pip
     python-lsp-server
-    tqdm
+    rich
     scikit-learn
     seaborn
     sympy
+    tqdm
   ];
 }
