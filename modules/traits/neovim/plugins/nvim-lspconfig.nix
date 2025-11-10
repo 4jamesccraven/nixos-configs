@@ -9,6 +9,7 @@ with pkgs.vimPlugins;
     -- Servers
     vim.lsp.enable('csharp_ls')
     vim.lsp.enable('clangd')
+    vim.lsp.enable('cmake')
     vim.lsp.enable('gopls')
     vim.lsp.enable('hls')
     vim.lsp.enable('jdtls')
