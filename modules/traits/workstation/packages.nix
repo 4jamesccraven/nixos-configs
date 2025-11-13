@@ -89,12 +89,12 @@
   ];
 
   #-> Progam/Service-based packages <-#
-  home-manager.users.jamescraven.programs.direnv = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-  };
   programs.nh.enable = true;
   programs.zsh.enable = true;
   services.blueman.enable = true;
+  programs.direnv = {
+    enable = true;
+    loadInNixShell = true;
+    nix-direnv.enable = true;
+  };
 }

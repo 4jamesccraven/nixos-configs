@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   home-manager.users.jamescraven = {
@@ -111,6 +111,9 @@
         # fzf-zsh integration and theming
         source <(${pkgs.fzf}/bin/fzf --zsh)
         bindkey "^f" fzf-history-widget
+
+        # direnv integration
+        eval "$(${lib.getExe pkgs.direnv} hook zsh)"
 
         bindkey "^a" autosuggest-accept
 
