@@ -15,7 +15,7 @@
     # Internet & Communication #
     brave
     telegram-desktop
-    tor-browser-bundle-bin
+    tor-browser
     # Media #
     foliate
     kdePackages.kdenlive
@@ -48,7 +48,7 @@
 
     #-> CLI <-#
     # Coreutils-esque #
-    du-dust
+    dust
     dysk
     fd
     just

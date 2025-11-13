@@ -18,7 +18,6 @@
 
       extraPackages = with pkgs; [
         # LSP
-        csharp-ls
         clang-tools
         nixd
         nixfmt-rfc-style

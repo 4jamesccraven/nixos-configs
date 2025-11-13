@@ -9,7 +9,7 @@
     programs.mkdev = {
       enable = true;
 
-      extraPackages = with inputs.mkdev.packages.${pkgs.system}; [
+      extraPackages = with inputs.mkdev.packages.${pkgs.stdenv.hostPlatform.system}; [
         mkf
       ];
 
