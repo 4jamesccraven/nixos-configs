@@ -13,6 +13,11 @@
         icon = "system-restart";
         exec = "reboot";
       };
+      chatgpt = {
+        name = "ChatGPT";
+        icon = "irc-chat";
+        exec = "brave --new-window https://chatgpt.com";
+      };
     };
   };
 }
