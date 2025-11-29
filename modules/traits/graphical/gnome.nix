@@ -24,6 +24,7 @@
       gnome-maps
       gnome-tour
       gnome-weather
+      totem
       yelp
     ];
 
