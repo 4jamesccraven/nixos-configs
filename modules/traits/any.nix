@@ -30,11 +30,12 @@
     description = "James Craven";
     shell = pkgs.zsh;
     extraGroups = [
-      "networkmanager"
-      "wheel"
       "docker"
+      "jellyfin"
       "libvirtd"
+      "networkmanager"
       "seat"
+      "wheel"
     ];
   };
 
