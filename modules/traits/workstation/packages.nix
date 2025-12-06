@@ -56,6 +56,7 @@
     # Other Utilities #
     ascii-view
     ffmpeg-full
+    file
     fzf
     tokei
     unzip
