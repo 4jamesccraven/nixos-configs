@@ -79,6 +79,7 @@
     typst
     # Project Management #
     cargo
+    gh
     git
   ];
 
