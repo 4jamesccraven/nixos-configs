@@ -53,6 +53,13 @@
   # Networking
   networking.networkmanager.enable = true;
 
+  security.sudo = {
+    enable = true;
+    extraConfig = ''
+      Defaults pwfeedback
+    '';
+  };
+
   # Allow users to power-off the system etc.
   security.polkit.extraConfig = /* js */ ''
     polkit.addRule(function(action, subject) {
