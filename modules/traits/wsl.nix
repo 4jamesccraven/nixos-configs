@@ -18,6 +18,7 @@
     ../dots/git.nix
     ../dots/lsd.nix
     ../dots/starship.nix
+    ../dots/tealdeer.nix
     ../dots/zsh.nix
     inputs.nixos-wsl.nixosModules.default
   ];
@@ -32,10 +33,10 @@
 
   # Extra software
   environment.systemPackages = with pkgs; [
+    just
     nixfmt-rfc-style
     python3
     ripgrep
-    just
   ];
   programs.nh.enable = true;
   programs.zsh.enable = true;
