@@ -54,15 +54,16 @@
     just
     ripgrep
     # Other Utilities #
-    ascii-view
     ffmpeg-full
     file
     fzf
     tokei
+    tor-dl
     unzip
-    yazi
-    zip
     wl-clipboard
+    yazi
+    yt-dlp
+    zip
     # Fun #
     figlet
     # Scripts
