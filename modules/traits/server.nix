@@ -25,6 +25,7 @@
     zip
     fd
     ripgrep
+    tor-dl
     # System management
     git
     just
