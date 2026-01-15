@@ -20,7 +20,7 @@
         # LSP
         clang-tools
         nixd
-        nixfmt-rfc-style
+        nixfmt
         pyright
         python313Packages.autopep8
         rust-analyzer

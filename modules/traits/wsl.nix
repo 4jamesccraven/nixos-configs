@@ -34,7 +34,7 @@
   # Extra software
   environment.systemPackages = with pkgs; [
     just
-    nixfmt-rfc-style
+    nixfmt
     python3
     ripgrep
   ];

@@ -11,14 +11,13 @@
             wp-path = "${../../../../../assets/wp-wide.png}";
           in
           {
-            preload = [
-              wp-path
-            ];
+            splash = false;
 
             wallpaper = [
-              "eDP-1,${wp-path}"
-              "DP-3,${wp-path}"
-              "HDMI-A-1,${wp-path}"
+              {
+                monitor = "";
+                path = "${wp-path}";
+              }
             ];
           };
       };

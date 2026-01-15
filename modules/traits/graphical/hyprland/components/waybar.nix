@@ -173,7 +173,7 @@
 
             bluetooth = {
               format = "󰂯";
-              on-click = "hyprctl dispatch exec '[float; size 80%] blueman-manager'";
+              on-click = "blueman-manager";
             };
 
             clock = {

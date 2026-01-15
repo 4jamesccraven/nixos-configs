@@ -21,12 +21,7 @@
     kdePackages.kdenlive
     makemkv
     obs-studio
-    (vlc.override {
-      libbluray = libbluray.override {
-        withAACS = true;
-        withBDplus = true;
-      };
-    })
+    vlc
     # Office #
     hunspell
     hunspellDicts.en_GB-large

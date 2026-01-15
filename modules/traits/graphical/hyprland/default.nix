@@ -27,7 +27,6 @@
           ### Startup ###
           exec-once = [
             "hyprctl setcursor Dracula-cursors 22"
-            "hyprpaper"
           ];
 
           ### Compatibility ###

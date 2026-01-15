@@ -41,11 +41,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766682973,
-        "narHash": "sha256-GKO35onS711ThCxwWcfuvbIBKXwriahGqs+WZuJ3v9E=",
+        "lastModified": 1768410656,
+        "narHash": "sha256-9CfEGvHgQ8KdhBI5x6RVkuvqCCM7KiVxCM1n9e3lVBA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "91cdb0e2d574c64fae80d221f4bf09d5592e9ec2",
+        "rev": "85c83f70968516f571015e260fb21c774e586c0b",
         "type": "github"
       },
       "original": {
@@ -84,11 +84,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1765841014,
-        "narHash": "sha256-55V0AJ36V5Egh4kMhWtDh117eE3GOjwq5LhwxDn9eHg=",
+        "lastModified": 1768404695,
+        "narHash": "sha256-eT3dNE2CQYcPDHaeRZAEFrZ0BmMq2wLxMp7hCmzOZBA=",
         "owner": "nix-community",
         "repo": "NixOS-WSL",
-        "rev": "be4af8042e7a61fa12fda58fe9a3b3babdefe17b",
+        "rev": "d0d3636b9d174c4558e3bbb18e194d970505fed8",
         "type": "github"
       },
       "original": {
@@ -114,13 +114,29 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs-openrgb-09": {
       "locked": {
-        "lastModified": 1766651565,
-        "narHash": "sha256-QEhk0eXgyIqTpJ/ehZKg9IKS7EtlWxF3N7DXy42zPfU=",
+        "lastModified": 1749735193,
+        "narHash": "sha256-ELIPCAIgRm39Jj+9VXVVw6ZulyJFS6RBfmzJdPQfTvA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "3e2499d5539c16d0d173ba53552a4ff8547f4539",
+        "rev": "22e95fb3a1a0e1533fd5e4e22002f843f79249db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "22e95fb3a1a0e1533fd5e4e22002f843f79249db",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1768127708,
+        "narHash": "sha256-1Sm77VfZh3mU0F5OqKABNLWxOuDeHIlcFjsXeeiPazs=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "ffbc9f8cbaacfb331b6017d5a5abb21a492c9a38",
         "type": "github"
       },
       "original": {
@@ -137,7 +153,7 @@
         "mkdev": "mkdev",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
-        "wf-bot": "wf-bot"
+        "nixpkgs-openrgb-09": "nixpkgs-openrgb-09"
       }
     },
     "systems": {
@@ -152,29 +168,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "wf-bot": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1758450385,
-        "narHash": "sha256-S4CyVeldKxevecq2UX7zcXoGlNs5BuYmNsPsa0fS/Bo=",
-        "owner": "4jamesccraven",
-        "repo": "warframe-bot",
-        "rev": "7ea83c278a0fb792fc2998d3295b580abb7ea5aa",
-        "type": "github"
-      },
-      "original": {
-        "owner": "4jamesccraven",
-        "repo": "warframe-bot",
         "type": "github"
       }
     }

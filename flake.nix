@@ -2,17 +2,18 @@
   description = "ἐρωτηθεὶς τί ἐστι φίλος, ἔφη, μία ψυχὴ δύο σώμασιν ἐνοικοῦσα";
 
   inputs = {
+    # nixpkgs versions
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs-openrgb-09.url = "github:nixos/nixpkgs/22e95fb3a1a0e1533fd5e4e22002f843f79249db";
 
-    # Helpers
+    # additional modules
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     home-manager = {
       url = "github:nix-community/home-manager?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-utils.url = "github:numtide/flake-utils";
 
-    # Personal Flakes
+    # 3rd party packages
     mkdev = {
       url = "github:4jamesccraven/mkdev";
       inputs = {
@@ -20,13 +21,8 @@
         flake-utils.follows = "flake-utils";
       };
     };
-    wf-bot = {
-      url = "github:4jamesccraven/warframe-bot";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
-    };
+
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs =
@@ -34,6 +30,7 @@
       self,
       nixpkgs,
       flake-utils,
+      nixpkgs-openrgb-09,
       ...
     }@inp:
     let
@@ -60,6 +57,17 @@
               modules = [
                 ./hosts/${name}.nix
                 ./overlay
+                {
+                  nixpkgs.overlays = [
+                    (final: prev: {
+                      openrgb =
+                        let
+                          pkgs = import nixpkgs-openrgb-09 { system = system; };
+                        in
+                        pkgs.openrgb;
+                    })
+                  ];
+                }
               ];
             };
           myHosts = builtins.filter (file: file != "common") (
