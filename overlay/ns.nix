@@ -48,7 +48,6 @@ pkgs.writeShellScriptBin "ns" (
     selection=$(echo "$packages" \
         | ${fzf} --query "$query" \
             --preview '${ntv} preview {}' \
-            --scheme history \
         | cut -d' ' -f2)
 
     # Interpret CLI to determine how the selection should be used
