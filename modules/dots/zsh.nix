@@ -87,6 +87,18 @@
           }
         '';
 
+        tldr =
+          let
+            tealdeer = "${pkgs.tealdeer}/bin/tldr";
+          in
+          /* bash */ ''
+            if [[ "$#" -eq 0 ]]; then
+                ${tealdeer} -l | fzf --preview='tldr {} --color always' --scheme history | xargs tldr -q
+            else
+                ${tealdeer} "$@"
+            fi
+          '';
+
         eject-usb = /* bash */ ''
           eject-usb() {
             dev=$(\lsblk -dpno NAME,TRAN | grep usb \
