@@ -32,4 +32,21 @@
   ];
   programs.nh.enable = true;
   programs.zsh.enable = true;
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    ipv6 = false;
+
+    publish = {
+      enable = true;
+      addresses = true;
+      workstation = true;
+    };
+
+    extraConfig = /* ini */ ''
+      [publish]
+      publish-a-on-ipv6=yes
+    '';
+  };
 }
