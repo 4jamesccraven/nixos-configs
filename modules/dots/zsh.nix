@@ -44,11 +44,7 @@
                 local shell="default"
                 local command="zsh"
                 local global=false
-
-                if [[ $# -gt 0 && "$1" != -* ]]; then
-                    shell="$1"
-                    shift
-                fi
+                local seen_shell=false
 
                 while [[ $# -gt 0 ]]; do
                     case "$1" in
@@ -60,9 +56,23 @@
                             global=true
                             shift
                             ;;
-                        *)
+                        --)
+                            shift
+                            break
+                            ;;
+                        -*)
                             echo "Unknown argument $1"
                             return 1
+                            ;;
+                        *)
+                            if ! $seen_shell; then
+                                shell="$1"
+                                seen_shell=true
+                                shift
+                            else
+                                echo "Unexpected argument $1"
+                                return 1
+                            fi
                             ;;
                     esac
                 done
@@ -73,7 +83,7 @@
                     dir="."
                 fi
 
-                nix develop "''${dir}#''${shell}" -c "$command"
+                nix develop "''${dir}#''${shell}" -c $command
             }
 
             # If of form `nx d` use the above function
