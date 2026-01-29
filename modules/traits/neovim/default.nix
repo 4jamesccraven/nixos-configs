@@ -40,7 +40,7 @@
       defaultEditor = true;
 
       ### General config ###
-      extraLuaConfig = /* lua */ ''
+      initLua = /* lua */ ''
         -- Leader Key
         vim.g.mapleader = ' '
 
