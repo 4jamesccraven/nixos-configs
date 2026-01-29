@@ -18,7 +18,6 @@
     tor-browser
     # Media #
     foliate
-    kdePackages.kdenlive
     makemkv
     obs-studio
     vlc
