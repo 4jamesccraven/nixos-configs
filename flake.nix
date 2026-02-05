@@ -27,7 +27,6 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       flake-utils,
       nixpkgs-openrgb-09,
@@ -78,16 +77,6 @@
 
     })
     // flake-utils.lib.eachDefaultSystem (system: {
-
       devShells = utils.shellsFromDir ./shells;
-
-      packages.exportNeovim =
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-        in
-        pkgs.callPackage ./util/neovim {
-          pkgs = pkgs;
-          self = self;
-        };
     });
 }
