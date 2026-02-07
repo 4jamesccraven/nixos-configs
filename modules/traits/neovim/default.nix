@@ -26,7 +26,6 @@
         rust-analyzer
         rustfmt
         tinymist
-        typstyle
 
         # Clipboard support
         xclip

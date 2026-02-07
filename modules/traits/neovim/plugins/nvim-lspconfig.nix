@@ -26,11 +26,6 @@ with pkgs.vimPlugins;
     vim.lsp.enable('r_language_server')
     vim.lsp.enable('sqls')
     vim.lsp.enable('tinymist')
-    vim.lsp.config('tinymist', {
-        settings = {
-            formatterMode = 'typstyle',
-        }
-    })
 
     -- Keybinds
     map('n', '<leader>lk', function() vim.lsp.buf.hover()         end)

@@ -72,6 +72,7 @@
     python313
     # Writing & Presenting #
     typst
+    typstyle
     # Project Management #
     cargo
     gh
