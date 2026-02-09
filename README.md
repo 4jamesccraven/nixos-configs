@@ -23,15 +23,15 @@ and have been daily driving it since around that time.
 
 Host Devices
 ------------
-| Hostname | Device Type     | Primary Purpose | Namesake                                                                                 |
-|----------|-----------------|-----------------|------------------------------------------------------------------------------------------|
-| vaal     | Laptop          | School          | [Vaal River, South Africa](https://en.wikipedia.org/wiki/Vaal_River)                     |
-| RioTinto | Desktop         | Gaming          | [Rio Tinto, Spain](https://en.wikipedia.org/wiki/Rio_Tinto_(river))                      |
-| tokoro   | Server          | File Backups    | [Tokoro River, Japan](https://en.wikipedia.org/wiki/Tokoro_River)                        |
-| wsl      | Virtual Machine | WSL Config      | [Windows Subsystem for Linux](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux) |
+| Hostname | Device Type     | Primary Purpose       | Namesake                                                                                 |
+|----------|-----------------|-----------------------|------------------------------------------------------------------------------------------|
+| vaal     | Laptop          | School                | [Vaal River, South Africa](https://en.wikipedia.org/wiki/Vaal_River)                     |
+| RioTinto | Desktop         | Gaming                | [Rio Tinto, Spain](https://en.wikipedia.org/wiki/Rio_Tinto_(river))                      |
+| tokoro   | Server          | Jellyfin/File Backups | [Tokoro River, Japan](https://en.wikipedia.org/wiki/Tokoro_River)                        |
+| wsl      | Virtual Machine | WSL Config            | [Windows Subsystem for Linux](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux) |
 
 ##### Note on Names
-We have a long-standing tradition at my house to name all devices after a
+We have a long-standing tradition at my house to name our devices after a
 river. After a few decades of this, basic names like "Nile" are long gone.
 These particular names are based primarily on cultures that I find intriguing
 or have a connection with.
@@ -80,42 +80,20 @@ The current list is as follows:
 - Tokoro: Server + Syncthing + JellyfinService
 - wsl: WSL
 
-System Management
------------------
-All of the process I have in place for managing my system are largely self
-contained to a [justfile](https://github.com/casey/just).
-The general "usage loop" is as follows:
-
-| Recipe  | Purpose                                           |
-|---------|---------------------------------------------------|
-| Build   | Rebuild the system                                |
-| Clean   | Cleans unused packages from /nix/store using `nh` |
-| Push    | Push changes upstream                             |
-| Sync    | Syncs upstream, builds, then cleans               |
-| Update  | Updates flake inputs and tries to build system    |
-
-I try to update my flake every two weeks or so, starting with RioTinto (I use
-it most, so it must work above all else). Then, I splitscreen ssh into my
-laptop and server and `just sync` them. All-in-all, an update for all machines
-takes around 1-2hrs. I have only ever had to hold off on accepting an update
-once, and it was just due to the folks at Home Manager needing a bit longer to
-update their Neovim derivations to match upstream. My experience is otherwise
-very stable.
-
-Related Projects
+Personal Dependencies
 ----------------
 A few of my other projects are dependencies of my flake.
 - [Mkdev](https://github.com/4jamesccraven/mkdev): Command-line templating
   engine primarily intended to speed up creating new projects (a la Cargo).
-- [Warframe Bot](https://github.com/4jamesccraven/warframe-bot): A discord bot
-  that posts [warframe](https://www.warframe.com/) news
+- [4jamesccraven/neovim](https://github.com/4jamesccraven/neovim): my neovim
+  config.
 
 Directory Structure
 -------------------
 - Assets - Static assets for certain applications
 - Hosts - Entry points for the configs
-- Overlay - Scripts etc. that I packaged
-- Utils - Custom nix code for various things
+- Overlay - Random things I've packaged and overlayed into my local `nixpkgs`.
+- Utils - Custom nix utilities
 - Modules - Everything else
    - Dots - Configurations for specific applications
    - Traits - Definitions of the capabilities a host can have

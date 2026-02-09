@@ -20,7 +20,7 @@
 {
   imports = [
     inputs.home-manager.nixosModules.default
-    ./neovim
+    ./neovim.nix
     ../constants
   ];
 

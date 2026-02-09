@@ -55,6 +55,26 @@
         "type": "github"
       }
     },
+    "jcc-neovim": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1770633466,
+        "narHash": "sha256-yoLSmn/+L8YwhDkcYcEB5x0nF0KTiOecxq5syby+F6U=",
+        "owner": "4jamesccraven",
+        "repo": "neovim",
+        "rev": "0b5c8f7b501daf9bd82af25992e4a59a320a12cd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "4jamesccraven",
+        "repo": "neovim",
+        "type": "github"
+      }
+    },
     "mkdev": {
       "inputs": {
         "flake-utils": [
@@ -150,6 +170,7 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
+        "jcc-neovim": "jcc-neovim",
         "mkdev": "mkdev",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",

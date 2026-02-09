@@ -12,6 +12,7 @@
         cfg = "$HOME/.config";
         dw = "$HOME/Downloads";
         nix = "$HOME/nixos";
+        nvim = "$HOME/neovim";
         sw = "$HOME/Documents/Schoolwork";
         txt = "$HOME/Documents/Texts";
         usb = "/run/media/jamescraven";

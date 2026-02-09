@@ -12,6 +12,10 @@
       url = "github:nix-community/home-manager?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    jcc-neovim = {
+      url = "github:4jamesccraven/neovim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # 3rd party packages
     mkdev = {
