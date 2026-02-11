@@ -9,7 +9,7 @@
         exec = "shutdown now";
       };
       restart = {
-        name = "Restart";
+        name = "Reboot";
         icon = "system-restart";
         exec = "reboot";
       };
