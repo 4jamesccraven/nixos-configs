@@ -134,22 +134,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-openrgb-09": {
-      "locked": {
-        "lastModified": 1749735193,
-        "narHash": "sha256-ELIPCAIgRm39Jj+9VXVVw6ZulyJFS6RBfmzJdPQfTvA=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "22e95fb3a1a0e1533fd5e4e22002f843f79249db",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "22e95fb3a1a0e1533fd5e4e22002f843f79249db",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1769461804,
@@ -173,8 +157,7 @@
         "jcc-neovim": "jcc-neovim",
         "mkdev": "mkdev",
         "nixos-wsl": "nixos-wsl",
-        "nixpkgs": "nixpkgs_2",
-        "nixpkgs-openrgb-09": "nixpkgs-openrgb-09"
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "systems": {

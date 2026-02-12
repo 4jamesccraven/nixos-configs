@@ -4,7 +4,6 @@
   inputs = {
     # nixpkgs versions
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    nixpkgs-openrgb-09.url = "github:nixos/nixpkgs/22e95fb3a1a0e1533fd5e4e22002f843f79249db";
 
     # additional modules
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
@@ -33,20 +32,15 @@
     {
       nixpkgs,
       flake-utils,
-      nixpkgs-openrgb-09,
       ...
     }@inp:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       lib = pkgs.lib;
 
-      utils = import ./util {
-        pkgs = pkgs;
-        lib = lib;
-      };
-
+      utils = import ./util { inherit pkgs lib; };
       inputs = inp // {
-        utils = utils;
+        inherit utils;
       };
     in
     flake-utils.lib.eachDefaultSystemPassThrough (system: {
@@ -60,17 +54,17 @@
               modules = [
                 ./hosts/${name}.nix
                 ./overlay
-                {
-                  nixpkgs.overlays = [
-                    (final: prev: {
-                      openrgb =
-                        let
-                          pkgs = import nixpkgs-openrgb-09 { system = system; };
-                        in
-                        pkgs.openrgb;
-                    })
-                  ];
-                }
+                # {
+                #   nixpkgs.overlays = [
+                #     (final: prev: {
+                #       openrgb =
+                #         let
+                #           pkgs = import nixpkgs-openrgb-09 { system = system; };
+                #         in
+                #         pkgs.openrgb;
+                #     })
+                #   ];
+                # }
               ];
             };
           myHosts = builtins.filter (file: file != "common") (
