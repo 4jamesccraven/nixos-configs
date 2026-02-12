@@ -2,27 +2,27 @@
   description = "ἐρωτηθεὶς τί ἐστι φίλος, ἔφη, μία ψυχὴ δύο σώμασιν ἐνοικοῦσα";
 
   inputs = {
-    # nixpkgs versions
+    # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
-    # additional modules
+    # nix-community
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     home-manager = {
       url = "github:nix-community/home-manager?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    jcc-neovim = {
-      url = "github:4jamesccraven/neovim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
-    # 3rd party packages
+    # me
     mkdev = {
       url = "github:4jamesccraven/mkdev";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "flake-utils";
       };
+    };
+    jcc-neovim = {
+      url = "github:4jamesccraven/neovim";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     flake-utils.url = "github:numtide/flake-utils";
@@ -33,15 +33,11 @@
       nixpkgs,
       flake-utils,
       ...
-    }@inp:
+    }@inputs:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       lib = pkgs.lib;
-
       utils = import ./util { inherit pkgs lib; };
-      inputs = inp // {
-        inherit utils;
-      };
     in
     flake-utils.lib.eachDefaultSystemPassThrough (system: {
 
@@ -50,21 +46,13 @@
           mkHost =
             name:
             nixpkgs.lib.nixosSystem {
-              specialArgs = { inherit inputs; };
+              specialArgs = {
+                inherit inputs;
+                jcc-utils = utils;
+              };
               modules = [
                 ./hosts/${name}.nix
                 ./overlay
-                # {
-                #   nixpkgs.overlays = [
-                #     (final: prev: {
-                #       openrgb =
-                #         let
-                #           pkgs = import nixpkgs-openrgb-09 { system = system; };
-                #         in
-                #         pkgs.openrgb;
-                #     })
-                #   ];
-                # }
               ];
             };
           myHosts = builtins.filter (file: file != "common") (

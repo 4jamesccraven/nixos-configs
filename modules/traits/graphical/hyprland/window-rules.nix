@@ -1,7 +1,7 @@
 {
-  inputs,
-  lib,
   config,
+  lib,
+  jcc-utils,
   ...
 }:
 
@@ -18,7 +18,7 @@
               let
                 # Turn each prop (match rule) into a formatted string using its
                 # type and value
-                props = inputs.utils.mapEntries (type: rule: "match:${type} ${rule}") p;
+                props = jcc-utils.mapEntries (type: rule: "match:${type} ${rule}") p;
                 # Join them with a comma
                 m = lib.join "," props;
               in
