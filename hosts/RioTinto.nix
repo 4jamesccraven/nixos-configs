@@ -38,7 +38,7 @@
       settings = {
         exec-once = [
           "openrgb -p main"
-          "${pkgs.xorg.xrandr}/bin/xrandr --output DP-3 --primary"
+          "${pkgs.xrandr}/bin/xrandr --output DP-3 --primary"
         ];
 
         monitor = [
