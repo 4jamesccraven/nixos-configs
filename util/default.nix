@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ lib, ... }:
 
 rec {
   # Equivalent to map, but the mapped functor takes in key, value pairs.
@@ -11,11 +11,12 @@ rec {
   # mapFiles :: (string -> Any) -> Path -> [Any]
   mapFiles = func: dir: map func (builtins.attrNames (builtins.readDir dir));
 
-  # Returns the value for the `devShell` attribute of a flake by reading AttrSets
-  # from `dir` and treating them as the argument to `mkShell`.
-  # shellsFromDir :: Path -> [AttrSet]
+  # Returns the value for the `devShell.${system}` attribute of a flake by
+  # reading AttrSets from each file in `dir` and treating them as the argument
+  # to `mkShell` (using the provided version of nixpkgs).
+  # shellsFromDir :: AttrSet (nixpkgs) -> Path -> [AttrSet]
   shellsFromDir =
-    dir:
+    pkgs: dir:
     let
       shells = builtins.listToAttrs (
         mapFiles (

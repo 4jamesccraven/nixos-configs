@@ -15,54 +15,65 @@
     # me
     mkdev = {
       url = "github:4jamesccraven/mkdev";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     jcc-neovim = {
       url = "github:4jamesccraven/neovim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs =
     {
       nixpkgs,
-      flake-utils,
       ...
     }@inputs:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       lib = pkgs.lib;
       utils = import ./util { inherit pkgs lib; };
+
+      # Generates a hostPlatform-dependent value for each default platform or
+      # "system" available.
+      #
+      # see https://ayats.org/blog/no-flake-utils.
+      # eachDefaultSystem :: (AttrSet (nixpkgs) -> a) -> AttrSet
+      eachDefaultSystem =
+        function:
+        lib.genAttrs [
+          "aarch64-darwin"
+          "aarch64-linux"
+          "x86_64-darwin"
+          "x86_64-linux"
+        ] (system: function nixpkgs.legacyPackages.${system});
+
+      # Generates a NixOS system from a name, which is inferred to be the name
+      # of the host file in ./hosts/
+      # mkHost :: string -> AttrSet (NixOS System)
+      mkHost =
+        name:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+            jcc-utils = utils;
+          };
+          modules = [
+            ./hosts/${name}.nix
+            ./overlay
+          ];
+        };
     in
-    flake-utils.lib.eachDefaultSystemPassThrough (system: {
+    {
 
       nixosConfigurations =
         let
-          mkHost =
-            name:
-            nixpkgs.lib.nixosSystem {
-              specialArgs = {
-                inherit inputs;
-                jcc-utils = utils;
-              };
-              modules = [
-                ./hosts/${name}.nix
-                ./overlay
-              ];
-            };
           myHosts = builtins.filter (file: file != "common") (
             utils.mapFiles (lib.removeSuffix ".nix") ./hosts
           );
         in
         lib.genAttrs myHosts mkHost;
 
-    })
-    // flake-utils.lib.eachDefaultSystem (system: {
-      devShells = utils.shellsFromDir ./shells;
-    });
+      devShells = eachDefaultSystem (pkgs: utils.shellsFromDir pkgs ./shells);
+
+    };
 }
