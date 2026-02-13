@@ -13,10 +13,10 @@
       extraPackages = with pkgs; [
         # LSP
         clang-tools
+        lua-language-server
         nixd
         nixfmt
         pyright
-        python313Packages.autopep8
         rust-analyzer
         rustfmt
         tinymist
