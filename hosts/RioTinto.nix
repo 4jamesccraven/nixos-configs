@@ -39,6 +39,7 @@
         exec-once = [
           "openrgb -p main"
           "${pkgs.xrandr}/bin/xrandr --output DP-3 --primary"
+          "steam -silent"
         ];
 
         monitor = [
