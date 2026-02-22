@@ -80,11 +80,21 @@
   ];
 
   #-> Fonts <-#
-  fonts.packages = with pkgs; [
-    corefonts
-    liberation_ttf
-    nerd-fonts.fira-code
-  ];
+  fonts = {
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      corefonts
+      liberation_ttf
+      nerd-fonts.fira-code
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
+    ];
+    fontconfig.defaultFonts = {
+      sansSerif = [ "Noto Sans" ];
+      serif = [ "Noto Serif" ];
+    };
+  };
 
   #-> Progam/Service-based packages <-#
   programs.nh.enable = true;
