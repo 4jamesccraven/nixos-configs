@@ -4,6 +4,7 @@
   inputs = {
     # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    waybar.url = "github:nixos/nixpkgs/ae67888ff7ef9dff69b3cf0cc0fbfbcd3a722abe";
 
     # nix-community
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";

@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   pkgs,
   lib,
   ...
@@ -11,6 +12,9 @@
 
       programs.waybar = {
         enable = true;
+        # Pin waybar to 0.14
+        # issue: https://github.com/Alexays/Waybar/issues/4864
+        package = inputs.waybar.legacyPackages.${pkgs.stdenv.hostPlatform.system}.waybar;
         systemd.enable = true;
 
         style = with config.colors; /* css */ ''
