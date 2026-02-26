@@ -17,17 +17,6 @@
 
   networking.hostName = "RioTinto";
 
-  # File System
-  boot.supportedFilesystems = [ "ntfs" ];
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/2904deaf-0bd4-41a0-a791-ccf8f98035ae";
-    fsType = "ext4";
-  };
-  fileSystems."/home/jamescraven/steam-nvme" = {
-    device = "/steam";
-    options = [ "bind" ];
-  };
-
   # Graphical setup
   # use Graphical::{Gnome, Hyprland};
   gnome.enable = true;
@@ -54,6 +43,9 @@
       };
     };
   };
+
+  # Enable NTFS support
+  boot.supportedFilesystems = [ "ntfs" ];
 
   ### Hardware transcluded ###
   boot.initrd.availableKernelModules = [
@@ -82,6 +74,16 @@
       "fmask=0022"
       "dmask=0022"
     ];
+  };
+
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/2904deaf-0bd4-41a0-a791-ccf8f98035ae";
+    fsType = "ext4";
+  };
+
+  fileSystems."/home/jamescraven/steam-nvme" = {
+    device = "/steam";
+    options = [ "bind" ];
   };
 
   swapDevices = [ ];
