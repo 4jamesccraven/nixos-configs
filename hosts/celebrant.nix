@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   modulesPath,
   ...
 }:
@@ -14,11 +13,6 @@
   ];
 
   networking.hostName = "celebrant";
-
-  ## System-specific Packages ##
-  environment.systemPackages = with pkgs; [
-    openvpn
-  ];
 
   # use Graphical::Hyprland;
   hyprland.enable = true;
@@ -38,13 +32,14 @@
     "sd_mod"
     "sdhci_pci"
   ];
+
   boot.initrd.kernelModules = [
     "dm-snapshot"
     "cryptd"
   ];
+
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-
   boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-label/nixos";
 
   fileSystems."/" = {

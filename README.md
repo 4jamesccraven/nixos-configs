@@ -23,24 +23,32 @@ and have been daily driving it since around that time.
 
 Host Devices
 ------------
-| Hostname | Device Type     | Primary Purpose       | Namesake                                                                                 |
-|----------|-----------------|-----------------------|------------------------------------------------------------------------------------------|
-| vaal     | Laptop          | School                | [Vaal River, South Africa](https://en.wikipedia.org/wiki/Vaal_River)                     |
-| RioTinto | Desktop         | Gaming                | [Rio Tinto, Spain](https://en.wikipedia.org/wiki/Rio_Tinto_(river))                      |
-| tokoro   | Server          | Jellyfin/File Backups | [Tokoro River, Japan](https://en.wikipedia.org/wiki/Tokoro_River)                        |
-| wsl      | Virtual Machine | WSL Config            | [Windows Subsystem for Linux](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux) |
+| Hostname  | Device Type     | Active | Primary Purpose       | Namesake                                                                                 |
+|-----------|-----------------|--------|-----------------------|------------------------------------------------------------------------------------------|
+| RioTinto  | Desktop         | 🗹      | Gaming                | [Rio Tinto, Spain](https://en.wikipedia.org/wiki/Rio_Tinto_(river))                      |
+| celebrant | Laptop          | 🗹      | Workstation           | [Celebrant, Middle Earth](https://lotr.fandom.com/wiki/Celebrant)
+| tokoro    | Server          | 🗹      | Jellyfin/File Backups | [Tokoro River, Japan](https://en.wikipedia.org/wiki/Tokoro_River)                        |
+| wsl       | Virtual Machine | 🗹      | WSL Config            | [Windows Subsystem for Linux](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux) |
+| vaal      | Laptop          | ☐      | School                | [Vaal River, South Africa](https://en.wikipedia.org/wiki/Vaal_River)                     |
 
 ##### Note on Names
 We have a long-standing tradition at my house to name our devices after a
 river. After a few decades of this, basic names like "Nile" are long gone.
-These particular names are based primarily on cultures that I find intriguing
-or have a connection with.
+My desktop is named after the Rio Tinto because when I first started
+learning Spanish I used to speak the dialect from Spain. Celebrant is named
+after the Celebrant river (pronounced [ˈkɛlɛbrant]), which comes from "celeb,"
+meaning silver, and "brant," meaning something like stream. The computer is
+named so because it has a silvery-blue chassis, and because I was rewatching
+The Hobbit and The Lord of the Rings when I named it. Tokoro is a river in
+Japan. I have always been fascinated by Japanese culture (just like many of my
+peers), so I just chose a name that sounded cool. Vaal was chosen because the
+name looked cool and because I found the letter v appealing.
 
 Screenshots
 -----------
 ![screenshot_1](./assets/screenshot_1.png)
 ![screenshot_2](./assets/screenshot_2.png)
-<div align="center"><i>Screenshots taken on vaal (note: this is slightly outdated).</i></div>
+<div align="center"><i>Screenshots taken on celebrant.</i></div>
 
 Config Design Philosophy
 ------------------------
@@ -76,7 +84,7 @@ The current list is as follows:
 
 ##### Current traits applied to each system
 - RioTinto: Workstation + Gaming + Nvidia
-- Vaal: Workstation
+- celebrant: Workstation
 - Tokoro: Server + Syncthing + JellyfinService
 - wsl: WSL
 
