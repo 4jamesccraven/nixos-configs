@@ -33,4 +33,13 @@ rec {
       );
     in
     shells;
+
+  mkInvalid = hostName: [
+    {
+      assertion = false;
+      message = ''
+        ${hostName} has been decommisioned and cannot be built.
+      '';
+    }
+  ];
 }

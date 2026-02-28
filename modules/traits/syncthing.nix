@@ -12,7 +12,7 @@
         devices = [
           "RioTinto"
           "tokoro"
-          "vaal"
+          "celebrant"
         ];
       };
     in
@@ -29,7 +29,7 @@
         devices = {
           RioTinto.id = "JCBOODZ-OZJFDCV-XTV3HDM-YK7CHV6-ZUUNN7E-RO7MGUE-IYFZKRW-BZVSVQZ";
           tokoro.id = "H6VRRS3-IXJ5H2V-6MPLJJS-SGJ2WRD-CJHSDBA-J6FM6Z7-ERKKFB2-27CBFAX";
-          vaal.id = "R4GJ6P7-6JKQES7-WU3M3RH-G4EQBM3-C5MKBDG-UYI5ISG-OITEZPH-XUVCFAP";
+          celebrant.id = "4C3OPQ6-FDZXVBY-JYJCK4F-EFQCRVJ-XI4NTCJ-BGEQCRO-I5QZVTW-FHA6DQD";
         };
 
         folders = lib.genAttrs [

@@ -2,11 +2,14 @@
   lib,
   config,
   pkgs,
+  jcc-utils,
   modulesPath,
   ...
 }:
 
 {
+  assertions = jcc-utils.mkInvalid "vaal";
+
   #[derive(Workstation)]
   imports = [
     ../modules/traits/workstation
