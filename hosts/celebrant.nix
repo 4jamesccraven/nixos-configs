@@ -24,6 +24,8 @@
     };
   };
 
+  programs.steam.enable = true;
+
   ### Hardware transcluded ###
   boot.initrd.availableKernelModules = [
     "nvme"
