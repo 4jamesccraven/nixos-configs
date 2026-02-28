@@ -14,6 +14,7 @@
 
       settings = {
         background_opacity = "0.9";
+        font_features = "FiraCodeNFM-Reg +ss02";
       };
     };
   };
