@@ -34,11 +34,11 @@
       lib = pkgs.lib;
       utils = import ./util { inherit pkgs lib; };
 
-      # Generates a hostPlatform-dependent value for each default platform or
-      # "system" available.
-      #
-      # see https://ayats.org/blog/no-flake-utils.
-      # eachDefaultSystem :: (AttrSet (nixpkgs) -> a) -> AttrSet
+      /*
+        eachDefaultSystem :: (AttrSet (nixpkgs) -> a) -> AttrSet
+
+        see https://ayats.org/blog/no-flake-utils.
+      */
       eachDefaultSystem =
         function:
         lib.genAttrs [
@@ -48,15 +48,18 @@
           "x86_64-linux"
         ] (system: function nixpkgs.legacyPackages.${system});
 
-      # Generates a NixOS system from a name, which is inferred to be the name
-      # of the host file in ./hosts/
-      # mkHost :: string -> AttrSet (NixOS System)
+      /*
+        mkHost :: string -> AttrSet (NixOS System)
+
+        Generates a NixOS system from a name, which is inferred to be the name
+        of the host file in ./hosts/
+      */
       mkHost =
         name:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
-            jcc-utils = utils;
+            jcc-utils = utils; # Can't use "utils" (causes build failure).
           };
           modules = [
             ./hosts/${name}.nix
