@@ -4,13 +4,10 @@
 #     /// A machine that has need of Nvidia drivers
 # }
 {
-  ## Nvidia ##
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware = {
-    graphics = {
-      enable = true;
-    };
+    graphics.enable = true;
 
     nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.latest;
