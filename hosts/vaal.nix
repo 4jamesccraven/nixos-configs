@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  libjcc,
   modulesPath,
   ...
 }:
@@ -17,9 +16,7 @@
   - Workstation
 */
 {
-  assertions = libjcc.mkInvalid "vaal";
-
-  #[derive(Workstation)]
+  # ---[ Host ]---
   imports = [
     ../modules/traits/workstation
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -27,12 +24,12 @@
 
   networking.hostName = "vaal";
 
-  ## System-specific Packages ##
+  # :> Extra Packages
   environment.systemPackages = with pkgs; [
     openvpn
   ];
 
-  # use Graphical::Hyprland;
+  # :> Graphical Settings
   hyprland.enable = true;
   home-manager.users.jamescraven = {
     wayland.windowManager.hyprland.settings = {
@@ -42,7 +39,7 @@
     };
   };
 
-  ### Hardware transcluded ###
+  # ---[ Hardware ]---
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "thunderbolt"
