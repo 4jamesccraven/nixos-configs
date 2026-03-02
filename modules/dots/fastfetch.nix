@@ -3,7 +3,9 @@
 {
   home-manager.users.jamescraven =
     let
-      accent = config.jcc.colors.accent.ansi;
+      inherit (config.jcc) colors flakeRoot;
+      logo = flakeRoot + /assets/logo.txt;
+      accent = colors.accent.ansi;
     in
     {
       programs.fastfetch = {
@@ -11,7 +13,7 @@
 
         settings = {
           logo = {
-            source = "${../../assets/logo.txt}";
+            source = "${logo}";
           };
 
           display = {

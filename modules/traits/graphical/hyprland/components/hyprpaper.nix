@@ -8,7 +8,8 @@
 
         settings =
           let
-            wp-path = "${../../../../../assets/wp-wide.png}";
+            inherit (config.jcc) flakeRoot;
+            wp-path = "${flakeRoot + /assets/wp-wide.png}";
           in
           {
             splash = false;

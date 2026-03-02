@@ -207,10 +207,14 @@
               tooltip = false;
             };
 
-            "image#nix" = {
-              path = "${../../../../../assets/nixos-logo.png}";
-              tooltip = false;
-            };
+            "image#nix" =
+              let
+                inherit (config.jcc) flakeRoot;
+              in
+              {
+                path = "${flakeRoot + /assets/nixos-logo.png}";
+                tooltip = false;
+              };
 
             "custom/update" = {
               format = "{}";
