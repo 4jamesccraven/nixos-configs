@@ -2,18 +2,18 @@
   description = "ἐρωτηθεὶς τί ἐστι φίλος, ἔφη, μία ψυχὴ δύο σώμασιν ἐνοικοῦσα";
 
   inputs = {
-    # nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    # :> nixpkgs
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable"; # TODO: replace with channel tarball
     waybar.url = "github:nixos/nixpkgs/ae67888ff7ef9dff69b3cf0cc0fbfbcd3a722abe";
 
-    # nix-community
+    # :> nix-community
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     home-manager = {
       url = "github:nix-community/home-manager?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # me
+    # :> me
     mkdev = {
       url = "github:4jamesccraven/mkdev";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,9 +30,11 @@
       ...
     }@inputs:
     let
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      lib = pkgs.lib;
-      utils = import ./util { inherit pkgs lib; };
+      lib = nixpkgs.lib;
+      libjcc = import ./lib { inherit lib; };
+      inherit (libjcc) mapFiles shellsFromDir templatesFromDir;
+
+      myHosts = mapFiles (lib.removeSuffix ".nix") ./hosts;
 
       /*
         eachDefaultSystem :: (AttrSet (nixpkgs) -> a) -> AttrSet
@@ -58,8 +60,7 @@
         name:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs;
-            jcc-utils = utils; # Can't use "utils" (causes build failure).
+            inherit inputs libjcc;
           };
           modules = [
             ./hosts/${name}.nix
@@ -69,15 +70,11 @@
     in
     {
 
-      nixosConfigurations =
-        let
-          myHosts = builtins.filter (file: file != "common") (
-            utils.mapFiles (lib.removeSuffix ".nix") ./hosts
-          );
-        in
-        lib.genAttrs myHosts mkHost;
+      nixosConfigurations = lib.genAttrs myHosts mkHost;
 
-      devShells = eachDefaultSystem (pkgs: utils.shellsFromDir pkgs ./shells);
+      devShells = eachDefaultSystem (pkgs: shellsFromDir pkgs ./shells);
+
+      templates = templatesFromDir ./templates;
 
     };
 }

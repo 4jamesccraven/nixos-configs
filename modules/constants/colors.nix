@@ -1,4 +1,4 @@
-{ lib, jcc-utils, ... }:
+{ lib, libjcc, ... }:
 
 /*
   ====[ Constants/colours ]====
@@ -40,5 +40,5 @@ in
         mantle = "181825";
       };
     in
-    builtins.mapAttrs (_: jcc-utils.parseColor) colours;
+    builtins.mapAttrs (_: libjcc.parseColor) colours;
 }

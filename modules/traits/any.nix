@@ -1,7 +1,7 @@
 {
   config,
   inputs,
-  jcc-utils,
+  libjcc,
   pkgs,
   lib,
   ...
@@ -46,7 +46,7 @@
   # ---[ DevShell Cache ]---
   system.activationScripts.cacheFlakeShells.text =
     let
-      inherit (jcc-utils) mapFiles;
+      inherit (libjcc) mapFiles;
       inherit (config.jcc) flakeRoot;
 
       /*

@@ -1,7 +1,7 @@
 { lib, ... }:
 
 /*
-  ====[ Utils ]====
+  ====[ libjcc ]====
   :: lib
 
   A collection of functions that I felt like extracting for general use.
@@ -52,6 +52,27 @@ rec {
       );
     in
     shells;
+
+  /*
+    templatesFromDir :: path -> AttrSet
+
+    Reads in templates from a given directory.
+    ```
+    {
+      templates = templatesFromDir ./templates;
+    }
+    ```
+  */
+  templatesFromDir =
+    dir:
+    let
+      templateDirs = mapFiles lib.baseNameOf dir;
+      genTemplate = name: {
+        path = dir + "/${name}";
+        description = if name != "default" then "Flake template for ${name}" else "Default template";
+      };
+    in
+    lib.genAttrs templateDirs genTemplate;
 
   /*
     mkInvalid :: string -> [AttrSet]

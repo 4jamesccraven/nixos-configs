@@ -2,7 +2,7 @@
   lib,
   config,
   pkgs,
-  jcc-utils,
+  libjcc,
   modulesPath,
   ...
 }:
@@ -17,7 +17,7 @@
   - Workstation
 */
 {
-  assertions = jcc-utils.mkInvalid "vaal";
+  assertions = libjcc.mkInvalid "vaal";
 
   #[derive(Workstation)]
   imports = [
