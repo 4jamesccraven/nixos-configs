@@ -5,6 +5,12 @@
   ...
 }:
 
+/*
+  ====[ Hyprland/window-rules ]====
+  :: In trait `Graphical`
+  Defines window rules for hyprland that force certain applications to launch
+  floating instead of tiled.
+*/
 {
   config = lib.mkIf config.hyprland.enable {
     home-manager.users.jamescraven = {
@@ -18,6 +24,7 @@
               let
                 # Turn each prop (match rule) into a formatted string using its
                 # type and value
+                # TODO: replace with lib.mapAttrsToList (I think)
                 props = jcc-utils.mapEntries (type: rule: "match:${type} ${rule}") p;
                 # Join them with a comma
                 m = lib.join "," props;
@@ -26,7 +33,7 @@
                 # Apply a float, resize to 16:9 Aspect Ratio at 65% of screen height
                 # and centre
                 "${m}, float on"
-                "${m}, size (1.15*monitor_h) (0.65*monitor_h)" # 0.65 * (16/9) ~~ 1.155
+                "${m}, size (1.15*monitor_h) (0.65*monitor_h)" # 0.65 * (16/9) ≈ 1.155
                 "${m}, center on"
               ];
           in

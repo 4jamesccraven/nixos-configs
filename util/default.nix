@@ -1,5 +1,11 @@
 { lib, ... }:
 
+/*
+  ====[ Utils ]====
+  :: lib
+
+  A collection of functions that I felt like extracting for general use
+*/
 rec {
   /*
     mapEntries :: (string -> Any -> Any) -> AttrSet -> [Any]

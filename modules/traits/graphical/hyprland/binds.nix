@@ -5,6 +5,11 @@
   ...
 }:
 
+/*
+  ====[ Hyprland/binds ]====
+  :: In trait `Graphical`
+  Keybinds for managing windows etc. in Hyprland.
+*/
 {
   config = lib.mkIf config.hyprland.enable {
     environment.systemPackages = with pkgs; [
@@ -14,7 +19,8 @@
     home-manager.users.jamescraven = {
       wayland.windowManager.hyprland.settings =
         let
-          screenie = pkgs.writeShellScriptBin "screenie" ''
+          # TODO: move to overlay
+          screenie = pkgs.writeShellScriptBin "screenie" /* bash */ ''
             mode=''${1:-region}
             time=$(date +%F_%H%M%S)
 
@@ -31,48 +37,48 @@
           "$mod" = "SUPER";
 
           bind = [
-            # General
+            # :> General
             "$mod, Q, killactive"
             "$mod, E, exec, nautilus"
             "Alt_L, Space, exec, fuzzel"
             "Control_L+Shift, Escape, exec, kitty btop"
             "$mod, W, exec, systemctl --user restart waybar"
 
-            # Fullscreen control
+            # :> Fullscreen control
             "$mod, M, fullscreen, 1"
             "$mod+Shift, M, fullscreen, 0"
 
-            # Float
+            # :> Float
             "$mod, F, togglefloating"
             "$mod, F, resizeactive, exact 65% 65%"
             "$mod, F, centerwindow"
 
-            # Minimize trick
+            # :> Minimize trick
             "$mod, Z, togglespecialworkspace, mincontainer"
             "$mod, Z, movetoworkspace, +0"
             "$mod, Z, togglespecialworkspace, mincontainer"
             "$mod, Z, movetoworkspace, special:mincontainer"
             "$mod, Z, togglespecialworkspace, mincontainer"
 
-            # System Power
+            # :> System Power
             "$mod, L, exec, hyprlock"
             "$mod, V, exec, hyprctl dispatch exit"
             "$mod+Shift, V, exec, shutdown now"
 
-            # Window Focus
+            # :> Window Focus
             "Alt_L, H, movefocus, l"
             "Alt_L, J, movefocus, d"
             "Alt_L, K, movefocus, u"
             "Alt_L, L, movefocus, r"
             "Alt_L, TAB, cyclenext, visible"
 
-            # Move Window
+            # :> Move Window
             "$mod+Shift, H, movewindow, l"
             "$mod+Shift, J, movewindow, d"
             "$mod+Shift, K, movewindow, u"
             "$mod+Shift, L, movewindow, r"
 
-            # Change Workspace
+            # :> Change Workspace
             "$mod, 1, workspace, 1"
             "$mod, 2, workspace, 2"
             "$mod, 3, workspace, 3"
@@ -84,7 +90,7 @@
             "$mod, 9, workspace, 9"
             "$mod, 0, workspace, 10"
 
-            # Move Window to Workspace
+            # :> Move Window to Workspace
             "$mod+Shift, 1, movetoworkspace, 1"
             "$mod+Shift, 2, movetoworkspace, 2"
             "$mod+Shift, 3, movetoworkspace, 3"
@@ -96,7 +102,7 @@
             "$mod+Shift, 9, movetoworkspace, 9"
             "$mod+Shift, 0, movetoworkspace, 10"
 
-            # Keyboard Layouts
+            # :> Change Keyboard Layouts
             "Alt_L, Shift_L, exec, hyprctl switchxkblayout current next"
 
             # Screenshots
@@ -105,16 +111,16 @@
           ];
 
           bindel = [
-            # Sound
+            # :> Sound
             ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
             ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-            # Screen Brightness
+            # :> Screen Brightness
             ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
             ", XF86MonBrightnessUp, exec, brightnessctl set 10%+"
           ];
 
           bindl = [
-            # Sound
+            # :> Sound
             ", XF86AudioRaiseVolume, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ 0"
             ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
             # Lock on lid close
@@ -122,7 +128,7 @@
           ];
 
           bindm = [
-            # Window Manipulation
+            # :> Window Manipulation
             "$mod, mouse:272, movewindow"
             "$mod, mouse:273, resizewindow"
           ];

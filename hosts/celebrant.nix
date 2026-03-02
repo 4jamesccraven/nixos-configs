@@ -5,8 +5,17 @@
   ...
 }:
 
+/*
+  ====[ Celebrant ]====
+  :: host
+
+  My laptop.
+
+  Derives:
+  - Workstation
+*/
 {
-  #[derive(Workstation)]
+  # ---[ Host ]---
   imports = [
     ../modules/traits/workstation
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -14,7 +23,6 @@
 
   networking.hostName = "celebrant";
 
-  # use Graphical::Hyprland;
   hyprland.enable = true;
   home-manager.users.jamescraven = {
     wayland.windowManager.hyprland.settings = {
@@ -26,7 +34,7 @@
 
   programs.steam.enable = true;
 
-  ### Hardware transcluded ###
+  # ---[ Hardware ]---
   boot.initrd.availableKernelModules = [
     "nvme"
     "xhci_pci"

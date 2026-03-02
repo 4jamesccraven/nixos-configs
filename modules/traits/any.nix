@@ -7,18 +7,23 @@
   ...
 }:
 
-# trait Any: Neovim + HomeManager {
-#     /// Base type of all configurations
-#     // User level
-#     neovim       => I have to edit text on all systems;
-#     jamescraven  => Essentially all config assumes the existence of my main account;
-#
-#     // Config level
-#     constants    => Global constants to make config less verbose and error prone;
-#     home-manager => All systems use home manager;
-#     shell cache  => All systems should cache the dev-shells at build time;
-#     nix-settings => All systems use flakes and nix command;
-# }
+/*
+  ====[ Any ]====
+  :: trait
+
+  Base type of all configurations.
+
+  Enables:
+    :> User level
+    neovim       => I have to edit text on all systems
+    jamescraven  => Essentially all config assumes the existence of my main account
+
+    :> Config level
+    constants    => Global constants to make config less verbose and error prone
+    home-manager => All systems use home manager
+    shell cache  => All systems should cache the dev-shells at build time
+    nix-settings => All systems use flakes and nix command
+*/
 {
   imports = [
     inputs.home-manager.nixosModules.default
@@ -26,22 +31,19 @@
     ../constants
   ];
 
-  # User account
+  # ---[ User account ]---
   users.users.jamescraven = {
     isNormalUser = true;
     description = "James Craven";
     shell = pkgs.zsh;
     extraGroups = [
-      "docker"
       "jellyfin"
-      "libvirtd"
       "networkmanager"
-      "seat"
       "wheel"
     ];
   };
 
-  # Cache DevShell Dependencies at Build Time
+  # ---[ DevShell Cache ]---
   system.activationScripts.cacheFlakeShells.text =
     let
       inherit (jcc-utils) mapFiles;
@@ -49,7 +51,6 @@
 
       /*
         echoPkgs :: AttrSet -> string
-
         Creates a string which echos a package name into /dev/null.
       */
       echoPkg = pkg: "echo \"${pkg}\" > /dev/null";
@@ -68,7 +69,7 @@
     in
     lib.concatLines cacheCommands;
 
-  # Nix settings
+  # ---[ Nix settings ]---
   nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = [

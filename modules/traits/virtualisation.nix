@@ -1,15 +1,19 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
-# trait Virtualisation {
-#     /// Configs with virtualisation have access to vms and docker.
-# }
+/*
+  ====[ Virtualisation ]====
+  :: trait
+
+  Settings to allow various forms of virtualisation.
+
+  Enables:
+    :> System Level
+    libvirtd         => Traditional virtual machines
+    docker/distrobox => containers/escape hatch
+*/
 {
-  programs.virt-manager.enable = true;
-
-  users.groups.libvirtd.members = [
-    "jamescraven"
-  ];
-
+  # ---[ Virtualisation ]---
+  # :> libvirtd
   virtualisation = {
     libvirtd = {
       enable = true;
@@ -18,10 +22,27 @@
       qemu.package = pkgs.qemu;
     };
     spiceUSBRedirection.enable = true;
-    docker.enable = true;
   };
+  # :> GUI for libvirtd
+  programs.virt-manager.enable = true;
 
+  # ---[ Containerisation ]---
+  virtualisation.docker.enable = true;
   environment.systemPackages = with pkgs; [
     distrobox
   ];
+
+  # ---[ Group Management ]---
+  # Make each user a member of each of `groups`.
+  users.groups =
+    let
+      groups = [
+        "docker"
+        "libvirtd"
+      ];
+      users = [ "jamescraven" ];
+    in
+    lib.genAttrs groups (_: {
+      members = users;
+    });
 }

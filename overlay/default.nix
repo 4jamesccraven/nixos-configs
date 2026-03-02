@@ -1,5 +1,10 @@
 { ... }:
 
+/*
+  ====[ Overlay ]====
+
+  Adds extra packages to `pkgs`.
+*/
 {
   nixpkgs.overlays = [
     (final: prev: {

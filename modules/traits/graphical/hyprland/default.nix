@@ -4,6 +4,11 @@
   ...
 }:
 
+/*
+  ====[ Hyprland/Default ]====
+  :: In trait `Graphical`
+  Defines a NixOS module that enables and configures Hyprland.
+*/
 {
   imports = [
     ./components
@@ -16,29 +21,29 @@
   };
 
   config = lib.mkIf config.hyprland.enable {
+    # Enable in *NixOS*
     programs.hyprland.enable = true;
 
     home-manager.users.jamescraven = {
-
       wayland.windowManager.hyprland = {
-        enable = true;
+        enable = true; # Enable in *home-manager*
 
         settings = {
-          ### Startup ###
+          # ---[ Startup ]----
           exec-once = [
             "hyprctl setcursor Dracula-cursors 22"
           ];
 
-          ### Compatibility ###
+          # ---[ Compatibility ]---
           env = [
             "GDK_SCALE, 2"
             "XCURSOR_SIZE, 22"
           ];
           xwayland.force_zero_scaling = true;
 
-          ### Input and Keybinds ###
+          # ---[ Input ]---
           input = {
-            kb_layout = "us,es";
+            kb_layout = "us,es"; # English & Spanish
             natural_scroll = false;
             numlock_by_default = true;
 
@@ -47,7 +52,8 @@
             };
           };
 
-          ### Appearance ###
+          # ---[ Appearance ]---
+          # :> Border Colours
           general =
             let
               colors = config.jcc.colors;
@@ -62,25 +68,25 @@
               resize_on_border = true;
             };
 
+          # :> Window Decoration
           decoration = {
             rounding = "10";
             active_opacity = "0.95";
             inactive_opacity = "0.90";
           };
 
-          misc = {
-            disable_hyprland_logo = true;
-          };
-
-          # Please leave me alone
+          # ---[ Disable Annoyances ]---
+          # :> Disable default wallpapers
+          misc.disable_hyprland_logo = true;
+          # :> Disable popups
           ecosystem = {
             no_update_news = true;
             no_donation_nag = true;
           };
 
-        };
+        }; # settings
       };
+    }; # home-manager
 
-    };
-  };
+  }; # config
 }

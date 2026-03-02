@@ -1,5 +1,10 @@
 { config, lib, ... }:
 
+/*
+  ====[ Hyprpaper ]====
+  :: In trait `Graphical`
+  Config for hyprpaper, a wallpaper daemon for hyprland.
+*/
 {
   config = lib.mkIf config.hyprland.enable {
     home-manager.users.jamescraven = {
@@ -16,7 +21,7 @@
 
             wallpaper = [
               {
-                monitor = "";
+                monitor = ""; # All monitors
                 path = "${wp-path}";
               }
             ];

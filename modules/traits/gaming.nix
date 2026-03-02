@@ -1,33 +1,42 @@
 { pkgs, ... }:
 
-# trait Gaming {
-#     /// Additional software and settings gaming setups
-#     steam/heroic   => software for installing and running games;
-#     piper/ratbag   => software for managing mouse sensitivity;
-#     xpadneo        => drivers for controllers;
-#     openrgb        => rgb lighting support (technically not gaming specific);
-#     gamemode/scope => software for improving game peformance;
-# }
+/*
+  ====[ Gaming ]====
+  :: trait
+
+  Additional software and settings to facilitate running games and using
+  common gaming hardward (e.g., peripherals, lighting).
+
+  Enables
+      :> System Level
+      steam/heroic   => software for installing and running games;
+      piper/ratbag   => software for managing mouse sensitivity;
+      xpadneo        => drivers for controllers;
+      openrgb        => rgb lighting support (technically not gaming specific);
+      gamemode/scope => software for improving game peformance;
+*/
 {
+  # ---[ Software Support ]---
+  # :> Game stores
   programs.steam.enable = true;
   environment.systemPackages = with pkgs; [
-    heroic # Epic games
-    piper
+    heroic
+    piper # belongs w/ hardware
   ];
-
-  # Hardware support
-  # Mouse DPI
-  services.ratbagd.enable = true;
-  systemd.services.ratbagd.wantedBy = [ "multi-user.target" ];
-  # RGB lighting
-  services.hardware.openrgb.enable = true;
-  # Controller support
-  hardware.xpadneo.enable = true;
-
-  # Software support
+  # :> Performance
   programs.gamemode.enable = true;
   programs.gamescope.enable = true;
 
+  # ---[ Hardware Support ]---
+  # :> Mouse sensitivity
+  services.ratbagd.enable = true;
+  systemd.services.ratbagd.wantedBy = [ "multi-user.target" ];
+  # :> RGB Lighting
+  services.hardware.openrgb.enable = true;
+  # :> Controller/Gamepad
+  hardware.xpadneo.enable = true;
+
+  # ---[ Game-specific ]---
   # Fix for Assassin's Creed contacting defunct servers:
   networking.extraHosts = ''
     # Redirect legacy Ubisoft servers to localhost to prevent game freezes

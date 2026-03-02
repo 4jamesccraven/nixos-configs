@@ -1,33 +1,31 @@
 { ... }:
 
-# trait Machine: Any {
-#     /// A machine is any system that exists on bare-metal, e.g., Workstations and Servers
-#     boot loader    => A computer typically needs one of those;
-#     time/locale    => All machines are in one place;
-#     ssh            => Enabled for all machines;
-#     networkManager => All machines use the internet;
-# }
+/*
+  ====[ Machine ]====
+  :: trait
+
+  A machine is any system that exists on bare-metal, e.g., Workstations and Servers
+
+  Enables:
+      :> System Level
+      boot loader    => A computer typically needs one of those
+      time/locale    => All machines are in one place
+      ssh            => Enabled for all machines
+      networkManager => All machines use the internet
+*/
 {
   imports = [
     ./any.nix
   ];
 
-  ### Boot Loader ###
+  # ---[ Boot Loader ]---
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
   };
 
-  ### Environment Variables ###
-  environment.variables = {
-    MOZ_ENABLE_WAYLAND = 0;
-    GOPATH = "$HOME/.local/share/go";
-  };
-
-  # Time Zone
+  # ---[ Time Zone & Locale ]---
   time.timeZone = "America/New_York";
-
-  # Localisation
   i18n =
     let
       locale = "en_US.UTF-8";
@@ -48,22 +46,23 @@
       };
     };
 
-  ### Services ###
+  # ---[ Services ]---
+  # :> OpenSSH
   services.openssh = {
     enable = true;
     settings.PermitRootLogin = "no";
   };
 
-  # Networking
+  # :> Networking
   networking.networkmanager.enable = true;
 
+  # :> Security
   security.sudo = {
     enable = true;
     extraConfig = ''
       Defaults pwfeedback
     '';
   };
-
   # Allow users to power-off the system etc.
   security.polkit.extraConfig = /* js */ ''
     polkit.addRule(function(action, subject) {
@@ -82,11 +81,17 @@
     });
   '';
 
-  # Removable media
+  # :> Removable Media Management
   services.udisks2.enable = true;
   home-manager.sharedModules = [
     {
       services.udiskie.enable = true;
     }
   ];
+
+  # ---[ Environment Variables ]---
+  environment.variables = {
+    MOZ_ENABLE_WAYLAND = 0;
+    GOPATH = "$HOME/.local/share/go";
+  };
 }

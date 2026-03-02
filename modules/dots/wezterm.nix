@@ -1,5 +1,11 @@
 { config, ... }:
 
+/*
+  ====[ Wezterm ]====
+  :: Dotfile
+
+  Provides configuration for wezterm. Not currently used.
+*/
 {
   home-manager.users.jamescraven = {
     programs.wezterm = {

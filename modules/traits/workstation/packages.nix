@@ -3,29 +3,43 @@
   ...
 }:
 
+/*
+  ====[ Packages ]====
+  :: in trait `Workstation`
+  The master package list for all general purpose workstation.
+
+  Enables:
+  - Browsers, Office Suite, Media, etc.
+  - Fonts
+  - Man caching
+*/
 {
   environment.systemPackages = with pkgs; [
-    #-> GUI <-#
-    # Internet & Communication #
+    # ---[ GUI ]---
+    # :> Internet & Communication
     brave
     telegram-desktop
     tor-browser
-    # Media #
+
+    # :> Media
     foliate
     makemkv
     obs-studio
     vlc
-    # Office #
+
+    # :> Office
     hunspell
     hunspellDicts.en_GB-large
     hunspellDicts.en_US-large
     hunspellDicts.es_ES
     hunspellDicts.es_AR
     libreoffice-qt
-    # Music #
+
+    # :> Music
     musescore
     ardour
-    # Games #
+
+    # :> Games
     (prismlauncher.override {
       jdks = [
         temurin-bin-8
@@ -34,14 +48,15 @@
       ];
     })
 
-    #-> CLI <-#
-    # Coreutils-esque #
+    # ---[ CLI ]---
+    # :> Coreutils-esque
     dust
     dysk
     fd
     just
     ripgrep
-    # Other Utilities #
+
+    # :> Other Utilities
     ffmpeg-full
     file
     fzf
@@ -52,28 +67,33 @@
     yazi
     yt-dlp
     zip
-    # Fun #
+
+    # :> Fun
     figlet
-    # Scripts
+
+    # :> Scripts
     update-notify
     ns
 
-    #-> Development <-#
-    # Compilers #
+    # ---[ Development ]---
+    # :> Compilers
     libgcc
     rustc
-    # Interpreters #
+
+    # :> Interpreters
     python313
-    # Writing & Presenting #
+
+    # :> Writing & Presenting
     typst
     typstyle
-    # Project Management #
+
+    # :> Project Management
     cargo
     gh
     git
   ];
 
-  #-> Progam/Service-based packages <-#
+  # ---[ Progam/Service-based ]---
   programs.nh.enable = true;
   programs.zsh.enable = true;
   services.blueman.enable = true;
@@ -83,7 +103,7 @@
     nix-direnv.enable = true;
   };
 
-  #-> Fonts <-#
+  # ---[ Fonts ]---
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
@@ -100,7 +120,7 @@
     };
   };
 
-  #-> man <-#
+  # ---[ man ]---
   documentation.man = {
     enable = true;
     generateCaches = true;

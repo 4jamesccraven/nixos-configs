@@ -1,5 +1,11 @@
 { pkgs, inputs, ... }:
 
+/*
+  ====[ Mkdev ]====
+  :: dotfile
+
+  Enables and configures mkdev, a command line tool for project templates.
+*/
 {
   home-manager.users.jamescraven = {
     imports = [
@@ -13,6 +19,7 @@
         mkf
       ];
 
+      # :> User Config
       config = {
         recipe_dir = "/home/jamescraven/.config/mkdev/recipes";
 
@@ -26,6 +33,7 @@
         };
       };
 
+      # :> Project Templates
       recipes = [
         {
           name = "basic-flake";

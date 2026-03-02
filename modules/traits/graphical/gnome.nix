@@ -5,15 +5,20 @@
   ...
 }:
 
+/*
+  ====[ GNOME ]====
+  :: In trait `Graphical`
+  Defines a module that enables and configures GNOME
+*/
 {
   options = {
     gnome.enable = lib.mkEnableOption "Enables gnome";
   };
 
   config = lib.mkIf config.gnome.enable {
+    # ---[ Enable and Configure GNOME Base ]---
     services.desktopManager.gnome.enable = true;
-
-    # Exclude GNOME bloat
+    # Exclude unnecessary packages (i.e., bloat)
     environment.gnome.excludePackages = with pkgs; [
       epiphany
       geary
@@ -28,19 +33,17 @@
       yelp
     ];
 
-    # Extensions
+    # ---[ Theming ]---
+    # :> Extensions
     environment.systemPackages = with pkgs.gnomeExtensions; [
       user-themes
     ];
 
-    # Enable DCONF
+    # :> Set shell theme (GTK) and wallpaper using DCONF
     programs.dconf.enable = true;
-
     home-manager.users.jamescraven = {
-      # Force Shell Theme with Dconf
       dconf.settings = {
-        # Force removal of disabled extensions
-        # and enable user-theme
+        # Force enable user-themes extension
         "org/gnome/shell" = {
           disable-user-extensions = false;
           disabled-extensions = [ ];
@@ -49,7 +52,7 @@
           ];
         };
 
-        # Set Shell Theme
+        # Set shell theme
         "org/gnome/shell/extensions/user-theme" = {
           name = "catppuccin-mocha-mauve-standard";
         };

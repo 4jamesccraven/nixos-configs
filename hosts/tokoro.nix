@@ -5,8 +5,19 @@
   ...
 }:
 
+/*
+  ====[ Tokoro ]====
+  :: host
+
+  My media/file-backup server.
+
+  Derives:
+  - Server
+  - Syncthing
+  - Jellyfin
+*/
 {
-  #[derive(Server, Synthing, JellyfinService)]
+  # ---[ Host ]---
   imports = [
     ../modules/traits/server.nix
     ../modules/traits/syncthing.nix
@@ -16,7 +27,7 @@
 
   networking.hostName = "tokoro";
 
-  # File backups
+  # :> File backups
   services.borgbackup.jobs.main = {
     doInit = true;
     paths = [
@@ -33,7 +44,7 @@
     startAt = "daily";
   };
 
-  ### Hardware transcluded ###
+  # ---[ Hardware ]---
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ehci_pci"

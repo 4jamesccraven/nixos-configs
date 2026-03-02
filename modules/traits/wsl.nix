@@ -5,11 +5,19 @@
   ...
 }:
 
-# trait WSL: Any {
-#     /// A configuration for the Windows Subsystem for Linux
-#     dots => some hand-picked dots are available to the wsl config;
-#     wsl  => the config module provided by the wsl flake;
-# }
+/*
+  ====[ WSL ]====
+  :: trait
+
+  A configuration for the Windows Subsystem for Linux
+
+  Enables
+    :> User Level
+    dots => some hand-picked dots are available to the wsl config
+
+    :> System Level
+    wsl  => the config module provided by the wsl flake
+*/
 {
   imports = [
     ./any.nix
@@ -23,7 +31,7 @@
     inputs.nixos-wsl.nixosModules.default
   ];
 
-  # WSL-specific config.
+  # ---[ WSL ]---
   networking.hostName = "wsl";
   wsl = {
     enable = true;
@@ -31,7 +39,7 @@
     wslConf.network.hostname = "wsl";
   };
 
-  # Extra software
+  # ---[ Software ]---
   environment.systemPackages = with pkgs; [
     just
     nixfmt
@@ -41,6 +49,6 @@
   programs.nh.enable = true;
   programs.zsh.enable = true;
 
-  # Nix info
+  # ---[ Nix Settings ]---
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

@@ -1,5 +1,10 @@
 { config, lib, ... }:
 
+/*
+  ====[ Hyprlock ]====
+  :: In trait `Graphical`
+  Config for hyprlock, a lock screen for hyprland.
+*/
 let
   inherit (config.jcc) flakeRoot;
   wpPath = flakeRoot + /assets/wp-wide.png;
@@ -10,7 +15,6 @@ in
     home-manager.users.jamescraven =
       let
         colors = config.jcc.colors;
-        # Colours
         base = "rgb(${colors.base.rgb})";
         accent = "rgb(${colors.accent.rgb})";
         text = "rgb(${colors.text.rgb})";
@@ -21,6 +25,7 @@ in
           enable = true;
 
           settings = {
+            # :> General
             background = {
               monitor = "";
               path = "${wpPath}";
@@ -28,6 +33,8 @@ in
               blur_passes = 2;
             };
 
+            # ---[ Contents ]---
+            # :> Time & Date
             label = [
               {
                 monitor = "";
@@ -56,6 +63,7 @@ in
               }
             ];
 
+            # :> NixOS logo
             image = {
               monitor = "";
               path = "${logoPath}";
@@ -67,6 +75,7 @@ in
               border_color = accent;
             };
 
+            # :> Password Box
             input-field = {
               monitor = "";
               size = "10%, 4%";

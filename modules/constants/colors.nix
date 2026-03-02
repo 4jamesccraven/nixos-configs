@@ -1,5 +1,13 @@
 { lib, ... }:
 
+/*
+  ====[ Constants/colours ]====
+
+  Some basic colours I use throughout my configuration, and utilities to
+  convert them to other types.
+
+  TODO: move parseColor to utils
+*/
 with lib;
 let
   colorType = types.submodule {
@@ -18,11 +26,12 @@ let
     };
   };
 
-  # String -> colorType
-  # Takes a hexadecimal colour string with or without the leading #
-  #
-  # Note that using TOML is necessary as a work around because nix has
-  # no hexadecimal direct parsing.
+  /*
+    parseColor :: string -> colorType
+
+    Takes a hexadecimal colour string with or without the leading #
+    and converts it to a colorType module.
+  */
   parseColor =
     hex:
     let
@@ -33,16 +42,23 @@ let
         b = 3;
       };
 
-      # Helper to extract the nth channel (n must be 1 indexed).
+      /*
+        hexPairOf :: int -> string
+        maps {1,2,3} to the hex associated with {r,g,b}, respectively.
+      */
       hexPairOf = n: builtins.substring ((n - 1) * 2) 2 hexNoPrefix;
-      # Helper that declares that some channel is the nth hex value.
-      # e.g., given hex := ffee11, defineAsTOML r 1 := "r = 0xff"
+      /*
+        defineAsToml :: string -> int -> string
+        takes the name of a channel (in {r,g,b}) and a hex value and converts
+        it to an equivalent TOML mapping.
+      */
       defineAsTOML = channel: index: "${channel} = 0x${hexPairOf index}";
 
-      # Create the TOML document, parse it, and coerce the values from ints to strings.
-      toml = lib.concatLines (lib.mapAttrsToList defineAsTOML channels);
-      rgbVals = fromTOML toml;
-      rgb = builtins.mapAttrs (_: toString) rgbVals;
+      # Create the TOML document
+      tomlAttrs = lib.mapAttrsToList defineAsTOML channels;
+      tomlDoc = lib.concatLines tomlAttrs;
+      # Parse and convert ints to strings
+      rgb = builtins.mapAttrs (_: toString) (fromTOML tomlDoc);
     in
     {
       hex = hexNoPrefix;

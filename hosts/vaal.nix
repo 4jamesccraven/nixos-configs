@@ -7,6 +7,15 @@
   ...
 }:
 
+/*
+  ====[ Vaal ]====
+  :: host
+
+  My laptop from college. No longer a valid build target.
+
+  Derives:
+  - Workstation
+*/
 {
   assertions = jcc-utils.mkInvalid "vaal";
 

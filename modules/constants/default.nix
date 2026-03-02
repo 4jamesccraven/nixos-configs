@@ -1,5 +1,10 @@
 { lib, ... }:
 
+/*
+  ====[ Constants ]====
+
+  Constants pertaining to my configuration
+*/
 let
   inherit (lib) mkOption types;
 in

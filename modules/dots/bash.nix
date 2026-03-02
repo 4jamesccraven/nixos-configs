@@ -1,5 +1,11 @@
 { ... }:
 
+/*
+  ====[ Bash ]====
+  :: dotfile
+
+  Enables and configures a minimal bash config.
+*/
 {
   home-manager.users.jamescraven = {
     programs.bash = {

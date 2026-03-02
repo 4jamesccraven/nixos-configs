@@ -1,5 +1,11 @@
 { lib, ... }:
 
+/*
+  ====[ Starship ]====
+  :: dotfile
+
+  Enables and configures starship, a shell prompt replacement.
+*/
 {
   home-manager.users.jamescraven = {
     programs.starship = {
@@ -9,17 +15,16 @@
         add_newline = false;
         palette = "catppuccin-mocha";
 
+        # ---[ General ]---
         format = lib.concatStrings [
-          ### user@host ###
-          #"[╭─\\(](mauve)"
+          # :> user@host
           "$username"
           "[@](mauve)"
           "$hostname"
-          # "[\\):󱄅 \\[](mauve)"
           ": $os"
           "$directory"
 
-          ### Modules ###
+          # :> Informational Modules
           "$nix_shell"
 
           "$git_branch"
@@ -29,11 +34,12 @@
           "$rust"
           "$python"
 
-          ### Prompt ###
-          # "\n[╰─❯ ](mauve)"
+          # :> Prompt
           "\n[=> ](mauve)"
         ];
 
+        # ---[ Modules ]---
+        # :> Identity
         username = {
           format = "[/ˈiː.ən/]($style)";
           style_user = "none";
@@ -51,12 +57,14 @@
           disabled = false;
         };
 
+        # :> Location
         directory = {
           format = "[\\[](mauve)[$path]($style)[$read_only]($read_only_style)[\\]](mauve) ";
           style = "none";
           truncate_to_repo = false;
         };
 
+        # :> Informational
         nix_shell = {
           format = "[\\(DevShell\\)]($style) ";
           heuristic = false;
@@ -87,36 +95,7 @@
           symbol = "";
         };
 
-        ### Palette definition ###
-        palettes.catppuccin-frappe = {
-          rosewater = "#f2d5cf";
-          flamingo = "#eebebe";
-          pink = "#f4b8e4";
-          mauve = "#ca9ee6";
-          red = "#e78284";
-          maroon = "#ea999c";
-          peach = "#ef9f76";
-          yellow = "#e5c890";
-          green = "#a6d189";
-          teal = "#81c8be";
-          sky = "#99d1db";
-          sapphire = "#85c1dc";
-          blue = "#8caaee";
-          lavender = "#babbf1";
-          text = "#c6d0f5";
-          subtext1 = "#b5bfe2";
-          subtext0 = "#a5adce";
-          overlay2 = "#949cbb";
-          overlay1 = "#838ba7";
-          overlay0 = "#737994";
-          surface2 = "#626880";
-          surface1 = "#51576d";
-          surface0 = "#414559";
-          base = "#303446";
-          mantle = "#292c3c";
-          crust = "#232634";
-        };
-
+        # ---[ Palette ]---
         palettes.catppuccin-mocha = {
           rosewater = "#f5e0dc";
           flamingo = "#f2cdcd";

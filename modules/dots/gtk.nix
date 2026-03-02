@@ -1,5 +1,11 @@
 { pkgs, ... }:
 
+/*
+  ====[ GTK ]====
+  :: dotfile
+
+  Configures Colour Theme, Icon Theme, and Cursor Theme with GTK applications.
+*/
 {
   home-manager.users.jamescraven = {
     gtk = {

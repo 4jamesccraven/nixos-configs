@@ -1,5 +1,11 @@
 { pkgs, lib, ... }:
 
+/*
+  ====[ Zshell ]====
+  :: dotfile
+
+  Enables and configures Zshell.
+*/
 {
   home-manager.users.jamescraven = {
     programs.zsh = {

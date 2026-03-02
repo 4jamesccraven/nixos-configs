@@ -1,5 +1,11 @@
 { ... }:
 
+/*
+  ====[ Dots ]====
+  :: module library
+
+  Dotfiles for several programs managed by home-manager.
+*/
 {
   imports = [
     ./bash.nix

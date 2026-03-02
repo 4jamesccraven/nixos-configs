@@ -1,5 +1,10 @@
 { ... }:
 
+/*
+  ====[ XDG Desktop Entries ]====
+  :: in trait `Workstation`
+  A set of XDG Desktop entries to be used with application launchers (e.g., Fuzzel).
+*/
 {
   home-manager.users.jamescraven = {
     xdg.desktopEntries = {

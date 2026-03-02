@@ -1,9 +1,15 @@
 { lib, ... }:
 
-# trait Syncthing: Any {
-#     /// Indicates that a system should have syncthing enabled.
-#     syncthing => File synching service;
-# }
+/*
+  ====[ Syncthing ]====
+  :: trait
+
+  Indicates that a system should have syncthing enabled.
+
+  Enables:
+    :> User Level (note: runs under `jamescraven` account)
+    syncthing => File synching service
+*/
 {
   services.syncthing =
     let

@@ -6,8 +6,19 @@
   ...
 }:
 
+/*
+  ====[ RioTinto ]====
+  :: host
+
+  My primary PC.
+
+  Derives:
+  - Workstation
+  - Nvidia
+  - Gaming
+*/
 {
-  #[derive(Workstation, Nvidia, Gaming)]
+  # ---[ Host ]---
   imports = [
     ../modules/traits/workstation
     ../modules/traits/nvidia.nix
@@ -17,10 +28,8 @@
 
   networking.hostName = "RioTinto";
 
-  # Graphical setup
-  # use Graphical::{Gnome, Hyprland};
+  # :> Graphical Settings
   gnome.enable = true;
-
   hyprland.enable = true;
   home-manager.users.jamescraven = {
     wayland.windowManager.hyprland = {
@@ -44,10 +53,7 @@
     };
   };
 
-  # Enable NTFS support
-  boot.supportedFilesystems = [ "ntfs" ];
-
-  ### Hardware transcluded ###
+  # ---[ Hardware ] ---
   boot.initrd.availableKernelModules = [
     "nvme"
     "xhci_pci"
@@ -60,6 +66,7 @@
     "kvm-amd"
     "sg"
   ];
+  boot.supportedFilesystems = [ "ntfs" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {

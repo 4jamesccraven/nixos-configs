@@ -1,5 +1,11 @@
 { config, ... }:
 
+/*
+  ====[ Fastfetch ]====
+  :: dotfile
+
+  Enables and configures Fastfetch, a system information tool.
+*/
 {
   home-manager.users.jamescraven =
     let
@@ -11,12 +17,12 @@
       programs.fastfetch = {
         enable = true;
 
+        # ---[ Display Settings ]---
         settings = {
-          logo = {
-            source = "${logo}";
-          };
+          logo.source = "${logo}";
 
           display = {
+            # :> Percent Bars
             bar = {
               border = {
                 left = "[";
@@ -27,19 +33,22 @@
                 total = "-";
               };
             };
+
+            # :> Colours
             color = {
               keys = accent;
               output = "default";
             };
+            # :> Constant Strings
             constants = [
               "══════════════════════════════════════"
               "                                      "
               "[38D"
             ];
-            percent = {
-              type = 3;
-            };
+            percent.type = 3;
+            # :> Disable Default Separator
             separator = "";
+            # :> Data Size Formatting
             size = {
               binaryPrefix = "si";
               maxPrefix = "TB";
@@ -47,6 +56,7 @@
             };
           };
 
+          # ---[ Information Modules ]---
           modules = [
             {
               format = " /ˈiː.ən/{#keys}@{2}";

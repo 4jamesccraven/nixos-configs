@@ -1,10 +1,22 @@
 { pkgs, ... }:
 
-# trait JellyfinService {
-#     /// A machine that runs a Jellyfin server for others.
-# }
+/*
+  ====[ Jellyfin ]====
+  :: trait
+
+  Configuration for Jellyfin media server.
+
+  Enables:
+    :> User Level
+    ffmpeg => For debugging media issues & reformatting
+
+    :> System Level
+    Jellyfin => Media server
+    nginx    => Reverse Proxy
+    firewall => Opens 8096 locally and 50924 externally
+*/
 {
-  # Enable the service.
+  # ---[ Jellyfin ]---
   services.jellyfin.enable = true;
   # Open the port to others
   networking.firewall.allowedTCPPorts = [
@@ -12,12 +24,7 @@
     50924
   ];
 
-  # Having ffmpeg for debugging/editing is important.
-  environment.systemPackages = with pkgs; [
-    ffmpeg-full
-  ];
-
-  # Set up reverse proxy to port forward jellyfin.
+  # ---[ nginx ]---
   services.nginx = {
     enable = true;
     virtualHosts."_" = {
@@ -33,4 +40,9 @@
       };
     };
   };
+
+  # ---[ ffmpeg ]---
+  environment.systemPackages = with pkgs; [
+    ffmpeg-full
+  ];
 }

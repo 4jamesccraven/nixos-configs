@@ -1,7 +1,12 @@
 { pkgs, ... }:
 
-{
+/*
+  ====[ Bat ]====
+  :: dotfile
 
+  Enables bat, batman, and installs a catppuccin theme for it.
+*/
+{
   home-manager.users.jamescraven = {
     programs.bat = {
       enable = true;
@@ -10,6 +15,7 @@
         batman
       ];
 
+      # TODO: update
       themes = {
         "Catppuccin Mocha" = {
           src = pkgs.fetchFromGitHub {
@@ -31,5 +37,4 @@
       lsblk = "lsblk | bat -l conf -pp";
     };
   };
-
 }

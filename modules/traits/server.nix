@@ -1,39 +1,51 @@
 { pkgs, ... }:
 
-# trait Server: Machine {
-#     /// A physical machine that is headless, intended to run services
-#     dots  => A few handpicked dotfiles useful for working on a headless machine;
-#     avahi => Allows Windows (ew) to find the server via local MDNS;
-# }
+/*
+  ====[ Server ]====
+  :: trait
+
+  A physical machine that is headless, intended to run services.
+
+  Enables:
+    :> User Level
+    dots  => A few handpicked dotfiles useful for working on a headless machine
+
+    :> System Level
+    avahi => Allows other machines to find the server via local MDNS
+*/
 {
   imports = [
-    # Super traits
+    # :> Super traits
     ./machine.nix
-    # Components
+    # :> Components
     ../dots/git.nix
     ../dots/lsd.nix
     ../dots/bat.nix
     ../dots/zsh.nix
   ];
 
+  # ---[ Software ]---
   environment.systemPackages = with pkgs; [
-    # File management
+    # :> File management
     dust
     dysk
-    unzip
     yazi
-    # Tools
+
+    # :> CLI Tools
     fd
     ripgrep
     tor-dl
     zip
-    # System management
+    unzip
+
+    # :> System management
     git
     just
   ];
   programs.nh.enable = true;
   programs.zsh.enable = true;
 
+  # ---[ Services ]---
   services.avahi = {
     enable = true;
     nssmdns4 = true;

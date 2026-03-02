@@ -1,8 +1,15 @@
 { config, ... }:
 
-# trait Nvidia {
-#     /// A machine that has need of Nvidia drivers
-# }
+/*
+  ====[ Nvidia ]====
+  :: trait
+
+  A machine that has Nvidia graphics.
+
+  Enables:
+    :> System Level
+    nvidia drivers => what it says on the tin
+*/
 {
   services.xserver.videoDrivers = [ "nvidia" ];
 

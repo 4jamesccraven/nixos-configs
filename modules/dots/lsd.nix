@@ -1,5 +1,11 @@
 { ... }:
 
+/*
+  ====[ LSD ]====
+  :: dotfile
+
+  Enables and configures Ls-Deluxe, a modern replacement for ls.
+*/
 {
   home-manager.users.jamescraven = {
     programs.lsd = {
@@ -7,6 +13,7 @@
 
       enableZshIntegration = true;
 
+      # ---[ Settings ]---
       settings = {
         blocks = [
           "permission"
@@ -22,6 +29,7 @@
         symlink-arrow = "->";
       };
 
+      # ---[ Colours ]---
       colors = {
         # Taken from https://github.com/catppuccin/lsd/blob/main/themes/catppuccin-mocha/colors.yaml
         user = "#cba6f7";

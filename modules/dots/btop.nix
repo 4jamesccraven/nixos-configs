@@ -1,8 +1,14 @@
 { ... }:
 
-{
+/*
+  ====[ Btop ]====
+  :: dotfile
 
+  Enables and configures btop, a system resource manager.
+*/
+{
   home-manager.users.jamescraven = {
+    # :> Settings
     programs.btop = {
       enable = true;
 
@@ -14,6 +20,8 @@
       };
     };
 
+    # :> Destop Entry Override
+    # (makes the desktop entry use kitty instead of xterm)
     xdg.desktopEntries = {
       btop = {
         type = "Application";
@@ -31,5 +39,4 @@
       };
     };
   };
-
 }
