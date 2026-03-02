@@ -26,6 +26,7 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       ...
     }@inputs:
@@ -75,6 +76,10 @@
       devShells = eachDefaultSystem (pkgs: shellsFromDir pkgs ./shells);
 
       templates = templatesFromDir ./templates;
+
+      checks = eachDefaultSystem (pkgs: {
+        formatting = pkgs.callPackage ./checks/formatting.nix { inherit pkgs self; };
+      });
 
     };
 }
