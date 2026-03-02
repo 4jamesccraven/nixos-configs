@@ -41,8 +41,8 @@ let
 
       # Create the TOML document, parse it, and coerce the values from ints to strings.
       toml = lib.concatLines (lib.mapAttrsToList defineAsTOML channels);
-      rgbVals = builtins.fromTOML toml;
-      rgb = builtins.mapAttrs (_: builtins.toString) rgbVals;
+      rgbVals = fromTOML toml;
+      rgb = builtins.mapAttrs (_: toString) rgbVals;
     in
     {
       hex = hexNoPrefix;
@@ -51,12 +51,12 @@ let
     };
 in
 {
-  options.colors = mkOption {
+  options.jcc.colors = mkOption {
     type = types.attrsOf colorType;
     description = "Named colour variables";
   };
 
-  config.colors =
+  config.jcc.colors =
     let
       colours = {
         base = "1e1e2e";

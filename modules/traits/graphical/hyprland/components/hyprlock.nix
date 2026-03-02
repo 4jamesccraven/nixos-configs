@@ -1,11 +1,15 @@
 { config, lib, ... }:
 
-# TODO: fix disgusting imports somehow
+let
+  inherit (config.jcc) flakeRoot;
+  wpPath = flakeRoot + /assets/wp-wide.png;
+  logoPath = flakeRoot + /assets/nixos-logo.png;
+in
 {
   config = lib.mkIf config.hyprland.enable {
     home-manager.users.jamescraven =
       let
-        colors = config.colors;
+        colors = config.jcc.colors;
         # Colours
         base = "rgb(${colors.base.rgb})";
         accent = "rgb(${colors.accent.rgb})";
@@ -19,7 +23,7 @@
           settings = {
             background = {
               monitor = "";
-              path = "${../../../../../assets/wp-wide.png}";
+              path = "${wpPath}";
 
               blur_passes = 2;
             };
@@ -54,7 +58,7 @@
 
             image = {
               monitor = "";
-              path = "${../../../../../assets/nixos-logo.png}";
+              path = "${logoPath}";
               size = 80;
 
               halign = "center";

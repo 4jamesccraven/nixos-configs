@@ -8,7 +8,7 @@
       enableBashIntegration = true;
       extraConfig =
         let
-          colors = config.colors;
+          colors = config.jcc.colors;
           inherit (colors) base mantle text;
         in
         /* lua */ ''

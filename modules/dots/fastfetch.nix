@@ -3,7 +3,7 @@
 {
   home-manager.users.jamescraven =
     let
-      accent = config.colors.accent.ansi;
+      accent = config.jcc.colors.accent.ansi;
     in
     {
       programs.fastfetch = {

@@ -50,8 +50,9 @@
           ### Appearance ###
           general =
             let
-              accent = "rgb(${config.colors.accent.hex})";
-              base = "rgb(${config.colors.base.hex})";
+              colors = config.jcc.colors;
+              accent = "rgb(${colors.accent.hex})";
+              base = "rgb(${colors.base.hex})";
             in
             {
               border_size = 3;

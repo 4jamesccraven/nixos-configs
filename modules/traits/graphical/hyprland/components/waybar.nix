@@ -17,7 +17,7 @@
         package = inputs.waybar.legacyPackages.${pkgs.stdenv.hostPlatform.system}.waybar;
         systemd.enable = true;
 
-        style = with config.colors; /* css */ ''
+        style = with config.jcc.colors; /* css */ ''
           @define-color base rgb(${base.rgb});
           @define-color acc  rgb(${accent.rgb});
           @define-color text rgb(${text.rgb});
@@ -187,7 +187,7 @@
               calendar = {
                 mode = "month";
                 mode-mon-col = 3;
-                format = with config.colors; {
+                format = with config.jcc.colors; {
                   months = "<span color=\"#${accent.hex}\"><b>{}</b></span>";
                   weekdays = "<b>{}</b>";
                   today = "<span color=\"#${accent.hex}\"><b><u>{}</u></b></span>";
