@@ -25,10 +25,8 @@
 
   # Daemons
   services = {
-    # Enable CUPS to print documents.
     printing.enable = true;
 
-    # Enable sound with pipewire.
     pulseaudio.enable = false;
     pipewire = {
       enable = true;

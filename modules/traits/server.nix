@@ -2,7 +2,8 @@
 
 # trait Server: Machine {
 #     /// A physical machine that is headless, intended to run services
-#     dots => A few handpicked dotfiles useful for working on a headless machine;
+#     dots  => A few handpicked dotfiles useful for working on a headless machine;
+#     avahi => Allows Windows (ew) to find the server via local MDNS;
 # }
 {
   imports = [
@@ -19,13 +20,13 @@
     # File management
     dust
     dysk
-    yazi
     unzip
+    yazi
     # Tools
-    zip
     fd
     ripgrep
     tor-dl
+    zip
     # System management
     git
     just

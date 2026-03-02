@@ -1,5 +1,7 @@
 {
+  config,
   inputs,
+  jcc-utils,
   pkgs,
   lib,
   ...
@@ -39,18 +41,32 @@
     ];
   };
 
-  #-> Cache DevShell Dependencies at Build Time <-#
-  system.activationScripts.cacheFlakeShells.text = lib.concatLines (
-    lib.flatten (
-      map (
+  # Cache DevShell Dependencies at Build Time
+  system.activationScripts.cacheFlakeShells.text =
+    let
+      inherit (jcc-utils) mapFiles;
+      inherit (config.jcc) flakeRoot;
+
+      /*
+        echoPkgs :: AttrSet -> string
+
+        Creates a string which echos a package name into /dev/null.
+      */
+      echoPkg = pkg: "echo \"${pkg}\" > /dev/null";
+
+      # Read in the build input of each devShell
+      shellInputs = mapFiles (
         name:
         let
           params = (import ../../shells/${name} { inherit pkgs; });
         in
-        map (pkg: "echo \"${pkg}\" > /dev/null") params.buildInputs
-      ) (builtins.attrNames (builtins.readDir ../../shells))
-    )
-  );
+        params.buildInputs
+      ) (flakeRoot + /shells);
+
+      # Convert each set of inputs into a list of `echo` commands, then flatten
+      cacheCommands = lib.concatMap (map echoPkg) shellInputs;
+    in
+    lib.concatLines cacheCommands;
 
   # Nix settings
   nixpkgs.config.allowUnfree = true;

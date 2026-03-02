@@ -4,12 +4,6 @@
 }:
 
 {
-  ### Software ###
-  documentation.man = {
-    enable = true;
-    generateCaches = true;
-  };
-
   environment.systemPackages = with pkgs; [
     #-> GUI <-#
     # Internet & Communication #
@@ -79,6 +73,16 @@
     git
   ];
 
+  #-> Progam/Service-based packages <-#
+  programs.nh.enable = true;
+  programs.zsh.enable = true;
+  services.blueman.enable = true;
+  programs.direnv = {
+    enable = true;
+    loadInNixShell = true;
+    nix-direnv.enable = true;
+  };
+
   #-> Fonts <-#
   fonts = {
     enableDefaultPackages = true;
@@ -96,13 +100,10 @@
     };
   };
 
-  #-> Progam/Service-based packages <-#
-  programs.nh.enable = true;
-  programs.zsh.enable = true;
-  services.blueman.enable = true;
-  programs.direnv = {
+  #-> man <-#
+  documentation.man = {
     enable = true;
-    loadInNixShell = true;
-    nix-direnv.enable = true;
+    generateCaches = true;
   };
+
 }
