@@ -96,13 +96,34 @@ A few of my other projects are dependencies of my flake.
 - [4jamesccraven/neovim](https://github.com/4jamesccraven/neovim): my neovim
   config.
 
+
+assets
+checks
+docs
+flake.lock
+flake.nix
+hosts
+justfile
+lib
+LICENSE
+modules
+overlay
+README.md
+shells
+templates
+
+
 Directory Structure
 -------------------
 - Assets - Static assets for certain applications
+- Checks - Testing for my configs
+- Docs - Documentation and notes
 - Hosts - Entry points for the configs
-- Overlay - Random things I've packaged and overlayed into my local `nixpkgs`.
-- Utils - Custom nix utilities
+- Lib - Custom nix utilities
 - Modules - Everything else
    - Dots - Configurations for specific applications
    - Traits - Definitions of the capabilities a host can have
    - Constants - Variables that may be re-used in multiple places.
+- Overlay - Random things I've packaged and overlayed into my local `nixpkgs`
+- Shells - Definitions for Nix DevShells
+- Templates - Flake templates for use with `nix flake init`
