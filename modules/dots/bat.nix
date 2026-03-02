@@ -15,14 +15,13 @@
         batman
       ];
 
-      # TODO: update
       themes = {
         "Catppuccin Mocha" = {
           src = pkgs.fetchFromGitHub {
             owner = "catppuccin";
             repo = "bat";
-            rev = "d714cc1d358ea51bfc02550dabab693f70cccea0";
-            sha256 = "1zlryg39y4dbrycjlp009vd7hx2yvn5zfb03a2vq426z78s7i423";
+            rev = "6810349b28055dce54076712fc05fc68da4b8ec0";
+            hash = "sha256-lJapSgRVENTrbmpVyn+UQabC9fpV1G1e+CdlJ090uvg=";
           };
           file = "themes/Catppuccin Mocha.tmTheme";
         };
