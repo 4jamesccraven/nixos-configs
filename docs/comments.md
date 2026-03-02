@@ -104,9 +104,9 @@ Documentation for named functions should generally look something like this:
     myFunc :: int -> a -> string
 
     This function does a thing with an int and a generic other to make a string.
-    \`\`\`
+    TRIPLE_TICK
     myString = myFunc 3 [ "foo" ];
-    \`\`\`
+    TRIPLE_TICK
   */
   myFunc = param: other: doSomethingWith param other;
 
@@ -114,20 +114,27 @@ Documentation for named functions should generally look something like this:
 ```
 The first line in the comment is a Haskell-style function declaration (see also [noogle](https://noogle.dev)).
 There is then a new line (which is optional for local functions), and finally an
-example (which should only be used for library code).
+example (which should only be used for library code). `TRIPLE_TICK` refers to the
+markdown codeblock syntax.
 
 ### On Types
-I've tried to adopt the noogle convention, but I'm not sure I'm perfectly
-compliant just yet.
+The names are based loosely on noogle and `lib.types`.
 
 Types are generally one of:
-- string
 - int
+- float
 - string
+- path
 - bool
-- a-z (generic)
-- \[TYPE] (list of TYPE)
-- AttrSet
+- attrs
+- generic (a, b, c, etc.)
+- \[type] (list of type)
+- attrsOf type (attribute set with values of type)
+
+A few specific formats of attrs have their own name:
+- nixpkgs: the value typically assigned to `pkgs`
+- NixOS System: a system config
+- package: a nix derivation
 
 ## Why?
 It started with wanting to type annotate my functions, but having random

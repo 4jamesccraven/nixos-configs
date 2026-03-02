@@ -17,7 +17,10 @@
       wayland.windowManager.hyprland.settings = {
         windowrule =
           let
-            # float :: AttrSet -> [string]
+            /*
+              float :: attrs -> [string]
+              Creates a set of floating mode rules for a given match target
+            */
             float =
               p:
               let

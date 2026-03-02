@@ -38,7 +38,7 @@
       myHosts = mapFiles (lib.removeSuffix ".nix") ./hosts;
 
       /*
-        eachDefaultSystem :: (AttrSet (nixpkgs) -> a) -> AttrSet
+        eachDefaultSystem :: (nixpkgs -> a) -> attrsOf a
 
         see https://ayats.org/blog/no-flake-utils.
       */
@@ -52,7 +52,7 @@
         ] (system: function nixpkgs.legacyPackages.${system});
 
       /*
-        mkHost :: string -> AttrSet (NixOS System)
+        mkHost :: string -> NixOS System (attrs)
 
         Generates a NixOS system from a name, which is inferred to be the name
         of the host file in ./hosts/

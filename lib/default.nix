@@ -8,7 +8,7 @@
 */
 rec {
   /*
-    mapFiles :: (string -> Any) -> Path -> [Any]
+    mapFiles :: (string -> a) -> path -> [a]
 
     Equivalent to map, but the mapped functor is applied to the string names
     of all files in provided directory.
@@ -19,7 +19,7 @@ rec {
   mapFiles = func: dir: map func (builtins.attrNames (builtins.readDir dir));
 
   /*
-    shellsFromDir :: AttrSet (nixpkgs) -> Path -> [AttrSet]
+    shellsFromDir :: nixpkgs -> path -> attrsOf derivation
 
     Returns the value for the `devShell.${system}` attribute of a flake by
     reading AttrSets from each file in `dir` and treating them as the argument
@@ -54,7 +54,7 @@ rec {
     shells;
 
   /*
-    templatesFromDir :: path -> AttrSet
+    templatesFromDir :: path -> attrs
 
     Reads in templates from a given directory.
     ```
@@ -75,7 +75,7 @@ rec {
     lib.genAttrs templateDirs genTemplate;
 
   /*
-    mkInvalid :: string -> [AttrSet]
+    mkInvalid :: string -> [attrs]
 
     Adds an assertion that guarantees failure so that a NixOS system cannot be used.
     ```

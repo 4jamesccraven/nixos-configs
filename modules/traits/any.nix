@@ -50,7 +50,7 @@
       inherit (config.jcc) flakeRoot;
 
       /*
-        echoPkgs :: AttrSet -> string
+        echoPkgs :: package -> string
         Creates a string which echos a package name into /dev/null.
       */
       echoPkg = pkg: "echo \"${pkg}\" > /dev/null";
@@ -59,7 +59,7 @@
       shellInputs = mapFiles (
         name:
         let
-          params = (import ../../shells/${name} { inherit pkgs; });
+          params = (import (flakeRoot + /shells/${name}) { inherit pkgs; });
         in
         params.buildInputs
       ) (flakeRoot + /shells);
