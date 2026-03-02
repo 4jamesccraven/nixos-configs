@@ -54,10 +54,10 @@ pkgs.writeShellScriptBin "ns" (
     if [ "$CAT" = "nixpkgs" ]; then
         case "$1" in
             shell)
-                nix shell "nixpkgs#$selection"
+                NIXPKGS_ALLOW_UNFREE=1 nix shell "nixpkgs#$selection" --impure
                 ;;
             run)
-                nix run "nixpkgs#$selection"
+                NIXPKGS_ALLOW_UNFREE=1 nix run "nixpkgs#$selection" --impure
                 ;;
             edit)
                 nix edit "nixpkgs#$selection"
