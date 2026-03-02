@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 {
-  buildInputs = with pkgs.python313Packages; [
-    pkgs.python313
+  buildInputs = with pkgs.python314Packages; [
+    pkgs.python314
     fastparquet
     ipykernel
     jupyterlab

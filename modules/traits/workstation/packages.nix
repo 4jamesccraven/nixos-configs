@@ -81,7 +81,7 @@
     rustc
 
     # :> Interpreters
-    python313
+    python314
 
     # :> Writing & Presenting
     typst
