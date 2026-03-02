@@ -4,26 +4,9 @@
   ====[ Utils ]====
   :: lib
 
-  A collection of functions that I felt like extracting for general use
+  A collection of functions that I felt like extracting for general use.
 */
 rec {
-  /*
-    mapEntries :: (string -> Any -> Any) -> AttrSet -> [Any]
-
-    Equivalent to map, but the mapped functor takes in key, value pairs.
-    Similar to iterating over `dict.items()` in Python.
-    ```
-    let
-      exampleAttr = {
-        a = 1;
-        b = 2;
-      };
-    in
-    mapEntries (k: v: "${k}${builtins.toString v}") exampleAttr;
-    ```
-  */
-  mapEntries = f: attrs: map (k: f k (attrs.${k})) (builtins.attrNames attrs);
-
   /*
     mapFiles :: (string -> Any) -> Path -> [Any]
 
@@ -86,4 +69,44 @@ rec {
       '';
     }
   ];
+
+  /*
+    parseColor :: string -> colorType
+
+    Takes a hexadecimal colour string with or without the leading #
+    and converts it to a colorType module.
+  */
+  parseColor =
+    hex:
+    let
+      hexNoPrefix = lib.removePrefix "#" hex;
+      channels = {
+        r = 1;
+        g = 2;
+        b = 3;
+      };
+
+      /*
+        hexPairOf :: int -> string
+        maps {1,2,3} to the hex associated with {r,g,b}, respectively.
+      */
+      hexPairOf = n: builtins.substring ((n - 1) * 2) 2 hexNoPrefix;
+      /*
+        defineAsToml :: string -> int -> string
+        takes the name of a channel (in {r,g,b}) and a hex value and converts
+        it to an equivalent TOML mapping.
+      */
+      defineAsTOML = channel: index: "${channel} = 0x${hexPairOf index}";
+
+      # Create the TOML document
+      tomlAttrs = lib.mapAttrsToList defineAsTOML channels;
+      tomlDoc = lib.concatLines tomlAttrs;
+      # Parse and convert ints to strings
+      rgb = builtins.mapAttrs (_: toString) (fromTOML tomlDoc);
+    in
+    {
+      hex = hexNoPrefix;
+      rgb = "${rgb.r}, ${rgb.g}, ${rgb.b}";
+      ansi = "38;2;${rgb.r};${rgb.g};${rgb.b}";
+    };
 }

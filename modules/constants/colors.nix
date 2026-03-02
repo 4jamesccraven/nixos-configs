@@ -1,12 +1,9 @@
-{ lib, ... }:
+{ lib, jcc-utils, ... }:
 
 /*
   ====[ Constants/colours ]====
 
-  Some basic colours I use throughout my configuration, and utilities to
-  convert them to other types.
-
-  TODO: move parseColor to utils
+  Some basic colours I use throughout my configuration.
 */
 with lib;
 let
@@ -26,45 +23,6 @@ let
     };
   };
 
-  /*
-    parseColor :: string -> colorType
-
-    Takes a hexadecimal colour string with or without the leading #
-    and converts it to a colorType module.
-  */
-  parseColor =
-    hex:
-    let
-      hexNoPrefix = removePrefix "#" hex;
-      channels = {
-        r = 1;
-        g = 2;
-        b = 3;
-      };
-
-      /*
-        hexPairOf :: int -> string
-        maps {1,2,3} to the hex associated with {r,g,b}, respectively.
-      */
-      hexPairOf = n: builtins.substring ((n - 1) * 2) 2 hexNoPrefix;
-      /*
-        defineAsToml :: string -> int -> string
-        takes the name of a channel (in {r,g,b}) and a hex value and converts
-        it to an equivalent TOML mapping.
-      */
-      defineAsTOML = channel: index: "${channel} = 0x${hexPairOf index}";
-
-      # Create the TOML document
-      tomlAttrs = lib.mapAttrsToList defineAsTOML channels;
-      tomlDoc = lib.concatLines tomlAttrs;
-      # Parse and convert ints to strings
-      rgb = builtins.mapAttrs (_: toString) (fromTOML tomlDoc);
-    in
-    {
-      hex = hexNoPrefix;
-      rgb = "${rgb.r}, ${rgb.g}, ${rgb.b}";
-      ansi = "38;2;${rgb.r};${rgb.g};${rgb.b}";
-    };
 in
 {
   options.jcc.colors = mkOption {
@@ -82,5 +40,5 @@ in
         mantle = "181825";
       };
     in
-    builtins.mapAttrs (_: parseColor) colours;
+    builtins.mapAttrs (_: jcc-utils.parseColor) colours;
 }
