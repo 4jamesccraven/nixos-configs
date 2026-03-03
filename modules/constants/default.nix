@@ -11,6 +11,7 @@ in
 {
   imports = [
     ./colors.nix
+    ./shell-aliases.nix
   ];
 
   options.jcc.flakeRoot = mkOption {

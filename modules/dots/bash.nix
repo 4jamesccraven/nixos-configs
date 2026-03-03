@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 /*
   ====[ Bash ]====
@@ -10,15 +10,11 @@
   home-manager.users.jamescraven = {
     programs.bash = {
       enable = true;
-      shellAliases = {
-        c = "clear";
-        cat = "bat";
-        ff = "fastfetch";
-        cff = "clear; fastfetch";
-      };
+      shellAliases = config.jcc.shell-aliases;
       bashrcExtra = /* bash */ ''
-        fastfetch
-        PS1="\[\e[38;2;202;158;230m\]┌─[\[\e[m\]/ˈiː.ən/\[\e[38;2;202;158;230m\]@\h]: ❄ \[\e[m\]\w\n\[\e[38;2;202;158;230m\]└─> \[\e[m\]"
+        if ! command -v starship > /dev/null 2>&1; then
+          PS1='/ˈiː.ən/\[\e[31m\]@\h [\[\e[0m\]\w\[\e[31m\]]\n=> \[\e[0m\]'
+        fi
       '';
     };
   };
