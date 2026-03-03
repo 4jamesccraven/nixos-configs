@@ -57,6 +57,7 @@
     ripgrep
 
     # :> Other Utilities
+    caligula
     ffmpeg-full
     file
     fzf
