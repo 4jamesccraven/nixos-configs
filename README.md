@@ -96,23 +96,6 @@ A few of my other projects are dependencies of my flake.
 - [4jamesccraven/neovim](https://github.com/4jamesccraven/neovim): my neovim
   config.
 
-
-assets
-checks
-docs
-flake.lock
-flake.nix
-hosts
-justfile
-lib
-LICENSE
-modules
-overlay
-README.md
-shells
-templates
-
-
 Directory Structure
 -------------------
 - Assets - Static assets for certain applications
