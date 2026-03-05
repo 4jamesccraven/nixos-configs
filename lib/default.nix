@@ -32,6 +32,7 @@ rec {
     shellsFromDir
     checksFromDir
     templatesFromDir
+    overlayFromDir
     ;
 
   # :> Colour Helpers

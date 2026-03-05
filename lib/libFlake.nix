@@ -75,4 +75,17 @@ in
       };
     in
     genDirAttrs dir genTemplate;
+
+  /*
+    overlayFromDir :: path -> overlay
+
+    Generates an overlay from a directory that contains packages.
+  */
+  overlayFromDir =
+    dir:
+    let
+      mkPkg = prev: name: prev.callPackage (dir + "/${name}.nix") { };
+    in
+    (final: prev: genFileAttrs dir (mkPkg prev));
+
 }

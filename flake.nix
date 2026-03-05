@@ -38,6 +38,7 @@
         shellsFromDir
         checksFromDir
         templatesFromDir
+        overlayFromDir
         ;
 
       /*
@@ -81,6 +82,10 @@
       checks = eachDefaultSystem (pkgs: checksFromDir { inherit pkgs self; } ./checks);
 
       templates = templatesFromDir ./templates;
+
+      formatter = eachDefaultSystem (pkgs: pkgs.nixfmt);
+
+      overlays.default = overlayFromDir ./overlay/drv;
 
     };
 }
