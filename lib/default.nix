@@ -37,21 +37,21 @@ rec {
   shellsFromDir =
     pkgs: dir:
     let
-      shells = builtins.listToAttrs (
-        mapFiles (
-          name:
-          let
-            params = (import (dir + "/${name}") { inherit pkgs; });
-            shell = pkgs.mkShell params;
-          in
-          {
-            name = lib.removeSuffix ".nix" name;
-            value = shell;
-          }
-        ) dir
-      );
+      # Gather the name of the shells in `dir`
+      shellNames = mapFiles (lib.removeSuffix ".nix") dir;
+      /*
+        mkDevShell :: string -> derivation
+        Creates a devShell by reading in the parameters with the specified
+        filename (without the suffix) in `dir` and applying `pkgs.mkShell`.
+      */
+      mkDevShell =
+        name:
+        lib.pipe name [
+          (name: import (dir + "/${name}.nix") { inherit pkgs; })
+          pkgs.mkShell
+        ];
     in
-    shells;
+    lib.genAttrs shellNames mkDevShell;
 
   /*
     templatesFromDir :: path -> attrs
