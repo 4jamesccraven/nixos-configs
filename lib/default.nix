@@ -22,6 +22,7 @@ rec {
     mapFileNames
     mapFileNames'
     genFileAttrs
+    genDirAttrs
     entriesIn
     ;
 

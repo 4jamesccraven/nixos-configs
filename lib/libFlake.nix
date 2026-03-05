@@ -7,7 +7,7 @@
   Helper functions for programmatically constructing flake outputs.
 */
 let
-  inherit (files) mapFiles mapDirs genFileAttrs;
+  inherit (files) genFileAttrs genDirAttrs;
 in
 {
 
@@ -30,13 +30,6 @@ in
   shellsFromDir =
     pkgs: dir:
     let
-      # Gather the name of the shells in `dir`
-      shellNames = mapFiles (lib.removeSuffix ".nix") dir;
-      /*
-        mkDevShell :: string -> derivation
-        Creates a devShell by reading in the parameters with the specified
-        filename (without the suffix) in `dir` and applying `pkgs.mkShell`.
-      */
       mkDevShell =
         name:
         lib.pipe name [
@@ -44,7 +37,7 @@ in
           pkgs.mkShell
         ];
     in
-    lib.genAttrs shellNames mkDevShell;
+    genFileAttrs dir mkDevShell;
 
   /*
     checksFromDir :: { pkgs :: attrs; [String] :: a} -> path -> attrs
@@ -76,11 +69,10 @@ in
   templatesFromDir =
     dir:
     let
-      templateDirs = mapDirs lib.baseNameOf dir;
       genTemplate = name: {
         path = dir + "/${name}";
         description = if name != "default" then "Flake template for ${name}" else "Default template";
       };
     in
-    lib.genAttrs templateDirs genTemplate;
+    genDirAttrs dir genTemplate;
 }

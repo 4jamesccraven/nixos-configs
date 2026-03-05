@@ -59,6 +59,14 @@ rec {
   */
   genFileAttrs = dir: func: lib.genAttrs (fileNamesIn dir) func;
 
+  /*
+    genDirAttrs :: path -> (string -> a) -> { [string] :: a }
+
+    Generates an attribute set by mapping a function over the names of
+    subdirectories in a directory.
+  */
+  genDirAttrs = dir: func: lib.genAttrs (dirsIn dir) func;
+
   # ---[ Typed Entries ]---
 
   # :> With suffix

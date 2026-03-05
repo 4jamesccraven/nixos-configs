@@ -28,7 +28,7 @@ clean *extra-args='--no-gcroots --optimise': validate
 # Update the system
 [group('System State')]
 update *inputs: validate && build
-    @git pull --rebase
+    @git pull
     @nix flake update {{ inputs }}
 
 # ---[ Version Control ]---
