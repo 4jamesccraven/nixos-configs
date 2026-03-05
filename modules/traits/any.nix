@@ -44,6 +44,12 @@
   };
 
   # ---[ DevShell Cache ]---
+  /*
+    This caches the dependencies of config-level devShells by making the name
+    of each dependencies' store path a dependency of the system activation
+    scripts. This is accomplished by simply echoing said path into /dev/null
+    at activation time.
+  */
   system.activationScripts.cacheFlakeShells.text =
     let
       inherit (libjcc) mapFiles;

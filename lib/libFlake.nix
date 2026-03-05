@@ -1,0 +1,86 @@
+{ lib, files, ... }:
+
+/*
+  ====[ lib/libFlake ]====
+  :: lib
+
+  Helper functions for programmatically constructing flake outputs.
+*/
+let
+  inherit (files) mapFiles mapDirs genFileAttrs;
+in
+{
+
+  /*
+    shellsFromDir :: nixpkgs -> path -> attrsOf derivation
+
+    Returns the value for the `devShell.${system}` attribute of a flake by
+    reading AttrSets from each file in `dir` and treating them as the argument
+    to `mkShell` (using the provided version of nixpkgs).
+    ```
+    let
+      system = "x86_64-linux";
+      pkgs = import <nixpkgs> { inherit system; };
+    in
+    {
+      devShells.${system} = shellsFromDir pkgs ./shells;
+    }
+    ```
+  */
+  shellsFromDir =
+    pkgs: dir:
+    let
+      # Gather the name of the shells in `dir`
+      shellNames = mapFiles (lib.removeSuffix ".nix") dir;
+      /*
+        mkDevShell :: string -> derivation
+        Creates a devShell by reading in the parameters with the specified
+        filename (without the suffix) in `dir` and applying `pkgs.mkShell`.
+      */
+      mkDevShell =
+        name:
+        lib.pipe name [
+          (name: import (dir + "/${name}.nix") { inherit pkgs; })
+          pkgs.mkShell
+        ];
+    in
+    lib.genAttrs shellNames mkDevShell;
+
+  /*
+    checksFromDir :: { pkgs :: attrs; [String] :: a} -> path -> attrs
+
+    Builds checks from a directory; takes in pkgs and any other values that may
+    need to be passed through to the underlying derivation.
+    ```
+    checks.x86_64-linux = checksFromDir { inherit pkgs self; } ./checks;
+    ```
+  */
+  checksFromDir =
+    { pkgs, ... }@callPkgArgs:
+    dir:
+    let
+      buildCheck = name: pkgs.callPackage (dir + "/${name}.nix") callPkgArgs;
+    in
+    genFileAttrs dir buildCheck;
+
+  /*
+    templatesFromDir :: path -> attrs
+
+    Reads in templates from a given directory.
+    ```
+    {
+      templates = templatesFromDir ./templates;
+    }
+    ```
+  */
+  templatesFromDir =
+    dir:
+    let
+      templateDirs = mapDirs lib.baseNameOf dir;
+      genTemplate = name: {
+        path = dir + "/${name}";
+        description = if name != "default" then "Flake template for ${name}" else "Default template";
+      };
+    in
+    lib.genAttrs templateDirs genTemplate;
+}

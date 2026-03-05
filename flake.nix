@@ -33,9 +33,12 @@
     let
       lib = nixpkgs.lib;
       libjcc = import ./lib { inherit lib; };
-      inherit (libjcc) mapFiles shellsFromDir templatesFromDir;
-
-      myHosts = mapFiles (lib.removeSuffix ".nix") ./hosts;
+      inherit (libjcc)
+        genFileAttrs
+        shellsFromDir
+        checksFromDir
+        templatesFromDir
+        ;
 
       /*
         eachDefaultSystem :: (nixpkgs -> a) -> attrsOf a
@@ -71,15 +74,13 @@
     in
     {
 
-      nixosConfigurations = lib.genAttrs myHosts mkHost;
+      nixosConfigurations = genFileAttrs ./hosts mkHost;
 
       devShells = eachDefaultSystem (pkgs: shellsFromDir pkgs ./shells);
 
-      templates = templatesFromDir ./templates;
+      checks = eachDefaultSystem (pkgs: checksFromDir { inherit pkgs self; } ./checks);
 
-      checks = eachDefaultSystem (pkgs: {
-        formatting = pkgs.callPackage ./checks/formatting.nix { inherit pkgs self; };
-      });
+      templates = templatesFromDir ./templates;
 
     };
 }
