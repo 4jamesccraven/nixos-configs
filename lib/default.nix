@@ -101,29 +101,37 @@ rec {
     hex:
     let
       hexNoPrefix = lib.removePrefix "#" hex;
-      channels = {
-        r = 1;
-        g = 2;
-        b = 3;
-      };
+      channelNames = [
+        "r"
+        "g"
+        "b"
+      ];
 
+      /*
+        parseHex :: string -> int
+        Converts a hexadecimal string to an int.
+      */
+      parseHex = hex: (fromTOML "number = 0x${hex}").number;
       /*
         hexPairOf :: int -> string
-        maps {1,2,3} to the hex associated with {r,g,b}, respectively.
+        Gets the nth hexadecimal pair from the input string.
       */
-      hexPairOf = n: builtins.substring ((n - 1) * 2) 2 hexNoPrefix;
+      hexPairAt = n: builtins.substring ((n - 1) * 2) 2 hexNoPrefix;
       /*
-        defineAsToml :: string -> int -> string
-        takes the name of a channel (in {r,g,b}) and a hex value and converts
-        it to an equivalent TOML mapping.
+        parseHexAt :: int -> int
+        Composition of parseHex and hexPairAt.
       */
-      defineAsTOML = channel: index: "${channel} = 0x${hexPairOf index}";
+      parseHexAt = n: parseHex (hexPairAt n);
 
-      # Create the TOML document
-      tomlAttrs = lib.mapAttrsToList defineAsTOML channels;
-      tomlDoc = lib.concatLines tomlAttrs;
-      # Parse and convert ints to strings
-      rgb = builtins.mapAttrs (_: toString) (fromTOML tomlDoc);
+      rgb = lib.pipe (lib.range 1 3) [
+        # Get hex pairs as ints
+        (map parseHexAt)
+        # Create associative mapping ({r,g,b} -> {int,int,int})
+        (lib.zipListsWith (name: value: { inherit name value; }) channelNames)
+        builtins.listToAttrs
+        # Convert to Strings for interpolation
+        (builtins.mapAttrs (_: toString))
+      ];
     in
     {
       hex = hexNoPrefix;
