@@ -1,31 +1,37 @@
 alias b := build
+alias c := clean
 
 [private]
 default:
     @just --list --list-heading $'Actions:\n' --no-aliases
 
+# ---[ Build Helpers ]---
 # Build the system
 [group('System State')]
-build fast="no": validate
-    @if [ "{{ fast }}" != "-f" ]; then git pull; fi
+build: validate
     @nh os switch .
+
+# Pull upstream changes and build
+[group('System State')]
+sync: && build
+    @git pull --rebase
+
+# Pull upstream changes, build, and clean
+[group('System State')]
+adopt: sync clean
 
 # Clean unused store paths
 [group('System State')]
-clean no-optimise="no": validate
-    @nh clean all
-    @just build -f
-    @if [ "{{ no-optimise }}" != "--no-optimise" ]; then nix store optimise; fi
-
-# Synchronise the system with Origin
-[group('System State')]
-sync: build clean
+clean *extra-args='--no-gcroots --optimise': validate
+    @nh clean all {{ extra-args }}
 
 # Update the system
 [group('System State')]
-update *inputs: validate && (build "-f")
+update *inputs: validate && build
+    @git pull --rebase
     @nix flake update {{ inputs }}
 
+# ---[ Version Control ]---
 # Revert the system to HEAD
 [group('VCS')]
 revert: _show_last_commit _phony_confirm
@@ -38,12 +44,14 @@ push message="chore: system update":
     @git commit -m '{{ message }}'
     @git push origin HEAD
 
+
+# ---[ Helpers ]---
 [private]
 _show_last_commit:
     @echo "You are trying to revert to"
     @git log -1 --oneline
 
-[confirm("Really revert to this commit?")]
+[confirm("Are you sure you want to revert to this commit?")]
 [private]
 _phony_confirm:
 
