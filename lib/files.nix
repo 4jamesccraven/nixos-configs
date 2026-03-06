@@ -17,7 +17,7 @@ rec {
     Equivalent to map, but the mapped functor is applied to the string names
     of all files in the provided directory.
     ```
-    mapFiles (lib.removeSuffix ".nix") ./hosts;
+    mapFiles (file: fromTOML (builtins.readFile file)) ./my-toml-files;
     ```
   */
   mapFiles = func: dir: map func (filesIn dir);
@@ -35,7 +35,7 @@ rec {
 
     Like mapFiles, but removes the ".nix" suffix automatically.
     ```
-    mapFileNames builtins.toPath dir;
+    mapFileNames (name: "${name}.toml") dir;
     ```
   */
   mapFileNames = func: dir: mapFileNames' func dir ".nix";
@@ -99,7 +99,6 @@ rec {
 
     Like fileNamesIn, but allows specifying the suffix to strip.
   */
-
   fileNamesIn' = dir: suffix: mapFiles (lib.removeSuffix suffix) dir;
 
   # ---[ Entries Primitive ]---
