@@ -35,6 +35,7 @@
       # note: these are only available to nvim itself; they are not on the system path.
       extraPackages = with pkgs; [
         # :> LSP
+        bash-language-server
         clang-tools
         lua-language-server
         nixd
