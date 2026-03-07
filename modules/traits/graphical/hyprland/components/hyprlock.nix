@@ -6,7 +6,7 @@
   Config for hyprlock, a lock screen for hyprland.
 */
 let
-  inherit (config.jcc) flakeRoot;
+  inherit (config.ext) flakeRoot;
   wpPath = flakeRoot + /assets/wp-wide.png;
   logoPath = flakeRoot + /assets/nixos-logo.png;
 in
@@ -14,7 +14,7 @@ in
   config = lib.mkIf config.hyprland.enable {
     home-manager.users.jamescraven =
       let
-        colors = config.jcc.colors;
+        colors = config.ext.colors;
         base = "rgb(${colors.base.rgb})";
         accent = "rgb(${colors.accent.rgb})";
         text = "rgb(${colors.text.rgb})";

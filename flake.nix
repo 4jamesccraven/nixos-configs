@@ -31,9 +31,11 @@
       ...
     }@inputs:
     let
-      lib = nixpkgs.lib;
-      libjcc = import ./lib { inherit lib; };
-      inherit (libjcc)
+      libExtension = import ./lib { inherit (nixpkgs) lib; };
+      lib = nixpkgs.lib // {
+        ext = libExtension;
+      };
+      inherit (lib.ext)
         genFileAttrs
         shellsFromDir
         checksFromDir
@@ -65,7 +67,7 @@
         name:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs libjcc;
+            inherit inputs lib;
           };
           modules = [
             ./hosts/${name}.nix

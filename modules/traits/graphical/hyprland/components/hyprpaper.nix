@@ -13,7 +13,7 @@
 
         settings =
           let
-            inherit (config.jcc) flakeRoot;
+            inherit (config.ext) flakeRoot;
             wp-path = "${flakeRoot + /assets/wp-wide.png}";
           in
           {

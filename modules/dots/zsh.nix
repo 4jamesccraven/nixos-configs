@@ -165,7 +165,7 @@
         fi
       '';
 
-      shellAliases = config.jcc.shell-aliases;
+      shellAliases = config.ext.shell-aliases;
     };
   };
 }

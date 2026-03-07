@@ -1,4 +1,4 @@
-{ libjcc, ... }:
+{ lib, ... }:
 
 /*
   ====[ Overlay ]====
@@ -6,7 +6,7 @@
   Adds extra packages to `pkgs`.
 */
 let
-  inherit (libjcc) overlayFromDir;
+  inherit (lib.ext) overlayFromDir;
 in
 {
   nixpkgs.overlays = [

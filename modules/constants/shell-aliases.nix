@@ -9,12 +9,12 @@ let
   inherit (lib) mkOption types;
 in
 {
-  options.jcc.shell-aliases = mkOption {
+  options.ext.shell-aliases = mkOption {
     type = types.attrsOf (types.str);
     description = "Shell aliases for use in shell configurations.";
   };
 
-  config.jcc.shell-aliases = {
+  config.ext.shell-aliases = {
     # :> Abbreviations
     c = "clear";
     cff = "clear; fastfetch";

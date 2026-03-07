@@ -14,10 +14,10 @@ in
     ./shell-aliases.nix
   ];
 
-  options.jcc.flakeRoot = mkOption {
+  options.ext.flakeRoot = mkOption {
     type = types.path;
     description = "The path to the root of this flake";
   };
 
-  config.jcc.flakeRoot = ../..;
+  config.ext.flakeRoot = ../..;
 }

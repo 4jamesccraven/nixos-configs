@@ -1,13 +1,10 @@
 { ... }@modArgs:
 
 /*
-  ====[ libjcc ]====
+  ====[ libext ]====
   :: lib
 
   A personal library of helper functions.
-
-  On the name: I would've preferred not to suffix it with my initials, but I
-  didn't want to risk conflicts with nixpkgs's lib.
 */
 let
   importMod = file: importMod' file { };

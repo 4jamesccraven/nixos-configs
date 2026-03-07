@@ -1,7 +1,6 @@
 {
   config,
   inputs,
-  libjcc,
   pkgs,
   lib,
   ...
@@ -52,8 +51,8 @@
   */
   system.activationScripts.cacheFlakeShells.text =
     let
-      inherit (libjcc) mapFiles;
-      inherit (config.jcc) flakeRoot;
+      inherit (lib.ext) mapFiles;
+      inherit (config.ext) flakeRoot;
 
       /*
         echoPkgs :: package -> string

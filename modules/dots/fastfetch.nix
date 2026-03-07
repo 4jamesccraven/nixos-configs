@@ -9,7 +9,7 @@
 {
   home-manager.users.jamescraven =
     let
-      inherit (config.jcc) colors flakeRoot;
+      inherit (config.ext) colors flakeRoot;
       logo = flakeRoot + /assets/logo.txt;
       accent = colors.accent.ansi;
     in

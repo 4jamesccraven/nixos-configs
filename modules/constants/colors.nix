@@ -1,12 +1,14 @@
-{ lib, libjcc, ... }:
+{ lib, ... }:
 
 /*
   ====[ Constants/colours ]====
 
   Some basic colours I use throughout my configuration.
 */
-with lib;
 let
+  inherit (lib) types mkOption;
+  inherit (lib.ext) parseColor;
+
   colorType = types.submodule {
     options = {
       rgb = mkOption {
@@ -25,12 +27,12 @@ let
 
 in
 {
-  options.jcc.colors = mkOption {
+  options.ext.colors = mkOption {
     type = types.attrsOf colorType;
     description = "Named colour variables";
   };
 
-  config.jcc.colors =
+  config.ext.colors =
     let
       colours = {
         base = "1e1e2e";
@@ -40,5 +42,5 @@ in
         mantle = "181825";
       };
     in
-    builtins.mapAttrs (_: libjcc.parseColor) colours;
+    builtins.mapAttrs (_: parseColor) colours;
 }

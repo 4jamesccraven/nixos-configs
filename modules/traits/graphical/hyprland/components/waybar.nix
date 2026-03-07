@@ -106,7 +106,7 @@
               calendar = {
                 mode = "month";
                 mode-mon-col = 3;
-                format = with config.jcc.colors; {
+                format = with config.ext.colors; {
                   months = "<span color=\"#${accent.hex}\"><b>{}</b></span>";
                   weekdays = "<b>{}</b>";
                   today = "<span color=\"#${accent.hex}\"><b><u>{}</u></b></span>";
@@ -130,7 +130,7 @@
             # NixOS logo
             "image#nix" =
               let
-                inherit (config.jcc) flakeRoot;
+                inherit (config.ext) flakeRoot;
               in
               {
                 path = "${flakeRoot + /assets/nixos-logo.png}";
@@ -202,7 +202,7 @@
         };
 
         # ---[ Style ]---
-        style = with config.jcc.colors; /* css */ ''
+        style = with config.ext.colors; /* css */ ''
           @define-color base rgb(${base.rgb});
           @define-color acc  rgb(${accent.rgb});
           @define-color text rgb(${text.rgb});
