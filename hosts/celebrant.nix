@@ -23,6 +23,8 @@
 
   networking.hostName = "celebrant";
 
+  services.logind.lidSwitchExternalPower = "ignore";
+
   hyprland.enable = true;
   home-manager.users.jamescraven = {
     wayland.windowManager.hyprland.settings = {
