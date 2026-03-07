@@ -13,8 +13,8 @@ build: validate
 
 # Pull upstream changes and build
 [group('System State')]
-sync: && build
-    @git pull --rebase
+sync: validate && build
+    @git pull
 
 # Pull upstream changes, build, and clean
 [group('System State')]
@@ -22,7 +22,7 @@ adopt: sync clean
 
 # Clean unused store paths
 [group('System State')]
-clean *extra-args='--no-gcroots --optimise': validate
+clean *extra-args='--no-gcroots --optimise': validate && build
     @nh clean all {{ extra-args }}
 
 # Update the system
