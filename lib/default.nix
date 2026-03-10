@@ -1,4 +1,4 @@
-{ ... }@modArgs:
+modArgs:
 
 /*
   ====[ libext ]====

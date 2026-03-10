@@ -6,7 +6,7 @@
   outputs =
     { nixpkgs, ... }:
     let
-      lib = nixpkgs.lib;
+      inherit (nixpkgs) lib;
       eachDefaultSystem =
         function:
         lib.genAttrs [

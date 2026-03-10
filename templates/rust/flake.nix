@@ -6,7 +6,7 @@
   outputs =
     { nixpkgs, ... }:
     let
-      lib = nixpkgs.lib;
+      inherit (nixpkgs) lib;
       eachDefaultSystem =
         function:
         lib.genAttrs [
@@ -37,7 +37,7 @@
           in
           rustPlatform.buildRustPackage {
             pname = manifest.name;
-            version = manifest.version;
+            inherit (manifest) version;
 
             src = ./.;
 

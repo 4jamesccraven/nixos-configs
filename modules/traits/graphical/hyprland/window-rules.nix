@@ -40,7 +40,7 @@
           in
           # Turn each set of conditions into a float rule, and combine into one list
           # of strings
-          (builtins.concatMap float [
+          builtins.concatMap float [
             {
               class = "brave";
               title = "^(.* wants to (open|save))$";
@@ -60,7 +60,7 @@
             { class = "org.gnome.Nautilus"; }
             { class = "org.telegram.desktop"; }
             { class = "org.pulseaudio.pavucontrol"; }
-          ]);
+          ];
       };
     };
   };

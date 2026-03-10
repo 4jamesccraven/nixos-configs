@@ -14,7 +14,7 @@
       enableBashIntegration = true;
       extraConfig =
         let
-          colors = config.ext.colors;
+          inherit (config.ext) colors;
           inherit (colors) base mantle text;
         in
         /* lua */ ''

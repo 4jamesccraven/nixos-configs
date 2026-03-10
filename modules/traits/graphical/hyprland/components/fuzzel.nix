@@ -9,7 +9,7 @@
   config = lib.mkIf config.hyprland.enable {
     home-manager.users.jamescraven =
       let
-        colors = config.ext.colors;
+        inherit (config.ext) colors;
         base = "${colors.base.hex}ff";
         accent = "${colors.accent.hex}ff";
         text = "${colors.text.hex}ff";
@@ -28,8 +28,8 @@
 
             # :> Colours
             colors = {
+              inherit text;
               background = base;
-              text = text;
               prompt = accent;
 
               match = text;

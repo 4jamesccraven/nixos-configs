@@ -64,7 +64,7 @@
       shellInputs = mapFiles (
         name:
         let
-          params = (import (flakeRoot + /shells/${name}) { inherit pkgs; });
+          params = import (flakeRoot + /shells/${name}) { inherit pkgs; };
         in
         params.buildInputs
       ) (flakeRoot + /shells);

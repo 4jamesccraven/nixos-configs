@@ -1,5 +1,6 @@
 {
   pkgs ? import <nixpkgs> { },
+  lib ? pkgs.lib,
   ...
 }:
 
@@ -10,6 +11,12 @@ pkgs.treefmt.withConfig {
     keep-sorted
     nixfmt
     # keep-sorted end
+
+    (writeShellScriptBin "statix" /* bash */ ''
+      for file in "$@"; do
+        ${lib.getExe statix} fix "$file"
+      done
+    '')
   ];
 
   settings = {
@@ -31,6 +38,11 @@ pkgs.treefmt.withConfig {
       nixfmt = {
         command = "nixfmt";
         includes = [ "*" ];
+      };
+
+      statix = {
+        command = "statix";
+        includes = [ "*.nix" ];
       };
       # keep-sorted end
     };

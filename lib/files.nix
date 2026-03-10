@@ -123,7 +123,7 @@ rec {
     dir: condition:
     lib.pipe dir [
       builtins.readDir
-      (lib.filterAttrs (_: t: condition t))
+      (lib.filterAttrs (_: condition))
       builtins.attrNames
     ];
 }

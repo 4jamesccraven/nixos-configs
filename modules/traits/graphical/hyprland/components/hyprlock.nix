@@ -14,7 +14,7 @@ in
   config = lib.mkIf config.hyprland.enable {
     home-manager.users.jamescraven =
       let
-        colors = config.ext.colors;
+        inherit (config.ext) colors;
         base = "rgb(${colors.base.rgb})";
         accent = "rgb(${colors.accent.rgb})";
         text = "rgb(${colors.text.rgb})";
