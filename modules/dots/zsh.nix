@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   lib,
   ...
@@ -12,6 +11,7 @@
   Enables and configures Zshell.
 */
 {
+  imports = [ ./shell-aliases.nix ];
   home-manager.users.jamescraven = {
     programs.zsh = {
       enable = true;
@@ -164,8 +164,6 @@
         => %f'
         fi
       '';
-
-      shellAliases = config.ext.shell-aliases;
     };
   };
 }

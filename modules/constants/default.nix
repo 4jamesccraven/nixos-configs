@@ -11,7 +11,6 @@ in
 {
   imports = [
     ./colors.nix
-    ./shell-aliases.nix
   ];
 
   options.ext.flakeRoot = mkOption {
