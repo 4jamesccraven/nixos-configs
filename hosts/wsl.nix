@@ -10,7 +10,5 @@
   - WSL
 */
 {
-  imports = [
-    ../modules/traits/wsl.nix
-  ];
+  imports = [ ../modules/traits/wsl.nix ];
 }

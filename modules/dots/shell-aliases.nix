@@ -15,7 +15,7 @@
       ga = "git add . --all";
       gc = "git clone";
       gcm = "git commit";
-      gd = "git diff --staged";
+      gd = "git diff HEAD";
       gi = "git init";
       gl = "git log --stat";
       gp = "git push origin HEAD";
