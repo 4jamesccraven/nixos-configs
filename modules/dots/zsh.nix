@@ -111,39 +111,44 @@
 
         tldr =
           let
-            tealdeer = "${pkgs.tealdeer}/bin/tldr";
+            tealdeer = "${lib.getExe pkgs.tealdeer}";
+            fzf = "${lib.getExe pkgs.fzf}";
           in
           /* bash */ ''
             if [[ "$#" -eq 0 ]]; then
-                ${tealdeer} -l | fzf --preview='tldr {} --color always' --scheme history | xargs tldr -q
+                ${tealdeer} -l | ${fzf} --preview='tldr {} --color always' --scheme history | xargs tldr -q
             else
                 ${tealdeer} "$@"
             fi
           '';
 
-        eject-usb = /* bash */ ''
-          eject-usb() {
-            dev=$(\lsblk -dpno NAME,TRAN | grep usb \
-                | fzf --height 10% --reverse --inline-info --prompt="USB> " \
-                | awk '{print $1}')
-            [ -z "$dev" ] && return
+        eject-usb =
+          let
+            fzf = "${lib.getExe pkgs.fzf}";
+          in
+          /* bash */ ''
+            eject-usb() {
+              dev=$(\lsblk -dpno NAME,TRAN | grep usb \
+                  | ${fzf} --height 10% --reverse --inline-info --prompt="USB> " \
+                  | awk '{print $1}')
+              [ -z "$dev" ] && return
 
-            partitions=$(\lsblk -lnpo NAME "$dev" | tail -n +2)
+              partitions=$(\lsblk -lnpo NAME "$dev" | tail -n +2)
 
-            for part in $partitions; do
-                udisksctl unmount -b "$part"
-            done
+              for part in $partitions; do
+                  udisksctl unmount -b "$part"
+              done
 
-            udisksctl power-off -b "$dev"
-          }
-        '';
+              udisksctl power-off -b "$dev"
+            }
+          '';
       };
 
       initContent = /* bash */ ''
         zstyle ':completion:*' insert-tab false # Disable inserting tab at the beginning of a line
 
         # fzf-zsh integration and theming
-        source <(${pkgs.fzf}/bin/fzf --zsh)
+        source <(${lib.getExe pkgs.fzf} --zsh)
         bindkey "^f" fzf-history-widget
 
         # direnv integration
