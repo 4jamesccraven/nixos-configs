@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 /*
   ====[ Machine ]====
@@ -32,18 +32,18 @@
     in
     {
       defaultLocale = locale;
-      extraLocaleSettings = {
-        LC_MESSAGES = locale;
-        LC_ADDRESS = locale;
-        LC_IDENTIFICATION = locale;
-        LC_MEASUREMENT = locale;
-        LC_MONETARY = locale;
-        LC_NAME = locale;
-        LC_NUMERIC = locale;
-        LC_PAPER = locale;
-        LC_TELEPHONE = locale;
-        LC_TIME = locale;
-      };
+      extraLocaleSettings = lib.genAttrs [
+        "LC_ADDRESS"
+        "LC_IDENTIFICATION"
+        "LC_MEASUREMENT"
+        "LC_MESSAGES"
+        "LC_MONETARY"
+        "LC_NAME"
+        "LC_NUMERIC"
+        "LC_PAPER"
+        "LC_TELEPHONE"
+        "LC_TIME"
+      ] (_: locale);
     };
 
   # ---[ Services ]---
