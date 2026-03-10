@@ -11,9 +11,11 @@
 */
 {
   imports = [
-    ./components
+    # keep-sorted start
     ./binds.nix
+    ./components
     ./window-rules.nix
+    # keep-sorted end
   ];
 
   options = {

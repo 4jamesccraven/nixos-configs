@@ -85,7 +85,7 @@
 
       templates = templatesFromDir ./templates;
 
-      formatter = eachDefaultSystem (pkgs: pkgs.nixfmt);
+      formatter = eachDefaultSystem (pkgs: pkgs.callPackage ./overlay/formatter.nix { });
 
       overlays.default = overlayFromDir ./overlay/drv;
 

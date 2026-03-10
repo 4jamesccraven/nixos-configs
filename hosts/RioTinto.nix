@@ -20,9 +20,11 @@
 {
   # ---[ Host ]---
   imports = [
-    ../modules/traits/workstation
-    ../modules/traits/nvidia.nix
+    # keep-sorted start
     ../modules/traits/gaming.nix
+    ../modules/traits/nvidia.nix
+    ../modules/traits/workstation
+    # keep-sorted end
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 

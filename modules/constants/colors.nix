@@ -35,11 +35,13 @@ in
   config.ext.colors =
     let
       colours = {
-        base = "1e1e2e";
+        # keep-sorted start
         accent = "cba6f7";
-        text = "cdd6f4";
+        base = "1e1e2e";
         fail = "f38ba8";
         mantle = "181825";
+        text = "cdd6f4";
+        # keep-sorted end
       };
     in
     builtins.mapAttrs (_: parseColor) colours;

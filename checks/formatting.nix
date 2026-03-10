@@ -6,6 +6,6 @@ let
 in
 runCommandLocal "formatting-check" { } ''
   cd ${self}
-  find -type f -iname "*.nix" -exec ${formatter} {} \+
+  ${formatter} --ci
   touch $out
 ''

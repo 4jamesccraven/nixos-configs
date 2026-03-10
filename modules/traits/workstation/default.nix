@@ -19,13 +19,17 @@
 {
   imports = [
     # :> Super Traits
+    # keep-sorted start
     ../graphical
     ../syncthing.nix
     ../virtualisation.nix
+    # keep-sorted end
     # :> Contents
-    ./packages.nix
-    ./desktop-entries.nix
+    # keep-sorted start
     ../../dots
+    ./desktop-entries.nix
+    ./packages.nix
+    # keep-sorted end
   ];
 
   # ---[ Daemons ]---

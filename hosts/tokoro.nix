@@ -19,9 +19,11 @@
 {
   # ---[ Host ]---
   imports = [
+    # keep-sorted start
+    ../modules/traits/jellyfin-service.nix
     ../modules/traits/server.nix
     ../modules/traits/syncthing.nix
-    ../modules/traits/jellyfin-service.nix
+    # keep-sorted end
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 

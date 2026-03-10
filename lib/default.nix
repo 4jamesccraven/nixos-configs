@@ -14,28 +14,34 @@ rec {
   # :> File System Helpers
   files = importMod ./files.nix;
   inherit (files)
-    mapFiles
+    # keep-sorted start
+    entriesIn
+    genDirAttrs
+    genFileAttrs
     mapDirs
     mapFileNames
     mapFileNames'
-    genFileAttrs
-    genDirAttrs
-    entriesIn
+    mapFiles
+    # keep-sorted end
     ;
 
   # :> Flake Helpers
   libFlake = importMod' ./libFlake.nix { inherit files; };
   inherit (libFlake)
-    shellsFromDir
+    # keep-sorted start
     checksFromDir
-    templatesFromDir
     overlayFromDir
+    shellsFromDir
+    templatesFromDir
+    # keep-sorted end
     ;
 
   # :> Colour Helpers
   colour = importMod ./colour.nix;
   inherit (colour)
+    # keep-sorted start
     parseColor
     parseHex
+    # keep-sorted end
     ;
 }

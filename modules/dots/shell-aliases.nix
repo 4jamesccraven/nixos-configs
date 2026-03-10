@@ -4,30 +4,36 @@
   home-manager.users.jamescraven.home = {
     shellAliases = {
       # :> Abbreviations
+      # keep-sorted start
       c = "clear";
       cff = "clear; fastfetch";
       ff = "fastfetch";
       j = "just";
       s = "ssh";
       y = "yazi";
+      # keep-sorted end
 
       # :> Git
+      # keep-sorted start
       ga = "git add . --all";
       gc = "git clone";
       gcm = "git commit";
       gd = "git diff HEAD";
+      ggr = "cd $(git rev-parse --show-toplevel)";
       gi = "git init";
       gl = "git log --stat";
       gp = "git push origin HEAD";
+      gr = "git rev-parse --show-toplevel";
       gs = "git status";
       gu = "git pull";
-      gr = "git rev-parse --show-toplevel";
-      ggr = "cd $(git rev-parse --show-toplevel)";
+      # keep-sorted end
       gitaliases = "alias | grep git | grep -v gitaliases | sed 's/ *= */ = /' | column -t -s=";
 
       # :> Tools
-      pcalc = "nix develop $HOME/nixos#dsci -c python";
+      # keep-sorted start
       nohist = "HISTFILE= bash";
+      pcalc = "nix develop $HOME/nixos#dsci -c python";
+      # keep-sorted end
     };
   };
 }

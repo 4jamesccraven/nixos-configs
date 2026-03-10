@@ -21,9 +21,11 @@
     # :> super traits
     ../machine.nix
     # :> trait omponents
+    # keep-sorted start
     ./display-manager.nix
     ./gnome.nix
     ./hyprland
+    # keep-sorted end
   ];
 
   # :> Pipewire et al.

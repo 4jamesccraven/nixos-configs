@@ -8,6 +8,7 @@
 */
 {
   imports = [
+    # keep-sorted start
     ./bash.nix
     ./bat.nix
     ./btop.nix
@@ -21,5 +22,6 @@
     ./tealdeer.nix
     ./wezterm.nix
     ./zsh.nix
+    # keep-sorted end
   ];
 }
