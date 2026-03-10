@@ -9,6 +9,7 @@
   Enables:
       :> System Level
       display manager    => GDM is enabled as the display manager for all graphical machines
+      pipewire           => Necessary for sound to work
       xdg desktop portal => Facilitates file dialogs etc.
 
       :> Config Level
@@ -24,6 +25,20 @@
     ./gnome.nix
     ./hyprland
   ];
+
+  # :> Pipewire et al.
+  services = {
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+      wireplumber.enable = true;
+    };
+  };
+  security.rtkit.enable = true;
 
   # ---[ XDG Desktop Portal ]---
   xdg.portal = {

@@ -32,20 +32,6 @@
   # :> CUPS
   services.printing.enable = true;
 
-  # :> Pipewire et al.
-  services = {
-    pulseaudio.enable = false;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
-      wireplumber.enable = true;
-    };
-  };
-  security.rtkit.enable = true;
-
   # :> Bluetooth
   hardware.bluetooth.enable = true;
 }
