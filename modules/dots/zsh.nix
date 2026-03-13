@@ -16,8 +16,11 @@
     programs.zsh = {
       enable = true;
 
+      # ---[ Top-Level Settings ]---
+      # :> Enable vi keybinds
       defaultKeymap = "viins";
 
+      # :> Directory Aliases
       dirHashes = {
         cd = "$HOME/Code";
         cfg = "$HOME/.config";
@@ -29,6 +32,16 @@
         usb = "/run/media/jamescraven";
       };
 
+      # :> Zsh Opts
+      setOptions = [
+        "auto_param_slash" # Dirs are autocompleted with a trailing /
+        "cdable_vars" # cd into a hashed dir without typing ~
+        "cd_silent" # Don't pwd after cd
+        "correct" # Offer to correct mispelled commands
+      ];
+
+      # ---[ Plugins ]---
+      # :> Syntax Highlighting
       syntaxHighlighting = {
         enable = true;
         highlighters = [
@@ -40,13 +53,34 @@
 
       autosuggestion.enable = true;
 
-      setOptions = [
-        "auto_param_slash" # Dirs are autocompleted with a trailing /
-        "cdable_vars" # cd into a hashed dir without typing ~
-        "cd_silent" # Don't pwd after cd
-        "correct" # Offer to correct mispelled commands
-      ];
+      # ---[ .zshrc ]---
+      initContent = /* bash */ ''
+        zstyle ':completion:*' insert-tab false # Disable inserting tab at the beginning of a line
 
+        # fzf-zsh integration and theming
+        source <(${lib.getExe pkgs.fzf} --zsh)
+        bindkey "^f" fzf-history-widget
+
+        # direnv integration
+        eval "$(${lib.getExe pkgs.direnv} hook zsh)"
+
+        bindkey "^a" autosuggest-accept
+
+        export FZF_DEFAULT_OPTS=" \
+        --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+        --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+        --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+        --color=selected-bg:#45475a \
+        --color=border:#313244,label:#cdd6f4"
+
+        # Fallback
+        if ! command -v starship > /dev/null 2>&1; then
+          PROMPT='/ˈiː.ən/%F{red}@%m [%f%~%F{red}]
+        => %f'
+        fi
+      '';
+
+      # ---[ Shell Functions ]---
       siteFunctions = {
         # A wrapper around basic nix functionality, mostly delegates
         # to the just file for this config
@@ -102,7 +136,7 @@
             if [ "$1" = "d" ] || [ "$1" = "develop" ]; then
               shift
               _nxd "$@"
-            # Other wise delegate to justfile
+            # Otherwise delegate to justfile
             else
               just --justfile /home/jamescraven/nixos/justfile "$@"
             fi
@@ -142,33 +176,8 @@
               udisksctl power-off -b "$dev"
             }
           '';
+
       };
-
-      initContent = /* bash */ ''
-        zstyle ':completion:*' insert-tab false # Disable inserting tab at the beginning of a line
-
-        # fzf-zsh integration and theming
-        source <(${lib.getExe pkgs.fzf} --zsh)
-        bindkey "^f" fzf-history-widget
-
-        # direnv integration
-        eval "$(${lib.getExe pkgs.direnv} hook zsh)"
-
-        bindkey "^a" autosuggest-accept
-
-        export FZF_DEFAULT_OPTS=" \
-        --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
-        --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-        --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
-        --color=selected-bg:#45475a \
-        --color=border:#313244,label:#cdd6f4"
-
-        # Fallback
-        if ! command -v starship > /dev/null 2>&1; then
-          PROMPT='/ˈiː.ən/%F{red}@%m [%f%~%F{red}]
-        => %f'
-        fi
-      '';
     };
   };
 }
