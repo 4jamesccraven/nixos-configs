@@ -34,20 +34,29 @@ rec {
     mapFileNames :: (string -> a) -> path -> [a]
 
     Like mapFiles, but removes the ".nix" suffix automatically.
+
+    Note: This does not filter the files at all; if you have .nix files and
+    .txt files, all of them will be present, and only the nix files will have
+    had their suffices stripped.
     ```
     mapFileNames (name: "${name}.toml") dir;
     ```
   */
-  mapFileNames = func: dir: mapFileNames' func dir ".nix";
+  mapFileNames = func: dir: mapFileNames' ".nix" func dir;
 
   /*
-    mapFileNames' :: (string -> a) -> path -> string -> [a]
+    mapFileNames' :: string -> (string -> a) -> path -> [a]
 
     Like mapFileNames, but allows extension to be stripped to be specified.
+
+    Note: Does not _filter_ files, only removes matching suffices.
+    ```
+    mapTOMLFileNames = mapFileNames' ".toml";
+    ```
   */
   mapFileNames' =
-    func: dir: suffix:
-    map func (fileNamesIn' dir suffix);
+    suffix: func: dir:
+    map func (fileNamesIn' suffix dir);
 
   # :> To attrs
 
@@ -79,7 +88,7 @@ rec {
   filesIn = dir: entriesIn' dir (t: t == "regular");
 
   /*
-    directoriesIn :: path -> [string]
+    dirsIn :: path -> [string]
 
     Gets the basenames of all subdirectories in a directory.
   */
@@ -92,14 +101,19 @@ rec {
     Gets the basenames of all files in a directory, but without the ".nix"
     suffix.
   */
-  fileNamesIn = dir: fileNamesIn' dir ".nix";
+  fileNamesIn = dir: fileNamesIn' ".nix" dir;
 
   /*
-    fileNamesIn' :: path -> string -> [string]
+    fileNamesIn' :: string -> path -> [string]
 
     Like fileNamesIn, but allows specifying the suffix to strip.
+
+    Note: Does not _filter_ files, only removes matching suffices.
+    ```
+    tomlFilesIn = fileNamesIn' ".toml";
+    ```
   */
-  fileNamesIn' = dir: suffix: mapFiles (lib.removeSuffix suffix) dir;
+  fileNamesIn' = suffix: dir: mapFiles (lib.removeSuffix suffix) dir;
 
   # ---[ Entries Primitive ]---
 
