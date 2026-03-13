@@ -78,6 +78,10 @@
           PROMPT='/ˈiː.ən/%F{red}@%m [%f%~%F{red}]
         => %f'
         fi
+
+        if command -v fastfetch > /dev/null 2>&1; then
+          fastfetch
+        fi
       '';
 
       # ---[ Shell Functions ]---
