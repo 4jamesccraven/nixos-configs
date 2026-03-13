@@ -12,6 +12,57 @@
       inherit (config.ext) colors flakeRoot;
       logo = flakeRoot + /assets/logo.txt;
       accent = colors.accent.ansi;
+
+      dividers = {
+        top = {
+          key = "╭───╮";
+          type = "custom";
+        };
+        middle = {
+          key = "├───┤";
+          type = "custom";
+        };
+
+        bottom = {
+          key = "╰───╯";
+          type = "custom";
+        };
+      };
+
+      /*
+        args :: {
+          type :: string,
+          icon :: string,
+          colour :: string,
+          format :: string | null
+        }
+        mkModule :: args -> AttrSet
+
+        Creates a fastfetch module config with a customised key containing a
+        coloured icon.
+      */
+      mkModule =
+        {
+          type,
+          icon,
+          colour,
+          format ? null,
+        }:
+        {
+          inherit type;
+          key = "│ {#${colour}}${icon} {#keys}│";
+        }
+        // (if format != null then { inherit format; } else { });
+
+      /*
+        mkColourGroup :: String -> AttrSet -> [AttrSet] -> [AttrSet]
+
+        Prepends a divider to a list of modules, applying a shared colour to
+        each.
+      */
+      mkColourGroup =
+        colour: divider: modules:
+        [ divider ] ++ map (m: mkModule (m // { inherit colour; })) modules;
     in
     {
       programs.fastfetch = {
@@ -33,14 +84,8 @@
               };
             };
 
-            color = {
-              keys = "${accent}";
-            };
-
-            percent = {
-              type = 3;
-            };
-
+            color.keys = "${accent}";
+            percent.type = 3;
             separator = " ";
 
             size = {
@@ -50,85 +95,79 @@
             };
           };
 
+          # ---[ Modules ]---
           modules = [
             {
               format = " /ˈiː.ən/{#keys}@{2}";
               type = "title";
             }
+          ]
+          ++ (mkColourGroup "red" dividers.top [
             {
-              key = "╭───╮";
-              type = "custom";
-            }
-            {
-              key = "│ {#red} {#keys}│";
-              format = "{name} {version-id}";
               type = "os";
+              icon = "";
+              format = "{name} {version-id}";
             }
             {
-              key = "│ {#red}󰪫 {#keys}│";
-              format = "{type}";
               type = "chassis";
+              icon = "󰪫";
+              format = "{type}";
             }
             {
-              key = "│ {#red} {#keys}│";
-              format = "{pretty-name} {version}";
               type = "wm";
-            }
-            {
-              key = "│ {#red} {#keys}│";
+              icon = "";
               format = "{pretty-name} {version}";
+            }
+            {
               type = "de";
+              icon = "";
+              format = "{pretty-name} {version}";
             }
             {
-              key = "│ {#red} {#keys}│";
-              format = "{hour-pretty}:{minute-pretty}:{second-pretty}";
               type = "datetime";
+              icon = "";
+              format = "{hour-pretty}:{minute-pretty}:{second-pretty}";
             }
+          ])
+          ++ (mkColourGroup "green" dividers.middle [
             {
-              key = "├───┤";
-              type = "custom";
-            }
-            {
-              key = "│ {#green} {#keys}│";
               type = "shell";
+              icon = "";
             }
             {
-              key = "│ {#green}󱩽 {#keys}│";
               type = "editor";
+              icon = "󱩽";
             }
             {
-              key = "│ {#green}󰝚 {#keys}│";
-              format = "{combined}";
               type = "media";
+              icon = "󰝚";
+              format = "{combined}";
             }
+          ])
+          ++ (mkColourGroup "blue" dividers.middle [
             {
-              key = "├───┤";
-              type = "custom";
-            }
-            {
-              key = "│ {#blue} {#keys}│";
-              format = "{name}";
               type = "cpu";
+              icon = "";
+              format = "{name}";
             }
             {
-              key = "│ {#blue} {#keys}│";
-              format = "{vendor} {name}";
               type = "gpu";
+              icon = "";
+              format = "{vendor} {name}";
             }
             {
-              key = "│ {#blue} {#keys}│";
-              format = "{percentage-bar} {total>10}";
               type = "memory";
+              icon = "";
+              format = "{percentage-bar} {total>10}";
             }
             {
-              key = "│ {#blue} {#keys}│";
-              format = "{size-percentage-bar} {size-total>10} {name}";
               type = "disk";
+              icon = "";
+              format = "{size-percentage-bar} {size-total>10} {name}";
             }
-            {
-              key = "╰───╯";
-              type = "custom";
-            }
+          ])
+          ++ [
+            dividers.bottom
             {
               paddingLeft = 9;
               symbol = "diamond";
