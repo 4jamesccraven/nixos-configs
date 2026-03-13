@@ -22,7 +22,6 @@
           logo.source = "${logo}";
 
           display = {
-            # :> Percent Bars
             bar = {
               border = {
                 left = "[";
@@ -34,21 +33,16 @@
               };
             };
 
-            # :> Colours
             color = {
-              keys = accent;
-              output = "default";
+              keys = "${accent}";
             };
-            # :> Constant Strings
-            constants = [
-              "══════════════════════════════════════"
-              "                                      "
-              "[38D"
-            ];
-            percent.type = 3;
-            # :> Disable Default Separator
-            separator = "";
-            # :> Data Size Formatting
+
+            percent = {
+              type = 3;
+            };
+
+            separator = " ";
+
             size = {
               binaryPrefix = "si";
               maxPrefix = "TB";
@@ -56,94 +50,92 @@
             };
           };
 
-          # ---[ Information Modules ]---
           modules = [
             {
               format = " /ˈiː.ən/{#keys}@{2}";
               type = "title";
             }
             {
-              key = "╔═══╦{$1}╗";
+              key = "╭───╮";
               type = "custom";
             }
             {
-              format = "{2} {9}";
-              key = "║ {#red} {#keys}║{$2}║{$3}";
+              key = "│ {#red} {#keys}│";
+              format = "{name} {version-id}";
               type = "os";
             }
             {
-              format = "{1}";
-              key = "║ {#red}󰪫 {#keys}║{$2}║{$3}";
+              key = "│ {#red}󰪫 {#keys}│";
+              format = "{type}";
               type = "chassis";
             }
             {
-              format = "{2} {3}";
-              key = "║ {#red} {#keys}║{$2}║{$3}";
-              type = "de";
-            }
-            {
-              format = "{2} {5}";
-              key = "║ {#red} {#keys}║{$2}║{$3}";
+              key = "│ {#red} {#keys}│";
+              format = "{pretty-name} {version}";
               type = "wm";
             }
             {
-              format = "{14}:{18}:{20}";
-              key = "║ {#red} {#keys}║{$2}║{$3}";
+              key = "│ {#red} {#keys}│";
+              format = "{pretty-name} {version}";
+              type = "de";
+            }
+            {
+              key = "│ {#red} {#keys}│";
+              format = "{hour-pretty}:{minute-pretty}:{second-pretty}";
               type = "datetime";
             }
             {
-              key = "╠═══╬{$1}╣";
+              key = "├───┤";
               type = "custom";
             }
             {
-              key = "║ {#green} {#keys}║{$2}║{$3}";
+              key = "│ {#green} {#keys}│";
               type = "shell";
             }
             {
-              key = "║ {#green}󱩽 {#keys}║{$2}║{$3}";
+              key = "│ {#green}󱩽 {#keys}│";
               type = "editor";
             }
             {
-              format = "{1}";
-              key = "║ {#green}󰝚 {#keys}║{$2}║{$3}";
+              key = "│ {#green}󰝚 {#keys}│";
+              format = "{combined}";
               type = "media";
             }
             {
-              key = "╠═══╬{$1}╣";
+              key = "├───┤";
               type = "custom";
             }
             {
-              format = "{1}";
-              key = "║ {#blue} {#keys}║{$2}║{$3}";
+              key = "│ {#blue} {#keys}│";
+              format = "{name}";
               type = "cpu";
             }
             {
-              format = "{2}";
-              key = "║ {#blue} {#keys}║{$2}║{$3}";
+              key = "│ {#blue} {#keys}│";
+              format = "{vendor} {name}";
               type = "gpu";
             }
             {
-              format = "{4} {2}";
-              key = "║ {#blue} {#keys}║{$2}║{$3}";
+              key = "│ {#blue} {#keys}│";
+              format = "{percentage-bar} {total>10}";
               type = "memory";
             }
             {
-              format = "{13} {2} {10}";
-              key = "║ {#blue} {#keys}║{$2}║{$3}";
+              key = "│ {#blue} {#keys}│";
+              format = "{size-percentage-bar} {size-total>10} {name}";
               type = "disk";
             }
             {
-              key = "╚═══╩{$1}╝";
+              key = "╰───╯";
               type = "custom";
             }
             {
-              paddingLeft = 14;
+              paddingLeft = 9;
               symbol = "diamond";
               type = "colors";
             }
           ];
         };
-
       };
     };
 
