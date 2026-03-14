@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, inputs, ... }:
 
 /*
   ====[ Overlay ]====
@@ -11,5 +11,6 @@ in
 {
   nixpkgs.overlays = [
     (overlayFromDir ./drv)
+    inputs.mkdev.overlays.default
   ];
 }

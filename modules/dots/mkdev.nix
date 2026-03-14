@@ -9,13 +9,13 @@
 {
   home-manager.users.jamescraven = {
     imports = [
-      inputs.mkdev.homeManagerModule
+      inputs.mkdev.homeManagerModules.default
     ];
 
     programs.mkdev = {
       enable = true;
 
-      extraPackages = with inputs.mkdev.packages.${pkgs.stdenv.hostPlatform.system}; [
+      extraPackages = with pkgs; [
         mkf
       ];
 
