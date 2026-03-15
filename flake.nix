@@ -87,7 +87,10 @@
 
       formatter = eachDefaultSystem (pkgs: pkgs.callPackage ./overlay/formatter.nix { });
 
-      overlays.default = overlayFromDir ./overlay/drv;
+      overlays = {
+        default = overlayFromDir ./overlay/drv;
+        unused = overlayFromDir ./overlay/unused;
+      };
 
     };
 }
