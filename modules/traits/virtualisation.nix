@@ -28,9 +28,7 @@
 
   # ---[ Containerisation ]---
   virtualisation.docker.enable = true;
-  environment.systemPackages = with pkgs; [
-    distrobox
-  ];
+  environment.systemPackages = [ pkgs.distrobox ];
 
   # ---[ Group Management ]---
   # Make each user a member of each of `groups`.
