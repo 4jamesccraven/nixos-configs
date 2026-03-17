@@ -39,6 +39,7 @@
     hunspellDicts.es_AR
     hunspellDicts.es_ES
     libreoffice-qt
+    qalculate-gtk
     # keep-sorted end
 
     # :> Music
@@ -72,6 +73,7 @@
     ffmpeg-full
     file
     fzf
+    libqalculate
     tokei
     tor-dl
     unzip
