@@ -30,6 +30,9 @@
     ../constants
   ];
 
+  # Add the flake formatter to packages so it's cached.
+  environment.systemPackages = [ pkgs.ext.formatter ];
+
   # ---[ User account ]---
   users.users.jamescraven = {
     isNormalUser = true;

@@ -17,22 +17,17 @@
   environment.systemPackages = with pkgs; [
     # ---[ GUI ]---
     # :> Internet & Communication
-    # keep-sorted start
     brave
     telegram-desktop
     tor-browser
-    # keep-sorted end
 
     # :> Media
-    # keep-sorted start
     foliate
     makemkv
     obs-studio
     vlc
-    # keep-sorted end
 
     # :> Office
-    # keep-sorted start
     hunspell
     hunspellDicts.en_GB-large
     hunspellDicts.en_US-large
@@ -40,13 +35,10 @@
     hunspellDicts.es_ES
     libreoffice-qt
     qalculate-gtk
-    # keep-sorted end
 
     # :> Music
-    # keep-sorted start
     ardour
     musescore
-    # keep-sorted end
 
     # :> Games
     (prismlauncher.override {
@@ -59,16 +51,13 @@
 
     # ---[ CLI ]---
     # :> Coreutils-esque
-    # keep-sorted start
     dust
     dysk
     fd
     just
     ripgrep
-    # keep-sorted end
 
     # :> Other Utilities
-    # keep-sorted start
     caligula
     ffmpeg-full
     file
@@ -81,39 +70,30 @@
     yazi
     yt-dlp
     zip
-    # keep-sorted end
 
     # :> Fun
     figlet
 
     # :> Scripts
-    # keep-sorted start
     ns
     update-notify
-    # keep-sorted end
 
     # ---[ Development ]---
     # :> Compilers
-    # keep-sorted start
     libgcc
     rustc
-    # keep-sorted end
 
     # :> Interpreters
     python314
 
     # :> Writing & Presenting
-    # keep-sorted start
     typst
     typstyle
-    # keep-sorted end
 
     # :> Project Management
-    # keep-sorted start
     cargo
     gh
     git
-    # keep-sorted end
   ];
 
   # ---[ Progam/Service-based ]---

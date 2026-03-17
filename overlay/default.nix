@@ -10,7 +10,15 @@ let
 in
 {
   nixpkgs.overlays = [
+    # :> Local Overlay
     (overlayFromDir ./drv)
+
+    # :> mkdev
     inputs.mkdev.overlays.default
+
+    # :> etc
+    (prev: _final: {
+      ext.formatter = prev.callPackage ./formatter.nix { };
+    })
   ];
 }
