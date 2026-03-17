@@ -9,10 +9,10 @@
   config = lib.mkIf config.hyprland.enable {
     home-manager.users.jamescraven =
       let
-        inherit (config.ext) colors;
-        base = "${colors.base.hex}ff";
-        accent = "${colors.accent.hex}ff";
-        text = "${colors.text.hex}ff";
+        inherit (config.ext) colours;
+        base = "${colours.base.hex}ff";
+        accent = "${colours.accent.hex}ff";
+        text = "${colours.text.hex}ff";
       in
       {
         programs.fuzzel = {

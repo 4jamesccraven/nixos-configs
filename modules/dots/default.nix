@@ -20,7 +20,6 @@
     ./mkdev.nix
     ./starship.nix
     ./tealdeer.nix
-    ./wezterm.nix
     ./zsh.nix
     # keep-sorted end
   ];

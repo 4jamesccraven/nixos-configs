@@ -15,12 +15,12 @@ rec {
   parseHex = hex: (fromTOML "number = 0x${hex}").number;
 
   /*
-    parseColor :: string -> colorType
+    parseColor :: string -> colourType
 
     Takes a hexadecimal colour string with or without the leading #
-    and converts it to a colorType module.
+    and converts it to a colourType module.
   */
-  parseColor =
+  parseColour =
     hex:
     let
       hexNoPrefix = lib.removePrefix "#" hex;

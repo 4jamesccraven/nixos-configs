@@ -14,11 +14,11 @@ in
   config = lib.mkIf config.hyprland.enable {
     home-manager.users.jamescraven =
       let
-        inherit (config.ext) colors;
-        base = "rgb(${colors.base.rgb})";
-        accent = "rgb(${colors.accent.rgb})";
-        text = "rgb(${colors.text.rgb})";
-        fail = "rgb(${colors.fail.rgb})";
+        inherit (config.ext) colours;
+        base = "rgb(${colours.base.rgb})";
+        accent = "rgb(${colours.accent.rgb})";
+        text = "rgb(${colours.text.rgb})";
+        fail = "rgb(${colours.fail.rgb})";
       in
       {
         programs.hyprlock = {

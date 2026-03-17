@@ -10,7 +10,7 @@ let
 in
 {
   imports = [
-    ./colors.nix
+    ./colours.nix
   ];
 
   options.ext.flakeRoot = mkOption {

@@ -7,9 +7,9 @@
 */
 let
   inherit (lib) types mkOption;
-  inherit (lib.ext) parseColor;
+  inherit (lib.ext) parseColour;
 
-  colorType = types.submodule {
+  colourType = types.submodule {
     options = {
       rgb = mkOption {
         type = types.str;
@@ -27,12 +27,12 @@ let
 
 in
 {
-  options.ext.colors = mkOption {
-    type = types.attrsOf colorType;
+  options.ext.colours = mkOption {
+    type = types.attrsOf colourType;
     description = "Named colour variables";
   };
 
-  config.ext.colors =
+  config.ext.colours =
     let
       colours = {
         # keep-sorted start
@@ -44,5 +44,5 @@ in
         # keep-sorted end
       };
     in
-    builtins.mapAttrs (_: parseColor) colours;
+    builtins.mapAttrs (_: parseColour) colours;
 }

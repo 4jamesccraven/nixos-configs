@@ -58,9 +58,9 @@
           # :> Border Colours
           general =
             let
-              inherit (config.ext) colors;
-              accent = "rgb(${colors.accent.hex})";
-              base = "rgb(${colors.base.hex})";
+              inherit (config.ext) colours;
+              accent = "rgb(${colours.accent.hex})";
+              base = "rgb(${colours.base.hex})";
             in
             {
               border_size = 3;

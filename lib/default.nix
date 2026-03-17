@@ -40,7 +40,7 @@ rec {
   colour = importMod ./colour.nix;
   inherit (colour)
     # keep-sorted start
-    parseColor
+    parseColour
     parseHex
     # keep-sorted end
     ;

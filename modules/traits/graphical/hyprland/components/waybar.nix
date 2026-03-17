@@ -106,7 +106,7 @@
               calendar = {
                 mode = "month";
                 mode-mon-col = 3;
-                format = with config.ext.colors; {
+                format = with config.ext.colours; {
                   months = "<span color=\"#${accent.hex}\"><b>{}</b></span>";
                   weekdays = "<b>{}</b>";
                   today = "<span color=\"#${accent.hex}\"><b><u>{}</u></b></span>";
@@ -202,7 +202,7 @@
         };
 
         # ---[ Style ]---
-        style = with config.ext.colors; /* css */ ''
+        style = with config.ext.colours; /* css */ ''
           @define-color base rgb(${base.rgb});
           @define-color acc  rgb(${accent.rgb});
           @define-color text rgb(${text.rgb});
