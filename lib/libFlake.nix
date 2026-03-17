@@ -86,6 +86,6 @@ in
     let
       mkPkg = prev: name: prev.callPackage (dir + "/${name}.nix") { };
     in
-    _final: prev: genFileAttrs dir (mkPkg prev);
+    prev: _final: genFileAttrs dir (mkPkg prev);
 
 }
