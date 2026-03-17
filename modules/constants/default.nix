@@ -11,6 +11,7 @@ in
 {
   imports = [
     ./colours.nix
+    ./terminal.nix
   ];
 
   options.ext.flakeRoot = mkOption {

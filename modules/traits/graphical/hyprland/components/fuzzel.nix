@@ -13,6 +13,7 @@
         base = "${colours.base.hex}ff";
         accent = "${colours.accent.hex}ff";
         text = "${colours.text.hex}ff";
+        term = config.ext.term.runCmds;
       in
       {
         programs.fuzzel = {
@@ -23,6 +24,7 @@
             main = {
               font = "FiraCode Nerd Font Mono:size=11";
               icon-theme = "Papirus-Dark";
+              terminal = "${term}";
             };
             border.width = 3;
 

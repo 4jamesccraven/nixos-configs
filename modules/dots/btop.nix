@@ -19,24 +19,5 @@
         vim_keys = true;
       };
     };
-
-    # :> Destop Entry Override
-    # (makes the desktop entry use kitty instead of xterm)
-    xdg.desktopEntries = {
-      btop = {
-        type = "Application";
-        name = "btop++";
-        genericName = "System Monitor";
-        comment = "Resource monitor that shows usage and stats for processor, memory, disks, network and processes";
-        icon = "btop";
-        exec = "kitty btop";
-        terminal = false;
-        categories = [
-          "System"
-          "Monitor"
-          "ConsoleOnly"
-        ];
-      };
-    };
   };
 }

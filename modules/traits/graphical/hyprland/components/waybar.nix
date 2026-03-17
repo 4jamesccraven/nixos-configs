@@ -11,6 +11,9 @@
   :: In trait `Graphical`
   Styling and Contents for Waybar, a status/task bar.
 */
+let
+  runTerm = config.ext.term.runCmds;
+in
 {
   config = lib.mkIf config.hyprland.enable {
     home-manager.users.jamescraven = {
@@ -187,7 +190,7 @@
               format-wifi = "󰖩";
               format-disconnected = "󰖪";
               format-ethernet = "󰈀";
-              on-click = "hyprctl dispatch exec '[float; size 80%] kitty nmtui connect'";
+              on-click = "hyprctl dispatch exec '[float; size 80%] ${runTerm} nmtui connect'";
               tooltip = false;
             };
 
