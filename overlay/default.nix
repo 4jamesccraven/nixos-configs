@@ -17,7 +17,7 @@ in
     inputs.mkdev.overlays.default
 
     # :> etc
-    (prev: _final: {
+    (_final: prev: {
       ext.formatter = prev.callPackage ./formatter.nix { };
     })
   ];
