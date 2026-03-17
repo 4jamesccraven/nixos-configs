@@ -73,6 +73,7 @@
 
     # :> Fun
     figlet
+    rff
 
     # :> Scripts
     ns
