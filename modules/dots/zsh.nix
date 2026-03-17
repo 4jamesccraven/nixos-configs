@@ -73,6 +73,10 @@
         --color=selected-bg:#45475a \
         --color=border:#313244,label:#cdd6f4"
 
+        if command -v nvim > /dev/null 2>&1; then
+          export MANPAGER='nvim +Man!'
+        fi
+
         # Fallback
         if ! command -v starship > /dev/null 2>&1; then
           PROMPT='/ˈiː.ən/%F{red}@%m [%f%~%F{red}]

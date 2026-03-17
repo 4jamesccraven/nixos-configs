@@ -11,10 +11,6 @@
     programs.bat = {
       enable = true;
 
-      extraPackages = with pkgs.bat-extras; [
-        batman
-      ];
-
       themes = {
         "Catppuccin Mocha" = {
           src = pkgs.fetchFromGitHub {
@@ -30,9 +26,8 @@
       config.theme = "Catppuccin Mocha";
     };
 
-    programs.zsh.shellAliases = {
+    home.shellAliases = {
       cat = "bat";
-      man = "batman";
       lsblk = "lsblk | bat -l conf -pp";
     };
   };
