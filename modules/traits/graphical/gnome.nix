@@ -20,15 +20,26 @@
     services.desktopManager.gnome.enable = true;
     # Exclude unnecessary packages (i.e., bloat)
     environment.gnome.excludePackages = with pkgs; [
+      decibels
       epiphany
       geary
+      gnome-calculator
+      gnome-calendar
       gnome-clocks
       gnome-connections
       gnome-console
       gnome-contacts
       gnome-maps
+      gnome-music
+      gnome-system-monitor
+      gnome-text-editor
       gnome-tour
       gnome-weather
+      loupe
+      papers
+      showtime
+      simple-scan
+      snapshot
       totem
       yelp
     ];
