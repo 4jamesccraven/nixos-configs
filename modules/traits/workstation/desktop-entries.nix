@@ -8,21 +8,7 @@
 {
   home-manager.users.jamescraven = {
     xdg.desktopEntries = {
-      shutdown = {
-        name = "Shutdown";
-        icon = "system-shutdown";
-        exec = "shutdown now";
-      };
-      restart = {
-        name = "Reboot";
-        icon = "system-restart";
-        exec = "reboot";
-      };
-      chatgpt = {
-        name = "ChatGPT";
-        icon = "irc-chat";
-        exec = "brave --new-window https://chatgpt.com";
-      };
+      # I'm leaving this stub for now, but I don't have any custom desktop entries atm.
     };
   };
 }

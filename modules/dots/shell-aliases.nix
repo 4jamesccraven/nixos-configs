@@ -16,8 +16,10 @@
       # :> Git
       # keep-sorted start
       ga = "git add . --all";
+      gb = "git branch";
       gc = "git clone";
       gcm = "git commit";
+      gco = "git checkout";
       gd = "git diff HEAD";
       ggr = "cd $(git rev-parse --show-toplevel)";
       gi = "git init";
