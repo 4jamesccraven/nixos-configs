@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   ...
@@ -25,6 +26,10 @@
   config = lib.mkIf config.hyprland.enable {
     # Enable in *NixOS*
     programs.hyprland.enable = true;
+
+    environment.systemPackages = with pkgs; [
+      hyprshutdown
+    ];
 
     home-manager.users.jamescraven = {
       wayland.windowManager.hyprland = {

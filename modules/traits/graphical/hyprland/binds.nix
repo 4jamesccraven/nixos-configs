@@ -53,7 +53,7 @@
 
             # :> System Power
             "$mod, L, exec, hyprlock"
-            "$mod, V, exec, hyprctl dispatch exit"
+            "$mod, V, exec, hyprshutdown"
             "$mod+Shift, V, exec, shutdown now"
 
             # :> Window Focus

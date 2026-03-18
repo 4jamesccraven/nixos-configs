@@ -113,12 +113,15 @@
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
+      # keep-sorted start
       corefonts
       liberation_ttf
       nerd-fonts.fira-code
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-color-emoji
+      overpass
+      # keep-sorted end
     ];
     fontconfig.defaultFonts = {
       sansSerif = [ "Noto Sans" ];

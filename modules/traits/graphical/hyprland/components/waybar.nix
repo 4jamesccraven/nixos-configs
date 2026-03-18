@@ -32,7 +32,7 @@ in
             # :> Size & Position
             layer = "top";
             position = "top";
-            height = 38;
+            height = 60;
             spacing = 6;
 
             # :> Module Layout
@@ -173,7 +173,6 @@ in
               menu = "on-click";
               menu-file = "${./power-menu.xml}";
               menu-actions = {
-                logout = "hyprctl dispatch exit";
                 shutdown = "shutdown now";
                 reboot = "reboot";
               };
@@ -206,10 +205,11 @@ in
 
         # ---[ Style ]---
         style = with config.ext.colours; /* css */ ''
-          @define-color base rgb(${base.rgb});
-          @define-color acc  rgb(${accent.rgb});
-          @define-color text rgb(${text.rgb});
-          @define-color fail rgb(${fail.rgb});
+          @define-color base  rgb(${base.rgb});
+          @define-color acc   rgb(${accent.rgb});
+          @define-color text  rgb(${text.rgb});
+          @define-color fail  rgb(${fail.rgb});
+          @define-color empty rgb(127, 132, 156);
 
           * {
             font-family: FiraCode Nerd Font Mono;
@@ -224,7 +224,7 @@ in
             margin: 5px 20px;
             margin-bottom: 0px;
             padding: 5px;
-            border: 3px solid @acc;
+            border: 2px solid @acc;
             border-radius: 10px;
           }
 
@@ -264,11 +264,11 @@ in
           }
 
           #custom-menu {
-            color: rgb(127, 132, 156);
+            color: @empty;
           }
 
           #custom-update.ok {
-            color: rgb(127, 132, 156);
+            color: @empty;
           }
           #custom-update.warn {
             color: @acc;
