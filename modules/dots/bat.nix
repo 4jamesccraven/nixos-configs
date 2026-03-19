@@ -1,29 +1,26 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 /*
   ====[ Bat ]====
   :: dotfile
 
-  Enables bat, batman, and installs a catppuccin theme for it.
+  Enables bat and installs a catppuccin theme for it.
 */
+let
+  variant = "mocha";
+  themePkg = pkgs.catppuccin-bat.override {
+    variants = [ variant ];
+  };
+  themeName = "Catppuccin ${lib.toSentenceCase variant}";
+in
 {
   home-manager.users.jamescraven = {
     programs.bat = {
       enable = true;
 
-      themes = {
-        "Catppuccin Mocha" = {
-          src = pkgs.fetchFromGitHub {
-            owner = "catppuccin";
-            repo = "bat";
-            rev = "6810349b28055dce54076712fc05fc68da4b8ec0";
-            hash = "sha256-lJapSgRVENTrbmpVyn+UQabC9fpV1G1e+CdlJ090uvg=";
-          };
-          file = "themes/Catppuccin Mocha.tmTheme";
-        };
-      };
+      themes.${themeName}.src = "${themePkg}/${themeName}.tmTheme";
 
-      config.theme = "Catppuccin Mocha";
+      config.theme = "${themeName}";
     };
 
     home.shellAliases = {

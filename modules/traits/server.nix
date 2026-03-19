@@ -18,9 +18,10 @@
     # :> Super traits
     ./machine.nix
     # :> Components
+    ../dots/bat.nix
     ../dots/git.nix
     ../dots/lsd.nix
-    ../dots/bat.nix
+    ../dots/yazi.nix
     ../dots/zsh.nix
   ];
 
@@ -29,7 +30,6 @@
     # :> File management
     dust
     dysk
-    yazi
 
     # :> CLI Tools
     fd

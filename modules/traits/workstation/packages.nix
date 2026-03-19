@@ -67,7 +67,6 @@
     tor-dl
     unzip
     wl-clipboard
-    yazi
     yt-dlp
     zip
 
