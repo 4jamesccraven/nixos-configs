@@ -5,6 +5,11 @@
   ...
 }:
 
+/*
+  ====[ Constants/terminal ]====
+
+  Constants revolving around the default terminal emulator.
+*/
 let
   inherit (lib) types mkOption;
 in
