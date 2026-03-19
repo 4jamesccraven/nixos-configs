@@ -1,4 +1,4 @@
-{ ... }:
+{ config, lib, ... }:
 
 /*
   ====[ Tealdeer ]====
@@ -6,6 +6,15 @@
 
   Enables and configure tealdeer, a client for tldr-pages.
 */
+let
+  inherit (lib.ext.colour) parseRGBString;
+  inherit (config.ext.colours) accent;
+
+  mauve = parseRGBString accent.rgb;
+  accentCfg = {
+    foreground.rgb = mauve;
+  };
+in
 {
   home-manager.users.jamescraven = {
     programs.tealdeer = {
@@ -19,36 +28,12 @@
         };
 
         # :> Style
-        style = {
-          command_name.foreground = {
-            rgb = {
-              r = 203;
-              g = 166;
-              b = 247;
-            };
-          };
-          example_text.foreground = {
-            rgb = {
-              r = 203;
-              g = 166;
-              b = 247;
-            };
-          };
-          example_code.foreground = {
-            rgb = {
-              r = 203;
-              g = 166;
-              b = 247;
-            };
-          };
-          example_variable.foreground = {
-            rgb = {
-              r = 205;
-              g = 214;
-              b = 244;
-            };
-          };
-        };
+        style = lib.genAttrs [
+          "command_name"
+          "example_text"
+          "example_code"
+          "example_variable"
+        ] (_: accentCfg);
       };
     };
   };

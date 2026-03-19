@@ -34,6 +34,9 @@ let
   };
 in
 {
+  # Hack to stop this package from getting deleted.
+  environment.systemPackages = [ themePkg ];
+
   home-manager.users.jamescraven = {
     programs.yazi = {
       enable = true;
