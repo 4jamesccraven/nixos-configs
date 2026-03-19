@@ -30,9 +30,6 @@
     ../constants
   ];
 
-  # Add the flake formatter to packages so it's cached.
-  environment.systemPackages = [ pkgs.ext.formatter ];
-
   # ---[ User account ]---
   users.users.jamescraven = {
     isNormalUser = true;
@@ -45,7 +42,8 @@
     ];
   };
 
-  # ---[ DevShell Cache ]---
+  # ---[ Caching and Performance ]---
+  # :> Caching
   /*
     This caches the dependencies of config-level devShells by making the name
     of each dependencies' store path a dependency of the system activation
@@ -76,6 +74,21 @@
       cacheCommands = lib.concatMap (map echoPkg) shellInputs;
     in
     lib.concatLines cacheCommands;
+  # Add the flake formatter to packages so it's cached.
+  environment.systemPackages = [ pkgs.ext.formatter ];
+
+  # :> Optimisation
+  # Remove unnecessary docs
+  documentation = {
+    doc.enable = false;
+    info.enable = false;
+  };
+
+  # Remove unnecessary services
+  services = {
+    orca.enable = false;
+    speechd.enable = false;
+  };
 
   # ---[ Nix settings ]---
   nixpkgs.config.allowUnfree = true;
