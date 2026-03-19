@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 /*
   ====[ Machine ]====
@@ -23,6 +23,9 @@
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
   };
+
+  # ---[ Linux Kernel ]---
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # ---[ Time Zone & Locale ]---
   time.timeZone = "America/New_York";
