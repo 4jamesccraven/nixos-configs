@@ -24,17 +24,21 @@
         recipe_dir = "/home/jamescraven/.config/mkdev/recipes";
 
         subs = {
-          day = "date +%d";
-          dir = "mk::dir";
+          # Project
           name = "mk::name";
-          month = "date +%m";
+          dir = "mk::dir";
+          # Me
           user = "whoami";
+          author = "echo \"James C Craven\"";
+          # Time
+          day = "date +%d";
+          month = "date +%m";
           year = "date +%Y";
         };
       };
 
       # :> Project Templates
-      recipes = [ ];
+      recipes = import ./mkdev-recipes.nix;
     };
   };
 }
