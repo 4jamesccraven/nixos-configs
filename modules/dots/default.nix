@@ -18,6 +18,7 @@
     ./kitty.nix
     ./lsd.nix
     ./mkdev.nix
+    ./qt.nix
     ./starship.nix
     ./tealdeer.nix
     ./yazi.nix
