@@ -22,7 +22,6 @@
           key = "├───┤";
           type = "custom";
         };
-
         bottom = {
           key = "╰───╯";
           type = "custom";
@@ -31,10 +30,10 @@
 
       /*
         args :: {
-          type :: string,
-          icon :: string,
-          colour :: string,
-          format :: string | null
+          type   :: string;
+          icon   :: string;
+          colour :: string;
+          format :: string | null;
         }
         mkModule :: args -> AttrSet
 
