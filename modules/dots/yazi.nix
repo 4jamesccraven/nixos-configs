@@ -34,8 +34,10 @@ let
   };
 in
 {
-  # Hack to stop this package from getting deleted.
-  environment.systemPackages = [ themePkg ];
+  # Hack to prevent the theme file from being garbage collected.
+  system.activationScripts.cachYaziSource.text = ''
+    echo "${themeFile}" > /dev/null
+  '';
 
   home-manager.users.jamescraven = {
     programs.yazi = {
