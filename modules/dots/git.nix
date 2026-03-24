@@ -23,7 +23,10 @@
             name = "4jamesccraven";
             email = "4jamesccraven@gmail.com";
           };
+
         };
+        # Suppresses yet another state warning
+        signing.format = null;
 
         # :> Theme for Delta
         includes = [
