@@ -76,6 +76,7 @@
 
     # :> Scripts
     ns
+    st-remote
     update-notify
 
     # ---[ Development ]---
