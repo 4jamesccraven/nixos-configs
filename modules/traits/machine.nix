@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 /*
   ====[ Machine ]====
@@ -31,22 +31,24 @@
   time.timeZone = "America/New_York";
   i18n =
     let
-      locale = "en_US.UTF-8";
+      locales = {
+        english = {
+          default = "en_US.UTF-8";
+          messages = "en_GB.UTF-8";
+        };
+
+        spanish = {
+          default = "es_AR.UTF-8";
+        };
+      };
     in
+    with locales;
     {
-      defaultLocale = locale;
-      extraLocaleSettings = lib.genAttrs [
-        "LC_ADDRESS"
-        "LC_IDENTIFICATION"
-        "LC_MEASUREMENT"
-        "LC_MESSAGES"
-        "LC_MONETARY"
-        "LC_NAME"
-        "LC_NUMERIC"
-        "LC_PAPER"
-        "LC_TELEPHONE"
-        "LC_TIME"
-      ] (_: locale);
+      defaultLocale = english.default;
+      extraLocaleSettings = {
+        LC_MESSAGES = english.messages;
+      };
+      extraLocales = map (lang: "${lang}/UTF-8") [ spanish.default ];
     };
 
   # ---[ Services ]---
