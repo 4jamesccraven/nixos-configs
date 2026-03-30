@@ -94,6 +94,7 @@ in
               ];
               format-discharging = "{icon} {capacity}%";
               format-charging = "󰂄 {capacity}%";
+              format-full = " {capacity}%";
               interval = 1;
             };
 
