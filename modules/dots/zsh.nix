@@ -185,6 +185,43 @@
             }
           '';
 
+        sandwich = /* bash */ ''
+          sandwich() {
+              local go_bin=0 go_root=0
+              local -a passthru
+
+              for arg in $@; do
+                  case "$arg" in
+                      -g)  go_bin=1 ;;
+                      -gg) go_root=1 ;;
+                      *)   passthru+=("$arg") ;;
+                  esac
+              done
+
+              local target
+              target=$(which "''${passthru[@]}")
+
+              # Do nothing special for non symlinks
+              if [[ ! -L $target ]]; then
+                  echo "$target"
+                  return
+              fi
+
+              # Follow the symlink
+              real_target=$(readlink -f "$target")
+              # Go to "$real_target/../.."
+              if (( "$go_root" == 1 )); then
+                  cd $(dirname $(dirname "$real_target"))
+              # Go to "$real_target/.."
+              elif (( $go_bin == 1 )); then
+                  cd $(dirname "$real_target")
+              # Just echo like default which
+              else
+                  echo "$real_target"
+              fi
+          }
+        '';
+
       };
     };
   };

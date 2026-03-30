@@ -9,7 +9,7 @@
       cff = "clear; fastfetch";
       ff = "fastfetch";
       j = "just";
-      s = "ssh";
+      s = "kitten ssh";
       y = "yazi";
       # keep-sorted end
 
@@ -21,6 +21,8 @@
       gcm = "git commit";
       gco = "git checkout";
       gd = "git diff HEAD";
+      gf = "git fetch";
+      gfp = "git fetch --prune";
       ggr = "cd $(git rev-parse --show-toplevel)";
       gi = "git init";
       gl = "git log --stat";
