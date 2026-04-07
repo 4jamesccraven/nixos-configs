@@ -36,6 +36,11 @@
 
   programs.steam.enable = true;
 
+  services.displayManager = {
+    gdm.enable = lib.mkForce false;
+    cosmic-greeter.enable = true;
+  };
+
   # ---[ Hardware ]---
   boot.initrd.availableKernelModules = [
     "nvme"
