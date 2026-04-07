@@ -93,6 +93,7 @@
   fileSystems."/home/jamescraven/steam-nvme" = {
     device = "/steam";
     options = [ "bind" ];
+    inherit (config.fileSystems."/") fsType;
   };
 
   swapDevices = [ ];

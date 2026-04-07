@@ -18,8 +18,10 @@
       url = "github:4jamesccraven/mkdev";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    jcc-neovim = {
-      url = "github:4jamesccraven/neovim";
+
+    # :> Third-party
+    tree-sitter = {
+      url = "github:tree-sitter/tree-sitter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

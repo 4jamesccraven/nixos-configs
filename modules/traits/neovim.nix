@@ -1,15 +1,10 @@
-{
-  inputs,
-  pkgs,
-  ...
-}:
+{ inputs, pkgs, ... }:
 
 /*
   ====[ Neovim ]====
   :: trait
 
   Neovim, my goat <3
-  For the actual config, see https://github.com/4jamesccraven/neovim.
 
   Enables:
     :> User Level
@@ -18,38 +13,45 @@
     plugins => installs the plugins necessary for my config
 */
 {
-  environment.sessionVariables.EDITOR = "nvim";
+  environment = {
+    sessionVariables.EDITOR = "nvim";
+    systemPackages = with pkgs; [
+      # :> LSP
+      bash-language-server
+      clang-tools
+      lua-language-server
+      nixd
+      nixfmt
+      pyright
+      rust-analyzer
+      rustfmt
+      tinymist
 
-  home-manager.users.jamescraven = {
-    programs.neovim = {
+      # :> Treesitter CLI
+      inputs.tree-sitter.packages.${pkgs.stdenv.hostPlatform.system}.default
+      gcc
 
-      # ---[ Aliases etc. ]----
-      enable = true;
-      viAlias = true;
-      vimAlias = true;
-      defaultEditor = true;
-
-      # ---[ Additional Software ]---
-      plugins = inputs.jcc-neovim.pluginList.${pkgs.stdenv.hostPlatform.system};
-
-      # note: these are only available to nvim itself; they are not on the system path.
-      extraPackages = with pkgs; [
-        # :> LSP
-        bash-language-server
-        clang-tools
-        lua-language-server
-        nixd
-        nixfmt
-        pyright
-        rust-analyzer
-        rustfmt
-        tinymist
-
-        # :> Clipboard support
-        xclip
-        wl-clipboard
-      ];
-    };
+      # :> Clipboard support
+      xclip
+      wl-clipboard
+    ];
   };
 
+  programs.neovim = {
+    enable = true;
+    viAlias = true;
+    vimAlias = true;
+    defaultEditor = true;
+    withPython3 = true;
+  };
+
+  home-manager.users.jamescraven =
+    { config, ... }:
+    let
+      inherit (config.home) homeDirectory;
+    in
+    {
+      home.file."${homeDirectory}/.config/nvim".source =
+        config.lib.file.mkOutOfStoreSymlink "${homeDirectory}/nixos/modules/dots/neovim";
+    };
 }

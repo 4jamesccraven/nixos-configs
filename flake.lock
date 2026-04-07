@@ -23,37 +23,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1774293042,
-        "narHash": "sha256-OEBV+Y5I4Ldu98k0KvGXRfJYh+jjE8ocCSL/dxTGs1s=",
+        "lastModified": 1775544097,
+        "narHash": "sha256-fwI8PbrUT4W+z+J4TAS/D69So/MLan1WZjUsYQpoSvI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "bc357c75e3142a31b849ba49c5299fb52c61cf59",
+        "rev": "2bd16b16a77d68a1e14c1b4da725a6590181a706",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "ref": "master",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "jcc-neovim": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1773982118,
-        "narHash": "sha256-Nf8N/Lari8xDyeFZFQUsnlSW/IDOgBaSQ5cpyigvxlE=",
-        "owner": "4jamesccraven",
-        "repo": "neovim",
-        "rev": "eb3229319a8652984a3b0b98892d0d3eacd73f37",
-        "type": "github"
-      },
-      "original": {
-        "owner": "4jamesccraven",
-        "repo": "neovim",
         "type": "github"
       }
     },
@@ -83,11 +63,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1773882647,
-        "narHash": "sha256-VzcOcE0LLpEnyoxLuMuptZ9ZWCkSBn99bTgEQoz5Viw=",
+        "lastModified": 1774972752,
+        "narHash": "sha256-DnLIpFxznohpLkIFs390uZ0gxwkVyhtknhKNu+lQJK8=",
         "owner": "nix-community",
         "repo": "NixOS-WSL",
-        "rev": "fd0eae98d1ecee31024271f8d64676250a386ee7",
+        "rev": "d97e078f4788cddb8d11c3c99f72a4bb9ddec221",
         "type": "github"
       },
       "original": {
@@ -115,11 +95,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1774273680,
-        "narHash": "sha256-WLxi1vfcykjq9Yb2umqBJs6lVM6MpV2tXfcrAjroxUk=",
-        "rev": "fdc7b8f7b30fdbedec91b71ed82f36e1637483ed",
+        "lastModified": 1775495295,
+        "narHash": "sha256-98O1UUpIza21RFXlzS/OWg06dY/g8IqIQEZZKfkhw7k=",
+        "rev": "ff048610a1b698607a66f4671821716c2272dc9f",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.05pre968305.fdc7b8f7b30f/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.05pre975973.ff048610a1b6/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
@@ -129,11 +109,31 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "jcc-neovim": "jcc-neovim",
         "mkdev": "mkdev",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
+        "tree-sitter": "tree-sitter",
         "waybar": "waybar"
+      }
+    },
+    "tree-sitter": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775549418,
+        "narHash": "sha256-HmHBvmdkwIoS84qDhbmqMA46NWC+yb3rjn86hnxGjn8=",
+        "owner": "tree-sitter",
+        "repo": "tree-sitter",
+        "rev": "b018c2001870e9a236dcc53afafcdd600685fdee",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tree-sitter",
+        "repo": "tree-sitter",
+        "type": "github"
       }
     },
     "waybar": {
