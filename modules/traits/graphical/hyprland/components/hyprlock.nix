@@ -7,7 +7,7 @@
 */
 let
   inherit (config.ext) colours;
-  funcFmt = colour: "rgb(${colour.rgb})";
+  inherit (lib.ext.colour) funcRGBFmt;
 
   colourVars = lib.genAttrs [
     "base"
@@ -15,7 +15,7 @@ let
     "text"
     "fail"
     "crust"
-  ] (name: funcFmt colours."${name}");
+  ] (name: funcRGBFmt colours."${name}");
 
   font_family = "Overpass";
 in

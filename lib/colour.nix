@@ -56,6 +56,17 @@ rec {
     ];
 
   /*
+    funcRGBFmt :: colourType -> string
+
+    Represents a `colourType` as functional (or CSS) style RGB.
+    ```
+    nix-repl> funcRGBFmt { rgb = "255, 255, 255"; # Others omitted }
+    "rgb(255, 255, 255)"
+    ```
+  */
+  funcRGBFmt = colour: "rgb(${colour.rgb})";
+
+  /*
     parseColor :: string -> colourType
 
     Takes a hexadecimal colour string with or without the leading #
