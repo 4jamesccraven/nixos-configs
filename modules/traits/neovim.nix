@@ -10,7 +10,7 @@
     :> User Level
     aliases => symlinks vi{,m} to nvim
     lsp     => installs a bunch of lsps referenced by my config
-    plugins => installs the plugins necessary for my config
+    config  => symlinks my config from ../dots/neovim
 */
 {
   environment = {
