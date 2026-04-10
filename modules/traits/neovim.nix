@@ -27,13 +27,12 @@
       rustfmt
       tinymist
 
-      # :> Treesitter CLI
-      inputs.tree-sitter.packages.${pkgs.stdenv.hostPlatform.system}.default
+      # :> etc.
       gcc
-
-      # :> Clipboard support
-      xclip
+      inputs.tree-sitter.packages.${pkgs.stdenv.hostPlatform.system}.default
+      websocat
       wl-clipboard
+      xclip
     ];
   };
 
