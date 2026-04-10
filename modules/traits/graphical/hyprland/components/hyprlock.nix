@@ -30,7 +30,7 @@ with colourVars;
           # :> General
           background = {
             monitor = "";
-            color = base;
+            color = crust;
 
             blur_passes = 2;
           };
