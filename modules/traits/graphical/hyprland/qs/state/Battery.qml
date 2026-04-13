@@ -15,27 +15,27 @@ Singleton {
         if (root.status === "Charging" ||
             root.status === "Full")
         {
-            if (capacity >= 100) return "󰂅";
-            if (capacity >= 90)  return "󰂋";
-            if (capacity >= 80)  return "󰂊";
-            if (capacity >= 70)  return "󰢞";
-            if (capacity >= 60)  return "󰂉";
-            if (capacity >= 50)  return "󰢝";
-            if (capacity >= 40)  return "󰂈";
-            if (capacity >= 30)  return "󰂇";
-            if (capacity >= 20)  return "󰂆";
-            if (capacity >= 10)  return "󰢜";
+            if (capacity >= 90) return "󰂅";
+            if (capacity >= 80) return "󰂋";
+            if (capacity >= 70) return "󰂊";
+            if (capacity >= 60) return "󰢞";
+            if (capacity >= 50) return "󰂉";
+            if (capacity >= 40) return "󰢝";
+            if (capacity >= 30) return "󰂈";
+            if (capacity >= 20) return "󰂇";
+            if (capacity >= 10) return "󰂆";
+            if (capacity >= 00) return "󰢜";
         } else {
-            if (capacity >= 100) return "󰁹";
-            if (capacity >= 90)  return "󰂂";
-            if (capacity >= 80)  return "󰂁";
-            if (capacity >= 70)  return "󰂀";
-            if (capacity >= 60)  return "󰁿";
-            if (capacity >= 50)  return "󰁾";
-            if (capacity >= 40)  return "󰁽";
-            if (capacity >= 30)  return "󰁼";
-            if (capacity >= 20)  return "󰁻";
-            if (capacity >= 10)  return "󰁺";
+            if (capacity >= 90) return "󰁹";
+            if (capacity >= 80) return "󰂂";
+            if (capacity >= 70) return "󰂁";
+            if (capacity >= 60) return "󰂀";
+            if (capacity >= 50) return "󰁿";
+            if (capacity >= 40) return "󰁾";
+            if (capacity >= 30) return "󰁽";
+            if (capacity >= 20) return "󰁼";
+            if (capacity >= 10) return "󰁻";
+            if (capacity >= 00) return "󰁺";
         }
     }
 
