@@ -14,7 +14,10 @@
   imports = [
     # keep-sorted start
     ./binds.nix
-    ./components
+    ./fuzzel.nix
+    ./hyprlock.nix
+    ./hyprpaper.nix
+    ./quickshell.nix
     ./window-rules.nix
     # keep-sorted end
   ];
@@ -29,6 +32,7 @@
 
     environment.systemPackages = with pkgs; [
       hyprshutdown
+      pavucontrol
     ];
 
     home-manager.users.jamescraven = {
@@ -64,14 +68,15 @@
           general =
             let
               inherit (config.ext) colours;
-              accent = "rgb(${colours.accent.hex})";
-              base = "rgb(${colours.base.hex})";
+              active = "rgba(${colours.accent.hex}ff)";
+              inactive = "rgba(${colours.base.hex}ff)";
             in
             {
               border_size = 3;
               gaps_in = "5";
-              "col.active_border" = accent;
-              "col.inactive_border" = base;
+              gaps_out = "20 20 20 10";
+              "col.active_border" = active;
+              "col.inactive_border" = inactive;
               resize_on_border = true;
             };
 
@@ -81,6 +86,8 @@
             active_opacity = "0.95";
             inactive_opacity = "0.90";
           };
+
+          animation = [ "workspaces, 1, 5, default, slidevert" ];
 
           # ---[ Disable Annoyances ]---
           # :> Disable default wallpapers

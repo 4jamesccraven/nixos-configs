@@ -50,7 +50,7 @@
       inherit (config.home) homeDirectory;
     in
     {
-      home.file."${homeDirectory}/.config/nvim".source =
+      xdg.configFile."nvim".source =
         config.lib.file.mkOutOfStoreSymlink "${homeDirectory}/nixos/modules/dots/neovim";
     };
 }

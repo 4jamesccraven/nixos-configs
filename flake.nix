@@ -4,7 +4,6 @@
   inputs = {
     # :> nixpkgs
     nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
-    waybar.url = "github:nixos/nixpkgs/ae67888ff7ef9dff69b3cf0cc0fbfbcd3a722abe";
 
     # :> nix-community
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
