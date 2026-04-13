@@ -8,18 +8,18 @@
 Written and configured with:
 
 ![Nix](https://img.shields.io/badge/NIX-5277C3.svg?style=for-the-badge&logo=NixOS&logoColor=white)
-![Bash Script](https://img.shields.io/badge/bash_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
-![Rust](https://img.shields.io/badge/rust-%23000000.svg?style=for-the-badge&logo=rust&logoColor=white)
 ![Lua](https://img.shields.io/badge/lua-%232C2D72.svg?style=for-the-badge&logo=lua&logoColor=white)
+![QML](https://img.shields.io/badge/QML-41CD52?logo=qt&logoColor=fff)
 
 </div>
 
 Multi-host configuration files for my NixOS machines.
 
 ### What is Nix/NixOS?
-NixOS is an atomic, declarative, immutable Linux distribution that offers both rolling and
-stable releases ([More Info](https://en.wikipedia.org/wiki/NixOS)). I tried NixOS in June 2024
-and have been daily driving it since around that time.
+NixOS is an atomic, declarative, immutable Linux distribution that offers both
+rolling and stable releases ([More Info](https://en.wikipedia.org/wiki/NixOS)).
+I first tried NixOS in June 2024 and have been daily driving it since around
+that time.
 
 Host Devices
 ------------
@@ -40,8 +40,8 @@ after the Celebrant river (pronounced [ˈkɛlɛbrant]), which comes from "celeb,
 meaning silver, and "brant," meaning something like stream. The computer is
 named so because it has a silvery-blue chassis, and because I was rewatching
 The Hobbit and The Lord of the Rings when I named it. Tokoro is a river in
-Japan. I have always been fascinated by Japanese culture (just like many of my
-peers), so I just chose a name that sounded cool. Vaal was chosen because the
+Japan. I have always been fascinated by Japanese culture (original, I know
+/s), so I just chose a name that sounded cool. Vaal was chosen because the
 name looked cool and because I found the letter v appealing.
 
 Screenshots
@@ -52,8 +52,8 @@ Screenshots
 
 Config Design Philosophy
 ------------------------
-The setup for my system is heavily inspired by Rust traits, and these traits
-define reusable definitions of the capabilites of my systems.
+The exact configuration of a given host is defined in terms of traits, which
+are essentially composable modules of nix code.
 
 Some traits define the general type of system that I'm building. This allows
 me to compose functionality without repeating myself, and creates the
@@ -87,14 +87,6 @@ The current list is as follows:
 - celebrant: Workstation
 - Tokoro: Server + Syncthing + JellyfinService
 - wsl: WSL
-
-Personal Dependencies
-----------------
-A few of my other projects are dependencies of my flake.
-- [Mkdev](https://github.com/4jamesccraven/mkdev): Command-line templating
-  engine primarily intended to speed up creating new projects (a la Cargo).
-- [4jamesccraven/neovim](https://github.com/4jamesccraven/neovim): my neovim
-  config.
 
 Directory Structure
 -------------------
