@@ -23,7 +23,7 @@ PopupWindow {
         radius: 12
         color: Theme.base
         border.color: Theme.surface0
-        border.width: 1
+        border.width: 2
 
         default property alias content: container.data
     }

@@ -22,10 +22,7 @@ Singleton {
     }
 
     function toggleMute() {
-        if (sink?.audio) {
-            root.snap()
-            sink.audio.muted = !sink?.audio.muted
-        }
+        if (sink?.audio) sink.audio.muted = !sink?.audio.muted
     }
 
     function increment() {
@@ -36,7 +33,10 @@ Singleton {
     }
 
     function decrement() {
-        if (sink?.audio) sink.audio.volume = Math.max(0.0, sink?.audio.volume - 0.05)
+        if (sink?.audio) {
+            root.snap()
+            sink.audio.volume = Math.max(0.0, sink?.audio.volume - 0.05)
+        }
     }
 
     Timer {
