@@ -129,7 +129,7 @@ PanelWindow {
             ctx.arc(width, radius, radius, -Math.PI/2, Math.PI, true);
             ctx.lineTo(3, stop);
             ctx.arc(width, stop, radius, Math.PI, (Math.PI / 2), true);
-            ctx.strokeStyle = Theme.mantle
+            ctx.strokeStyle = Theme.crust
             ctx.lineWidth = 4
             ctx.stroke()
         }
