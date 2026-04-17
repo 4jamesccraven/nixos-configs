@@ -17,7 +17,7 @@ PopupWrapper {
 
         ShellButton {
             text: "Logout"
-            command: ["hyprshutdown"]
+            command: ["hyprctl", "dispatch", "exec", "hyprshutdown -t \"Logging Out...\""]
         }
 
         ShellButton {
