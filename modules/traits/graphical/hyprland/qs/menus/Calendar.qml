@@ -95,14 +95,15 @@ PopupWrapper {
             delegate: Rectangle {
                 required property var model
 
-                readonly property bool isToday: {
+                property bool isToday: {
+                    void(Time.fullTime)
                     const today = new Date()
                     return model.year === today.getFullYear() &&
                            model.month === today.getMonth() &&
                            model.day === today.getDate()
                 }
 
-                readonly property bool isCurrentMonth: model.month === displayMonth
+                property bool isCurrentMonth: model.month === displayMonth
 
                 implicitWidth: label.implicitWidth
                 implicitHeight: label.implicitHeight + 4
