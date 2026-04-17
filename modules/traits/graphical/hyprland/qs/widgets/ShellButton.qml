@@ -7,6 +7,7 @@ import "../widgets"
 Item {
     property alias text: label.text
     property alias color: label.color
+    property alias bgColor: bg.color
     property real textScale: 1.2
     property bool accented: false
     property bool icon: false
@@ -26,6 +27,7 @@ Item {
 
 
     Rectangle {
+        id: bg
         anchors.fill: parent
         anchors.leftMargin: 5
         anchors.rightMargin: 5

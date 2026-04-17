@@ -12,7 +12,9 @@ Item {
     implicitWidth: parent.width
     implicitHeight: column.implicitHeight + 15
 
-    Pill {}
+    Pill {
+        color: Theme.mantle
+    }
 
     Column {
         id: column

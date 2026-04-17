@@ -10,4 +10,5 @@ ShellButton {
     color: (Battery.status === "Charging" | Battery.status === "Full") ? Theme.green
         : (Battery.capacity < 0.25) ? Theme.red
         : Theme.text
+    bgColor: Theme.mantle
 }

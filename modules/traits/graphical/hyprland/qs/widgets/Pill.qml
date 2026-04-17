@@ -7,6 +7,12 @@ Rectangle {
     anchors.leftMargin: 5
     anchors.rightMargin: 5
 
-    color: Theme.mantle
+    color: mouseArea.containsMouse ? Theme.crust : Theme.mantle
     radius: 15
+
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        hoverEnabled: true
+    }
 }

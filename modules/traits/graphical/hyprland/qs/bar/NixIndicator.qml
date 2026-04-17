@@ -17,7 +17,7 @@ Item {
 
         Item {
             id: days
-            visible: false
+            visible: Nix.daysSinceUpdate > 14
             width: parent.width
             height: daysLabel.implicitHeight + 12
 
