@@ -14,12 +14,18 @@ PopupWrapper {
     property bool selectedSecured: false
     property string password: ""
     property bool connecting: false
+    property bool disconnecting: false
+
+    function resetSelected() {
+        selectedSsid = ""
+        password = ""
+        connecting = false
+        disconnecting = false
+    }
 
     onVisibleChanged: {
         if (!visible) {
-            selectedSsid = ""
-            password = ""
-            connecting = false
+            root.resetSelected()
         }
     }
 
@@ -30,7 +36,22 @@ PopupWrapper {
         command: targetPassword.length > 0
             ? ["nmcli", "dev", "wifi", "connect", targetSsid, "password", targetPassword]
             : ["nmcli", "con", "up", targetSsid]
-        onExited: root.connecting = false
+        onExited: {
+            root.connecting = false
+            Network.refresh()
+            Network.refreshNetworks()
+        }
+    }
+
+    Process {
+        id: disconnectProc
+        property string targetSsid: ""
+        command: ["nmcli", "con", "down", targetSsid]
+        onExited: {
+            root.disconnecting = false
+            Network.refresh()
+            Network.refreshNetworks()
+        }
     }
 
     Column {
@@ -69,7 +90,7 @@ PopupWrapper {
                 Rectangle {
                     anchors.fill: parent
                     radius: 8
-                    color: mouseArea.containsMouse ? Theme.mantle : "transparent"
+                    color: mouseArea.containsMouse || modelData.ssid === root.selectedSsid ? Theme.mantle : "transparent"
 
                     Behavior on color {
                         ColorAnimation { duration: 100 }
@@ -114,6 +135,10 @@ PopupWrapper {
                     anchors.fill: parent
                     hoverEnabled: true
                     onClicked: {
+                        if (modelData.ssid === root.selectedSsid) {
+                            root.resetSelected()
+                            return
+                        }
                         root.selectedSsid = modelData.ssid
                         root.selectedSecured = modelData.security.length > 0
                         root.password = ""
@@ -174,7 +199,10 @@ PopupWrapper {
 
             Text {
                 anchors.centerIn: parent
-                text: root.connecting ? "Connecting..." : "Connect to " + root.selectedSsid
+                text: root.connecting ? "Connecting..."
+                    : root.disconnecting ? "Disconnecting..."
+                    : Network.networks.find(n => n.ssid === root.selectedSsid)?.active ? "Disconnect from " + root.selectedSsid
+                    : "Connect to " + root.selectedSsid
                 font.family: FontTheme.sans
                 font.pixelSize: Qt.application.font.pixelSize * 0.95
                 color: Theme.accent
@@ -185,10 +213,16 @@ PopupWrapper {
                 anchors.fill: parent
                 hoverEnabled: true
                 onClicked: {
-                    root.connecting = true
-                    connectProc.targetSsid = root.selectedSsid
-                    connectProc.targetPassword = root.password
-                    connectProc.running = true
+                    if (Network.networks.find(n => n.ssid === root.selectedSsid)?.active) {
+                        root.disconnecting = true
+                        disconnectProc.targetSsid = root.selectedSsid
+                        disconnectProc.running = true
+                    } else {
+                        root.connecting = true
+                        connectProc.targetSsid = root.selectedSsid
+                        connectProc.targetPassword = root.password
+                        connectProc.running = true
+                    }
                 }
             }
         }
