@@ -73,4 +73,13 @@ if plugs ~= nil then
     end
 end
 
+local unused = vim.iter(vim.pack.get())
+    :filter(function(x) return not x.active end)
+    :map(function(x) return x.spec.name end)
+    :totable()
+
+if not vim.tbl_isempty(unused) then
+    vim.pack.del(unused)
+end
+
 return M
