@@ -80,5 +80,7 @@ map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 -- Sorting
 map('v', '<C-s>', ':sort<CR>')
+-- You know what I meant
+map('n', 'q:', ':q<CR>')
 
 require 'plugins'
