@@ -24,6 +24,10 @@
       "rev": "c401541b8429b787d7dcb441e43bee63fc94737c",
       "src": "https://github.com/emmanueltouzery/decisive.nvim"
     },
+    "fidget.nvim": {
+      "rev": "889e2e96edef4e144965571d46f7a77bcc4d0ddf",
+      "src": "https://github.com/j-hui/fidget.nvim"
+    },
     "indent-blankline.nvim": {
       "rev": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03",
       "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
