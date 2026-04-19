@@ -1,6 +1,7 @@
 return {
     owner = 'romgrk',
     repo = 'barbar.nvim',
+    immediate = true,
     deps = {
         { owner = 'nvim-tree', repo = 'nvim-web-devicons' },
     },

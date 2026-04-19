@@ -1,6 +1,7 @@
 return {
     owner = 'catppuccin',
     repo = 'nvim',
+    immediate = true,
     config = function()
         require 'catppuccin'.setup({
             flavour = 'mocha',
