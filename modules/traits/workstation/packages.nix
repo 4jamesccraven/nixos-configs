@@ -95,6 +95,10 @@
     cargo
     gh
     git
+
+    # :> Extra Docs
+    man-pages
+    man-pages-posix
   ];
 
   # ---[ Progam/Service-based ]---

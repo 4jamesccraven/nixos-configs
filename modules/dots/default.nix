@@ -11,6 +11,7 @@
     # keep-sorted start
     ./bash.nix
     ./bat.nix
+    ./tmux.nix
     ./btop.nix
     ./fastfetch.nix
     ./git.nix
