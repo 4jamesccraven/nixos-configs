@@ -13,6 +13,7 @@
         base = "${colours.base.hex}ff";
         accent = "${colours.accent.hex}ff";
         text = "${colours.text.hex}ff";
+        surface-0 = "${colours.surface-0.hex}ff";
         term = config.ext.term.runCmds;
       in
       {
@@ -35,7 +36,7 @@
               prompt = accent;
 
               match = text;
-              border = accent;
+              border = surface-0;
 
               selection = accent;
               selection-match = base;
