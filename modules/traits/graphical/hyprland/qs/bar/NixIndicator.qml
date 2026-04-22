@@ -17,7 +17,7 @@ Item {
 
         Item {
             id: days
-            visible: Nix.daysSinceUpdate > 14
+            visible: Nix.daysSinceUpdate >= 14
             width: parent.width
             height: daysLabel.implicitHeight + 12
 
@@ -30,8 +30,8 @@ Item {
                 font.family: FontTheme.sans
                 text: Nix.daysSinceUpdate + "d"
                 font.pixelSize: Qt.application.font.pixelSize * 0.9
-                color: (Nix.daysSinceUpdate > 21) ? Theme.red
-                    : (Nix.daysSinceUpdate > 14) ? Theme.accent
+                color: (Nix.daysSinceUpdate >= 21) ? Theme.red
+                    : (Nix.daysSinceUpdate >= 14) ? Theme.accent
                     : Theme.surface2
             }
         }
