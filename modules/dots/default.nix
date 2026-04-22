@@ -11,7 +11,6 @@
     # keep-sorted start
     ./bash.nix
     ./bat.nix
-    ./tmux.nix
     ./btop.nix
     ./fastfetch.nix
     ./git.nix
@@ -22,6 +21,7 @@
     ./qt.nix
     ./starship.nix
     ./tealdeer.nix
+    ./tmux.nix
     ./yazi.nix
     ./zsh.nix
     # keep-sorted end
