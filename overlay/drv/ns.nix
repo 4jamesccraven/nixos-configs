@@ -81,6 +81,11 @@ pkgs.writeShellApplication {
              -- bash -c "while kill -0 $1; do sleep 0.1; done"
     }
 
+    if [[ $# -eq 0 ]]; then
+        usage
+        exit 1
+    fi
+
     subcommand=
     case "$1" in
         shell|source|run|edit|homepage|search)
@@ -165,7 +170,7 @@ pkgs.writeShellApplication {
             ;;
         homepage)
             for selection in "''${raw_selection[@]}"; do
-                xdg-open "''$(nix-search-tv homepage "$selection")"
+                xdg-open "$(nix-search-tv homepage "$selection")"
             done
             ;;
         search)
