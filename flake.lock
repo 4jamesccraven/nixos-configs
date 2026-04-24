@@ -106,12 +106,33 @@
         "url": "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz"
       }
     },
+    "ns": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1777002215,
+        "narHash": "sha256-fl3zSif/q5CzDw+WuSjsSaKONuKkAATplTn8CI2YGOk=",
+        "owner": "4jamesccraven",
+        "repo": "ns",
+        "rev": "ecd73833a931625545db1e2ad30b837d36aa5702",
+        "type": "github"
+      },
+      "original": {
+        "owner": "4jamesccraven",
+        "repo": "ns",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "mkdev": "mkdev",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
+        "ns": "ns",
         "tree-sitter": "tree-sitter"
       }
     },

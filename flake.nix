@@ -17,6 +17,10 @@
       url = "github:4jamesccraven/mkdev";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ns = {
+      url = "github:4jamesccraven/ns";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # :> Third-party
     tree-sitter = {
