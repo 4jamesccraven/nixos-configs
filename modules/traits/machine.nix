@@ -37,9 +37,8 @@
           messages = "en_GB.UTF-8";
         };
 
-        spanish = {
-          default = "es_AR.UTF-8";
-        };
+        spanish = "es_AR.UTF-8";
+        korean = "ko_KR.UTF-8";
       };
     in
     with locales;
@@ -48,7 +47,47 @@
       extraLocaleSettings = {
         LC_MESSAGES = english.messages;
       };
-      extraLocales = map (lang: "${lang}/UTF-8") [ spanish.default ];
+      extraLocales = map (lang: "${lang}/UTF-8") [
+        spanish
+        korean
+      ];
+
+      inputMethod = {
+        enable = true;
+        type = "fcitx5";
+        fcitx5 = {
+          addons = with pkgs; [
+            fcitx5-hangul
+            catppuccin-fcitx5
+          ];
+          settings.inputMethod = {
+            "Groups/0" = {
+              Name = "Group 1";
+              "Default Layout" = "us";
+              DefaultIM = "keyboard-es";
+            };
+
+            "Groups/0/Items/0" = {
+              Name = "keyboard-us";
+              Layout = "";
+            };
+
+            "Groups/0/Items/1" = {
+              Name = "keyboard-es";
+              Layout = "";
+            };
+
+            "Groups/0/Items/2" = {
+              Name = "hangul";
+              Layout = "";
+            };
+
+            GroupOrder = {
+              "0" = "Group 1";
+            };
+          };
+        };
+      };
     };
 
   # ---[ Services ]---

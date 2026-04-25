@@ -43,6 +43,7 @@
           # ---[ Startup ]----
           exec-once = [
             "hyprctl setcursor Dracula-cursors 22"
+            "fcitx5 -d"
           ];
 
           # ---[ Compatibility ]---
@@ -54,7 +55,7 @@
 
           # ---[ Input ]---
           input = {
-            kb_layout = "us,es"; # English & Spanish
+            kb_layout = "us,es,kr"; # English, Spanish, & Korean
             natural_scroll = false;
             numlock_by_default = true;
 
