@@ -62,6 +62,8 @@
     ffmpeg-full
     file
     fzf
+    gallery-dl
+    jq
     libqalculate
     tokei
     tor-dl
@@ -77,7 +79,6 @@
     # :> Scripts
     ns
     st-remote
-    update-notify
 
     # ---[ Development ]---
     # :> Compilers
