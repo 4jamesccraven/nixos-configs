@@ -34,6 +34,7 @@
               "Alt_L, Space, exec, fuzzel"
               "$mod, Return, exec, ${terminal}"
               "Control_L+Shift, Escape, exec, ${runTerm} btop"
+              ", XF86Calculator, exec, qalculate-gtk"
 
               # :> Fullscreen control
               "$mod, M, fullscreen, 1"
