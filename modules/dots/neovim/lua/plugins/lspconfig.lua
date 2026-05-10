@@ -69,10 +69,10 @@ return {
 
         -- Enable all servers, apply config if provided
         for name, config in pairs(servers) do
-            vim.lsp.enable(name)
             if config ~= true then
                 vim.lsp.config(name, config)
             end
+            vim.lsp.enable(name)
         end
 
         -- Keybinds
