@@ -38,6 +38,9 @@ vim.opt.sidescrolloff = 8
 -- Text Wrapping
 vim.opt.wrap = false
 
+-- Performance
+vim.loader.enable()
+
 -- Remember last place in buffer
 local lastplace = vim.api.nvim_create_augroup("LastPlace", {})
 vim.api.nvim_clear_autocmds({ group = lastplace })
