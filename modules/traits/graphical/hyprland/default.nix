@@ -38,6 +38,7 @@
     home-manager.users.jamescraven = {
       wayland.windowManager.hyprland = {
         enable = true; # Enable in *home-manager*
+        configType = "hyprlang"; # Force hyprlang for now.
 
         settings = {
           # ---[ Startup ]----
