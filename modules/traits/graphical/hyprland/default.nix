@@ -44,6 +44,7 @@
           # ---[ Startup ]----
           exec-once = [
             "hyprctl setcursor Dracula-cursors 22"
+            "blueman-applet"
             "fcitx5 -d"
           ];
 
